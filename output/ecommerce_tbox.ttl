@@ -1,0 +1,1034 @@
+@prefix : <http://example.org/ecommerce#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:EcommerceInducedOntology a owl:Ontology ;
+    rdfs:label "Ecommerce Domain Ontology"^^xsd:string .
+
+:accountIdentifier a owl:DatatypeProperty ;
+    rdfs:label "accountIdentifier"^^xsd:string .
+
+:appliedPromotion a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "appliedPromotion"^^xsd:string ;
+    rdfs:domain :Order ;
+    rdfs:range :PromotionCoupon .
+
+:couponCode a owl:DatatypeProperty ;
+    rdfs:label "couponCode"^^xsd:string .
+
+:crossPromotedWith a owl:AsymmetricProperty,
+        owl:ObjectProperty ;
+    rdfs:label "crossPromotedWith"^^xsd:string ;
+    rdfs:domain :ProductCategory ;
+    rdfs:range :ProductCategory .
+
+:customerName a owl:DatatypeProperty ;
+    rdfs:label "customerName"^^xsd:string .
+
+:dimensionMeasurement a owl:DatatypeProperty ;
+    rdfs:label "dimensionMeasurement"^^xsd:string .
+
+:discountPercentage a owl:DatatypeProperty ;
+    rdfs:label "discountPercentage"^^xsd:string .
+
+:downloadUrl a owl:DatatypeProperty ;
+    rdfs:label "downloadUrl"^^xsd:string .
+
+:frequentlyBoughtTogether a owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "frequentlyBoughtTogether"^^xsd:string ;
+    rdfs:domain :PhysicalProduct ;
+    rdfs:range :PhysicalProduct .
+
+:hasSpecification a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasSpecification"^^xsd:string ;
+    rdfs:domain :ConsumerElectronics ;
+    rdfs:range :DimensionMeasurement .
+
+:inStockUnits a owl:DatatypeProperty ;
+    rdfs:label "inStockUnits"^^xsd:string .
+
+:includesProduct a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "includesProduct"^^xsd:string ;
+    rdfs:domain :Order ;
+    rdfs:range :ConsumerElectronics .
+
+:isSubCategoryOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "isSubCategoryOf"^^xsd:string ;
+    rdfs:domain :ProductCategory ;
+    rdfs:range :ProductCategory .
+
+:orderHasShipment a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "orderHasShipment"^^xsd:string ;
+    rdfs:domain :Order ;
+    rdfs:range :ShippingCarrier .
+
+:orderTotalAmount a owl:DatatypeProperty ;
+    rdfs:label "orderTotalAmount"^^xsd:string .
+
+:placedByCustomer a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "placedByCustomer"^^xsd:string ;
+    rdfs:domain :Order ;
+    rdfs:range :Customer .
+
+:primaryContactCustomer a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "primaryContactCustomer"^^xsd:string ;
+    rdfs:domain :Order ;
+    rdfs:range :Customer .
+
+:primaryEmail a owl:DatatypeProperty ;
+    rdfs:label "primaryEmail"^^xsd:string .
+
+:productTitle a owl:DatatypeProperty ;
+    rdfs:label "productTitle"^^xsd:string .
+
+:promotionTitle a owl:DatatypeProperty ;
+    rdfs:label "promotionTitle"^^xsd:string .
+
+:recommendedWith a owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "recommendedWith"^^xsd:string ;
+    rdfs:domain :ConsumerElectronics ;
+    rdfs:range :ConsumerElectronics .
+
+:reviewRating a owl:DatatypeProperty ;
+    rdfs:label "reviewRating"^^xsd:string .
+
+:reviewText a owl:DatatypeProperty ;
+    rdfs:label "reviewText"^^xsd:string .
+
+:reviewsProduct a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "reviewsProduct"^^xsd:string ;
+    rdfs:domain :ProductReview ;
+    rdfs:range :ConsumerElectronics .
+
+:shippingCarrier a owl:DatatypeProperty ;
+    rdfs:label "shippingCarrier"^^xsd:string .
+
+:shippingStatus a owl:DatatypeProperty ;
+    rdfs:label "shippingStatus"^^xsd:string .
+
+:skuCode a owl:DatatypeProperty ;
+    rdfs:label "skuCode"^^xsd:string .
+
+:supplierName a owl:DatatypeProperty ;
+    rdfs:label "supplierName"^^xsd:string .
+
+:technicalWeight a owl:DatatypeProperty ;
+    rdfs:label "technicalWeight"^^xsd:string .
+
+:trackingCode a owl:DatatypeProperty ;
+    rdfs:label "trackingCode"^^xsd:string .
+
+:trackingNumber a owl:DatatypeProperty ;
+    rdfs:label "trackingNumber"^^xsd:string .
+
+:unitPrice a owl:DatatypeProperty ;
+    rdfs:label "unitPrice"^^xsd:string .
+
+:warrantyPeriod a owl:DatatypeProperty ;
+    rdfs:label "warrantyPeriod"^^xsd:string .
+
+:AudioAlbum a owl:Class ;
+    rdfs:label "AudioAlbum"^^xsd:string ;
+    rdfs:subClassOf :DigitalMedia ;
+    owl:disjointWith :Buyer,
+        :ConsumerElectronics,
+        :Customer,
+        :DimensionMeasurement,
+        :DomesticSupplier,
+        :EBook,
+        :Footwear,
+        :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PhysicalProduct,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:Buyer a owl:Class ;
+    rdfs:label "Buyer"^^xsd:string ;
+    owl:disjointWith :ConsumerElectronics,
+        :Customer,
+        :DigitalMedia,
+        :DigitalProduct,
+        :DimensionMeasurement,
+        :DomesticSupplier,
+        :EBook,
+        :Footwear,
+        :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PhysicalProduct,
+        :PlatinumVIPCustomer,
+        :Product,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier ;
+    owl:equivalentClass :Purchaser .
+
+:Apparel a owl:Class ;
+    rdfs:label "Apparel"^^xsd:string ;
+    rdfs:subClassOf :PhysicalProduct ;
+    owl:disjointWith :AudioAlbum,
+        :Buyer,
+        :ConsumerElectronics,
+        :Customer,
+        :DigitalMedia,
+        :DigitalProduct,
+        :DimensionMeasurement,
+        :DomesticSupplier,
+        :EBook,
+        :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Party,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:EBook a owl:Class ;
+    rdfs:label "EBook"^^xsd:string ;
+    rdfs:subClassOf :DigitalMedia ;
+    owl:disjointWith :Footwear,
+        :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:DigitalMedia a owl:Class ;
+    rdfs:label "DigitalMedia"^^xsd:string ;
+    rdfs:subClassOf :DigitalProduct ;
+    owl:disjointWith :DimensionMeasurement,
+        :DomesticSupplier,
+        :Footwear,
+        :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:DigitalProduct a owl:Class ;
+    rdfs:label "DigitalProduct"^^xsd:string ;
+    rdfs:subClassOf :Product ;
+    owl:disjointWith :DimensionMeasurement,
+        :DomesticSupplier,
+        :Footwear,
+        :InternationalSupplier,
+        :Laptop,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:DimensionMeasurement a owl:Class ;
+    rdfs:label "DimensionMeasurement"^^xsd:string ;
+    owl:disjointWith :DomesticSupplier,
+        :EBook,
+        :Footwear,
+        :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PhysicalProduct,
+        :PlatinumVIPCustomer,
+        :Product,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:Customer a owl:Class ;
+    rdfs:label "Customer"^^xsd:string ;
+    rdfs:subClassOf :Party ;
+    owl:disjointWith :DigitalMedia,
+        :DigitalProduct,
+        :DimensionMeasurement,
+        :DomesticSupplier,
+        :EBook,
+        :Footwear,
+        :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :PhysicalProduct,
+        :Product,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VerifiedSupplier .
+
+:DomesticSupplier a owl:Class ;
+    rdfs:label "DomesticSupplier"^^xsd:string ;
+    rdfs:subClassOf :Supplier,
+        :VerifiedSupplier ;
+    owl:disjointWith :EBook,
+        :Footwear,
+        :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :PhysicalProduct,
+        :PlatinumVIPCustomer,
+        :Product,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :VIPCustomer .
+
+:Footwear a owl:Class ;
+    rdfs:label "Footwear"^^xsd:string ;
+    rdfs:subClassOf :Apparel ;
+    owl:disjointWith :InternationalSupplier,
+        :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:Laptop a owl:Class ;
+    rdfs:label "Laptop"^^xsd:string ;
+    rdfs:subClassOf :ConsumerElectronics ;
+    owl:disjointWith :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:Product a owl:Class ;
+    rdfs:label "Product"^^xsd:string ;
+    owl:disjointWith :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:ConsumerElectronics a owl:Class ;
+    rdfs:label "ConsumerElectronics"^^xsd:string ;
+    rdfs:subClassOf :PhysicalProduct ;
+    owl:disjointWith :Customer,
+        :DimensionMeasurement,
+        :DomesticSupplier,
+        :Footwear,
+        :InternationalSupplier,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:InternationalSupplier a owl:Class ;
+    rdfs:label "InternationalSupplier"^^xsd:string ;
+    rdfs:subClassOf :Supplier,
+        :VerifiedSupplier ;
+    owl:disjointWith :Laptop,
+        :MobileApp,
+        :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :PhysicalProduct,
+        :PlatinumVIPCustomer,
+        :Product,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :VIPCustomer .
+
+:MobileApp a owl:Class ;
+    rdfs:label "MobileApp"^^xsd:string ;
+    rdfs:subClassOf :SoftwareProduct ;
+    owl:disjointWith :OperatingSystem,
+        :Order,
+        :Outerwear,
+        :Party,
+        :PhysicalProduct,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:OperatingSystem a owl:Class ;
+    rdfs:label "OperatingSystem"^^xsd:string ;
+    rdfs:subClassOf :SoftwareProduct ;
+    owl:disjointWith :Order,
+        :Outerwear,
+        :Party,
+        :PhysicalProduct,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:Outerwear a owl:Class ;
+    rdfs:label "Outerwear"^^xsd:string ;
+    rdfs:subClassOf :Apparel ;
+    owl:disjointWith :Party,
+        :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:PhysicalProduct a owl:Class ;
+    rdfs:label "PhysicalProduct"^^xsd:string ;
+    rdfs:subClassOf :Product ;
+    owl:disjointWith :PlatinumVIPCustomer,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:PlatinumVIPCustomer a owl:Class ;
+    rdfs:label "PlatinumVIPCustomer"^^xsd:string ;
+    rdfs:subClassOf :VIPCustomer ;
+    owl:disjointWith :Product,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VerifiedSupplier .
+
+:Order a owl:Class ;
+    rdfs:label "Order"^^xsd:string ;
+    owl:disjointWith :Outerwear,
+        :Party,
+        :PhysicalProduct,
+        :PlatinumVIPCustomer,
+        :Product,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:Party a owl:Class ;
+    rdfs:label "Party"^^xsd:string ;
+    owl:disjointWith :PhysicalProduct,
+        :Product,
+        :ProductCategory,
+        :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct .
+
+:ProductReview a owl:Class ;
+    rdfs:label "ProductReview"^^xsd:string ;
+    owl:disjointWith :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:PromotionCoupon a owl:Class ;
+    rdfs:label "PromotionCoupon"^^xsd:string ;
+    owl:disjointWith :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:Purchaser a owl:Class ;
+    rdfs:label "Purchaser"^^xsd:string ;
+    owl:disjointWith :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:ProductCategory a owl:Class ;
+    rdfs:label "ProductCategory"^^xsd:string ;
+    owl:disjointWith :ProductReview,
+        :PromotionCoupon,
+        :Purchaser,
+        :RegisteredCustomer,
+        :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:RegisteredCustomer a owl:Class ;
+    rdfs:label "RegisteredCustomer"^^xsd:string ;
+    rdfs:subClassOf :Customer ;
+    owl:disjointWith :ReviewTierA,
+        :ReviewTierB,
+        :ReviewTierC,
+        :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VerifiedSupplier .
+
+:Smartphone a owl:Class ;
+    rdfs:label "Smartphone"^^xsd:string ;
+    rdfs:subClassOf :ConsumerElectronics ;
+    owl:disjointWith :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:ReviewTierA a owl:Class ;
+    rdfs:label "ReviewTierA"^^xsd:string ;
+    owl:disjointWith :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:ReviewTierB a owl:Class ;
+    rdfs:label "ReviewTierB"^^xsd:string ;
+    owl:disjointWith :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:ReviewTierC a owl:Class ;
+    rdfs:label "ReviewTierC"^^xsd:string ;
+    owl:disjointWith :ShippingCarrier,
+        :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:ShippingCarrier a owl:Class ;
+    rdfs:label "ShippingCarrier"^^xsd:string ;
+    owl:disjointWith :Smartphone,
+        :SoftwareProduct,
+        :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:SoftwareProduct a owl:Class ;
+    rdfs:label "SoftwareProduct"^^xsd:string ;
+    rdfs:subClassOf :DigitalProduct ;
+    owl:disjointWith :Supplier,
+        :VIPCustomer,
+        :VerifiedSupplier .
+
+:VIPCustomer a owl:Class ;
+    rdfs:label "VIPCustomer"^^xsd:string ;
+    rdfs:subClassOf :RegisteredCustomer ;
+    owl:disjointWith :VerifiedSupplier .
+
+:Supplier a owl:Class ;
+    rdfs:label "Supplier"^^xsd:string ;
+    rdfs:subClassOf :Party ;
+    owl:disjointWith :VIPCustomer ;
+    owl:equivalentClass :VerifiedSupplier .
+
+:VerifiedSupplier a owl:Class ;
+    rdfs:label "VerifiedSupplier"^^xsd:string ;
+    rdfs:subClassOf :Party .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 24 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :PhysicalProduct ;
+    owl:annotatedTarget :Product ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 4 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :OperatingSystem ;
+    owl:annotatedTarget :SoftwareProduct ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 3 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :PlatinumVIPCustomer ;
+    owl:annotatedTarget :VIPCustomer ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 10 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Supplier ;
+    owl:annotatedTarget :Party ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 4 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AudioAlbum ;
+    owl:annotatedTarget :DigitalMedia ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 5 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :DomesticSupplier ;
+    owl:annotatedTarget :VerifiedSupplier ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 4 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.800 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :EBook ;
+    owl:annotatedTarget :DigitalMedia ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 24 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Customer ;
+    owl:annotatedTarget :Party ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 5 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :DomesticSupplier ;
+    owl:annotatedTarget :Supplier ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Laptop ;
+    owl:annotatedTarget :ConsumerElectronics ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.857 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Smartphone ;
+    owl:annotatedTarget :ConsumerElectronics ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 5 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :InternationalSupplier ;
+    owl:annotatedTarget :Supplier ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 10 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :VerifiedSupplier ;
+    owl:annotatedTarget :Party ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 8 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :SoftwareProduct ;
+    owl:annotatedTarget :DigitalProduct ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ConsumerElectronics ;
+    owl:annotatedTarget :PhysicalProduct ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 4 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :MobileApp ;
+    owl:annotatedTarget :SoftwareProduct ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 16 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :RegisteredCustomer ;
+    owl:annotatedTarget :Customer ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Footwear ;
+    owl:annotatedTarget :Apparel ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 5 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :InternationalSupplier ;
+    owl:annotatedTarget :VerifiedSupplier ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 16 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :DigitalProduct ;
+    owl:annotatedTarget :Product ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 8 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :DigitalMedia ;
+    owl:annotatedTarget :DigitalProduct ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Outerwear ;
+    owl:annotatedTarget :Apparel ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 8 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :VIPCustomer ;
+    owl:annotatedTarget :RegisteredCustomer ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Apparel ;
+    owl:annotatedTarget :PhysicalProduct ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+

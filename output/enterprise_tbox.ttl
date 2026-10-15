@@ -1,0 +1,736 @@
+@prefix : <http://example.org/enterprise#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:EnterpriseInducedOntology a owl:Ontology ;
+    rdfs:label "Enterprise Domain Ontology"^^xsd:string .
+
+:advises a owl:AsymmetricProperty,
+        owl:ObjectProperty ;
+    rdfs:label "advises"^^xsd:string ;
+    rdfs:domain :EnterpriseDepartment ;
+    rdfs:range :EnterpriseDepartment .
+
+:allocatedCapitalAmount a owl:DatatypeProperty ;
+    rdfs:label "allocatedCapitalAmount"^^xsd:string .
+
+:annualSalary a owl:DatatypeProperty ;
+    rdfs:label "annualSalary"^^xsd:string .
+
+:approvalStatusCode a owl:DatatypeProperty ;
+    rdfs:label "approvalStatusCode"^^xsd:string .
+
+:assetDepreciationValue a owl:DatatypeProperty ;
+    rdfs:label "assetDepreciationValue"^^xsd:string .
+
+:assetHostname a owl:DatatypeProperty ;
+    rdfs:label "assetHostname"^^xsd:string .
+
+:assignedProjectLead a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "assignedProjectLead"^^xsd:string ;
+    rdfs:domain :BusinessProject ;
+    rdfs:range :CorporateEmployee .
+
+:assignedSoftwareLicense a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "assignedSoftwareLicense"^^xsd:string ;
+    rdfs:domain :ComputingDevice ;
+    rdfs:range :LicenseExpiration .
+
+:collaboratesWith a owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "collaboratesWith"^^xsd:string ;
+    rdfs:domain :CorporateEmployee ;
+    rdfs:range :CorporateEmployee .
+
+:contractAgencyName a owl:DatatypeProperty ;
+    rdfs:label "contractAgencyName"^^xsd:string .
+
+:employeeCorporateId a owl:DatatypeProperty ;
+    rdfs:label "employeeCorporateId"^^xsd:string .
+
+:employeePerformanceReview a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "employeePerformanceReview"^^xsd:string ;
+    rdfs:domain :CorporateEmployee ;
+    rdfs:range :PerformanceReview .
+
+:expenseCategoryCode a owl:DatatypeProperty ;
+    rdfs:label "expenseCategoryCode"^^xsd:string .
+
+:expirationDatePeriod a owl:DatatypeProperty ;
+    rdfs:label "expirationDatePeriod"^^xsd:string .
+
+:facilityLocationCode a owl:DatatypeProperty ;
+    rdfs:label "facilityLocationCode"^^xsd:string .
+
+:fiscalYearQuarter a owl:DatatypeProperty ;
+    rdfs:label "fiscalYearQuarter"^^xsd:string .
+
+:fullName a owl:DatatypeProperty ;
+    rdfs:label "fullName"^^xsd:string .
+
+:hourlyBillingRate a owl:DatatypeProperty ;
+    rdfs:label "hourlyBillingRate"^^xsd:string .
+
+:licenseKeyIdentifier a owl:DatatypeProperty ;
+    rdfs:label "licenseKeyIdentifier"^^xsd:string .
+
+:mentors a owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "mentors"^^xsd:string ;
+    rdfs:domain :CorporateEmployee ;
+    rdfs:range :CorporateEmployee .
+
+:officeRoomNumber a owl:DatatypeProperty ;
+    rdfs:label "officeRoomNumber"^^xsd:string .
+
+:payrollId a owl:DatatypeProperty ;
+    rdfs:label "payrollId"^^xsd:string .
+
+:performanceEvaluationPeriod a owl:DatatypeProperty ;
+    rdfs:label "performanceEvaluationPeriod"^^xsd:string .
+
+:projectName a owl:DatatypeProperty ;
+    rdfs:label "projectName"^^xsd:string .
+
+:projectStartDate a owl:DatatypeProperty ;
+    rdfs:label "projectStartDate"^^xsd:string .
+
+:reimbursementAmount a owl:DatatypeProperty ;
+    rdfs:label "reimbursementAmount"^^xsd:string .
+
+:reviewRatingScore a owl:DatatypeProperty ;
+    rdfs:label "reviewRatingScore"^^xsd:string .
+
+:reviewerFeedbackNotes a owl:DatatypeProperty ;
+    rdfs:label "reviewerFeedbackNotes"^^xsd:string .
+
+:subDivisionOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "subDivisionOf"^^xsd:string ;
+    rdfs:domain :EnterpriseDepartment ;
+    rdfs:range :EnterpriseDepartment .
+
+:submittedExpenseReport a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "submittedExpenseReport"^^xsd:string ;
+    rdfs:domain :CorporateEmployee ;
+    rdfs:range :ExpenseApproval .
+
+:vendorEntityName a owl:DatatypeProperty ;
+    rdfs:label "vendorEntityName"^^xsd:string .
+
+:BusinessProject a owl:Class ;
+    rdfs:label "BusinessProject"^^xsd:string ;
+    owl:disjointWith :CompanyEmployee,
+        :ComputingDevice,
+        :ContractWorker,
+        :CorporateEmployee,
+        :DatacenterFacility,
+        :EnterpriseAsset,
+        :EnterpriseDepartment,
+        :ExecutiveDirector,
+        :ExpenseApproval,
+        :ExternalConsultant,
+        :FacilityAsset,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :FullTimeEmployee,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:CompanyEmployee a owl:Class ;
+    rdfs:label "CompanyEmployee"^^xsd:string ;
+    owl:disjointWith :ComputingDevice,
+        :ContractWorker,
+        :CorporateEmployee,
+        :DatacenterFacility,
+        :EnterpriseAsset,
+        :EnterpriseDepartment,
+        :ExecutiveDirector,
+        :ExpenseApproval,
+        :ExternalConsultant,
+        :FacilityAsset,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :FullTimeEmployee,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :WorkstationAsset ;
+    owl:equivalentClass :StaffMember .
+
+:DatacenterFacility a owl:Class ;
+    rdfs:label "DatacenterFacility"^^xsd:string ;
+    rdfs:subClassOf :FacilityAsset ;
+    owl:disjointWith :EnterpriseDepartment,
+        :ExecutiveDirector,
+        :ExpenseApproval,
+        :ExternalConsultant,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :FullTimeEmployee,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:ExecutiveDirector a owl:Class ;
+    rdfs:label "ExecutiveDirector"^^xsd:string ;
+    rdfs:subClassOf :SeniorFullTimeEmployee ;
+    owl:disjointWith :ExpenseApproval,
+        :FacilityAsset,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:ComputingDevice a owl:Class ;
+    rdfs:label "ComputingDevice"^^xsd:string ;
+    rdfs:subClassOf :EnterpriseAsset ;
+    owl:disjointWith :ContractWorker,
+        :CorporateEmployee,
+        :DatacenterFacility,
+        :EnterpriseDepartment,
+        :ExecutiveDirector,
+        :ExpenseApproval,
+        :ExternalConsultant,
+        :FacilityAsset,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :StaffMember ;
+    owl:equivalentClass :HardwareAsset .
+
+:ExternalConsultant a owl:Class ;
+    rdfs:label "ExternalConsultant"^^xsd:string ;
+    rdfs:subClassOf :ContractWorker ;
+    owl:disjointWith :FacilityAsset,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:ContractWorker a owl:Class ;
+    rdfs:label "ContractWorker"^^xsd:string ;
+    rdfs:subClassOf :CorporateEmployee,
+        :Person ;
+    owl:disjointWith :DatacenterFacility,
+        :EnterpriseAsset,
+        :EnterpriseDepartment,
+        :ExpenseApproval,
+        :FacilityAsset,
+        :FiscalBudget,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:EnterpriseAsset a owl:Class ;
+    rdfs:label "EnterpriseAsset"^^xsd:string ;
+    owl:disjointWith :EnterpriseDepartment,
+        :ExecutiveDirector,
+        :ExpenseApproval,
+        :ExternalConsultant,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :StaffMember .
+
+:ExpenseApproval a owl:Class ;
+    rdfs:label "ExpenseApproval"^^xsd:string ;
+    owl:disjointWith :ExternalConsultant,
+        :FacilityAsset,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :FullTimeEmployee,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:EnterpriseDepartment a owl:Class ;
+    rdfs:label "EnterpriseDepartment"^^xsd:string ;
+    owl:disjointWith :ExecutiveDirector,
+        :ExpenseApproval,
+        :ExternalConsultant,
+        :FacilityAsset,
+        :FiscalBudget,
+        :FreelanceContractor,
+        :FullTimeEmployee,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:FiscalBudget a owl:Class ;
+    rdfs:label "FiscalBudget"^^xsd:string ;
+    owl:disjointWith :FreelanceContractor,
+        :FullTimeEmployee,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:FreelanceContractor a owl:Class ;
+    rdfs:label "FreelanceContractor"^^xsd:string ;
+    rdfs:subClassOf :ContractWorker ;
+    owl:disjointWith :FullTimeEmployee,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:CorporateEmployee a owl:Class ;
+    rdfs:label "CorporateEmployee"^^xsd:string ;
+    owl:disjointWith :DatacenterFacility,
+        :EnterpriseAsset,
+        :EnterpriseDepartment,
+        :ExpenseApproval,
+        :FacilityAsset,
+        :FiscalBudget,
+        :HardwareAsset,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset ;
+    owl:equivalentClass :Person .
+
+:FacilityAsset a owl:Class ;
+    rdfs:label "FacilityAsset"^^xsd:string ;
+    rdfs:subClassOf :EnterpriseAsset ;
+    owl:disjointWith :FiscalBudget,
+        :FreelanceContractor,
+        :FullTimeEmployee,
+        :HardwareAsset,
+        :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:JuniorFullTimeEmployee a owl:Class ;
+    rdfs:label "JuniorFullTimeEmployee"^^xsd:string ;
+    rdfs:subClassOf :FullTimeEmployee ;
+    owl:disjointWith :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:FullTimeEmployee a owl:Class ;
+    rdfs:label "FullTimeEmployee"^^xsd:string ;
+    rdfs:subClassOf :CorporateEmployee,
+        :Person ;
+    owl:disjointWith :HardwareAsset,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:OfficeFacility a owl:Class ;
+    rdfs:label "OfficeFacility"^^xsd:string ;
+    rdfs:subClassOf :FacilityAsset ;
+    owl:disjointWith :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:LicenseExpiration a owl:Class ;
+    rdfs:label "LicenseExpiration"^^xsd:string ;
+    owl:disjointWith :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string ;
+    owl:disjointWith :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:HardwareAsset a owl:Class ;
+    rdfs:label "HardwareAsset"^^xsd:string ;
+    rdfs:subClassOf :EnterpriseAsset ;
+    owl:disjointWith :JuniorFullTimeEmployee,
+        :LicenseExpiration,
+        :OfficeFacility,
+        :PerformanceReview,
+        :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :StaffMember .
+
+:PerformanceReview a owl:Class ;
+    rdfs:label "PerformanceReview"^^xsd:string ;
+    owl:disjointWith :Person,
+        :ProjectMilestoneA,
+        :ProjectMilestoneB,
+        :ProjectMilestoneC,
+        :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:ProjectMilestoneA a owl:Class ;
+    rdfs:label "ProjectMilestoneA"^^xsd:string ;
+    owl:disjointWith :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:ProjectMilestoneB a owl:Class ;
+    rdfs:label "ProjectMilestoneB"^^xsd:string ;
+    owl:disjointWith :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:ProjectMilestoneC a owl:Class ;
+    rdfs:label "ProjectMilestoneC"^^xsd:string ;
+    owl:disjointWith :SeniorFullTimeEmployee,
+        :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:SeniorFullTimeEmployee a owl:Class ;
+    rdfs:label "SeniorFullTimeEmployee"^^xsd:string ;
+    rdfs:subClassOf :FullTimeEmployee ;
+    owl:disjointWith :ServerAsset,
+        :StaffMember,
+        :WorkstationAsset .
+
+:ServerAsset a owl:Class ;
+    rdfs:label "ServerAsset"^^xsd:string ;
+    rdfs:subClassOf :ComputingDevice,
+        :HardwareAsset ;
+    owl:disjointWith :StaffMember,
+        :WorkstationAsset .
+
+:StaffMember a owl:Class ;
+    rdfs:label "StaffMember"^^xsd:string ;
+    owl:disjointWith :WorkstationAsset .
+
+:WorkstationAsset a owl:Class ;
+    rdfs:label "WorkstationAsset"^^xsd:string ;
+    rdfs:subClassOf :ComputingDevice,
+        :HardwareAsset .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ContractWorker ;
+    owl:annotatedTarget :CorporateEmployee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.857 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ExternalConsultant ;
+    owl:annotatedTarget :ContractWorker ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 8 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :JuniorFullTimeEmployee ;
+    owl:annotatedTarget :FullTimeEmployee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ServerAsset ;
+    owl:annotatedTarget :ComputingDevice ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 18 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :FullTimeEmployee ;
+    owl:annotatedTarget :CorporateEmployee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 18 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :FullTimeEmployee ;
+    owl:annotatedTarget :Person ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ContractWorker ;
+    owl:annotatedTarget :Person ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :FacilityAsset ;
+    owl:annotatedTarget :EnterpriseAsset ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 4 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.800 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ExecutiveDirector ;
+    owl:annotatedTarget :SeniorFullTimeEmployee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :DatacenterFacility ;
+    owl:annotatedTarget :FacilityAsset ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :FreelanceContractor ;
+    owl:annotatedTarget :ContractWorker ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ComputingDevice ;
+    owl:annotatedTarget :EnterpriseAsset ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :WorkstationAsset ;
+    owl:annotatedTarget :HardwareAsset ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 10 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :SeniorFullTimeEmployee ;
+    owl:annotatedTarget :FullTimeEmployee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ServerAsset ;
+    owl:annotatedTarget :HardwareAsset ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :OfficeFacility ;
+    owl:annotatedTarget :FacilityAsset ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :WorkstationAsset ;
+    owl:annotatedTarget :ComputingDevice ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :HardwareAsset ;
+    owl:annotatedTarget :EnterpriseAsset ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+

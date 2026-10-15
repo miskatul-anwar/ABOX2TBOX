@@ -1,0 +1,244 @@
+{
+  "baseline": {
+    "name": "University Baseline",
+    "dag_acyclicity": {
+      "nodes_count": 33,
+      "edges_count": 37,
+      "self_loops_count": 0,
+      "self_loops": [],
+      "is_dag": true,
+      "tarjan_total_sccs": 33,
+      "tarjan_non_trivial_sccs_count": 0,
+      "tarjan_non_trivial_sccs": [],
+      "johnson_simple_cycles_count": 0,
+      "johnson_simple_cycles": [],
+      "max_taxonomic_depth": 4,
+      "longest_path_sample": [
+        "AssociateProfessor",
+        "TenuredFaculty",
+        "FacultyMember",
+        "AcademicStaff",
+        "Person"
+      ],
+      "roots_count": 5,
+      "leaves_count": 22,
+      "passed": true
+    },
+    "transitive_reduction": {
+      "direct_edges_count": 37,
+      "hasse_edges_count": 37,
+      "redundant_edges_count": 0,
+      "redundant_edges": [],
+      "alternative_path_shortcuts_count": 0,
+      "alternative_path_shortcuts": [],
+      "passed": true
+    },
+    "disjointness_consistency": {
+      "instances_count": 334,
+      "disjoint_axioms_count": 535,
+      "dvc_dag_ancestors": 0,
+      "dvc_dag_violating_instances": [],
+      "dvc_full_closure": 28,
+      "dvc_full_closure_violating_instances": [
+        "noisy_student_inst",
+        "staff_cleric_01",
+        "staff_cleric_02",
+        "staff_cleric_03",
+        "staff_cleric_04",
+        "staff_cleric_05",
+        "staff_cleric_06",
+        "staff_cleric_07",
+        "staff_cleric_08",
+        "staff_cleric_09",
+        "staff_cleric_10",
+        "staff_cleric_11",
+        "staff_cleric_12"
+      ],
+      "passed_standard_contract": true,
+      "passed_full_closure": false
+    },
+    "overall_passed": true
+  },
+  "ecommerce": {
+    "name": "E-Commerce / Retail",
+    "dag_acyclicity": {
+      "nodes_count": 24,
+      "edges_count": 24,
+      "self_loops_count": 0,
+      "self_loops": [],
+      "is_dag": true,
+      "tarjan_total_sccs": 24,
+      "tarjan_non_trivial_sccs_count": 0,
+      "tarjan_non_trivial_sccs": [],
+      "johnson_simple_cycles_count": 0,
+      "johnson_simple_cycles": [],
+      "max_taxonomic_depth": 4,
+      "longest_path_sample": [
+        "PlatinumVIPCustomer",
+        "VIPCustomer",
+        "RegisteredCustomer",
+        "Customer",
+        "Party"
+      ],
+      "roots_count": 2,
+      "leaves_count": 11,
+      "passed": true
+    },
+    "transitive_reduction": {
+      "direct_edges_count": 24,
+      "hasse_edges_count": 24,
+      "redundant_edges_count": 0,
+      "redundant_edges": [],
+      "alternative_path_shortcuts_count": 0,
+      "alternative_path_shortcuts": [],
+      "passed": true
+    },
+    "disjointness_consistency": {
+      "instances_count": 124,
+      "disjoint_axioms_count": 529,
+      "dvc_dag_ancestors": 0,
+      "dvc_dag_violating_instances": [],
+      "dvc_full_closure": 0,
+      "dvc_full_closure_violating_instances": [],
+      "passed_standard_contract": true,
+      "passed_full_closure": true
+    },
+    "overall_passed": true
+  },
+  "hospital": {
+    "name": "Hospital / Biomedical",
+    "dag_acyclicity": {
+      "nodes_count": 15,
+      "edges_count": 14,
+      "self_loops_count": 0,
+      "self_loops": [],
+      "is_dag": true,
+      "tarjan_total_sccs": 15,
+      "tarjan_non_trivial_sccs_count": 0,
+      "tarjan_non_trivial_sccs": [],
+      "johnson_simple_cycles_count": 0,
+      "johnson_simple_cycles": [],
+      "max_taxonomic_depth": 4,
+      "longest_path_sample": [
+        "Cardiologist",
+        "SpecialistPhysician",
+        "Physician",
+        "HealthcareStaff",
+        "Person"
+      ],
+      "roots_count": 1,
+      "leaves_count": 8,
+      "passed": true
+    },
+    "transitive_reduction": {
+      "direct_edges_count": 14,
+      "hasse_edges_count": 14,
+      "redundant_edges_count": 0,
+      "redundant_edges": [],
+      "alternative_path_shortcuts_count": 0,
+      "alternative_path_shortcuts": [],
+      "passed": true
+    },
+    "disjointness_consistency": {
+      "instances_count": 109,
+      "disjoint_axioms_count": 334,
+      "dvc_dag_ancestors": 0,
+      "dvc_dag_violating_instances": [],
+      "dvc_full_closure": 0,
+      "dvc_full_closure_violating_instances": [],
+      "passed_standard_contract": true,
+      "passed_full_closure": true
+    },
+    "overall_passed": true
+  },
+  "enterprise": {
+    "name": "Corporate / Enterprise",
+    "dag_acyclicity": {
+      "nodes_count": 17,
+      "edges_count": 18,
+      "self_loops_count": 0,
+      "self_loops": [],
+      "is_dag": true,
+      "tarjan_total_sccs": 17,
+      "tarjan_non_trivial_sccs_count": 0,
+      "tarjan_non_trivial_sccs": [],
+      "johnson_simple_cycles_count": 0,
+      "johnson_simple_cycles": [],
+      "max_taxonomic_depth": 3,
+      "longest_path_sample": [
+        "ExecutiveDirector",
+        "SeniorFullTimeEmployee",
+        "FullTimeEmployee",
+        "CorporateEmployee"
+      ],
+      "roots_count": 3,
+      "leaves_count": 8,
+      "passed": true
+    },
+    "transitive_reduction": {
+      "direct_edges_count": 18,
+      "hasse_edges_count": 18,
+      "redundant_edges_count": 0,
+      "redundant_edges": [],
+      "alternative_path_shortcuts_count": 0,
+      "alternative_path_shortcuts": [],
+      "passed": true
+    },
+    "disjointness_consistency": {
+      "instances_count": 106,
+      "disjoint_axioms_count": 333,
+      "dvc_dag_ancestors": 0,
+      "dvc_dag_violating_instances": [],
+      "dvc_full_closure": 0,
+      "dvc_full_closure_violating_instances": [],
+      "passed_standard_contract": true,
+      "passed_full_closure": true
+    },
+    "overall_passed": true
+  },
+  "banking": {
+    "name": "Financial / Banking",
+    "dag_acyclicity": {
+      "nodes_count": 18,
+      "edges_count": 18,
+      "self_loops_count": 0,
+      "self_loops": [],
+      "is_dag": true,
+      "tarjan_total_sccs": 18,
+      "tarjan_non_trivial_sccs_count": 0,
+      "tarjan_non_trivial_sccs": [],
+      "johnson_simple_cycles_count": 0,
+      "johnson_simple_cycles": [],
+      "max_taxonomic_depth": 3,
+      "longest_path_sample": [
+        "GoldCreditCard",
+        "CreditCard",
+        "BankPaymentCard",
+        "PaymentInstrument"
+      ],
+      "roots_count": 2,
+      "leaves_count": 10,
+      "passed": true
+    },
+    "transitive_reduction": {
+      "direct_edges_count": 18,
+      "hasse_edges_count": 18,
+      "redundant_edges_count": 0,
+      "redundant_edges": [],
+      "alternative_path_shortcuts_count": 0,
+      "alternative_path_shortcuts": [],
+      "passed": true
+    },
+    "disjointness_consistency": {
+      "instances_count": 125,
+      "disjoint_axioms_count": 356,
+      "dvc_dag_ancestors": 0,
+      "dvc_dag_violating_instances": [],
+      "dvc_full_closure": 0,
+      "dvc_full_closure_violating_instances": [],
+      "passed_standard_contract": true,
+      "passed_full_closure": true
+    },
+    "overall_passed": true
+  }
+}

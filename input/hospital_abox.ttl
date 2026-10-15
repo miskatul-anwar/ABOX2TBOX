@@ -1,0 +1,712 @@
+@prefix : <http://example.org/hospital#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:dept_med_1 a :HospitalDepartment ;
+    :subDepartmentOf :dept_med_2,
+        :dept_med_3 .
+
+:dept_surg_1 a :HospitalDepartment ;
+    :subDepartmentOf :dept_surg_2,
+        :dept_surg_3 .
+
+:doc_gp_03 a :GeneralPractitioner,
+        :HealthcareStaff,
+        :Person,
+        :Physician ;
+    :physicianName "Dr. Sarah Jenkins 3"^^xsd:string .
+
+:doc_gp_04 a :GeneralPractitioner,
+        :HealthcareStaff,
+        :Person,
+        :Physician ;
+    :physicianName "Dr. Sarah Jenkins 4"^^xsd:string .
+
+:doc_gp_05 a :GeneralPractitioner,
+        :HealthcareStaff,
+        :Person,
+        :Physician ;
+    :physicianName "Dr. Sarah Jenkins 5"^^xsd:string .
+
+:doc_gp_06 a :GeneralPractitioner,
+        :HealthcareStaff,
+        :Person,
+        :Physician ;
+    :physicianName "Dr. Sarah Jenkins 6"^^xsd:string .
+
+:med_01 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-10mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00001"^^xsd:string .
+
+:med_02 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-20mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00002"^^xsd:string .
+
+:med_03 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-30mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00003"^^xsd:string .
+
+:med_04 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-40mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00004"^^xsd:string .
+
+:med_05 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-50mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00005"^^xsd:string .
+
+:med_06 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-60mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00006"^^xsd:string .
+
+:med_07 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-70mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00007"^^xsd:string .
+
+:med_08 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-80mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00008"^^xsd:string .
+
+:med_09 a :PrescriptionDrug ;
+    :drugGenericName "CardioStatin-90mg"^^xsd:string ;
+    :fdaApprovalNumber "FDA-00009"^^xsd:string .
+
+:med_doc_01 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0001"^^xsd:string .
+
+:med_doc_02 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0002"^^xsd:string .
+
+:med_doc_03 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0003"^^xsd:string .
+
+:med_doc_04 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0004"^^xsd:string .
+
+:med_doc_05 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0005"^^xsd:string .
+
+:med_doc_06 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0006"^^xsd:string .
+
+:med_doc_07 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0007"^^xsd:string .
+
+:med_doc_08 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0008"^^xsd:string .
+
+:med_doc_09 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0009"^^xsd:string .
+
+:med_doc_10 a :LicensedPhysician,
+        :MedicalDoctor ;
+    :physicianRegistryCode "REG-DOC-0010"^^xsd:string .
+
+:noisy_patient_transfer a :ClinicPatient,
+        :ICUPatient ;
+    :admissionDate "2026-10-15"^^xsd:string ;
+    :patientName "Cross-Admitted Ambulatory ICU Patient"^^xsd:string .
+
+:nurse_01 a :HealthcareStaff,
+        :Person,
+        :RegisteredNurse ;
+    :staffName "Nurse Michael Chen 1"^^xsd:string .
+
+:nurse_02 a :HealthcareStaff,
+        :Person,
+        :RegisteredNurse ;
+    :staffName "Nurse Michael Chen 2"^^xsd:string .
+
+:nurse_03 a :HealthcareStaff,
+        :Person,
+        :RegisteredNurse ;
+    :staffName "Nurse Michael Chen 3"^^xsd:string .
+
+:nurse_04 a :HealthcareStaff,
+        :Person,
+        :RegisteredNurse ;
+    :staffName "Nurse Michael Chen 4"^^xsd:string .
+
+:nurse_05 a :HealthcareStaff,
+        :Person,
+        :RegisteredNurse ;
+    :staffName "Nurse Michael Chen 5"^^xsd:string .
+
+:nurse_06 a :HealthcareStaff,
+        :Person,
+        :RegisteredNurse ;
+    :staffName "Nurse Michael Chen 6"^^xsd:string .
+
+:nurse_07 a :HealthcareStaff,
+        :Person,
+        :RegisteredNurse ;
+    :staffName "Nurse Michael Chen 7"^^xsd:string .
+
+:nurse_08 a :HealthcareStaff,
+        :Person,
+        :RegisteredNurse ;
+    :staffName "Nurse Michael Chen 8"^^xsd:string .
+
+:pat_clinic_01 a :ClinicPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :appointmentSlot "Slot-01"^^xsd:string ;
+    :patientName "Outpatient Clinic Patient 1"^^xsd:string .
+
+:pat_clinic_02 a :ClinicPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :appointmentSlot "Slot-02"^^xsd:string ;
+    :patientName "Outpatient Clinic Patient 2"^^xsd:string .
+
+:pat_clinic_03 a :ClinicPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :appointmentSlot "Slot-03"^^xsd:string ;
+    :patientName "Outpatient Clinic Patient 3"^^xsd:string .
+
+:pat_clinic_04 a :ClinicPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :appointmentSlot "Slot-04"^^xsd:string ;
+    :patientName "Outpatient Clinic Patient 4"^^xsd:string .
+
+:pat_clinic_05 a :ClinicPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :appointmentSlot "Slot-05"^^xsd:string ;
+    :patientName "Outpatient Clinic Patient 5"^^xsd:string .
+
+:pat_clinic_06 a :ClinicPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :appointmentSlot "Slot-06"^^xsd:string ;
+    :patientName "Outpatient Clinic Patient 6"^^xsd:string .
+
+:pat_er_01 a :EmergencyPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :patientName "Emergency Patient 1"^^xsd:string ;
+    :triageUrgency "High"^^xsd:string .
+
+:pat_er_02 a :EmergencyPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :patientName "Emergency Patient 2"^^xsd:string ;
+    :triageUrgency "High"^^xsd:string .
+
+:pat_er_03 a :EmergencyPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :patientName "Emergency Patient 3"^^xsd:string ;
+    :triageUrgency "High"^^xsd:string .
+
+:pat_er_04 a :EmergencyPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :patientName "Emergency Patient 4"^^xsd:string ;
+    :triageUrgency "High"^^xsd:string .
+
+:pat_er_05 a :EmergencyPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :patientName "Emergency Patient 5"^^xsd:string ;
+    :triageUrgency "High"^^xsd:string .
+
+:pat_er_06 a :EmergencyPatient,
+        :Outpatient,
+        :Patient,
+        :Person ;
+    :patientName "Emergency Patient 6"^^xsd:string ;
+    :triageUrgency "High"^^xsd:string .
+
+:pat_icu_01 a :ICUPatient,
+        :Inpatient,
+        :Patient,
+        :Person ;
+    :acuityScore 9 ;
+    :admissionDate "2026-10-11"^^xsd:string ;
+    :bedNumber "ICU-BED-01"^^xsd:string ;
+    :bloodPressureSystolic 122 ;
+    :patientInsurancePolicy :policy_01 ;
+    :patientLabResult :lab_res_01 ;
+    :patientName "ICU Patient 1"^^xsd:string .
+
+:pat_icu_02 a :ICUPatient,
+        :Inpatient,
+        :Patient,
+        :Person ;
+    :acuityScore 10 ;
+    :admissionDate "2026-10-12"^^xsd:string ;
+    :bedNumber "ICU-BED-02"^^xsd:string ;
+    :bloodPressureSystolic 124 ;
+    :patientInsurancePolicy :policy_02 ;
+    :patientLabResult :lab_res_02 ;
+    :patientName "ICU Patient 2"^^xsd:string .
+
+:pat_icu_03 a :ICUPatient,
+        :Inpatient,
+        :Patient,
+        :Person ;
+    :acuityScore 8 ;
+    :admissionDate "2026-10-13"^^xsd:string ;
+    :bedNumber "ICU-BED-03"^^xsd:string ;
+    :bloodPressureSystolic 126 ;
+    :patientInsurancePolicy :policy_03 ;
+    :patientLabResult :lab_res_03 ;
+    :patientName "ICU Patient 3"^^xsd:string .
+
+:pat_icu_04 a :ICUPatient,
+        :Inpatient,
+        :Patient,
+        :Person ;
+    :acuityScore 9 ;
+    :admissionDate "2026-10-14"^^xsd:string ;
+    :bedNumber "ICU-BED-04"^^xsd:string ;
+    :bloodPressureSystolic 128 ;
+    :patientInsurancePolicy :policy_04 ;
+    :patientLabResult :lab_res_04 ;
+    :patientName "ICU Patient 4"^^xsd:string .
+
+:pat_icu_05 a :ICUPatient,
+        :Inpatient,
+        :Patient,
+        :Person ;
+    :acuityScore 10 ;
+    :admissionDate "2026-10-15"^^xsd:string ;
+    :bedNumber "ICU-BED-05"^^xsd:string ;
+    :bloodPressureSystolic 130 ;
+    :patientInsurancePolicy :policy_05,
+        :policy_06,
+        :policy_07,
+        :policy_08 ;
+    :patientLabResult :lab_res_05,
+        :lab_res_06,
+        :lab_res_07,
+        :lab_res_08 ;
+    :patientName "ICU Patient 5"^^xsd:string .
+
+:pat_surg_01 a :Inpatient,
+        :Patient,
+        :Person,
+        :SurgicalPatient ;
+    :admissionDate "2026-10-13"^^xsd:string ;
+    :bedNumber "SURG-BED-01"^^xsd:string ;
+    :patientName "Surgical Patient 1"^^xsd:string .
+
+:pat_surg_02 a :Inpatient,
+        :Patient,
+        :Person,
+        :SurgicalPatient ;
+    :admissionDate "2026-10-14"^^xsd:string ;
+    :bedNumber "SURG-BED-02"^^xsd:string ;
+    :patientName "Surgical Patient 2"^^xsd:string .
+
+:pat_surg_03 a :Inpatient,
+        :Patient,
+        :Person,
+        :SurgicalPatient ;
+    :admissionDate "2026-10-15"^^xsd:string ;
+    :bedNumber "SURG-BED-03"^^xsd:string ;
+    :patientName "Surgical Patient 3"^^xsd:string .
+
+:pat_surg_04 a :Inpatient,
+        :Patient,
+        :Person,
+        :SurgicalPatient ;
+    :admissionDate "2026-10-16"^^xsd:string ;
+    :bedNumber "SURG-BED-04"^^xsd:string ;
+    :patientName "Surgical Patient 4"^^xsd:string .
+
+:pat_surg_05 a :Inpatient,
+        :Patient,
+        :Person,
+        :SurgicalPatient ;
+    :admissionDate "2026-10-17"^^xsd:string ;
+    :bedNumber "SURG-BED-05"^^xsd:string ;
+    :patientName "Surgical Patient 5"^^xsd:string .
+
+:treat_01 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_01 ;
+    :prescribedForDiagnosis :diag_01 ;
+    :treatmentPrescriptionDosage :dosage_01 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:treat_02 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_02 ;
+    :prescribedForDiagnosis :diag_02 ;
+    :treatmentPrescriptionDosage :dosage_02 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:treat_03 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_03 ;
+    :prescribedForDiagnosis :diag_03 ;
+    :treatmentPrescriptionDosage :dosage_03 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:treat_04 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_04 ;
+    :prescribedForDiagnosis :diag_04 ;
+    :treatmentPrescriptionDosage :dosage_04 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:treat_05 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_04 ;
+    :prescribedForDiagnosis :diag_05 ;
+    :treatmentPrescriptionDosage :dosage_05 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:treat_06 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_04 ;
+    :prescribedForDiagnosis :diag_06 ;
+    :treatmentPrescriptionDosage :dosage_06 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:treat_07 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_04 ;
+    :prescribedForDiagnosis :diag_07 ;
+    :treatmentPrescriptionDosage :dosage_07 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:treat_08 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_04 ;
+    :prescribedForDiagnosis :diag_08 ;
+    :treatmentPrescriptionDosage :dosage_08 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:treat_09 a :ClinicalTreatment ;
+    :assignedAttendingDoctor :doc_cardio_04 ;
+    :prescribedForDiagnosis :diag_09 ;
+    :treatmentType "TherapeuticIntervention"^^xsd:string .
+
+:triage_a_01 a :TriageLevelA,
+        :TriageLevelB .
+
+:triage_a_02 a :TriageLevelA,
+        :TriageLevelB .
+
+:triage_a_03 a :TriageLevelA,
+        :TriageLevelB .
+
+:triage_a_04 a :TriageLevelA,
+        :TriageLevelB .
+
+:triage_a_05 a :TriageLevelA,
+        :TriageLevelB .
+
+:triage_b_01 a :TriageLevelB,
+        :TriageLevelC .
+
+:triage_b_02 a :TriageLevelB,
+        :TriageLevelC .
+
+:triage_b_03 a :TriageLevelB,
+        :TriageLevelC .
+
+:triage_b_04 a :TriageLevelB,
+        :TriageLevelC .
+
+:triage_b_05 a :TriageLevelB,
+        :TriageLevelC .
+
+:triage_c_01 a :TriageLevelA,
+        :TriageLevelC .
+
+:triage_c_02 a :TriageLevelA,
+        :TriageLevelC .
+
+:triage_c_03 a :TriageLevelA,
+        :TriageLevelC .
+
+:triage_c_04 a :TriageLevelA,
+        :TriageLevelC .
+
+:triage_c_05 a :TriageLevelA,
+        :TriageLevelC .
+
+:ward_1 a :HospitalWard ;
+    :transferredToWard :ward_2 .
+
+:ward_4 a :HospitalWard ;
+    :transferredToWard :ward_5,
+        :ward_6 .
+
+:dept_med_2 a :HospitalDepartment ;
+    :subDepartmentOf :dept_med_3 .
+
+:dept_surg_2 a :HospitalDepartment ;
+    :subDepartmentOf :dept_surg_3 .
+
+:diag_01 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_01 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 1"^^xsd:string ;
+    :icd10Code "I21.0"^^xsd:string ;
+    :severityIndex 10 .
+
+:diag_02 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_02 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 2"^^xsd:string ;
+    :icd10Code "I22.0"^^xsd:string ;
+    :severityIndex 20 .
+
+:diag_03 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_03 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 3"^^xsd:string ;
+    :icd10Code "I23.0"^^xsd:string ;
+    :severityIndex 30 .
+
+:diag_04 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_04 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 4"^^xsd:string ;
+    :icd10Code "I24.0"^^xsd:string ;
+    :severityIndex 40 .
+
+:diag_05 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_04 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 5"^^xsd:string ;
+    :icd10Code "I25.0"^^xsd:string ;
+    :severityIndex 50 .
+
+:diag_06 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_04 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 6"^^xsd:string ;
+    :icd10Code "I26.0"^^xsd:string ;
+    :severityIndex 60 .
+
+:diag_07 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_04 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 7"^^xsd:string ;
+    :icd10Code "I27.0"^^xsd:string ;
+    :severityIndex 70 .
+
+:diag_08 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_04 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 8"^^xsd:string ;
+    :icd10Code "I28.0"^^xsd:string ;
+    :severityIndex 80 .
+
+:diag_09 a :MedicalDiagnosis ;
+    :diagnosedByPhysician :doc_cardio_04 ;
+    :diagnosisLabel "Cardiovascular Condition Grade 9"^^xsd:string ;
+    :icd10Code "I29.0"^^xsd:string ;
+    :severityIndex 90 .
+
+:doc_gp_01 a :GeneralPractitioner,
+        :HealthcareStaff,
+        :Person,
+        :Physician ;
+    :physicianName "Dr. Sarah Jenkins 1"^^xsd:string ;
+    :referredPatientTo :doc_cardio_01 .
+
+:doc_gp_02 a :GeneralPractitioner,
+        :HealthcareStaff,
+        :Person,
+        :Physician ;
+    :physicianName "Dr. Sarah Jenkins 2"^^xsd:string .
+
+:doc_neuro_01 a :HealthcareStaff,
+        :Neurologist,
+        :Person,
+        :Physician,
+        :SpecialistPhysician ;
+    :consultsWith :doc_cardio_01 ;
+    :licenseId "MED-NEURO-0001"^^xsd:string ;
+    :physicianName "Dr. Marcus Brody 1"^^xsd:string .
+
+:doc_neuro_02 a :HealthcareStaff,
+        :Neurologist,
+        :Person,
+        :Physician,
+        :SpecialistPhysician ;
+    :consultsWith :doc_cardio_02 ;
+    :licenseId "MED-NEURO-0002"^^xsd:string ;
+    :physicianName "Dr. Marcus Brody 2"^^xsd:string .
+
+:doc_neuro_03 a :HealthcareStaff,
+        :Neurologist,
+        :Person,
+        :Physician,
+        :SpecialistPhysician ;
+    :consultsWith :doc_cardio_03 ;
+    :licenseId "MED-NEURO-0003"^^xsd:string ;
+    :physicianName "Dr. Marcus Brody 3"^^xsd:string .
+
+:doc_neuro_04 a :HealthcareStaff,
+        :Neurologist,
+        :Person,
+        :Physician,
+        :SpecialistPhysician ;
+    :consultsWith :doc_cardio_04 ;
+    :licenseId "MED-NEURO-0004"^^xsd:string ;
+    :physicianName "Dr. Marcus Brody 4"^^xsd:string .
+
+:dosage_01 :dosageQuantity "5 mg"^^xsd:string ;
+    :intakeFrequency "TwiceDailyAfterMeals"^^xsd:string ;
+    :routeAdministration "OralCapsule"^^xsd:string .
+
+:dosage_02 :dosageQuantity "10 mg"^^xsd:string ;
+    :intakeFrequency "TwiceDailyAfterMeals"^^xsd:string ;
+    :routeAdministration "OralCapsule"^^xsd:string .
+
+:dosage_03 :dosageQuantity "15 mg"^^xsd:string ;
+    :intakeFrequency "TwiceDailyAfterMeals"^^xsd:string ;
+    :routeAdministration "OralCapsule"^^xsd:string .
+
+:dosage_04 :dosageQuantity "20 mg"^^xsd:string ;
+    :intakeFrequency "TwiceDailyAfterMeals"^^xsd:string ;
+    :routeAdministration "OralCapsule"^^xsd:string .
+
+:dosage_05 :dosageQuantity "25 mg"^^xsd:string ;
+    :intakeFrequency "TwiceDailyAfterMeals"^^xsd:string ;
+    :routeAdministration "OralCapsule"^^xsd:string .
+
+:dosage_06 :dosageQuantity "30 mg"^^xsd:string ;
+    :intakeFrequency "TwiceDailyAfterMeals"^^xsd:string ;
+    :routeAdministration "OralCapsule"^^xsd:string .
+
+:dosage_07 :dosageQuantity "35 mg"^^xsd:string ;
+    :intakeFrequency "TwiceDailyAfterMeals"^^xsd:string ;
+    :routeAdministration "OralCapsule"^^xsd:string .
+
+:dosage_08 :dosageQuantity "40 mg"^^xsd:string ;
+    :intakeFrequency "TwiceDailyAfterMeals"^^xsd:string ;
+    :routeAdministration "OralCapsule"^^xsd:string .
+
+:lab_res_01 :labMeasurementValue "1.1 mg/dL"^^xsd:string ;
+    :referenceRangeNormal "0.7 - 1.3 mg/dL"^^xsd:string ;
+    :testMetricName "SerumCreatinineLevel"^^xsd:string .
+
+:lab_res_02 :labMeasurementValue "1.2 mg/dL"^^xsd:string ;
+    :referenceRangeNormal "0.7 - 1.3 mg/dL"^^xsd:string ;
+    :testMetricName "SerumCreatinineLevel"^^xsd:string .
+
+:lab_res_03 :labMeasurementValue "1.3 mg/dL"^^xsd:string ;
+    :referenceRangeNormal "0.7 - 1.3 mg/dL"^^xsd:string ;
+    :testMetricName "SerumCreatinineLevel"^^xsd:string .
+
+:lab_res_04 :labMeasurementValue "1.4 mg/dL"^^xsd:string ;
+    :referenceRangeNormal "0.7 - 1.3 mg/dL"^^xsd:string ;
+    :testMetricName "SerumCreatinineLevel"^^xsd:string .
+
+:lab_res_05 :labMeasurementValue "1.5 mg/dL"^^xsd:string ;
+    :referenceRangeNormal "0.7 - 1.3 mg/dL"^^xsd:string ;
+    :testMetricName "SerumCreatinineLevel"^^xsd:string .
+
+:lab_res_06 :labMeasurementValue "1.6 mg/dL"^^xsd:string ;
+    :referenceRangeNormal "0.7 - 1.3 mg/dL"^^xsd:string ;
+    :testMetricName "SerumCreatinineLevel"^^xsd:string .
+
+:lab_res_07 :labMeasurementValue "1.7 mg/dL"^^xsd:string ;
+    :referenceRangeNormal "0.7 - 1.3 mg/dL"^^xsd:string ;
+    :testMetricName "SerumCreatinineLevel"^^xsd:string .
+
+:lab_res_08 :labMeasurementValue "1.8 mg/dL"^^xsd:string ;
+    :referenceRangeNormal "0.7 - 1.3 mg/dL"^^xsd:string ;
+    :testMetricName "SerumCreatinineLevel"^^xsd:string .
+
+:policy_01 :insuranceProviderName "National Blue Health #1"^^xsd:string ;
+    :policyContractNumber "POL-MED-000001"^^xsd:string ;
+    :policyCoverageLimit 550000 .
+
+:policy_02 :insuranceProviderName "National Blue Health #2"^^xsd:string ;
+    :policyContractNumber "POL-MED-000002"^^xsd:string ;
+    :policyCoverageLimit 600000 .
+
+:policy_03 :insuranceProviderName "National Blue Health #3"^^xsd:string ;
+    :policyContractNumber "POL-MED-000003"^^xsd:string ;
+    :policyCoverageLimit 650000 .
+
+:policy_04 :insuranceProviderName "National Blue Health #4"^^xsd:string ;
+    :policyContractNumber "POL-MED-000004"^^xsd:string ;
+    :policyCoverageLimit 700000 .
+
+:policy_05 :insuranceProviderName "National Blue Health #5"^^xsd:string ;
+    :policyContractNumber "POL-MED-000005"^^xsd:string ;
+    :policyCoverageLimit 750000 .
+
+:policy_06 :insuranceProviderName "National Blue Health #6"^^xsd:string ;
+    :policyContractNumber "POL-MED-000006"^^xsd:string ;
+    :policyCoverageLimit 800000 .
+
+:policy_07 :insuranceProviderName "National Blue Health #7"^^xsd:string ;
+    :policyContractNumber "POL-MED-000007"^^xsd:string ;
+    :policyCoverageLimit 850000 .
+
+:policy_08 :insuranceProviderName "National Blue Health #8"^^xsd:string ;
+    :policyContractNumber "POL-MED-000008"^^xsd:string ;
+    :policyCoverageLimit 900000 .
+
+:ward_2 a :HospitalWard ;
+    :transferredToWard :ward_3 .
+
+:ward_3 a :HospitalWard .
+
+:ward_5 a :HospitalWard ;
+    :transferredToWard :ward_6 .
+
+:dept_med_3 a :HospitalDepartment .
+
+:dept_surg_3 a :HospitalDepartment .
+
+:ward_6 a :HospitalWard .
+
+:doc_cardio_02 a :Cardiologist,
+        :HealthcareStaff,
+        :Person,
+        :Physician,
+        :SpecialistPhysician ;
+    :consultsWith :doc_neuro_02 ;
+    :licenseId "MED-CARDIO-0002"^^xsd:string ;
+    :physicianName "Dr. Eleanor Vance 2"^^xsd:string ;
+    :referredPatientTo :doc_gp_02 ;
+    :yearsOfExperience 14 .
+
+:doc_cardio_03 a :Cardiologist,
+        :HealthcareStaff,
+        :Person,
+        :Physician,
+        :SpecialistPhysician ;
+    :consultsWith :doc_neuro_03 ;
+    :licenseId "MED-CARDIO-0003"^^xsd:string ;
+    :physicianName "Dr. Eleanor Vance 3"^^xsd:string ;
+    :yearsOfExperience 15 .
+
+:doc_cardio_01 a :Cardiologist,
+        :HealthcareStaff,
+        :Person,
+        :Physician,
+        :SpecialistPhysician ;
+    :consultsWith :doc_neuro_01 ;
+    :licenseId "MED-CARDIO-0001"^^xsd:string ;
+    :physicianName "Dr. Eleanor Vance 1"^^xsd:string ;
+    :referredPatientTo :doc_gp_01 ;
+    :yearsOfExperience 13 .
+
+:doc_cardio_04 a :Cardiologist,
+        :HealthcareStaff,
+        :Person,
+        :Physician,
+        :SpecialistPhysician ;
+    :consultsWith :doc_neuro_04 ;
+    :licenseId "MED-CARDIO-0004"^^xsd:string ;
+    :physicianName "Dr. Eleanor Vance 4"^^xsd:string ;
+    :yearsOfExperience 16 .
+

@@ -1,0 +1,1228 @@
+@prefix : <http://example.org/univ#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:UnivInducedOntology a owl:Ontology ;
+    rdfs:label "Univ Domain Ontology"^^xsd:string .
+
+:advises a owl:AsymmetricProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "advises"^^xsd:string ;
+    rdfs:domain :AcademicStaff ;
+    rdfs:range :GraduateStudent .
+
+:advisor a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "advisor"^^xsd:string ;
+    rdfs:domain :GraduateStudent ;
+    rdfs:range :AcademicStaff .
+
+:affiliatedDepartment a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "affiliatedDepartment"^^xsd:string ;
+    rdfs:domain :LabAffiliated ;
+    rdfs:range :AcademicUnit .
+
+:authoredBy a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "authoredBy"^^xsd:string ;
+    rdfs:domain :Publication ;
+    rdfs:range :AcademicStaff .
+
+:citesPublication a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "citesPublication"^^xsd:string ;
+    rdfs:domain :Publication ;
+    rdfs:range :Publication .
+
+:collaboratesWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "collaboratesWith"^^xsd:string ;
+    rdfs:domain :AcademicStaff ;
+    rdfs:range :AcademicStaff .
+
+:conductsResearchIn a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "conductsResearchIn"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :LabAffiliated .
+
+:conferredBy a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "conferredBy"^^xsd:string ;
+    rdfs:domain :DegreeConferred ;
+    rdfs:range :AcademicUnit .
+
+:courseCredits a owl:DatatypeProperty ;
+    rdfs:label "courseCredits"^^xsd:string .
+
+:courseTitle a owl:DatatypeProperty ;
+    rdfs:label "courseTitle"^^xsd:string .
+
+:degreeLevel a owl:DatatypeProperty ;
+    rdfs:label "degreeLevel"^^xsd:string .
+
+:degreeTitle a owl:DatatypeProperty ;
+    rdfs:label "degreeTitle"^^xsd:string .
+
+:email a owl:DatatypeProperty ;
+    rdfs:label "email"^^xsd:string .
+
+:employeeId a owl:DatatypeProperty ;
+    rdfs:label "employeeId"^^xsd:string .
+
+:endDate a owl:DatatypeProperty ;
+    rdfs:label "endDate"^^xsd:string .
+
+:enrolledInCourse a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "enrolledInCourse"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :Course .
+
+:enrolledInDegree a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "enrolledInDegree"^^xsd:string ;
+    rdfs:domain :Person ;
+    rdfs:range :DegreeConferred .
+
+:firstName a owl:DatatypeProperty ;
+    rdfs:label "firstName"^^xsd:string .
+
+:fundingAgency a owl:DatatypeProperty ;
+    rdfs:label "fundingAgency"^^xsd:string .
+
+:fundingAmount a owl:DatatypeProperty ;
+    rdfs:label "fundingAmount"^^xsd:string .
+
+:grantNumber a owl:DatatypeProperty ;
+    rdfs:label "grantNumber"^^xsd:string .
+
+:hasPrerequisite a owl:AsymmetricProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasPrerequisite"^^xsd:string ;
+    rdfs:domain :Course ;
+    rdfs:range :Course .
+
+:hasTenure a owl:DatatypeProperty ;
+    rdfs:label "hasTenure"^^xsd:string .
+
+:headedBy a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "headedBy"^^xsd:string ;
+    rdfs:domain :AcademicUnit ;
+    rdfs:range :AcademicStaff .
+
+:labDirector a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "labDirector"^^xsd:string ;
+    rdfs:domain :LabAffiliated ;
+    rdfs:range :AcademicStaff .
+
+:labWebsite a owl:DatatypeProperty ;
+    rdfs:label "labWebsite"^^xsd:string .
+
+:lastName a owl:DatatypeProperty ;
+    rdfs:label "lastName"^^xsd:string .
+
+:locatedInRoom a owl:DatatypeProperty ;
+    rdfs:label "locatedInRoom"^^xsd:string .
+
+:memberOfDepartment a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "memberOfDepartment"^^xsd:string ;
+    rdfs:domain :Employee ;
+    rdfs:range :AcademicUnit .
+
+:offeredBy a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "offeredBy"^^xsd:string ;
+    rdfs:domain :DegreeConferred ;
+    rdfs:range :AcademicUnit .
+
+:officeRoom a owl:DatatypeProperty ;
+    rdfs:label "officeRoom"^^xsd:string .
+
+:principalInvestigator a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "principalInvestigator"^^xsd:string ;
+    rdfs:domain :FundingGrant ;
+    rdfs:range :AcademicStaff .
+
+:publicationTitle a owl:DatatypeProperty ;
+    rdfs:label "publicationTitle"^^xsd:string .
+
+:publicationYear a owl:DatatypeProperty ;
+    rdfs:label "publicationYear"^^xsd:string .
+
+:requiredCredits a owl:DatatypeProperty ;
+    rdfs:label "requiredCredits"^^xsd:string .
+
+:startDate a owl:DatatypeProperty ;
+    rdfs:label "startDate"^^xsd:string .
+
+:studentId a owl:DatatypeProperty ;
+    rdfs:label "studentId"^^xsd:string .
+
+:subDepartmentOf a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "subDepartmentOf"^^xsd:string ;
+    rdfs:domain :AcademicUnit ;
+    rdfs:range :AcademicUnit .
+
+:supportedByGrant a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "supportedByGrant"^^xsd:string ;
+    rdfs:domain :Publication ;
+    rdfs:range :FundingGrant .
+
+:teachesCourse a owl:AsymmetricProperty,
+        owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "teachesCourse"^^xsd:string ;
+    rdfs:domain :AcademicStaff ;
+    rdfs:range :Course .
+
+:unitName a owl:DatatypeProperty ;
+    rdfs:label "unitName"^^xsd:string .
+
+:AdjunctProfessor a owl:Class ;
+    rdfs:label "AdjunctProfessor"^^xsd:string ;
+    rdfs:subClassOf :FacultyMember ;
+    owl:disjointWith :AdministrativeStaff,
+        :AssistantProfessor,
+        :AssociateProfessor,
+        :ClericalStaff,
+        :ConferencePaper,
+        :Course,
+        :DegreeConferred,
+        :Department,
+        :Faculty,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:AdministrativeStaff a owl:Class ;
+    rdfs:label "AdministrativeStaff"^^xsd:string ;
+    rdfs:subClassOf :Employee ;
+    owl:disjointWith :AssistantProfessor,
+        :AssociateProfessor,
+        :ConferencePaper,
+        :Course,
+        :DegreeConferred,
+        :Department,
+        :Faculty,
+        :FacultyMember,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor ;
+    owl:equivalentClass :ClericalStaff .
+
+:AssistantProfessor a owl:Class ;
+    rdfs:label "AssistantProfessor"^^xsd:string ;
+    rdfs:subClassOf :FacultyMember ;
+    owl:disjointWith :AssociateProfessor,
+        :ClericalStaff,
+        :ConferencePaper,
+        :Course,
+        :DegreeConferred,
+        :Department,
+        :Faculty,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :TeachingAssistant,
+        :UndergraduateCourse,
+        :VisitingProfessor ;
+    owl:equivalentClass :TenureTrackFaculty .
+
+:AssociateProfessor a owl:Class ;
+    rdfs:label "AssociateProfessor"^^xsd:string ;
+    rdfs:subClassOf :TenuredFaculty ;
+    owl:disjointWith :ClericalStaff,
+        :ConferencePaper,
+        :Course,
+        :DegreeConferred,
+        :Department,
+        :Faculty,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:ClericalStaff a owl:Class ;
+    rdfs:label "ClericalStaff"^^xsd:string ;
+    rdfs:subClassOf :Employee ;
+    owl:disjointWith :ConferencePaper,
+        :Course,
+        :DegreeConferred,
+        :Department,
+        :Faculty,
+        :FacultyMember,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:ConferencePaper a owl:Class ;
+    rdfs:label "ConferencePaper"^^xsd:string ;
+    rdfs:subClassOf :Publication ;
+    owl:disjointWith :Course,
+        :DegreeConferred,
+        :Department,
+        :Employee,
+        :Faculty,
+        :FacultyMember,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:Department a owl:Class ;
+    rdfs:label "Department"^^xsd:string ;
+    rdfs:subClassOf :AcademicUnit,
+        :Organization ;
+    owl:disjointWith :Employee,
+        :Faculty,
+        :FacultyMember,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:FullProfessor a owl:Class ;
+    rdfs:label "FullProfessor"^^xsd:string ;
+    rdfs:subClassOf :TenuredFaculty ;
+    owl:disjointWith :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :UndergraduateCourse,
+        :VisitingProfessor .
+
+:DegreeConferred a owl:Class ;
+    rdfs:label "DegreeConferred"^^xsd:string ;
+    owl:disjointWith :Department,
+        :Employee,
+        :Faculty,
+        :FacultyMember,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:Faculty a owl:Class ;
+    rdfs:label "Faculty"^^xsd:string ;
+    rdfs:subClassOf :AcademicUnit,
+        :Organization ;
+    owl:disjointWith :FacultyMember,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:AcademicUnit a owl:Class ;
+    rdfs:label "AcademicUnit"^^xsd:string ;
+    owl:disjointWith :AdjunctProfessor,
+        :AdministrativeStaff,
+        :AssistantProfessor,
+        :AssociateProfessor,
+        :ClericalStaff,
+        :ConferencePaper,
+        :Course,
+        :DegreeConferred,
+        :Employee,
+        :FacultyMember,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor ;
+    owl:equivalentClass :Organization .
+
+:Course a owl:Class ;
+    rdfs:label "Course"^^xsd:string ;
+    owl:disjointWith :DegreeConferred,
+        :Department,
+        :Employee,
+        :Faculty,
+        :FacultyMember,
+        :FullProfessor,
+        :FundingGrant,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:GraduateCourse a owl:Class ;
+    rdfs:label "GraduateCourse"^^xsd:string ;
+    rdfs:subClassOf :Course ;
+    owl:disjointWith :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:FundingGrant a owl:Class ;
+    rdfs:label "FundingGrant"^^xsd:string ;
+    owl:disjointWith :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:Instructor a owl:Class ;
+    rdfs:label "Instructor"^^xsd:string ;
+    rdfs:subClassOf :AcademicStaff,
+        :Employee ;
+    owl:disjointWith :JournalArticle,
+        :LabAffiliated,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor ;
+    owl:equivalentClass :Lecturer .
+
+:AcademicStaff a owl:Class ;
+    rdfs:label "AcademicStaff"^^xsd:string ;
+    rdfs:subClassOf :Person ;
+    owl:disjointWith :AcademicUnit,
+        :AdministrativeStaff,
+        :ClericalStaff,
+        :ConferencePaper,
+        :Course,
+        :DegreeConferred,
+        :Department,
+        :Faculty,
+        :FundingGrant,
+        :GraduateCourse,
+        :JournalArticle,
+        :LabAffiliated,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :Publication,
+        :ResearchInstitute,
+        :UndergraduateCourse ;
+    owl:equivalentClass :Employee .
+
+:FacultyMember a owl:Class ;
+    rdfs:label "FacultyMember"^^xsd:string ;
+    rdfs:subClassOf :AcademicStaff,
+        :Employee ;
+    owl:disjointWith :FundingGrant,
+        :GraduateCourse,
+        :GraduateStudent,
+        :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :TeachingAssistant,
+        :UndergraduateCourse .
+
+:JournalArticle a owl:Class ;
+    rdfs:label "JournalArticle"^^xsd:string ;
+    rdfs:subClassOf :Publication ;
+    owl:disjointWith :LabAffiliated,
+        :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:Person a owl:Class ;
+    rdfs:label "Person"^^xsd:string ;
+    owl:disjointWith :Publication,
+        :ResearchInstitute,
+        :UndergraduateCourse .
+
+:Lecturer a owl:Class ;
+    rdfs:label "Lecturer"^^xsd:string ;
+    rdfs:subClassOf :AcademicStaff,
+        :Employee ;
+    owl:disjointWith :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:Employee a owl:Class ;
+    rdfs:label "Employee"^^xsd:string ;
+    rdfs:subClassOf :Person ;
+    owl:disjointWith :Faculty,
+        :FundingGrant,
+        :GraduateCourse,
+        :JournalArticle,
+        :LabAffiliated,
+        :MasterStudent,
+        :Organization,
+        :PhDStudent,
+        :Publication,
+        :ResearchInstitute,
+        :UndergraduateCourse .
+
+:MasterStudent a owl:Class ;
+    rdfs:label "MasterStudent"^^xsd:string ;
+    rdfs:subClassOf :GraduateStudent ;
+    owl:disjointWith :Organization,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:LabAffiliated a owl:Class ;
+    rdfs:label "LabAffiliated"^^xsd:string ;
+    owl:disjointWith :Lecturer,
+        :MasterStudent,
+        :Organization,
+        :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:GraduateStudent a owl:Class ;
+    rdfs:label "GraduateStudent"^^xsd:string ;
+    rdfs:subClassOf :Student ;
+    owl:disjointWith :Instructor,
+        :JournalArticle,
+        :LabAffiliated,
+        :Lecturer,
+        :Organization,
+        :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:PhDStudent a owl:Class ;
+    rdfs:label "PhDStudent"^^xsd:string ;
+    rdfs:subClassOf :GraduateStudent ;
+    owl:disjointWith :PostdoctoralResearcher,
+        :Publication,
+        :ResearchInstitute,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:PostdoctoralResearcher a owl:Class ;
+    rdfs:label "PostdoctoralResearcher"^^xsd:string ;
+    rdfs:subClassOf :AcademicStaff,
+        :Employee ;
+    owl:disjointWith :Publication,
+        :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:Student a owl:Class ;
+    rdfs:label "Student"^^xsd:string ;
+    rdfs:subClassOf :Person ;
+    owl:disjointWith :TenureTrackFaculty,
+        :UndergraduateCourse,
+        :VisitingProfessor .
+
+:Organization a owl:Class ;
+    rdfs:label "Organization"^^xsd:string ;
+    owl:disjointWith :Person,
+        :PhDStudent,
+        :PostdoctoralResearcher,
+        :Publication,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:UndergraduateStudent a owl:Class ;
+    rdfs:label "UndergraduateStudent"^^xsd:string ;
+    rdfs:subClassOf :Student ;
+    owl:disjointWith :VisitingProfessor .
+
+:ResearchInstitute a owl:Class ;
+    rdfs:label "ResearchInstitute"^^xsd:string ;
+    rdfs:subClassOf :AcademicUnit,
+        :Organization ;
+    owl:disjointWith :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:TeachingAssistant a owl:Class ;
+    rdfs:label "TeachingAssistant"^^xsd:string ;
+    rdfs:subClassOf :AcademicStaff,
+        :Employee,
+        :GraduateStudent ;
+    owl:disjointWith :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:TenureTrackFaculty a owl:Class ;
+    rdfs:label "TenureTrackFaculty"^^xsd:string ;
+    rdfs:subClassOf :FacultyMember ;
+    owl:disjointWith :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:TenuredFaculty a owl:Class ;
+    rdfs:label "TenuredFaculty"^^xsd:string ;
+    rdfs:subClassOf :FacultyMember ;
+    owl:disjointWith :UndergraduateCourse,
+        :VisitingProfessor .
+
+:VisitingProfessor a owl:Class ;
+    rdfs:label "VisitingProfessor"^^xsd:string ;
+    rdfs:subClassOf :FacultyMember .
+
+:Publication a owl:Class ;
+    rdfs:label "Publication"^^xsd:string ;
+    owl:disjointWith :ResearchInstitute,
+        :Student,
+        :TeachingAssistant,
+        :TenureTrackFaculty,
+        :TenuredFaculty,
+        :UndergraduateCourse,
+        :UndergraduateStudent,
+        :VisitingProfessor .
+
+:UndergraduateCourse a owl:Class ;
+    rdfs:label "UndergraduateCourse"^^xsd:string ;
+    rdfs:subClassOf :Course ;
+    owl:disjointWith :UndergraduateStudent,
+        :VisitingProfessor .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 10 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Department ;
+    owl:annotatedTarget :AcademicUnit ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 20 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ConferencePaper ;
+    owl:annotatedTarget :Publication ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 96 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AcademicStaff ;
+    owl:annotatedTarget :Person ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :TeachingAssistant ;
+    owl:annotatedTarget :AcademicStaff ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 14 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Instructor ;
+    owl:annotatedTarget :Employee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 4 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ResearchInstitute ;
+    owl:annotatedTarget :AcademicUnit ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 67 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :GraduateStudent ;
+    owl:annotatedTarget :Student ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 3 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Faculty ;
+    owl:annotatedTarget :Organization ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 140 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Student ;
+    owl:annotatedTarget :Person ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 14 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Instructor ;
+    owl:annotatedTarget :AcademicStaff ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 8 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AdjunctProfessor ;
+    owl:annotatedTarget :FacultyMember ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 15 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :GraduateCourse ;
+    owl:annotatedTarget :Course ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 57 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :FacultyMember ;
+    owl:annotatedTarget :AcademicStaff ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :TeachingAssistant ;
+    owl:annotatedTarget :GraduateStudent ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 25 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :PhDStudent ;
+    owl:annotatedTarget :GraduateStudent ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :PostdoctoralResearcher ;
+    owl:annotatedTarget :AcademicStaff ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :PostdoctoralResearcher ;
+    owl:annotatedTarget :Employee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 29 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :TenuredFaculty ;
+    owl:annotatedTarget :FacultyMember ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 4 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ResearchInstitute ;
+    owl:annotatedTarget :Organization ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 25 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :UndergraduateCourse ;
+    owl:annotatedTarget :Course ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 15 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Lecturer ;
+    owl:annotatedTarget :Employee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :TenureTrackFaculty ;
+    owl:annotatedTarget :FacultyMember ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :TeachingAssistant ;
+    owl:annotatedTarget :Employee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 14 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AssociateProfessor ;
+    owl:annotatedTarget :TenuredFaculty ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 73 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :UndergraduateStudent ;
+    owl:annotatedTarget :Student ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 8 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :VisitingProfessor ;
+    owl:annotatedTarget :FacultyMember ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 10 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Department ;
+    owl:annotatedTarget :Organization ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 13 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AssistantProfessor ;
+    owl:annotatedTarget :FacultyMember ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 108 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Employee ;
+    owl:annotatedTarget :Person ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 20 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :JournalArticle ;
+    owl:annotatedTarget :Publication ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 3 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Faculty ;
+    owl:annotatedTarget :AcademicUnit ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 15 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :Lecturer ;
+    owl:annotatedTarget :AcademicStaff ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 30 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :MasterStudent ;
+    owl:annotatedTarget :GraduateStudent ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :ClericalStaff ;
+    owl:annotatedTarget :Employee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 12 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AdministrativeStaff ;
+    owl:annotatedTarget :Employee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 57 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :FacultyMember ;
+    owl:annotatedTarget :Employee ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 15 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.882 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :FullProfessor ;
+    owl:annotatedTarget :TenuredFaculty ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+

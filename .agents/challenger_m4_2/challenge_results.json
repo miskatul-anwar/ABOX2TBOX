@@ -1,0 +1,170 @@
+{
+  "verdict": "APPROVE",
+  "token_audit": {
+    "per_domain": {
+      "baseline": {
+        "total_payloads": 679,
+        "max_tokens": 251,
+        "min_tokens": 62,
+        "mean_tokens": 207.1620029455081,
+        "p95_tokens": 247.0,
+        "all_le_1500": true,
+        "micro_payloads_count": 3,
+        "micro_max_tokens": 63,
+        "micro_all_le_400": true
+      },
+      "ecommerce": {
+        "total_payloads": 658,
+        "max_tokens": 250,
+        "min_tokens": 57,
+        "mean_tokens": 206.661094224924,
+        "p95_tokens": 242.0,
+        "all_le_1500": true,
+        "micro_payloads_count": 3,
+        "micro_max_tokens": 59,
+        "micro_all_le_400": true
+      },
+      "hospital": {
+        "total_payloads": 424,
+        "max_tokens": 252,
+        "min_tokens": 60,
+        "mean_tokens": 208.25471698113208,
+        "p95_tokens": 247.0,
+        "all_le_1500": true,
+        "micro_payloads_count": 3,
+        "micro_max_tokens": 64,
+        "micro_all_le_400": true
+      },
+      "enterprise": {
+        "total_payloads": 426,
+        "max_tokens": 256,
+        "min_tokens": 63,
+        "mean_tokens": 211.58215962441315,
+        "p95_tokens": 249.75,
+        "all_le_1500": true,
+        "micro_payloads_count": 3,
+        "micro_max_tokens": 66,
+        "micro_all_le_400": true
+      },
+      "banking": {
+        "total_payloads": 457,
+        "max_tokens": 258,
+        "min_tokens": 62,
+        "mean_tokens": 210.21881838074398,
+        "p95_tokens": 251.0,
+        "all_le_1500": true,
+        "micro_payloads_count": 3,
+        "micro_max_tokens": 64,
+        "micro_all_le_400": true
+      }
+    },
+    "combined": {
+      "total_payloads": 2644,
+      "grand_max": 258,
+      "grand_mean": 208.45310136157337,
+      "grand_p95": 248.0,
+      "all_le_1500": true
+    },
+    "micro_stress_tests": [
+      {
+        "scenario": "Empty signature",
+        "pred_count": 0,
+        "tokens": 41,
+        "pass": true
+      },
+      {
+        "scenario": "Standard 4 predicates",
+        "pred_count": 4,
+        "tokens": 53,
+        "pass": true
+      },
+      {
+        "scenario": "High-cardinality signature (50 preds, tests [:6] truncation)",
+        "pred_count": 50,
+        "tokens": 61,
+        "pass": true
+      },
+      {
+        "scenario": "Extremely long predicate names (6 preds x 40 chars)",
+        "pred_count": 6,
+        "tokens": 121,
+        "pass": true
+      },
+      {
+        "scenario": "Pathological long predicate names (6 preds x 80 chars)",
+        "pred_count": 6,
+        "tokens": 170,
+        "pass": true
+      }
+    ]
+  },
+  "ontoqa_audit": {
+    "baseline": {
+      "declared_classes": 36,
+      "subclass_triples": 37,
+      "properties": 41,
+      "relationship_richness": 0.5256410256410257,
+      "inheritance_richness": 1.0277777777777777,
+      "class_coverage_ratio": 1.0,
+      "rr_valid": true,
+      "ir_valid": true,
+      "ccr_valid": true,
+      "classes_ge_15": true
+    },
+    "ecommerce": {
+      "declared_classes": 35,
+      "subclass_triples": 24,
+      "properties": 33,
+      "relationship_richness": 0.5789473684210527,
+      "inheritance_richness": 0.6857142857142857,
+      "class_coverage_ratio": 1.0,
+      "rr_valid": true,
+      "ir_valid": true,
+      "ccr_valid": true,
+      "classes_ge_15": true
+    },
+    "hospital": {
+      "declared_classes": 28,
+      "subclass_triples": 14,
+      "properties": 37,
+      "relationship_richness": 0.7254901960784313,
+      "inheritance_richness": 0.5,
+      "class_coverage_ratio": 1.0,
+      "rr_valid": true,
+      "ir_valid": true,
+      "ccr_valid": true,
+      "classes_ge_15": true
+    },
+    "enterprise": {
+      "declared_classes": 28,
+      "subclass_triples": 18,
+      "properties": 31,
+      "relationship_richness": 0.6326530612244898,
+      "inheritance_richness": 0.6428571428571429,
+      "class_coverage_ratio": 1.0,
+      "rr_valid": true,
+      "ir_valid": true,
+      "ccr_valid": true,
+      "classes_ge_15": true
+    },
+    "banking": {
+      "declared_classes": 29,
+      "subclass_triples": 18,
+      "properties": 34,
+      "relationship_richness": 0.6538461538461539,
+      "inheritance_richness": 0.6206896551724138,
+      "class_coverage_ratio": 1.0,
+      "rr_valid": true,
+      "ir_valid": true,
+      "ccr_valid": true,
+      "classes_ge_15": true
+    }
+  },
+  "concept_synthesis_fuzzing": {
+    "total_tests": 30,
+    "crashes": 0,
+    "strict_pascal_passes_default": 30,
+    "strict_pascal_passes_with_hash": 17,
+    "identifier_passes_with_hash": 30
+  }
+}

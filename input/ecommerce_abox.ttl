@@ -1,0 +1,884 @@
+@prefix : <http://example.org/ecommerce#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:album_01 a :AudioAlbum,
+        :DigitalMedia,
+        :DigitalProduct,
+        :Product ;
+    :productTitle "Orchestral Masterpieces Vol 1"^^xsd:string ;
+    :unitPrice 12.99 .
+
+:album_02 a :AudioAlbum,
+        :DigitalMedia,
+        :DigitalProduct,
+        :Product ;
+    :productTitle "Orchestral Masterpieces Vol 2"^^xsd:string ;
+    :unitPrice 13.99 .
+
+:album_03 a :AudioAlbum,
+        :DigitalMedia,
+        :DigitalProduct,
+        :Product ;
+    :productTitle "Orchestral Masterpieces Vol 3"^^xsd:string ;
+    :unitPrice 14.99 .
+
+:album_04 a :AudioAlbum,
+        :DigitalMedia,
+        :DigitalProduct,
+        :Product ;
+    :productTitle "Orchestral Masterpieces Vol 4"^^xsd:string ;
+    :unitPrice 15.99 .
+
+:app_01 a :DigitalProduct,
+        :MobileApp,
+        :Product,
+        :SoftwareProduct ;
+    :downloadUrl "https://store.example.org/apps/1"^^xsd:string ;
+    :productTitle "Cloud Assistant Pro 1"^^xsd:string ;
+    :unitPrice 10.99 .
+
+:app_02 a :DigitalProduct,
+        :MobileApp,
+        :Product,
+        :SoftwareProduct ;
+    :downloadUrl "https://store.example.org/apps/2"^^xsd:string ;
+    :productTitle "Cloud Assistant Pro 2"^^xsd:string ;
+    :unitPrice 11.99 .
+
+:app_03 a :DigitalProduct,
+        :MobileApp,
+        :Product,
+        :SoftwareProduct ;
+    :downloadUrl "https://store.example.org/apps/3"^^xsd:string ;
+    :productTitle "Cloud Assistant Pro 3"^^xsd:string ;
+    :unitPrice 12.99 .
+
+:app_04 a :DigitalProduct,
+        :MobileApp,
+        :Product,
+        :SoftwareProduct ;
+    :downloadUrl "https://store.example.org/apps/4"^^xsd:string ;
+    :productTitle "Cloud Assistant Pro 4"^^xsd:string ;
+    :unitPrice 13.99 .
+
+:buyer_purchaser_01 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-001"^^xsd:string .
+
+:buyer_purchaser_02 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-002"^^xsd:string .
+
+:buyer_purchaser_03 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-003"^^xsd:string .
+
+:buyer_purchaser_04 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-004"^^xsd:string .
+
+:buyer_purchaser_05 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-005"^^xsd:string .
+
+:buyer_purchaser_06 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-006"^^xsd:string .
+
+:buyer_purchaser_07 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-007"^^xsd:string .
+
+:buyer_purchaser_08 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-008"^^xsd:string .
+
+:buyer_purchaser_09 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-009"^^xsd:string .
+
+:buyer_purchaser_10 a :Buyer,
+        :Purchaser ;
+    :accountIdentifier "ACC-BP-010"^^xsd:string .
+
+:cat_app_1 a :ProductCategory ;
+    :crossPromotedWith :cat_app_2,
+        :cat_app_3 ;
+    :isSubCategoryOf :cat_app_2,
+        :cat_app_3 .
+
+:cat_tech_1 a :ProductCategory ;
+    :crossPromotedWith :cat_tech_2 ;
+    :isSubCategoryOf :cat_tech_2,
+        :cat_tech_3 .
+
+:cust_guest_17 a :Customer,
+        :Party ;
+    :customerName "Guest Shopper 17"^^xsd:string ;
+    :primaryEmail "guest.17@domain.com"^^xsd:string .
+
+:cust_guest_18 a :Customer,
+        :Party ;
+    :customerName "Guest Shopper 18"^^xsd:string ;
+    :primaryEmail "guest.18@domain.com"^^xsd:string .
+
+:cust_guest_19 a :Customer,
+        :Party ;
+    :customerName "Guest Shopper 19"^^xsd:string ;
+    :primaryEmail "guest.19@domain.com"^^xsd:string .
+
+:cust_guest_20 a :Customer,
+        :Party ;
+    :customerName "Guest Shopper 20"^^xsd:string ;
+    :primaryEmail "guest.20@domain.com"^^xsd:string .
+
+:cust_guest_21 a :Customer,
+        :Party ;
+    :customerName "Guest Shopper 21"^^xsd:string ;
+    :primaryEmail "guest.21@domain.com"^^xsd:string .
+
+:cust_guest_22 a :Customer,
+        :Party ;
+    :customerName "Guest Shopper 22"^^xsd:string ;
+    :primaryEmail "guest.22@domain.com"^^xsd:string .
+
+:cust_guest_23 a :Customer,
+        :Party ;
+    :customerName "Guest Shopper 23"^^xsd:string ;
+    :primaryEmail "guest.23@domain.com"^^xsd:string .
+
+:cust_guest_24 a :Customer,
+        :Party ;
+    :customerName "Guest Shopper 24"^^xsd:string ;
+    :primaryEmail "guest.24@domain.com"^^xsd:string .
+
+:cust_plat_01 a :Customer,
+        :Party,
+        :PlatinumVIPCustomer,
+        :RegisteredCustomer,
+        :VIPCustomer ;
+    :customerName "Platinum Member 1"^^xsd:string ;
+    :primaryEmail "plat.1@domain.com"^^xsd:string .
+
+:cust_plat_02 a :Customer,
+        :Party,
+        :PlatinumVIPCustomer,
+        :RegisteredCustomer,
+        :VIPCustomer ;
+    :customerName "Platinum Member 2"^^xsd:string ;
+    :primaryEmail "plat.2@domain.com"^^xsd:string .
+
+:cust_plat_03 a :Customer,
+        :Party,
+        :PlatinumVIPCustomer,
+        :RegisteredCustomer,
+        :VIPCustomer ;
+    :customerName "Platinum Member 3"^^xsd:string ;
+    :primaryEmail "plat.3@domain.com"^^xsd:string .
+
+:cust_vip_04 a :Customer,
+        :Party,
+        :RegisteredCustomer,
+        :VIPCustomer ;
+    :customerName "VIP Member 4"^^xsd:string ;
+    :primaryEmail "vip.4@domain.com"^^xsd:string .
+
+:cust_vip_05 a :Customer,
+        :Party,
+        :RegisteredCustomer,
+        :VIPCustomer ;
+    :customerName "VIP Member 5"^^xsd:string ;
+    :primaryEmail "vip.5@domain.com"^^xsd:string .
+
+:cust_vip_06 a :Customer,
+        :Party,
+        :RegisteredCustomer,
+        :VIPCustomer ;
+    :customerName "VIP Member 6"^^xsd:string ;
+    :primaryEmail "vip.6@domain.com"^^xsd:string .
+
+:cust_vip_07 a :Customer,
+        :Party,
+        :RegisteredCustomer,
+        :VIPCustomer ;
+    :customerName "VIP Member 7"^^xsd:string ;
+    :primaryEmail "vip.7@domain.com"^^xsd:string .
+
+:cust_vip_08 a :Customer,
+        :Party,
+        :RegisteredCustomer,
+        :VIPCustomer ;
+    :customerName "VIP Member 8"^^xsd:string ;
+    :primaryEmail "vip.8@domain.com"^^xsd:string .
+
+:ebook_01 a :DigitalMedia,
+        :DigitalProduct,
+        :EBook,
+        :Product ;
+    :productTitle "Foundations of Semantic Web Vol 1"^^xsd:string ;
+    :unitPrice 15.99 .
+
+:ebook_02 a :DigitalMedia,
+        :DigitalProduct,
+        :EBook,
+        :Product ;
+    :productTitle "Foundations of Semantic Web Vol 2"^^xsd:string ;
+    :unitPrice 16.99 .
+
+:ebook_03 a :DigitalMedia,
+        :DigitalProduct,
+        :EBook,
+        :Product ;
+    :productTitle "Foundations of Semantic Web Vol 3"^^xsd:string ;
+    :unitPrice 17.99 .
+
+:ebook_04 a :DigitalMedia,
+        :DigitalProduct,
+        :EBook,
+        :Product ;
+    :productTitle "Foundations of Semantic Web Vol 4"^^xsd:string ;
+    :unitPrice 18.99 .
+
+:jacket_01 a :Apparel,
+        :Outerwear,
+        :PhysicalProduct,
+        :Product ;
+    :productTitle "All-Weather Parka 1"^^xsd:string ;
+    :skuCode "SKU-JK-0001"^^xsd:string ;
+    :unitPrice 144.00 .
+
+:jacket_02 a :Apparel,
+        :Outerwear,
+        :PhysicalProduct,
+        :Product ;
+    :productTitle "All-Weather Parka 2"^^xsd:string ;
+    :skuCode "SKU-JK-0002"^^xsd:string ;
+    :unitPrice 159.00 .
+
+:jacket_03 a :Apparel,
+        :Outerwear,
+        :PhysicalProduct,
+        :Product ;
+    :productTitle "All-Weather Parka 3"^^xsd:string ;
+    :skuCode "SKU-JK-0003"^^xsd:string ;
+    :unitPrice 174.00 .
+
+:jacket_04 a :Apparel,
+        :Outerwear,
+        :PhysicalProduct,
+        :Product ;
+    :productTitle "All-Weather Parka 4"^^xsd:string ;
+    :skuCode "SKU-JK-0004"^^xsd:string ;
+    :unitPrice 189.00 .
+
+:jacket_05 a :Apparel,
+        :Outerwear,
+        :PhysicalProduct,
+        :Product ;
+    :productTitle "All-Weather Parka 5"^^xsd:string ;
+    :skuCode "SKU-JK-0005"^^xsd:string ;
+    :unitPrice 204.00 .
+
+:jacket_06 a :Apparel,
+        :Outerwear,
+        :PhysicalProduct,
+        :Product ;
+    :productTitle "All-Weather Parka 6"^^xsd:string ;
+    :skuCode "SKU-JK-0006"^^xsd:string ;
+    :unitPrice 219.00 .
+
+:noisy_hybrid_product a :EBook,
+        :Smartphone ;
+    :productTitle "Hybrid E-Reader Smart Phone"^^xsd:string ;
+    :unitPrice 249.99 .
+
+:order_01 a :Order ;
+    :appliedPromotion :promo_01 ;
+    :includesProduct :phone_01 ;
+    :orderHasShipment :shipment_01 ;
+    :orderTotalAmount 175.00 ;
+    :placedByCustomer :cust_reg_09 ;
+    :primaryContactCustomer :cust_reg_09 ;
+    :trackingCode "TRK-ECOMM-000001"^^xsd:string .
+
+:order_02 a :Order ;
+    :appliedPromotion :promo_02 ;
+    :includesProduct :phone_02 ;
+    :orderHasShipment :shipment_02 ;
+    :orderTotalAmount 200.00 ;
+    :placedByCustomer :cust_reg_10 ;
+    :primaryContactCustomer :cust_reg_10 ;
+    :trackingCode "TRK-ECOMM-000002"^^xsd:string .
+
+:order_03 a :Order ;
+    :appliedPromotion :promo_03 ;
+    :includesProduct :phone_03 ;
+    :orderHasShipment :shipment_03 ;
+    :orderTotalAmount 225.00 ;
+    :placedByCustomer :cust_reg_11 ;
+    :primaryContactCustomer :cust_reg_11 ;
+    :trackingCode "TRK-ECOMM-000003"^^xsd:string .
+
+:order_04 a :Order ;
+    :appliedPromotion :promo_04 ;
+    :includesProduct :phone_04 ;
+    :orderHasShipment :shipment_04 ;
+    :orderTotalAmount 250.00 ;
+    :placedByCustomer :cust_reg_12 ;
+    :primaryContactCustomer :cust_reg_12 ;
+    :trackingCode "TRK-ECOMM-000004"^^xsd:string .
+
+:order_05 a :Order ;
+    :appliedPromotion :promo_05 ;
+    :includesProduct :phone_05 ;
+    :orderHasShipment :shipment_05 ;
+    :orderTotalAmount 275.00 ;
+    :placedByCustomer :cust_reg_13 ;
+    :primaryContactCustomer :cust_reg_13 ;
+    :trackingCode "TRK-ECOMM-000005"^^xsd:string .
+
+:order_06 a :Order ;
+    :appliedPromotion :promo_06 ;
+    :includesProduct :phone_06 ;
+    :orderHasShipment :shipment_06 ;
+    :orderTotalAmount 300.00 ;
+    :placedByCustomer :cust_reg_14 ;
+    :primaryContactCustomer :cust_reg_14 ;
+    :trackingCode "TRK-ECOMM-000006"^^xsd:string .
+
+:order_07 a :Order ;
+    :appliedPromotion :promo_07 ;
+    :includesProduct :phone_06 ;
+    :orderHasShipment :shipment_07 ;
+    :orderTotalAmount 325.00 ;
+    :placedByCustomer :cust_reg_15 ;
+    :primaryContactCustomer :cust_reg_15 ;
+    :trackingCode "TRK-ECOMM-000007"^^xsd:string .
+
+:order_08 a :Order ;
+    :appliedPromotion :promo_08 ;
+    :includesProduct :phone_06 ;
+    :orderHasShipment :shipment_08 ;
+    :orderTotalAmount 350.00 ;
+    :placedByCustomer :cust_reg_16 ;
+    :primaryContactCustomer :cust_reg_16 ;
+    :trackingCode "TRK-ECOMM-000008"^^xsd:string .
+
+:order_09 a :Order ;
+    :includesProduct :phone_06 ;
+    :orderTotalAmount 375.00 ;
+    :placedByCustomer :cust_reg_17 ;
+    :primaryContactCustomer :cust_reg_17 ;
+    :trackingCode "TRK-ECOMM-000009"^^xsd:string .
+
+:order_10 a :Order ;
+    :includesProduct :phone_06 ;
+    :orderTotalAmount 400.00 ;
+    :placedByCustomer :cust_reg_18 ;
+    :primaryContactCustomer :cust_reg_18 ;
+    :trackingCode "TRK-ECOMM-000010"^^xsd:string .
+
+:os_01 a :DigitalProduct,
+        :OperatingSystem,
+        :Product,
+        :SoftwareProduct ;
+    :productTitle "Enterprise Server OS v1"^^xsd:string ;
+    :unitPrice 219.99 .
+
+:os_02 a :DigitalProduct,
+        :OperatingSystem,
+        :Product,
+        :SoftwareProduct ;
+    :productTitle "Enterprise Server OS v2"^^xsd:string ;
+    :unitPrice 239.99 .
+
+:os_03 a :DigitalProduct,
+        :OperatingSystem,
+        :Product,
+        :SoftwareProduct ;
+    :productTitle "Enterprise Server OS v3"^^xsd:string ;
+    :unitPrice 259.99 .
+
+:os_04 a :DigitalProduct,
+        :OperatingSystem,
+        :Product,
+        :SoftwareProduct ;
+    :productTitle "Enterprise Server OS v4"^^xsd:string ;
+    :unitPrice 279.99 .
+
+:rev_cycle_a_01 a :ReviewTierA,
+        :ReviewTierB .
+
+:rev_cycle_a_02 a :ReviewTierA,
+        :ReviewTierB .
+
+:rev_cycle_a_03 a :ReviewTierA,
+        :ReviewTierB .
+
+:rev_cycle_a_04 a :ReviewTierA,
+        :ReviewTierB .
+
+:rev_cycle_a_05 a :ReviewTierA,
+        :ReviewTierB .
+
+:rev_cycle_b_01 a :ReviewTierB,
+        :ReviewTierC .
+
+:rev_cycle_b_02 a :ReviewTierB,
+        :ReviewTierC .
+
+:rev_cycle_b_03 a :ReviewTierB,
+        :ReviewTierC .
+
+:rev_cycle_b_04 a :ReviewTierB,
+        :ReviewTierC .
+
+:rev_cycle_b_05 a :ReviewTierB,
+        :ReviewTierC .
+
+:rev_cycle_c_01 a :ReviewTierA,
+        :ReviewTierC .
+
+:rev_cycle_c_02 a :ReviewTierA,
+        :ReviewTierC .
+
+:rev_cycle_c_03 a :ReviewTierA,
+        :ReviewTierC .
+
+:rev_cycle_c_04 a :ReviewTierA,
+        :ReviewTierC .
+
+:rev_cycle_c_05 a :ReviewTierA,
+        :ReviewTierC .
+
+:review_01 a :ProductReview ;
+    :reviewRating 5 ;
+    :reviewText "Superb quality and rapid shipment #1"^^xsd:string ;
+    :reviewsProduct :laptop_01 .
+
+:review_02 a :ProductReview ;
+    :reviewRating 4 ;
+    :reviewText "Superb quality and rapid shipment #2"^^xsd:string ;
+    :reviewsProduct :laptop_02 .
+
+:review_03 a :ProductReview ;
+    :reviewRating 5 ;
+    :reviewText "Superb quality and rapid shipment #3"^^xsd:string ;
+    :reviewsProduct :laptop_03 .
+
+:review_04 a :ProductReview ;
+    :reviewRating 4 ;
+    :reviewText "Superb quality and rapid shipment #4"^^xsd:string ;
+    :reviewsProduct :laptop_04 .
+
+:review_05 a :ProductReview ;
+    :reviewRating 5 ;
+    :reviewText "Superb quality and rapid shipment #5"^^xsd:string ;
+    :reviewsProduct :laptop_05 .
+
+:review_06 a :ProductReview ;
+    :reviewRating 4 ;
+    :reviewText "Superb quality and rapid shipment #6"^^xsd:string ;
+    :reviewsProduct :laptop_06 .
+
+:review_07 a :ProductReview ;
+    :reviewRating 5 ;
+    :reviewText "Superb quality and rapid shipment #7"^^xsd:string ;
+    :reviewsProduct :laptop_06 .
+
+:review_08 a :ProductReview ;
+    :reviewRating 4 ;
+    :reviewText "Superb quality and rapid shipment #8"^^xsd:string ;
+    :reviewsProduct :laptop_06 .
+
+:shoes_05 a :Apparel,
+        :Footwear,
+        :PhysicalProduct,
+        :Product ;
+    :productTitle "Aero Runner Sneaker 5"^^xsd:string ;
+    :skuCode "SKU-SH-0005"^^xsd:string ;
+    :unitPrice 129.00 .
+
+:shoes_06 a :Apparel,
+        :Footwear,
+        :PhysicalProduct,
+        :Product ;
+    :productTitle "Aero Runner Sneaker 6"^^xsd:string ;
+    :skuCode "SKU-SH-0006"^^xsd:string ;
+    :unitPrice 139.00 .
+
+:supp_dom_01 a :DomesticSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Domestic Distribution Co 1"^^xsd:string .
+
+:supp_dom_02 a :DomesticSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Domestic Distribution Co 2"^^xsd:string .
+
+:supp_dom_03 a :DomesticSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Domestic Distribution Co 3"^^xsd:string .
+
+:supp_dom_04 a :DomesticSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Domestic Distribution Co 4"^^xsd:string .
+
+:supp_dom_05 a :DomesticSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Domestic Distribution Co 5"^^xsd:string .
+
+:supp_int_01 a :InternationalSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Global Freight Alliance 1"^^xsd:string .
+
+:supp_int_02 a :InternationalSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Global Freight Alliance 2"^^xsd:string .
+
+:supp_int_03 a :InternationalSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Global Freight Alliance 3"^^xsd:string .
+
+:supp_int_04 a :InternationalSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Global Freight Alliance 4"^^xsd:string .
+
+:supp_int_05 a :InternationalSupplier,
+        :Party,
+        :Supplier,
+        :VerifiedSupplier ;
+    :supplierName "Global Freight Alliance 5"^^xsd:string .
+
+:laptop_03 a :ConsumerElectronics,
+        :Laptop,
+        :PhysicalProduct,
+        :Product ;
+    :inStockUnits 11 ;
+    :productTitle "ProBook Ultra Thin 3"^^xsd:string ;
+    :skuCode "SKU-LP-0003"^^xsd:string ;
+    :unitPrice 1199.00 .
+
+:laptop_04 a :ConsumerElectronics,
+        :Laptop,
+        :PhysicalProduct,
+        :Product ;
+    :inStockUnits 13 ;
+    :productTitle "ProBook Ultra Thin 4"^^xsd:string ;
+    :skuCode "SKU-LP-0004"^^xsd:string ;
+    :unitPrice 1299.00 .
+
+:laptop_05 a :ConsumerElectronics,
+        :Laptop,
+        :PhysicalProduct,
+        :Product ;
+    :inStockUnits 15 ;
+    :productTitle "ProBook Ultra Thin 5"^^xsd:string ;
+    :skuCode "SKU-LP-0005"^^xsd:string ;
+    :unitPrice 1399.00 .
+
+:phone_05 a :ConsumerElectronics,
+        :PhysicalProduct,
+        :Product,
+        :Smartphone ;
+    :hasSpecification :spec_05 ;
+    :inStockUnits 35 ;
+    :productTitle "Galaxy Smartphone Neo 5"^^xsd:string ;
+    :skuCode "SKU-PH-0005"^^xsd:string ;
+    :unitPrice 749.00 .
+
+:promo_01 :couponCode "DISCOUNT5"^^xsd:string ;
+    :discountPercentage 7 ;
+    :promotionTitle "Seasonal Promotion 1"^^xsd:string .
+
+:promo_02 :couponCode "DISCOUNT10"^^xsd:string ;
+    :discountPercentage 9 ;
+    :promotionTitle "Seasonal Promotion 2"^^xsd:string .
+
+:promo_03 :couponCode "DISCOUNT15"^^xsd:string ;
+    :discountPercentage 11 ;
+    :promotionTitle "Seasonal Promotion 3"^^xsd:string .
+
+:promo_04 :couponCode "DISCOUNT20"^^xsd:string ;
+    :discountPercentage 13 ;
+    :promotionTitle "Seasonal Promotion 4"^^xsd:string .
+
+:promo_05 :couponCode "DISCOUNT25"^^xsd:string ;
+    :discountPercentage 15 ;
+    :promotionTitle "Seasonal Promotion 5"^^xsd:string .
+
+:promo_06 :couponCode "DISCOUNT30"^^xsd:string ;
+    :discountPercentage 17 ;
+    :promotionTitle "Seasonal Promotion 6"^^xsd:string .
+
+:promo_07 :couponCode "DISCOUNT35"^^xsd:string ;
+    :discountPercentage 19 ;
+    :promotionTitle "Seasonal Promotion 7"^^xsd:string .
+
+:promo_08 :couponCode "DISCOUNT40"^^xsd:string ;
+    :discountPercentage 21 ;
+    :promotionTitle "Seasonal Promotion 8"^^xsd:string .
+
+:shipment_01 :shippingCarrier "FederalExpress"^^xsd:string ;
+    :shippingStatus "InTransit"^^xsd:string ;
+    :trackingNumber "TRACK-FEDEX-9001"^^xsd:string .
+
+:shipment_02 :shippingCarrier "FederalExpress"^^xsd:string ;
+    :shippingStatus "InTransit"^^xsd:string ;
+    :trackingNumber "TRACK-FEDEX-9002"^^xsd:string .
+
+:shipment_03 :shippingCarrier "FederalExpress"^^xsd:string ;
+    :shippingStatus "InTransit"^^xsd:string ;
+    :trackingNumber "TRACK-FEDEX-9003"^^xsd:string .
+
+:shipment_04 :shippingCarrier "FederalExpress"^^xsd:string ;
+    :shippingStatus "InTransit"^^xsd:string ;
+    :trackingNumber "TRACK-FEDEX-9004"^^xsd:string .
+
+:shipment_05 :shippingCarrier "FederalExpress"^^xsd:string ;
+    :shippingStatus "InTransit"^^xsd:string ;
+    :trackingNumber "TRACK-FEDEX-9005"^^xsd:string .
+
+:shipment_06 :shippingCarrier "FederalExpress"^^xsd:string ;
+    :shippingStatus "InTransit"^^xsd:string ;
+    :trackingNumber "TRACK-FEDEX-9006"^^xsd:string .
+
+:shipment_07 :shippingCarrier "FederalExpress"^^xsd:string ;
+    :shippingStatus "InTransit"^^xsd:string ;
+    :trackingNumber "TRACK-FEDEX-9007"^^xsd:string .
+
+:shipment_08 :shippingCarrier "FederalExpress"^^xsd:string ;
+    :shippingStatus "InTransit"^^xsd:string ;
+    :trackingNumber "TRACK-FEDEX-9008"^^xsd:string .
+
+:shoes_01 a :Apparel,
+        :Footwear,
+        :PhysicalProduct,
+        :Product ;
+    :frequentlyBoughtTogether :phone_01 ;
+    :productTitle "Aero Runner Sneaker 1"^^xsd:string ;
+    :skuCode "SKU-SH-0001"^^xsd:string ;
+    :unitPrice 89.00 .
+
+:shoes_02 a :Apparel,
+        :Footwear,
+        :PhysicalProduct,
+        :Product ;
+    :frequentlyBoughtTogether :phone_02 ;
+    :productTitle "Aero Runner Sneaker 2"^^xsd:string ;
+    :skuCode "SKU-SH-0002"^^xsd:string ;
+    :unitPrice 99.00 .
+
+:shoes_03 a :Apparel,
+        :Footwear,
+        :PhysicalProduct,
+        :Product ;
+    :frequentlyBoughtTogether :phone_03 ;
+    :productTitle "Aero Runner Sneaker 3"^^xsd:string ;
+    :skuCode "SKU-SH-0003"^^xsd:string ;
+    :unitPrice 109.00 .
+
+:shoes_04 a :Apparel,
+        :Footwear,
+        :PhysicalProduct,
+        :Product ;
+    :frequentlyBoughtTogether :phone_04 ;
+    :productTitle "Aero Runner Sneaker 4"^^xsd:string ;
+    :skuCode "SKU-SH-0004"^^xsd:string ;
+    :unitPrice 119.00 .
+
+:spec_01 :dimensionMeasurement "150x75x8.1 mm"^^xsd:string ;
+    :technicalWeight "181 grams"^^xsd:string ;
+    :warrantyPeriod "24 Months"^^xsd:string .
+
+:spec_02 :dimensionMeasurement "150x75x8.2 mm"^^xsd:string ;
+    :technicalWeight "182 grams"^^xsd:string ;
+    :warrantyPeriod "24 Months"^^xsd:string .
+
+:spec_03 :dimensionMeasurement "150x75x8.3 mm"^^xsd:string ;
+    :technicalWeight "183 grams"^^xsd:string ;
+    :warrantyPeriod "24 Months"^^xsd:string .
+
+:spec_04 :dimensionMeasurement "150x75x8.4 mm"^^xsd:string ;
+    :technicalWeight "184 grams"^^xsd:string ;
+    :warrantyPeriod "24 Months"^^xsd:string .
+
+:spec_05 :dimensionMeasurement "150x75x8.5 mm"^^xsd:string ;
+    :technicalWeight "185 grams"^^xsd:string ;
+    :warrantyPeriod "24 Months"^^xsd:string .
+
+:spec_06 :dimensionMeasurement "150x75x8.6 mm"^^xsd:string ;
+    :technicalWeight "186 grams"^^xsd:string ;
+    :warrantyPeriod "24 Months"^^xsd:string .
+
+:spec_07 :dimensionMeasurement "150x75x8.7 mm"^^xsd:string ;
+    :technicalWeight "187 grams"^^xsd:string ;
+    :warrantyPeriod "24 Months"^^xsd:string .
+
+:spec_08 :dimensionMeasurement "150x75x8.8 mm"^^xsd:string ;
+    :technicalWeight "188 grams"^^xsd:string ;
+    :warrantyPeriod "24 Months"^^xsd:string .
+
+:cat_app_2 a :ProductCategory ;
+    :crossPromotedWith :cat_app_3 ;
+    :isSubCategoryOf :cat_app_3 .
+
+:cat_tech_2 a :ProductCategory ;
+    :crossPromotedWith :cat_tech_3 ;
+    :isSubCategoryOf :cat_tech_3 .
+
+:cust_reg_09 a :Customer,
+        :Party,
+        :RegisteredCustomer ;
+    :customerName "Standard Registered Member 9"^^xsd:string ;
+    :primaryEmail "reg.9@domain.com"^^xsd:string .
+
+:cust_reg_10 a :Customer,
+        :Party,
+        :RegisteredCustomer ;
+    :customerName "Standard Registered Member 10"^^xsd:string ;
+    :primaryEmail "reg.10@domain.com"^^xsd:string .
+
+:cust_reg_11 a :Customer,
+        :Party,
+        :RegisteredCustomer ;
+    :customerName "Standard Registered Member 11"^^xsd:string ;
+    :primaryEmail "reg.11@domain.com"^^xsd:string .
+
+:cust_reg_12 a :Customer,
+        :Party,
+        :RegisteredCustomer ;
+    :customerName "Standard Registered Member 12"^^xsd:string ;
+    :primaryEmail "reg.12@domain.com"^^xsd:string .
+
+:cust_reg_13 a :Customer,
+        :Party,
+        :RegisteredCustomer ;
+    :customerName "Standard Registered Member 13"^^xsd:string ;
+    :primaryEmail "reg.13@domain.com"^^xsd:string .
+
+:cust_reg_14 a :Customer,
+        :Party,
+        :RegisteredCustomer ;
+    :customerName "Standard Registered Member 14"^^xsd:string ;
+    :primaryEmail "reg.14@domain.com"^^xsd:string .
+
+:cust_reg_15 a :Customer,
+        :Party,
+        :RegisteredCustomer ;
+    :customerName "Standard Registered Member 15"^^xsd:string ;
+    :primaryEmail "reg.15@domain.com"^^xsd:string .
+
+:cust_reg_16 a :Customer,
+        :Party,
+        :RegisteredCustomer ;
+    :customerName "Standard Registered Member 16"^^xsd:string ;
+    :primaryEmail "reg.16@domain.com"^^xsd:string .
+
+:laptop_01 a :ConsumerElectronics,
+        :Laptop,
+        :PhysicalProduct,
+        :Product ;
+    :inStockUnits 7 ;
+    :productTitle "ProBook Ultra Thin 1"^^xsd:string ;
+    :recommendedWith :phone_01 ;
+    :skuCode "SKU-LP-0001"^^xsd:string ;
+    :unitPrice 999.00 .
+
+:laptop_02 a :ConsumerElectronics,
+        :Laptop,
+        :PhysicalProduct,
+        :Product ;
+    :inStockUnits 9 ;
+    :productTitle "ProBook Ultra Thin 2"^^xsd:string ;
+    :skuCode "SKU-LP-0002"^^xsd:string ;
+    :unitPrice 1099.00 .
+
+:phone_02 a :ConsumerElectronics,
+        :PhysicalProduct,
+        :Product,
+        :Smartphone ;
+    :frequentlyBoughtTogether :shoes_02 ;
+    :hasSpecification :spec_02 ;
+    :inStockUnits 20 ;
+    :productTitle "Galaxy Smartphone Neo 2"^^xsd:string ;
+    :recommendedWith :laptop_02 ;
+    :skuCode "SKU-PH-0002"^^xsd:string ;
+    :unitPrice 599.00 .
+
+:phone_03 a :ConsumerElectronics,
+        :PhysicalProduct,
+        :Product,
+        :Smartphone ;
+    :frequentlyBoughtTogether :shoes_03 ;
+    :hasSpecification :spec_03 ;
+    :inStockUnits 25 ;
+    :productTitle "Galaxy Smartphone Neo 3"^^xsd:string ;
+    :skuCode "SKU-PH-0003"^^xsd:string ;
+    :unitPrice 649.00 .
+
+:phone_04 a :ConsumerElectronics,
+        :PhysicalProduct,
+        :Product,
+        :Smartphone ;
+    :frequentlyBoughtTogether :shoes_04 ;
+    :hasSpecification :spec_04 ;
+    :inStockUnits 30 ;
+    :productTitle "Galaxy Smartphone Neo 4"^^xsd:string ;
+    :skuCode "SKU-PH-0004"^^xsd:string ;
+    :unitPrice 699.00 .
+
+:cat_tech_3 a :ProductCategory .
+
+:laptop_06 a :ConsumerElectronics,
+        :Laptop,
+        :PhysicalProduct,
+        :Product ;
+    :inStockUnits 17 ;
+    :productTitle "ProBook Ultra Thin 6"^^xsd:string ;
+    :skuCode "SKU-LP-0006"^^xsd:string ;
+    :unitPrice 1499.00 .
+
+:phone_01 a :ConsumerElectronics,
+        :PhysicalProduct,
+        :Product,
+        :Smartphone ;
+    :frequentlyBoughtTogether :shoes_01 ;
+    :hasSpecification :spec_01 ;
+    :inStockUnits 15 ;
+    :productTitle "Galaxy Smartphone Neo 1"^^xsd:string ;
+    :recommendedWith :laptop_01 ;
+    :skuCode "SKU-PH-0001"^^xsd:string ;
+    :unitPrice 549.00 .
+
+:cat_app_3 a :ProductCategory .
+
+:phone_06 a :ConsumerElectronics,
+        :PhysicalProduct,
+        :Product,
+        :Smartphone ;
+    :hasSpecification :spec_06,
+        :spec_07,
+        :spec_08 ;
+    :inStockUnits 40 ;
+    :productTitle "Galaxy Smartphone Neo 6"^^xsd:string ;
+    :skuCode "SKU-PH-0006"^^xsd:string ;
+    :unitPrice 799.00 .
+

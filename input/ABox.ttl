@@ -1,3836 +1,965 @@
-@prefix : <http://example.org/univ#> .
+@prefix : <http://example.org/smartcity#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:inst_ai a :AcademicUnit,
-        :Organization,
-        :ResearchInstitute ;
-    :subDepartmentOf :fac_engineering ;
-    :unitName "Artificial Intelligence Research Institute"^^xsd:string .
-
-:inst_energy a :AcademicUnit,
-        :Organization,
-        :ResearchInstitute ;
-    :subDepartmentOf :fac_engineering ;
-    :unitName "Sustainable Energy Institute"^^xsd:string .
-
-:inst_genomics a :AcademicUnit,
-        :Organization,
-        :ResearchInstitute ;
-    :subDepartmentOf :fac_science ;
-    :unitName "Genomics and Bioinformatics Institute"^^xsd:string .
-
-:inst_quantum a :AcademicUnit,
-        :Organization,
-        :ResearchInstitute ;
-    :subDepartmentOf :fac_science ;
-    :unitName "Quantum Information Institute"^^xsd:string .
-
-:lect_inst_01 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "clara.martinez1@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6001"^^xsd:string ;
-    :firstName "Clara"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "LEC-101"^^xsd:string ;
-    :teachesCourse :course_ug_105 .
-
-:lect_inst_02 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "daniel.rodriguez2@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6002"^^xsd:string ;
-    :firstName "Daniel"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "LEC-102"^^xsd:string ;
-    :teachesCourse :course_ug_106 .
-
-:lect_inst_03 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "alice.johnson3@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6003"^^xsd:string ;
-    :firstName "Alice"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "LEC-103"^^xsd:string ;
-    :teachesCourse :course_ug_107 .
-
-:lect_inst_04 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "bob.jones4@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6004"^^xsd:string ;
-    :firstName "Bob"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "LEC-104"^^xsd:string ;
-    :teachesCourse :course_ug_108 .
-
-:lect_inst_05 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "carol.wilson5@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6005"^^xsd:string ;
-    :firstName "Carol"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :memberOfDepartment :dept_chem ;
-    :officeRoom "LEC-105"^^xsd:string ;
-    :teachesCourse :course_ug_109 .
-
-:lect_inst_06 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "david.white6@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6006"^^xsd:string ;
-    :firstName "David"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :memberOfDepartment :dept_bio ;
-    :officeRoom "LEC-106"^^xsd:string ;
-    :teachesCourse :course_ug_110 .
-
-:lect_inst_07 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "elena.thompson7@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6007"^^xsd:string ;
-    :firstName "Elena"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :officeRoom "LEC-107"^^xsd:string ;
-    :teachesCourse :course_ug_111 .
-
-:lect_inst_08 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "frank.robinson8@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6008"^^xsd:string ;
-    :firstName "Frank"^^xsd:string ;
-    :lastName "Robinson"^^xsd:string ;
-    :memberOfDepartment :dept_phil ;
-    :officeRoom "LEC-108"^^xsd:string ;
-    :teachesCourse :course_ug_112 .
-
-:lect_inst_09 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "grace.lewis9@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6009"^^xsd:string ;
-    :firstName "Grace"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :memberOfDepartment :dept_hist ;
-    :officeRoom "LEC-109"^^xsd:string ;
-    :teachesCourse :course_ug_113 .
-
-:lect_inst_10 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "henry.williams10@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6010"^^xsd:string ;
-    :firstName "Henry"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "LEC-110"^^xsd:string ;
-    :teachesCourse :course_ug_114 .
-
-:lect_inst_11 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "irene.miller11@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6011"^^xsd:string ;
-    :firstName "Irene"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "LEC-111"^^xsd:string ;
-    :teachesCourse :course_ug_115 .
-
-:lect_inst_12 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "jack.taylor12@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6012"^^xsd:string ;
-    :firstName "Jack"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "LEC-112"^^xsd:string ;
-    :teachesCourse :course_ug_116 .
-
-:lect_inst_13 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "karen.harris13@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6013"^^xsd:string ;
-    :firstName "Karen"^^xsd:string ;
-    :lastName "Harris"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "LEC-113"^^xsd:string ;
-    :teachesCourse :course_ug_117 .
-
-:lect_inst_14 a :AcademicStaff,
-        :Employee,
-        :Instructor,
-        :Lecturer,
-        :Person ;
-    :email "leo.garcia14@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6014"^^xsd:string ;
-    :firstName "Leo"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "LEC-114"^^xsd:string ;
-    :teachesCourse :course_ug_118 .
-
-:lect_only_15 a :AcademicStaff,
-        :Employee,
-        :Lecturer,
-        :Person ;
-    :email "maya.clark15@univ.edu"^^xsd:string ;
-    :employeeId "EMP-6015"^^xsd:string ;
-    :firstName "Maya"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "LEC-115"^^xsd:string ;
-    :teachesCourse :course_ug_115 .
-
-:noisy_student_inst a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :Student,
-        :TenuredFaculty,
-        :UndergraduateStudent ;
-    :email "conflict@univ.edu"^^xsd:string ;
-    :employeeId "EMP-9999"^^xsd:string ;
-    :firstName "Conflict"^^xsd:string ;
-    :lastName "Student"^^xsd:string ;
-    :officeRoom "ENG-999"^^xsd:string ;
-    :studentId "STU-9999"^^xsd:string .
-
-:postdoc_04 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "quinn.clark76@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7076"^^xsd:string ;
-    :firstName "Quinn"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_bio ;
-    :officeRoom "RES-176"^^xsd:string .
-
-:postdoc_05 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "rachel.martin77@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7077"^^xsd:string ;
-    :firstName "Rachel"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :officeRoom "RES-177"^^xsd:string .
-
-:postdoc_06 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "sam.martinez78@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7078"^^xsd:string ;
-    :firstName "Sam"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :memberOfDepartment :dept_phil ;
-    :officeRoom "RES-178"^^xsd:string .
-
-:postdoc_07 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_computational_bio ;
-    :email "tara.rodriguez79@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7079"^^xsd:string ;
-    :firstName "Tara"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :memberOfDepartment :dept_hist ;
-    :officeRoom "RES-179"^^xsd:string .
-
-:postdoc_08 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_nlp_ai ;
-    :email "uma.johnson80@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7080"^^xsd:string ;
-    :firstName "Uma"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "RES-180"^^xsd:string .
-
-:postdoc_09 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "victor.jones81@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7081"^^xsd:string ;
-    :firstName "Victor"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "RES-181"^^xsd:string .
-
-:postdoc_10 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "wendy.wilson82@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7082"^^xsd:string ;
-    :firstName "Wendy"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "RES-182"^^xsd:string .
-
-:postdoc_11 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "xavier.white83@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7083"^^xsd:string ;
-    :firstName "Xavier"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "RES-183"^^xsd:string .
-
-:postdoc_12 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "yasmine.thompson84@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7084"^^xsd:string ;
-    :firstName "Yasmine"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "RES-184"^^xsd:string .
-
-:prof_adj_01 a :AcademicStaff,
-        :AdjunctProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person ;
-    :collaboratesWith :prof_full_03 ;
-    :email "tara.taylor49@univ.edu"^^xsd:string ;
-    :employeeId "EMP-5049"^^xsd:string ;
-    :firstName "Tara"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Taylor"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :teachesCourse :course_grad_508 .
-
-:prof_adj_02 a :AcademicStaff,
-        :AdjunctProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person ;
-    :collaboratesWith :prof_full_04 ;
-    :email "uma.harris50@univ.edu"^^xsd:string ;
-    :employeeId "EMP-5050"^^xsd:string ;
-    :firstName "Uma"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Harris"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :teachesCourse :course_grad_509 .
-
-:prof_adj_03 a :AcademicStaff,
-        :AdjunctProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person ;
-    :email "victor.garcia51@univ.edu"^^xsd:string ;
-    :employeeId "EMP-5051"^^xsd:string ;
-    :firstName "Victor"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Garcia"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :teachesCourse :course_grad_510 .
-
-:prof_adj_04 a :AcademicStaff,
-        :AdjunctProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person ;
-    :email "wendy.clark52@univ.edu"^^xsd:string ;
-    :employeeId "EMP-5052"^^xsd:string ;
-    :firstName "Wendy"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :teachesCourse :course_grad_511 .
-
-:prof_adj_05 a :AcademicStaff,
-        :AdjunctProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person ;
-    :email "xavier.smith53@univ.edu"^^xsd:string ;
-    :employeeId "EMP-5053"^^xsd:string ;
-    :firstName "Xavier"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Smith"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :teachesCourse :course_grad_512 .
-
-:prof_adj_06 a :AcademicStaff,
-        :AdjunctProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person ;
-    :email "yasmine.brown54@univ.edu"^^xsd:string ;
-    :employeeId "EMP-5054"^^xsd:string ;
-    :firstName "Yasmine"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Brown"^^xsd:string ;
-    :memberOfDepartment :dept_chem ;
-    :teachesCourse :course_grad_513 .
-
-:prof_adj_07 a :AcademicStaff,
-        :AdjunctProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person ;
-    :email "zachary.davis55@univ.edu"^^xsd:string ;
-    :employeeId "EMP-5055"^^xsd:string ;
-    :firstName "Zachary"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Davis"^^xsd:string ;
-    :memberOfDepartment :dept_bio ;
-    :teachesCourse :course_grad_514 .
-
-:prof_adj_08 a :AcademicStaff,
-        :AdjunctProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person ;
-    :email "arthur.clark56@univ.edu"^^xsd:string ;
-    :employeeId "EMP-5056"^^xsd:string ;
-    :firstName "Arthur"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :teachesCourse :course_grad_515 .
-
-:prof_asst_02 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "alice.harris30@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3030"^^xsd:string ;
-    :firstName "Alice"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Harris"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "FAC-330"^^xsd:string ;
-    :teachesCourse :course_ug_113 .
-
-:prof_asst_03 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "bob.garcia31@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3031"^^xsd:string ;
-    :firstName "Bob"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Garcia"^^xsd:string ;
-    :memberOfDepartment :dept_chem ;
-    :officeRoom "FAC-331"^^xsd:string ;
-    :teachesCourse :course_ug_114 .
-
-:prof_asst_04 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "carol.clark32@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3032"^^xsd:string ;
-    :firstName "Carol"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_bio ;
-    :officeRoom "FAC-332"^^xsd:string ;
-    :teachesCourse :course_ug_115 .
-
-:prof_asst_05 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "david.smith33@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3033"^^xsd:string ;
-    :firstName "David"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Smith"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :officeRoom "FAC-333"^^xsd:string ;
-    :teachesCourse :course_ug_116 .
-
-:prof_asst_06 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "elena.brown34@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3034"^^xsd:string ;
-    :firstName "Elena"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Brown"^^xsd:string ;
-    :memberOfDepartment :dept_phil ;
-    :officeRoom "FAC-334"^^xsd:string ;
-    :teachesCourse :course_ug_117 .
-
-:prof_asst_07 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_computational_bio ;
-    :email "frank.davis35@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3035"^^xsd:string ;
-    :firstName "Frank"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Davis"^^xsd:string ;
-    :memberOfDepartment :dept_hist ;
-    :officeRoom "FAC-335"^^xsd:string ;
-    :teachesCourse :course_ug_118 .
-
-:prof_asst_08 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_nlp_ai ;
-    :email "grace.clark36@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3036"^^xsd:string ;
-    :firstName "Grace"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "FAC-336"^^xsd:string ;
-    :teachesCourse :course_ug_119 .
-
-:prof_asst_09 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "henry.martin37@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3037"^^xsd:string ;
-    :firstName "Henry"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Martin"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "FAC-337"^^xsd:string ;
-    :teachesCourse :course_ug_120 .
-
-:prof_asst_10 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "irene.martinez38@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3038"^^xsd:string ;
-    :firstName "Irene"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Martinez"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "FAC-338"^^xsd:string ;
-    :teachesCourse :course_ug_121 .
-
-:prof_asst_11 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "jack.rodriguez39@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3039"^^xsd:string ;
-    :firstName "Jack"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "FAC-339"^^xsd:string ;
-    :teachesCourse :course_ug_122 .
-
-:prof_asst_12 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "karen.johnson40@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3040"^^xsd:string ;
-    :firstName "Karen"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Johnson"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "FAC-340"^^xsd:string ;
-    :teachesCourse :course_ug_123 .
-
-:prof_visit_01 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :VisitingProfessor ;
-    :email "leo.jones41@univ.edu"^^xsd:string ;
-    :employeeId "EMP-4041"^^xsd:string ;
-    :firstName "Leo"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Jones"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "VIS-141"^^xsd:string ;
-    :teachesCourse :course_ug_104 .
-
-:prof_visit_02 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :VisitingProfessor ;
-    :email "maya.wilson42@univ.edu"^^xsd:string ;
-    :employeeId "EMP-4042"^^xsd:string ;
-    :firstName "Maya"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Wilson"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "VIS-142"^^xsd:string ;
-    :teachesCourse :course_ug_105 .
-
-:prof_visit_03 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :VisitingProfessor ;
-    :email "nathan.white43@univ.edu"^^xsd:string ;
-    :employeeId "EMP-4043"^^xsd:string ;
-    :firstName "Nathan"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "White"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "VIS-143"^^xsd:string ;
-    :teachesCourse :course_ug_106 .
-
-:prof_visit_04 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :VisitingProfessor ;
-    :email "olivia.thompson44@univ.edu"^^xsd:string ;
-    :employeeId "EMP-4044"^^xsd:string ;
-    :firstName "Olivia"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Thompson"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "VIS-144"^^xsd:string ;
-    :teachesCourse :course_ug_107 .
-
-:prof_visit_05 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :VisitingProfessor ;
-    :email "peter.robinson45@univ.edu"^^xsd:string ;
-    :employeeId "EMP-4045"^^xsd:string ;
-    :firstName "Peter"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Robinson"^^xsd:string ;
-    :memberOfDepartment :dept_chem ;
-    :officeRoom "VIS-145"^^xsd:string ;
-    :teachesCourse :course_ug_108 .
-
-:prof_visit_06 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :VisitingProfessor ;
-    :email "quinn.lewis46@univ.edu"^^xsd:string ;
-    :employeeId "EMP-4046"^^xsd:string ;
-    :firstName "Quinn"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Lewis"^^xsd:string ;
-    :memberOfDepartment :dept_bio ;
-    :officeRoom "VIS-146"^^xsd:string ;
-    :teachesCourse :course_ug_109 .
-
-:prof_visit_07 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :VisitingProfessor ;
-    :email "rachel.williams47@univ.edu"^^xsd:string ;
-    :employeeId "EMP-4047"^^xsd:string ;
-    :firstName "Rachel"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Williams"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :officeRoom "VIS-147"^^xsd:string ;
-    :teachesCourse :course_ug_110 .
-
-:prof_visit_08 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :VisitingProfessor ;
-    :email "sam.miller48@univ.edu"^^xsd:string ;
-    :employeeId "EMP-4048"^^xsd:string ;
-    :firstName "Sam"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Miller"^^xsd:string ;
-    :memberOfDepartment :dept_phil ;
-    :officeRoom "VIS-148"^^xsd:string ;
-    :teachesCourse :course_ug_111 .
-
-:pub_conf_18 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_10 ;
-    :citesPublication :pub_conf_15 ;
-    :publicationTitle "Conference Proceedings on Discovery 18"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nsf_102 .
-
-:pub_conf_19 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_11 ;
-    :citesPublication :pub_conf_16 ;
-    :publicationTitle "Conference Proceedings on Discovery 19"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_darpa_301 .
-
-:pub_conf_20 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_12 ;
-    :citesPublication :pub_conf_17 ;
-    :publicationTitle "Conference Proceedings on Discovery 20"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_erc_401 .
-
-:pub_journal_01 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_02 ;
-    :publicationTitle "Journal Paper on Advances in Topic 1"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nsf_102 .
-
-:pub_journal_02 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_03 ;
-    :publicationTitle "Journal Paper on Advances in Topic 2"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_darpa_301 .
-
-:pub_journal_03 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_04 ;
-    :publicationTitle "Journal Paper on Advances in Topic 3"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_erc_401 .
-
-:pub_journal_04 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_05 ;
-    :publicationTitle "Journal Paper on Advances in Topic 4"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_doe_501 .
-
-:pub_journal_05 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_06 ;
-    :publicationTitle "Journal Paper on Advances in Topic 5"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nih_201 .
-
-:pub_journal_06 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_07 ;
-    :publicationTitle "Journal Paper on Advances in Topic 6"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_nsf_103 .
-
-:pub_journal_07 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_08 ;
-    :publicationTitle "Journal Paper on Advances in Topic 7"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nih_202 .
-
-:rogue_person_1 a :FullProfessor,
-        :Person ;
-    :email "rogue.alpha@univ.edu"^^xsd:string ;
-    :employeeId "EMP-9001"^^xsd:string ;
-    :firstName "Rogue"^^xsd:string ;
-    :lastName "Alpha"^^xsd:string .
-
-:rogue_person_2 a :FullProfessor,
-        :Person ;
-    :email "rogue.beta@univ.edu"^^xsd:string ;
-    :employeeId "EMP-9002"^^xsd:string ;
-    :firstName "Rogue"^^xsd:string ;
-    :lastName "Beta"^^xsd:string .
-
-:staff_cleric_01 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "arthur.lewis1@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8001"^^xsd:string ;
-    :firstName "Arthur"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "ADM-101"^^xsd:string .
-
-:staff_cleric_02 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "beatrice.williams2@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8002"^^xsd:string ;
-    :firstName "Beatrice"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "ADM-102"^^xsd:string .
-
-:staff_cleric_03 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "clara.miller3@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8003"^^xsd:string ;
-    :firstName "Clara"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "ADM-103"^^xsd:string .
-
-:staff_cleric_04 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "daniel.taylor4@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8004"^^xsd:string ;
-    :firstName "Daniel"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "ADM-104"^^xsd:string .
-
-:staff_cleric_05 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "alice.harris5@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8005"^^xsd:string ;
-    :firstName "Alice"^^xsd:string ;
-    :lastName "Harris"^^xsd:string ;
-    :memberOfDepartment :dept_chem ;
-    :officeRoom "ADM-105"^^xsd:string .
-
-:staff_cleric_06 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "bob.garcia6@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8006"^^xsd:string ;
-    :firstName "Bob"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :memberOfDepartment :dept_bio ;
-    :officeRoom "ADM-106"^^xsd:string .
-
-:staff_cleric_07 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "carol.clark7@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8007"^^xsd:string ;
-    :firstName "Carol"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :officeRoom "ADM-107"^^xsd:string .
-
-:staff_cleric_08 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "david.smith8@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8008"^^xsd:string ;
-    :firstName "David"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :memberOfDepartment :dept_phil ;
-    :officeRoom "ADM-108"^^xsd:string .
-
-:staff_cleric_09 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "elena.brown9@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8009"^^xsd:string ;
-    :firstName "Elena"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :memberOfDepartment :dept_hist ;
-    :officeRoom "ADM-109"^^xsd:string .
-
-:staff_cleric_10 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "frank.davis10@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8010"^^xsd:string ;
-    :firstName "Frank"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "ADM-110"^^xsd:string .
-
-:staff_cleric_11 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "grace.clark11@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8011"^^xsd:string ;
-    :firstName "Grace"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "ADM-111"^^xsd:string .
-
-:staff_cleric_12 a :AdministrativeStaff,
-        :ClericalStaff,
-        :Employee,
-        :Person ;
-    :email "henry.martin12@univ.edu"^^xsd:string ;
-    :employeeId "EMP-8012"^^xsd:string ;
-    :firstName "Henry"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "ADM-112"^^xsd:string .
-
-:student_ug_01 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "quinn.lewis166@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_117 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Quinn"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :studentId "STU-UG-1166"^^xsd:string .
-
-:student_ug_02 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "rachel.williams167@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_118 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Rachel"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :studentId "STU-UG-1167"^^xsd:string .
-
-:student_ug_03 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "sam.miller168@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_119 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Sam"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :studentId "STU-UG-1168"^^xsd:string .
-
-:student_ug_04 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "tara.taylor169@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_120 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Tara"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :studentId "STU-UG-1169"^^xsd:string .
-
-:student_ug_05 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "uma.harris170@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_121 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Uma"^^xsd:string ;
-    :lastName "Harris"^^xsd:string ;
-    :studentId "STU-UG-1170"^^xsd:string .
-
-:student_ug_06 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "victor.garcia171@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_122 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Victor"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :studentId "STU-UG-1171"^^xsd:string .
-
-:student_ug_07 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "wendy.clark172@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_123 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Wendy"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-UG-1172"^^xsd:string .
-
-:student_ug_08 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "xavier.smith173@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_124 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Xavier"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :studentId "STU-UG-1173"^^xsd:string .
-
-:student_ug_09 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "yasmine.brown174@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_125 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Yasmine"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :studentId "STU-UG-1174"^^xsd:string .
-
-:student_ug_10 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "zachary.davis175@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_101 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Zachary"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :studentId "STU-UG-1175"^^xsd:string .
-
-:student_ug_11 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "arthur.clark176@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_102 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Arthur"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-UG-1176"^^xsd:string .
-
-:student_ug_12 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "beatrice.martin177@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_103 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Beatrice"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :studentId "STU-UG-1177"^^xsd:string .
-
-:student_ug_13 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "clara.martinez178@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_104 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Clara"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :studentId "STU-UG-1178"^^xsd:string .
-
-:student_ug_14 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "daniel.rodriguez179@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_105 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Daniel"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :studentId "STU-UG-1179"^^xsd:string .
-
-:student_ug_15 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "alice.johnson180@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_106 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Alice"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :studentId "STU-UG-1180"^^xsd:string .
-
-:student_ug_16 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "bob.jones181@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_107 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Bob"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :studentId "STU-UG-1181"^^xsd:string .
-
-:student_ug_17 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "carol.wilson182@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_108 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Carol"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :studentId "STU-UG-1182"^^xsd:string .
-
-:student_ug_18 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "david.white183@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_109 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "David"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :studentId "STU-UG-1183"^^xsd:string .
-
-:student_ug_19 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "elena.thompson184@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_110 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Elena"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :studentId "STU-UG-1184"^^xsd:string .
-
-:student_ug_20 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "frank.robinson185@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_111 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Frank"^^xsd:string ;
-    :lastName "Robinson"^^xsd:string ;
-    :studentId "STU-UG-1185"^^xsd:string .
-
-:student_ug_21 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "grace.lewis186@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_112 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Grace"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :studentId "STU-UG-1186"^^xsd:string .
-
-:student_ug_22 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "henry.williams187@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_113 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Henry"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :studentId "STU-UG-1187"^^xsd:string .
-
-:student_ug_23 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "irene.miller188@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_114 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Irene"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :studentId "STU-UG-1188"^^xsd:string .
-
-:student_ug_24 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "jack.taylor189@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_115 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Jack"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :studentId "STU-UG-1189"^^xsd:string .
-
-:student_ug_25 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "karen.harris190@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_116 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Karen"^^xsd:string ;
-    :lastName "Harris"^^xsd:string ;
-    :studentId "STU-UG-1190"^^xsd:string .
-
-:student_ug_26 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "leo.garcia191@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_117 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Leo"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :studentId "STU-UG-1191"^^xsd:string .
-
-:student_ug_27 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "maya.clark192@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_118 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Maya"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-UG-1192"^^xsd:string .
-
-:student_ug_28 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "nathan.smith193@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_119 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Nathan"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :studentId "STU-UG-1193"^^xsd:string .
-
-:student_ug_29 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "olivia.brown194@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_120 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Olivia"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :studentId "STU-UG-1194"^^xsd:string .
-
-:student_ug_30 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "peter.davis195@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_121 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Peter"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :studentId "STU-UG-1195"^^xsd:string .
-
-:student_ug_31 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "quinn.clark196@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_122 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Quinn"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-UG-1196"^^xsd:string .
-
-:student_ug_32 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "rachel.martin197@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_123 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Rachel"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :studentId "STU-UG-1197"^^xsd:string .
-
-:student_ug_33 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "sam.martinez198@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_124 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Sam"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :studentId "STU-UG-1198"^^xsd:string .
-
-:student_ug_34 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "tara.rodriguez199@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_125 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Tara"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :studentId "STU-UG-1199"^^xsd:string .
-
-:student_ug_35 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "uma.johnson200@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_101 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Uma"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :studentId "STU-UG-1200"^^xsd:string .
-
-:student_ug_36 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "victor.jones201@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_102 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Victor"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :studentId "STU-UG-1201"^^xsd:string .
-
-:student_ug_37 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "wendy.wilson202@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_103 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Wendy"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :studentId "STU-UG-1202"^^xsd:string .
-
-:student_ug_38 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "xavier.white203@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_104 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Xavier"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :studentId "STU-UG-1203"^^xsd:string .
-
-:student_ug_39 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "yasmine.thompson204@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_105 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Yasmine"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :studentId "STU-UG-1204"^^xsd:string .
-
-:student_ug_40 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "zachary.robinson205@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_106 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Zachary"^^xsd:string ;
-    :lastName "Robinson"^^xsd:string ;
-    :studentId "STU-UG-1205"^^xsd:string .
-
-:student_ug_41 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "arthur.lewis206@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_107 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Arthur"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :studentId "STU-UG-1206"^^xsd:string .
-
-:student_ug_42 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "beatrice.williams207@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_108 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Beatrice"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :studentId "STU-UG-1207"^^xsd:string .
-
-:student_ug_43 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "clara.miller208@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_109 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Clara"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :studentId "STU-UG-1208"^^xsd:string .
-
-:student_ug_44 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "daniel.taylor209@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_110 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Daniel"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :studentId "STU-UG-1209"^^xsd:string .
-
-:student_ug_45 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "alice.harris210@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_111 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Alice"^^xsd:string ;
-    :lastName "Harris"^^xsd:string ;
-    :studentId "STU-UG-1210"^^xsd:string .
-
-:student_ug_46 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "bob.garcia211@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_112 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Bob"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :studentId "STU-UG-1211"^^xsd:string .
-
-:student_ug_47 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "carol.clark212@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_113 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Carol"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-UG-1212"^^xsd:string .
-
-:student_ug_48 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "david.smith213@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_114 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "David"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :studentId "STU-UG-1213"^^xsd:string .
-
-:student_ug_49 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "elena.brown214@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_115 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Elena"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :studentId "STU-UG-1214"^^xsd:string .
-
-:student_ug_50 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "frank.davis215@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_116 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Frank"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :studentId "STU-UG-1215"^^xsd:string .
-
-:student_ug_51 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "grace.clark216@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_117 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Grace"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-UG-1216"^^xsd:string .
-
-:student_ug_52 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "henry.martin217@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_118 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Henry"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :studentId "STU-UG-1217"^^xsd:string .
-
-:student_ug_53 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "irene.martinez218@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_119 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Irene"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :studentId "STU-UG-1218"^^xsd:string .
-
-:student_ug_54 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "jack.rodriguez219@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_120 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Jack"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :studentId "STU-UG-1219"^^xsd:string .
-
-:student_ug_55 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "karen.johnson220@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_121 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Karen"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :studentId "STU-UG-1220"^^xsd:string .
-
-:student_ug_56 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "leo.jones221@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_122 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Leo"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :studentId "STU-UG-1221"^^xsd:string .
-
-:student_ug_57 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "maya.wilson222@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_123 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Maya"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :studentId "STU-UG-1222"^^xsd:string .
-
-:student_ug_58 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "nathan.white223@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_124 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Nathan"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :studentId "STU-UG-1223"^^xsd:string .
-
-:student_ug_59 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "olivia.thompson224@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_125 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Olivia"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :studentId "STU-UG-1224"^^xsd:string .
-
-:student_ug_60 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "peter.robinson225@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_101 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Peter"^^xsd:string ;
-    :lastName "Robinson"^^xsd:string ;
-    :studentId "STU-UG-1225"^^xsd:string .
-
-:student_ug_61 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "quinn.lewis226@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_102 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Quinn"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :studentId "STU-UG-1226"^^xsd:string .
-
-:student_ug_62 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "rachel.williams227@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_103 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Rachel"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :studentId "STU-UG-1227"^^xsd:string .
-
-:student_ug_63 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "sam.miller228@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_104 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Sam"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :studentId "STU-UG-1228"^^xsd:string .
-
-:student_ug_64 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "tara.taylor229@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_105 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Tara"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :studentId "STU-UG-1229"^^xsd:string .
-
-:student_ug_65 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "uma.harris230@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_106 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Uma"^^xsd:string ;
-    :lastName "Harris"^^xsd:string ;
-    :studentId "STU-UG-1230"^^xsd:string .
-
-:student_ug_66 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "victor.garcia231@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_107 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Victor"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :studentId "STU-UG-1231"^^xsd:string .
-
-:student_ug_67 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "wendy.clark232@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_108 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Wendy"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-UG-1232"^^xsd:string .
-
-:student_ug_68 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "xavier.smith233@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_109 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Xavier"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :studentId "STU-UG-1233"^^xsd:string .
-
-:student_ug_69 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "yasmine.brown234@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_110 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Yasmine"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :studentId "STU-UG-1234"^^xsd:string .
-
-:student_ug_70 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "zachary.davis235@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_111 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Zachary"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :studentId "STU-UG-1235"^^xsd:string .
-
-:student_ug_71 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "arthur.clark236@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_112 ;
-    :enrolledInDegree :deg_cs_bs ;
-    :firstName "Arthur"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-UG-1236"^^xsd:string .
-
-:student_ug_72 a :Person,
-        :Student,
-        :UndergraduateStudent ;
-    :email "beatrice.martin237@univ.edu"^^xsd:string ;
-    :enrolledInCourse :course_ug_113 ;
-    :enrolledInDegree :deg_ee_bs ;
-    :firstName "Beatrice"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :studentId "STU-UG-1237"^^xsd:string .
-
-:course_grad_501 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 501"^^xsd:string ;
-    :hasPrerequisite :course_grad_502,
-        :course_grad_503 .
-
-:course_grad_504 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 504"^^xsd:string ;
-    :hasPrerequisite :course_grad_505,
-        :course_grad_506 .
-
-:course_grad_507 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 507"^^xsd:string ;
-    :hasPrerequisite :course_grad_508,
-        :course_grad_509 .
-
-:course_grad_515 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 515"^^xsd:string .
-
-:postdoc_01 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :collaboratesWith :prof_assoc_01,
-        :prof_assoc_08 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "nathan.smith73@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7073"^^xsd:string ;
-    :firstName "Nathan"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "RES-173"^^xsd:string .
-
-:postdoc_02 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :collaboratesWith :prof_assoc_02,
-        :prof_assoc_09 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "olivia.brown74@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7074"^^xsd:string ;
-    :firstName "Olivia"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "RES-174"^^xsd:string .
-
-:postdoc_03 a :AcademicStaff,
-        :Employee,
-        :Person,
-        :PostdoctoralResearcher ;
-    :collaboratesWith :prof_assoc_10 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "peter.davis75@univ.edu"^^xsd:string ;
-    :employeeId "EMP-7075"^^xsd:string ;
-    :firstName "Peter"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :memberOfDepartment :dept_chem ;
-    :officeRoom "RES-175"^^xsd:string .
-
-:prof_asst_01 a :AcademicStaff,
-        :AssistantProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenureTrackFaculty ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "daniel.taylor29@univ.edu"^^xsd:string ;
-    :employeeId "EMP-3029"^^xsd:string ;
-    :firstName "Daniel"^^xsd:string ;
-    :hasTenure false ;
-    :lastName "Taylor"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "FAC-329"^^xsd:string ;
-    :teachesCourse :course_ug_112 .
-
-:pub_conf_01 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_full_07 ;
-    :citesPublication :pub_journal_18 ;
-    :publicationTitle "Conference Proceedings on Discovery 1"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_doe_501 .
-
-:pub_conf_02 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_full_08 ;
-    :citesPublication :pub_journal_19 ;
-    :publicationTitle "Conference Proceedings on Discovery 2"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nih_201 .
-
-:pub_conf_03 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_full_09 ;
-    :citesPublication :pub_journal_20 ;
-    :publicationTitle "Conference Proceedings on Discovery 3"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_nsf_103 .
-
-:pub_conf_04 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_full_10 ;
-    :citesPublication :pub_conf_01 ;
-    :publicationTitle "Conference Proceedings on Discovery 4"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nih_202 .
-
-:pub_conf_05 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_full_11 ;
-    :citesPublication :pub_conf_02 ;
-    :publicationTitle "Conference Proceedings on Discovery 5"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_nsf_104 .
-
-:pub_conf_06 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_full_12 ;
-    :citesPublication :pub_conf_03 ;
-    :publicationTitle "Conference Proceedings on Discovery 6"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_darpa_302 .
-
-:pub_conf_07 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_full_13 ;
-    :citesPublication :pub_conf_04 ;
-    :publicationTitle "Conference Proceedings on Discovery 7"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_nsf_101 .
-
-:pub_conf_08 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_full_14 ;
-    :citesPublication :pub_conf_05 ;
-    :publicationTitle "Conference Proceedings on Discovery 8"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nsf_102 .
-
-:pub_conf_09 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_01 ;
-    :citesPublication :pub_conf_06 ;
-    :publicationTitle "Conference Proceedings on Discovery 9"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_darpa_301 .
-
-:pub_conf_10 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_02 ;
-    :citesPublication :pub_conf_07 ;
-    :publicationTitle "Conference Proceedings on Discovery 10"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_erc_401 .
-
-:pub_conf_11 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_03 ;
-    :citesPublication :pub_conf_08 ;
-    :publicationTitle "Conference Proceedings on Discovery 11"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_doe_501 .
-
-:pub_conf_12 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_04 ;
-    :citesPublication :pub_conf_09 ;
-    :publicationTitle "Conference Proceedings on Discovery 12"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nih_201 .
-
-:pub_conf_13 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_05 ;
-    :citesPublication :pub_conf_10 ;
-    :publicationTitle "Conference Proceedings on Discovery 13"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_nsf_103 .
-
-:pub_conf_14 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_06 ;
-    :citesPublication :pub_conf_11 ;
-    :publicationTitle "Conference Proceedings on Discovery 14"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nih_202 .
-
-:pub_conf_15 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_07 ;
-    :citesPublication :pub_conf_12 ;
-    :publicationTitle "Conference Proceedings on Discovery 15"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_nsf_104 .
-
-:pub_conf_16 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_08 ;
-    :citesPublication :pub_conf_13 ;
-    :publicationTitle "Conference Proceedings on Discovery 16"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_darpa_302 .
-
-:pub_conf_17 a :ConferencePaper,
-        :Publication ;
-    :authoredBy :prof_assoc_09 ;
-    :citesPublication :pub_conf_14 ;
-    :publicationTitle "Conference Proceedings on Discovery 17"^^xsd:string ;
-    :publicationYear 2025 ;
-    :supportedByGrant :grant_nsf_101 .
-
-:pub_journal_08 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_09 ;
-    :publicationTitle "Journal Paper on Advances in Topic 8"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_nsf_104 .
-
-:pub_journal_09 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_10 ;
-    :publicationTitle "Journal Paper on Advances in Topic 9"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_darpa_302 .
-
-:pub_journal_10 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_11 ;
-    :publicationTitle "Journal Paper on Advances in Topic 10"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_nsf_101 .
-
-:pub_journal_11 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_12 ;
-    :citesPublication :pub_journal_08 ;
-    :publicationTitle "Journal Paper on Advances in Topic 11"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nsf_102 .
-
-:pub_journal_12 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_13 ;
-    :citesPublication :pub_journal_09 ;
-    :publicationTitle "Journal Paper on Advances in Topic 12"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_darpa_301 .
-
-:pub_journal_13 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_full_14 ;
-    :citesPublication :pub_journal_10 ;
-    :publicationTitle "Journal Paper on Advances in Topic 13"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_erc_401 .
-
-:pub_journal_14 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_assoc_01 ;
-    :citesPublication :pub_journal_11 ;
-    :publicationTitle "Journal Paper on Advances in Topic 14"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_doe_501 .
-
-:pub_journal_15 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_assoc_02 ;
-    :citesPublication :pub_journal_12 ;
-    :publicationTitle "Journal Paper on Advances in Topic 15"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nih_201 .
-
-:pub_journal_16 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_assoc_03 ;
-    :citesPublication :pub_journal_13 ;
-    :publicationTitle "Journal Paper on Advances in Topic 16"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_nsf_103 .
-
-:pub_journal_17 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_assoc_04 ;
-    :citesPublication :pub_journal_14 ;
-    :publicationTitle "Journal Paper on Advances in Topic 17"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_nih_202 .
-
-:pub_journal_18 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_assoc_05 ;
-    :citesPublication :pub_journal_15 ;
-    :publicationTitle "Journal Paper on Advances in Topic 18"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_nsf_104 .
-
-:pub_journal_19 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_assoc_06 ;
-    :citesPublication :pub_journal_16 ;
-    :publicationTitle "Journal Paper on Advances in Topic 19"^^xsd:string ;
-    :publicationYear 2024 ;
-    :supportedByGrant :grant_darpa_302 .
-
-:pub_journal_20 a :JournalArticle,
-        :Publication ;
-    :authoredBy :prof_assoc_07 ;
-    :citesPublication :pub_journal_17 ;
-    :publicationTitle "Journal Paper on Advances in Topic 20"^^xsd:string ;
-    :publicationYear 2023 ;
-    :supportedByGrant :grant_nsf_101 .
-
-:student_ms_01 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_11 ;
-    :email "quinn.clark136@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Quinn"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-MS-136"^^xsd:string .
-
-:student_ms_02 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_12 ;
-    :email "rachel.martin137@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Rachel"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :studentId "STU-MS-137"^^xsd:string .
-
-:student_ms_03 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_13 ;
-    :email "sam.martinez138@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Sam"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :studentId "STU-MS-138"^^xsd:string .
-
-:student_ms_04 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_14 ;
-    :email "tara.rodriguez139@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Tara"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :studentId "STU-MS-139"^^xsd:string .
-
-:student_ms_05 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_01 ;
-    :email "uma.johnson140@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Uma"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :studentId "STU-MS-140"^^xsd:string .
-
-:student_ms_06 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_02 ;
-    :email "victor.jones141@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Victor"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :studentId "STU-MS-141"^^xsd:string .
-
-:student_ms_07 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_03 ;
-    :email "wendy.wilson142@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Wendy"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :studentId "STU-MS-142"^^xsd:string .
-
-:student_ms_08 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_04 ;
-    :email "xavier.white143@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Xavier"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :studentId "STU-MS-143"^^xsd:string .
-
-:student_ms_09 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_05 ;
-    :email "yasmine.thompson144@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Yasmine"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :studentId "STU-MS-144"^^xsd:string .
-
-:student_ms_10 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_06 ;
-    :email "zachary.robinson145@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Zachary"^^xsd:string ;
-    :lastName "Robinson"^^xsd:string ;
-    :studentId "STU-MS-145"^^xsd:string .
-
-:student_ms_11 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_07 ;
-    :email "arthur.lewis146@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Arthur"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :studentId "STU-MS-146"^^xsd:string .
-
-:student_ms_12 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_08 ;
-    :email "beatrice.williams147@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Beatrice"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :studentId "STU-MS-147"^^xsd:string .
-
-:student_ms_13 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_09 ;
-    :email "clara.miller148@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Clara"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :studentId "STU-MS-148"^^xsd:string .
-
-:student_ms_14 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_10 ;
-    :email "daniel.taylor149@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Daniel"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :studentId "STU-MS-149"^^xsd:string .
-
-:student_ms_15 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_11 ;
-    :email "alice.harris150@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Alice"^^xsd:string ;
-    :lastName "Harris"^^xsd:string ;
-    :studentId "STU-MS-150"^^xsd:string .
-
-:student_ms_16 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_12 ;
-    :email "bob.garcia151@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Bob"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :studentId "STU-MS-151"^^xsd:string .
-
-:student_ms_17 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_13 ;
-    :email "carol.clark152@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Carol"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-MS-152"^^xsd:string .
-
-:student_ms_18 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_14 ;
-    :email "david.smith153@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "David"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :studentId "STU-MS-153"^^xsd:string .
-
-:student_ms_19 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_01 ;
-    :email "elena.brown154@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Elena"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :studentId "STU-MS-154"^^xsd:string .
-
-:student_ms_20 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_02 ;
-    :email "frank.davis155@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Frank"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :studentId "STU-MS-155"^^xsd:string .
-
-:student_ms_21 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_03 ;
-    :email "grace.clark156@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Grace"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-MS-156"^^xsd:string .
-
-:student_ms_22 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_04 ;
-    :email "henry.martin157@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Henry"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :studentId "STU-MS-157"^^xsd:string .
-
-:student_ms_23 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_05 ;
-    :email "irene.martinez158@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Irene"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :studentId "STU-MS-158"^^xsd:string .
-
-:student_ms_24 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_06 ;
-    :email "jack.rodriguez159@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Jack"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :studentId "STU-MS-159"^^xsd:string .
-
-:student_ms_25 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_07 ;
-    :email "karen.johnson160@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Karen"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :studentId "STU-MS-160"^^xsd:string .
-
-:student_ms_26 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_08 ;
-    :email "leo.jones161@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Leo"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :studentId "STU-MS-161"^^xsd:string .
-
-:student_ms_27 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_09 ;
-    :email "maya.wilson162@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Maya"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :studentId "STU-MS-162"^^xsd:string .
-
-:student_ms_28 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_10 ;
-    :email "nathan.white163@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Nathan"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :studentId "STU-MS-163"^^xsd:string .
-
-:student_ms_29 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_11 ;
-    :email "olivia.thompson164@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Olivia"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :studentId "STU-MS-164"^^xsd:string .
-
-:student_ms_30 a :GraduateStudent,
-        :MasterStudent,
-        :Person,
-        :Student ;
-    :advisor :prof_assoc_12 ;
-    :email "peter.robinson165@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_phys_ms ;
-    :firstName "Peter"^^xsd:string ;
-    :lastName "Robinson"^^xsd:string ;
-    :studentId "STU-MS-165"^^xsd:string .
-
-:student_phd_03 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_04 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "xavier.smith3@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Xavier"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :studentId "STU-PHD-03"^^xsd:string .
-
-:student_phd_04 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_05 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "yasmine.brown4@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Yasmine"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :studentId "STU-PHD-04"^^xsd:string .
-
-:student_phd_05 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_06 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "zachary.davis5@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Zachary"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :studentId "STU-PHD-05"^^xsd:string .
-
-:student_phd_06 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_07 ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "arthur.clark6@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Arthur"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-PHD-06"^^xsd:string .
-
-:student_phd_07 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_08 ;
-    :conductsResearchIn :lab_computational_bio ;
-    :email "beatrice.martin7@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Beatrice"^^xsd:string ;
-    :lastName "Martin"^^xsd:string ;
-    :studentId "STU-PHD-07"^^xsd:string .
-
-:student_phd_08 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_09 ;
-    :conductsResearchIn :lab_nlp_ai ;
-    :email "clara.martinez8@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Clara"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :studentId "STU-PHD-08"^^xsd:string .
-
-:student_phd_09 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_10 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "daniel.rodriguez9@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Daniel"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :studentId "STU-PHD-09"^^xsd:string .
-
-:student_phd_10 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_11 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "alice.johnson10@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Alice"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :studentId "STU-PHD-10"^^xsd:string .
-
-:student_phd_11 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_12 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "bob.jones11@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Bob"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :studentId "STU-PHD-11"^^xsd:string .
-
-:student_phd_12 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_13 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "carol.wilson12@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Carol"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :studentId "STU-PHD-12"^^xsd:string .
-
-:student_phd_13 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_14 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "david.white13@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "David"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :studentId "STU-PHD-13"^^xsd:string .
-
-:student_phd_14 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_01 ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "elena.thompson14@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Elena"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :studentId "STU-PHD-14"^^xsd:string .
-
-:student_phd_15 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_02 ;
-    :conductsResearchIn :lab_computational_bio ;
-    :email "frank.robinson15@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Frank"^^xsd:string ;
-    :lastName "Robinson"^^xsd:string ;
-    :studentId "STU-PHD-15"^^xsd:string .
-
-:student_phd_16 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_03 ;
-    :conductsResearchIn :lab_nlp_ai ;
-    :email "grace.lewis16@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Grace"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :studentId "STU-PHD-16"^^xsd:string .
-
-:student_phd_17 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_04 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "henry.williams17@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Henry"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :studentId "STU-PHD-17"^^xsd:string .
-
-:student_phd_18 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_05 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "irene.miller18@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Irene"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :studentId "STU-PHD-18"^^xsd:string .
-
-:student_phd_19 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_06 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "jack.taylor19@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Jack"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :studentId "STU-PHD-19"^^xsd:string .
-
-:student_phd_20 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_07 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "karen.harris20@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Karen"^^xsd:string ;
-    :lastName "Harris"^^xsd:string ;
-    :studentId "STU-PHD-20"^^xsd:string .
-
-:student_phd_21 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_08 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "leo.garcia21@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Leo"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :studentId "STU-PHD-21"^^xsd:string .
-
-:student_phd_22 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_09 ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "maya.clark22@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Maya"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-PHD-22"^^xsd:string .
-
-:student_phd_23 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_10 ;
-    :conductsResearchIn :lab_computational_bio ;
-    :email "nathan.smith23@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Nathan"^^xsd:string ;
-    :lastName "Smith"^^xsd:string ;
-    :studentId "STU-PHD-23"^^xsd:string .
-
-:student_phd_24 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_11 ;
-    :conductsResearchIn :lab_nlp_ai ;
-    :email "olivia.brown24@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Olivia"^^xsd:string ;
-    :lastName "Brown"^^xsd:string ;
-    :studentId "STU-PHD-24"^^xsd:string .
-
-:student_phd_25 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_full_12 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "peter.davis25@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Peter"^^xsd:string ;
-    :lastName "Davis"^^xsd:string ;
-    :studentId "STU-PHD-25"^^xsd:string .
-
-:ta_grad_01 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_01 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "irene.martinez98@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-98"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Irene"^^xsd:string ;
-    :lastName "Martinez"^^xsd:string ;
-    :officeRoom "TA-198"^^xsd:string ;
-    :studentId "STU-TA-98"^^xsd:string ;
-    :teachesCourse :course_ug_124 .
-
-:ta_grad_02 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_02 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "jack.rodriguez99@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-99"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Jack"^^xsd:string ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :officeRoom "TA-199"^^xsd:string ;
-    :studentId "STU-TA-99"^^xsd:string ;
-    :teachesCourse :course_ug_125 .
-
-:ta_grad_03 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_03 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "karen.johnson100@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-100"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Karen"^^xsd:string ;
-    :lastName "Johnson"^^xsd:string ;
-    :officeRoom "TA-200"^^xsd:string ;
-    :studentId "STU-TA-100"^^xsd:string ;
-    :teachesCourse :course_ug_101 .
-
-:ta_grad_04 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_04 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "leo.jones101@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-101"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Leo"^^xsd:string ;
-    :lastName "Jones"^^xsd:string ;
-    :officeRoom "TA-201"^^xsd:string ;
-    :studentId "STU-TA-101"^^xsd:string ;
-    :teachesCourse :course_ug_102 .
-
-:ta_grad_05 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_05 ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "maya.wilson102@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-102"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Maya"^^xsd:string ;
-    :lastName "Wilson"^^xsd:string ;
-    :officeRoom "TA-202"^^xsd:string ;
-    :studentId "STU-TA-102"^^xsd:string ;
-    :teachesCourse :course_ug_103 .
-
-:ta_grad_06 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_06 ;
-    :conductsResearchIn :lab_computational_bio ;
-    :email "nathan.white103@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-103"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Nathan"^^xsd:string ;
-    :lastName "White"^^xsd:string ;
-    :officeRoom "TA-203"^^xsd:string ;
-    :studentId "STU-TA-103"^^xsd:string ;
-    :teachesCourse :course_ug_104 .
-
-:ta_grad_07 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_07 ;
-    :conductsResearchIn :lab_nlp_ai ;
-    :email "olivia.thompson104@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-104"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Olivia"^^xsd:string ;
-    :lastName "Thompson"^^xsd:string ;
-    :officeRoom "TA-204"^^xsd:string ;
-    :studentId "STU-TA-104"^^xsd:string ;
-    :teachesCourse :course_ug_105 .
-
-:ta_grad_08 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_08 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "peter.robinson105@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-105"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Peter"^^xsd:string ;
-    :lastName "Robinson"^^xsd:string ;
-    :officeRoom "TA-205"^^xsd:string ;
-    :studentId "STU-TA-105"^^xsd:string ;
-    :teachesCourse :course_ug_106 .
-
-:ta_grad_09 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_09 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "quinn.lewis106@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-106"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Quinn"^^xsd:string ;
-    :lastName "Lewis"^^xsd:string ;
-    :officeRoom "TA-206"^^xsd:string ;
-    :studentId "STU-TA-106"^^xsd:string ;
-    :teachesCourse :course_ug_107 .
-
-:ta_grad_10 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_10 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "rachel.williams107@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-107"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Rachel"^^xsd:string ;
-    :lastName "Williams"^^xsd:string ;
-    :officeRoom "TA-207"^^xsd:string ;
-    :studentId "STU-TA-107"^^xsd:string ;
-    :teachesCourse :course_ug_108 .
-
-:ta_grad_11 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_11 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "sam.miller108@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-108"^^xsd:string ;
-    :enrolledInDegree :deg_cs_ms ;
-    :firstName "Sam"^^xsd:string ;
-    :lastName "Miller"^^xsd:string ;
-    :officeRoom "TA-208"^^xsd:string ;
-    :studentId "STU-TA-108"^^xsd:string ;
-    :teachesCourse :course_ug_109 .
-
-:ta_grad_12 a :AcademicStaff,
-        :Employee,
-        :GraduateStudent,
-        :Person,
-        :Student,
-        :TeachingAssistant ;
-    :advisor :prof_full_12 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "tara.taylor109@univ.edu"^^xsd:string ;
-    :employeeId "EMP-TA-109"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Tara"^^xsd:string ;
-    :lastName "Taylor"^^xsd:string ;
-    :officeRoom "TA-209"^^xsd:string ;
-    :studentId "STU-TA-109"^^xsd:string ;
-    :teachesCourse :course_ug_110 .
-
-:course_grad_502 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 502"^^xsd:string ;
-    :hasPrerequisite :course_grad_503 .
-
-:course_grad_505 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 505"^^xsd:string ;
-    :hasPrerequisite :course_grad_506 .
-
-:course_grad_510 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 510"^^xsd:string ;
-    :hasPrerequisite :course_grad_511 .
-
-:course_grad_513 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 513"^^xsd:string .
-
-:course_grad_514 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 514"^^xsd:string .
-
-:student_phd_01 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_assoc_01,
-        :prof_full_02 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "victor.garcia1@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_math_phd ;
-    :firstName "Victor"^^xsd:string ;
-    :lastName "Garcia"^^xsd:string ;
-    :studentId "STU-PHD-01"^^xsd:string .
-
-:student_phd_02 a :GraduateStudent,
-        :Person,
-        :PhDStudent,
-        :Student ;
-    :advisor :prof_assoc_02,
-        :prof_full_03 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "wendy.clark2@univ.edu"^^xsd:string ;
-    :enrolledInDegree :deg_cs_phd ;
-    :firstName "Wendy"^^xsd:string ;
-    :lastName "Clark"^^xsd:string ;
-    :studentId "STU-PHD-02"^^xsd:string .
-
-:course_grad_503 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 503"^^xsd:string .
-
-:course_grad_506 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 506"^^xsd:string .
-
-:course_grad_508 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 508"^^xsd:string ;
-    :hasPrerequisite :course_grad_509 .
-
-:course_grad_511 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 511"^^xsd:string ;
-    :hasPrerequisite :course_grad_512 .
-
-:course_grad_512 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 512"^^xsd:string .
-
-:fac_humanities a :AcademicUnit,
-        :Faculty,
-        :Organization ;
-    :unitName "Faculty of Arts and Humanities"^^xsd:string .
-
-:prof_assoc_13 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_03,
-        :student_ms_17 ;
-    :collaboratesWith :prof_assoc_06 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "beatrice.williams27@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2027"^^xsd:string ;
-    :firstName "Beatrice"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Williams"^^xsd:string ;
-    :memberOfDepartment :dept_hist ;
-    :officeRoom "FAC-227"^^xsd:string ;
-    :teachesCourse :course_grad_513 .
-
-:prof_assoc_14 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_04,
-        :student_ms_18 ;
-    :collaboratesWith :prof_assoc_07 ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "clara.miller28@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2028"^^xsd:string ;
-    :firstName "Clara"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Miller"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "FAC-228"^^xsd:string ;
-    :teachesCourse :course_grad_514 .
-
-:course_grad_509 a :Course,
-        :GraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Graduate Seminar 509"^^xsd:string .
-
-:course_ug_101 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 101"^^xsd:string ;
-    :hasPrerequisite :course_ug_102,
-        :course_ug_103 .
-
-:course_ug_116 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 4 ;
-    :courseTitle "Undergraduate Course 116"^^xsd:string ;
-    :hasPrerequisite :course_ug_117,
-        :course_ug_118 .
-
-:course_ug_119 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 119"^^xsd:string ;
-    :hasPrerequisite :course_ug_120,
-        :course_ug_121 .
-
-:course_ug_122 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 122"^^xsd:string ;
-    :hasPrerequisite :course_ug_123 .
-
-:course_ug_125 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 125"^^xsd:string .
-
-:grant_darpa_301 :endDate "2026-11-30"^^xsd:date ;
-    :fundingAgency "Defense Advanced Research Projects Agency"^^xsd:string ;
-    :fundingAmount 850000.00 ;
-    :grantNumber "DARPA-HR0011-301"^^xsd:string ;
-    :principalInvestigator :prof_full_03 ;
-    :startDate "2024-05-01"^^xsd:date .
-
-:grant_darpa_302 :endDate "2026-08-01"^^xsd:date ;
-    :fundingAgency "Defense Advanced Research Projects Agency"^^xsd:string ;
-    :fundingAmount 500000.00 ;
-    :grantNumber "DARPA-YFA-2024-302"^^xsd:string ;
-    :principalInvestigator :prof_asst_01 ;
-    :startDate "2024-08-01"^^xsd:date .
-
-:grant_doe_501 :endDate "2027-05-31"^^xsd:date ;
-    :fundingAgency "Department of Energy"^^xsd:string ;
-    :fundingAmount 650000.00 ;
-    :grantNumber "DOE-SC-2024-501"^^xsd:string ;
-    :principalInvestigator :prof_full_06 ;
-    :startDate "2024-06-01"^^xsd:date .
-
-:grant_erc_401 :endDate "2029-01-01"^^xsd:date ;
-    :fundingAgency "European Research Council"^^xsd:string ;
-    :fundingAmount 1500000.00 ;
-    :grantNumber "ERC-COG-2024-401"^^xsd:string ;
-    :principalInvestigator :prof_full_05 ;
-    :startDate "2024-01-01"^^xsd:date .
-
-:grant_nih_201 :endDate "2028-08-31"^^xsd:date ;
-    :fundingAgency "National Institutes of Health"^^xsd:string ;
-    :fundingAmount 1200000.00 ;
-    :grantNumber "NIH-R01-HG-201"^^xsd:string ;
-    :principalInvestigator :prof_full_08 ;
-    :startDate "2023-09-01"^^xsd:date .
-
-:grant_nih_202 :endDate "2026-06-30"^^xsd:date ;
-    :fundingAgency "National Institutes of Health"^^xsd:string ;
-    :fundingAmount 275000.00 ;
-    :grantNumber "NIH-R21-LM-202"^^xsd:string ;
-    :principalInvestigator :prof_assoc_05 ;
-    :startDate "2024-07-01"^^xsd:date .
-
-:grant_nsf_101 :endDate "2027-01-01"^^xsd:date ;
-    :fundingAgency "National Science Foundation"^^xsd:string ;
-    :fundingAmount 450000.00 ;
-    :grantNumber "NSF-IIS-2024-101"^^xsd:string ;
-    :principalInvestigator :prof_full_01 ;
-    :startDate "2024-01-01"^^xsd:date .
-
-:grant_nsf_102 :endDate "2027-03-01"^^xsd:date ;
-    :fundingAgency "National Science Foundation"^^xsd:string ;
-    :fundingAmount 500000.00 ;
-    :grantNumber "NSF-CCF-2024-102"^^xsd:string ;
-    :principalInvestigator :prof_full_02 ;
-    :startDate "2024-03-01"^^xsd:date .
-
-:grant_nsf_103 :endDate "2026-02-01"^^xsd:date ;
-    :fundingAgency "National Science Foundation"^^xsd:string ;
-    :fundingAmount 350000.00 ;
-    :grantNumber "NSF-CNS-2024-103"^^xsd:string ;
-    :principalInvestigator :prof_assoc_01 ;
-    :startDate "2024-02-01"^^xsd:date .
-
-:grant_nsf_104 :endDate "2026-11-01"^^xsd:date ;
-    :fundingAgency "National Science Foundation"^^xsd:string ;
-    :fundingAmount 420000.00 ;
-    :grantNumber "NSF-DMR-2024-104"^^xsd:string ;
-    :principalInvestigator :prof_assoc_03 ;
-    :startDate "2023-11-01"^^xsd:date .
-
-:course_ug_120 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 4 ;
-    :courseTitle "Undergraduate Course 120"^^xsd:string ;
-    :hasPrerequisite :course_ug_121 .
-
-:course_ug_123 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 123"^^xsd:string ;
-    :hasPrerequisite :course_ug_124 .
-
-:course_ug_124 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 4 ;
-    :courseTitle "Undergraduate Course 124"^^xsd:string .
-
-:fac_engineering a :AcademicUnit,
-        :Faculty,
-        :Organization ;
-    :unitName "Faculty of Engineering"^^xsd:string .
-
-:prof_assoc_08 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_12,
-        :student_ms_26 ;
-    :collaboratesWith :postdoc_01,
-        :prof_assoc_01 ;
-    :conductsResearchIn :lab_nlp_ai ;
-    :email "wendy.wilson22@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2022"^^xsd:string ;
-    :firstName "Wendy"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Wilson"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "FAC-222"^^xsd:string ;
-    :teachesCourse :course_grad_508 .
-
-:prof_assoc_09 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_13,
-        :student_ms_27 ;
-    :collaboratesWith :postdoc_02,
-        :prof_assoc_02 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "xavier.white23@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2023"^^xsd:string ;
-    :firstName "Xavier"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "White"^^xsd:string ;
-    :memberOfDepartment :dept_chem ;
-    :officeRoom "FAC-223"^^xsd:string ;
-    :teachesCourse :course_grad_509 .
-
-:prof_assoc_10 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_14,
-        :student_ms_28 ;
-    :collaboratesWith :postdoc_03,
-        :prof_assoc_03 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "yasmine.thompson24@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2024"^^xsd:string ;
-    :firstName "Yasmine"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Thompson"^^xsd:string ;
-    :memberOfDepartment :dept_bio ;
-    :officeRoom "FAC-224"^^xsd:string ;
-    :teachesCourse :course_grad_510 .
-
-:prof_assoc_11 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_01,
-        :student_ms_15,
-        :student_ms_29 ;
-    :collaboratesWith :prof_assoc_04 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "zachary.robinson25@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2025"^^xsd:string ;
-    :firstName "Zachary"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Robinson"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :officeRoom "FAC-225"^^xsd:string ;
-    :teachesCourse :course_grad_511 .
-
-:prof_assoc_12 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_02,
-        :student_ms_16,
-        :student_ms_30 ;
-    :collaboratesWith :prof_assoc_05 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "arthur.lewis26@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2026"^^xsd:string ;
-    :firstName "Arthur"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Lewis"^^xsd:string ;
-    :memberOfDepartment :dept_phil ;
-    :officeRoom "FAC-226"^^xsd:string ;
-    :teachesCourse :course_grad_512 .
-
-:prof_full_13 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_12 ;
-    :collaboratesWith :prof_assoc_06,
-        :prof_full_06 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "nathan.smith13@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1013"^^xsd:string ;
-    :firstName "Nathan"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Smith"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "FAC-113"^^xsd:string ;
-    :teachesCourse :course_ug_114 .
-
-:prof_full_14 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_13 ;
-    :collaboratesWith :prof_assoc_07,
-        :prof_full_07 ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "olivia.brown14@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1014"^^xsd:string ;
-    :firstName "Olivia"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Brown"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "FAC-114"^^xsd:string ;
-    :teachesCourse :course_ug_115 .
-
-:course_ug_102 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 102"^^xsd:string ;
-    :hasPrerequisite :course_ug_103 .
-
-:course_ug_104 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 4 ;
-    :courseTitle "Undergraduate Course 104"^^xsd:string ;
-    :hasPrerequisite :course_ug_105,
-        :course_ug_106 .
-
-:course_ug_113 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 113"^^xsd:string ;
-    :hasPrerequisite :course_ug_114,
-        :course_ug_115 .
-
-:course_ug_114 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 114"^^xsd:string ;
-    :hasPrerequisite :course_ug_115 .
-
-:course_ug_117 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 117"^^xsd:string ;
-    :hasPrerequisite :course_ug_118 .
-
-:course_ug_121 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 121"^^xsd:string .
-
-:fac_science a :AcademicUnit,
-        :Faculty,
-        :Organization ;
-    :unitName "Faculty of Science"^^xsd:string .
-
-:prof_assoc_04 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_08,
-        :student_ms_22 ;
-    :collaboratesWith :prof_assoc_11,
-        :prof_full_11 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "sam.martinez18@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2018"^^xsd:string ;
-    :firstName "Sam"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Martinez"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "FAC-218"^^xsd:string ;
-    :teachesCourse :course_grad_504 .
-
-:prof_assoc_06 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_10,
-        :student_ms_24 ;
-    :collaboratesWith :prof_assoc_13,
-        :prof_full_13 ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "uma.johnson20@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2020"^^xsd:string ;
-    :firstName "Uma"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Johnson"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "FAC-220"^^xsd:string ;
-    :teachesCourse :course_grad_506 .
-
-:prof_assoc_07 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_11,
-        :student_ms_25 ;
-    :collaboratesWith :prof_assoc_14,
-        :prof_full_14 ;
-    :conductsResearchIn :lab_computational_bio ;
-    :email "victor.jones21@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2021"^^xsd:string ;
-    :firstName "Victor"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Jones"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "FAC-221"^^xsd:string ;
-    :teachesCourse :course_grad_507 .
-
-:prof_full_01 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_14,
-        :ta_grad_01 ;
-    :collaboratesWith :prof_full_08 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "bob.jones1@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1001"^^xsd:string ;
-    :firstName "Bob"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Jones"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "FAC-101"^^xsd:string ;
-    :teachesCourse :course_ug_102 .
-
-:course_ug_103 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 103"^^xsd:string .
-
-:course_ug_107 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 107"^^xsd:string ;
-    :hasPrerequisite :course_ug_108,
-        :course_ug_109 .
-
-:course_ug_110 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 110"^^xsd:string ;
-    :hasPrerequisite :course_ug_111,
-        :course_ug_112 .
-
-:course_ug_111 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 111"^^xsd:string ;
-    :hasPrerequisite :course_ug_112 .
-
-:course_ug_118 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 118"^^xsd:string .
-
-:dept_hist a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_11 ;
-    :subDepartmentOf :fac_humanities ;
-    :unitName "Department of History"^^xsd:string .
-
-:prof_assoc_03 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_07,
-        :student_ms_21 ;
-    :collaboratesWith :prof_assoc_10,
-        :prof_full_10 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "rachel.martin17@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2017"^^xsd:string ;
-    :firstName "Rachel"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Martin"^^xsd:string ;
-    :memberOfDepartment :dept_hist ;
-    :officeRoom "FAC-217"^^xsd:string ;
-    :teachesCourse :course_grad_503 .
-
-:prof_full_04 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_03,
-        :student_phd_17,
-        :ta_grad_04 ;
-    :collaboratesWith :prof_full_11 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "elena.thompson4@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1004"^^xsd:string ;
-    :firstName "Elena"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Thompson"^^xsd:string ;
-    :memberOfDepartment :dept_math ;
-    :officeRoom "FAC-104"^^xsd:string ;
-    :teachesCourse :course_ug_105 .
-
-:prof_full_06 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_05,
-        :student_phd_19,
-        :ta_grad_06 ;
-    :collaboratesWith :prof_full_13 ;
-    :conductsResearchIn :lab_data_systems ;
-    :email "grace.lewis6@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1006"^^xsd:string ;
-    :firstName "Grace"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Lewis"^^xsd:string ;
-    :memberOfDepartment :dept_chem ;
-    :officeRoom "FAC-106"^^xsd:string ;
-    :teachesCourse :course_ug_107 .
-
-:prof_full_12 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_11,
-        :student_phd_25,
-        :ta_grad_12 ;
-    :collaboratesWith :prof_assoc_05,
-        :prof_full_05 ;
-    :conductsResearchIn :lab_nano_tech ;
-    :email "maya.clark12@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1012"^^xsd:string ;
-    :firstName "Maya"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "FAC-112"^^xsd:string ;
-    :teachesCourse :course_ug_113 .
-
-:course_ug_105 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 105"^^xsd:string ;
-    :hasPrerequisite :course_ug_106 .
-
-:course_ug_108 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 4 ;
-    :courseTitle "Undergraduate Course 108"^^xsd:string ;
-    :hasPrerequisite :course_ug_109 .
-
-:course_ug_112 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 4 ;
-    :courseTitle "Undergraduate Course 112"^^xsd:string .
-
-:course_ug_115 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 115"^^xsd:string .
-
-:dept_phil a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_10 ;
-    :subDepartmentOf :fac_humanities ;
-    :unitName "Department of Philosophy"^^xsd:string .
-
-:lab_computational_bio :affiliatedDepartment :dept_bio ;
-    :labDirector :prof_assoc_05 ;
-    :labWebsite "http://univ.edu/labs/compbio"^^xsd:anyURI ;
-    :locatedInRoom "SCI-308"^^xsd:string .
-
-:lab_nlp_ai :affiliatedDepartment :dept_cs ;
-    :labDirector :prof_full_01 ;
-    :labWebsite "http://univ.edu/labs/nlp"^^xsd:anyURI ;
-    :locatedInRoom "ENG-401"^^xsd:string .
-
-:prof_assoc_02 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_06,
-        :student_ms_20,
-        :student_phd_02 ;
-    :collaboratesWith :prof_assoc_09,
-        :prof_full_09 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "quinn.clark16@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2016"^^xsd:string ;
-    :firstName "Quinn"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Clark"^^xsd:string ;
-    :memberOfDepartment :dept_phil ;
-    :officeRoom "FAC-216"^^xsd:string ;
-    :teachesCourse :course_grad_502 .
-
-:prof_assoc_05 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_09,
-        :student_ms_23 ;
-    :collaboratesWith :prof_assoc_12,
-        :prof_full_12 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "tara.rodriguez19@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2019"^^xsd:string ;
-    :firstName "Tara"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Rodriguez"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "FAC-219"^^xsd:string ;
-    :teachesCourse :course_grad_505 .
-
-:prof_full_02 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_01,
-        :student_phd_15,
-        :ta_grad_02 ;
-    :collaboratesWith :prof_full_09 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "carol.wilson2@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1002"^^xsd:string ;
-    :firstName "Carol"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Wilson"^^xsd:string ;
-    :memberOfDepartment :dept_ee ;
-    :officeRoom "FAC-102"^^xsd:string ;
-    :teachesCourse :course_ug_103 .
-
-:prof_full_05 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_04,
-        :student_phd_18,
-        :ta_grad_05 ;
-    :collaboratesWith :prof_full_12 ;
-    :conductsResearchIn :lab_bio_genomics ;
-    :email "frank.robinson5@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1005"^^xsd:string ;
-    :firstName "Frank"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Robinson"^^xsd:string ;
-    :memberOfDepartment :dept_phys ;
-    :officeRoom "FAC-105"^^xsd:string ;
-    :teachesCourse :course_ug_106 .
-
-:prof_full_07 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_06,
-        :student_phd_20,
-        :ta_grad_07 ;
-    :collaboratesWith :prof_full_14 ;
-    :conductsResearchIn :lab_computational_bio ;
-    :email "henry.williams7@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1007"^^xsd:string ;
-    :firstName "Henry"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Williams"^^xsd:string ;
-    :memberOfDepartment :dept_bio ;
-    :officeRoom "FAC-107"^^xsd:string ;
-    :teachesCourse :course_ug_108 .
-
-:prof_full_09 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_08,
-        :student_phd_22,
-        :ta_grad_09 ;
-    :collaboratesWith :prof_assoc_02,
-        :prof_full_02 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "jack.taylor9@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1009"^^xsd:string ;
-    :firstName "Jack"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Taylor"^^xsd:string ;
-    :memberOfDepartment :dept_phil ;
-    :officeRoom "FAC-109"^^xsd:string ;
-    :teachesCourse :course_ug_110 .
-
-:prof_full_10 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_09,
-        :student_phd_23,
-        :ta_grad_10 ;
-    :collaboratesWith :prof_assoc_03,
-        :prof_full_03 ;
-    :conductsResearchIn :lab_cyber_security ;
-    :email "karen.harris10@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1010"^^xsd:string ;
-    :firstName "Karen"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Harris"^^xsd:string ;
-    :memberOfDepartment :dept_hist ;
-    :officeRoom "FAC-110"^^xsd:string ;
-    :teachesCourse :course_ug_111 .
-
-:prof_full_11 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_10,
-        :student_phd_24,
-        :ta_grad_11 ;
-    :collaboratesWith :prof_assoc_04,
-        :prof_full_04 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "leo.garcia11@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1011"^^xsd:string ;
-    :firstName "Leo"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Garcia"^^xsd:string ;
-    :memberOfDepartment :dept_cs ;
-    :officeRoom "FAC-111"^^xsd:string ;
-    :teachesCourse :course_ug_112 .
-
-:course_ug_106 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 106"^^xsd:string .
-
-:course_ug_109 a :Course,
-        :UndergraduateCourse ;
-    :courseCredits 3 ;
-    :courseTitle "Undergraduate Course 109"^^xsd:string .
-
-:dept_chem a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_07 ;
-    :subDepartmentOf :fac_science ;
-    :unitName "Department of Chemistry"^^xsd:string .
-
-:dept_econ a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_09 ;
-    :subDepartmentOf :fac_humanities ;
-    :unitName "Department of Economics"^^xsd:string .
-
-:prof_full_03 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_02,
-        :student_phd_16,
-        :ta_grad_03 ;
-    :collaboratesWith :prof_full_10 ;
-    :conductsResearchIn :lab_quantum_info ;
-    :email "david.white3@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1003"^^xsd:string ;
-    :firstName "David"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "White"^^xsd:string ;
-    :memberOfDepartment :dept_mech ;
-    :officeRoom "FAC-103"^^xsd:string ;
-    :teachesCourse :course_ug_104 .
-
-:dept_bio a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_08 ;
-    :subDepartmentOf :fac_science ;
-    :unitName "Department of Biology"^^xsd:string .
-
-:lab_data_systems :affiliatedDepartment :dept_cs ;
-    :labDirector :prof_assoc_01 ;
-    :labWebsite "http://univ.edu/labs/data"^^xsd:anyURI ;
-    :locatedInRoom "ENG-204"^^xsd:string .
-
-:prof_assoc_01 a :AcademicStaff,
-        :AssociateProfessor,
-        :Employee,
-        :FacultyMember,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_ms_05,
-        :student_ms_19,
-        :student_phd_01 ;
-    :collaboratesWith :prof_assoc_08,
-        :prof_full_08 ;
-    :conductsResearchIn :lab_robotics_vision ;
-    :email "peter.davis15@univ.edu"^^xsd:string ;
-    :employeeId "EMP-2015"^^xsd:string ;
-    :firstName "Peter"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Davis"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :officeRoom "FAC-215"^^xsd:string ;
-    :teachesCourse :course_grad_501 .
-
-:prof_full_08 a :AcademicStaff,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :Person,
-        :TenuredFaculty ;
-    :advises :student_phd_07,
-        :student_phd_21,
-        :ta_grad_08 ;
-    :collaboratesWith :prof_assoc_01,
-        :prof_full_01 ;
-    :conductsResearchIn :lab_nlp_ai ;
-    :email "irene.miller8@univ.edu"^^xsd:string ;
-    :employeeId "EMP-1008"^^xsd:string ;
-    :firstName "Irene"^^xsd:string ;
-    :hasTenure true ;
-    :lastName "Miller"^^xsd:string ;
-    :memberOfDepartment :dept_econ ;
-    :officeRoom "FAC-108"^^xsd:string ;
-    :teachesCourse :course_ug_109 .
-
-:dept_mech a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_04 ;
-    :subDepartmentOf :fac_engineering ;
-    :unitName "Department of Mechanical Engineering"^^xsd:string .
-
-:lab_bio_genomics :affiliatedDepartment :dept_bio ;
-    :labDirector :prof_full_08 ;
-    :labWebsite "http://univ.edu/labs/genomics"^^xsd:anyURI ;
-    :locatedInRoom "BIO-102"^^xsd:string .
-
-:deg_math_phd :conferredBy :dept_math ;
-    :degreeLevel "Doctorate"^^xsd:string ;
-    :degreeTitle "Doctor of Philosophy in Mathematics"^^xsd:string ;
-    :offeredBy :dept_math ;
-    :requiredCredits 72 .
-
-:dept_phys a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_06 ;
-    :subDepartmentOf :fac_science ;
-    :unitName "Department of Physics"^^xsd:string .
-
-:lab_cyber_security :affiliatedDepartment :dept_ee ;
-    :labDirector :prof_full_03 ;
-    :labWebsite "http://univ.edu/labs/sec"^^xsd:anyURI ;
-    :locatedInRoom "ENG-312"^^xsd:string .
-
-:lab_nano_tech :affiliatedDepartment :dept_chem ;
-    :labDirector :prof_full_07 ;
-    :labWebsite "http://univ.edu/labs/nano"^^xsd:anyURI ;
-    :locatedInRoom "SCI-115"^^xsd:string .
-
-:lab_quantum_info :affiliatedDepartment :dept_math ;
-    :labDirector :prof_full_05 ;
-    :labWebsite "http://univ.edu/labs/quantum"^^xsd:anyURI ;
-    :locatedInRoom "SCI-210"^^xsd:string .
-
-:lab_robotics_vision :affiliatedDepartment :dept_cs ;
-    :labDirector :prof_full_02 ;
-    :labWebsite "http://univ.edu/labs/robotics"^^xsd:anyURI ;
-    :locatedInRoom "ENG-405"^^xsd:string .
-
-:dept_ee a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_03 ;
-    :subDepartmentOf :fac_engineering ;
-    :unitName "Department of Electrical Engineering"^^xsd:string .
-
-:deg_phys_ms :conferredBy :dept_phys ;
-    :degreeLevel "Master"^^xsd:string ;
-    :degreeTitle "Master of Science in Physics"^^xsd:string ;
-    :offeredBy :dept_phys ;
-    :requiredCredits 34 .
-
-:dept_math a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_05 ;
-    :subDepartmentOf :fac_science ;
-    :unitName "Department of Mathematics"^^xsd:string .
-
-:deg_cs_phd :conferredBy :dept_cs ;
-    :degreeLevel "Doctorate"^^xsd:string ;
-    :degreeTitle "Doctor of Philosophy in Computer Science"^^xsd:string ;
-    :offeredBy :dept_cs ;
-    :requiredCredits 72 .
-
-:dept_cs a :AcademicUnit,
-        :Department,
-        :Organization ;
-    :headedBy :prof_full_01,
-        :prof_full_02 ;
-    :subDepartmentOf :fac_engineering ;
-    :unitName "Department of Computer Science"^^xsd:string .
-
-:deg_cs_ms :conferredBy :dept_cs ;
-    :degreeLevel "Master"^^xsd:string ;
-    :degreeTitle "Master of Science in Computer Science"^^xsd:string ;
-    :offeredBy :dept_cs ;
-    :requiredCredits 36 .
-
-:deg_cs_bs :conferredBy :dept_cs ;
-    :degreeLevel "Bachelor"^^xsd:string ;
-    :degreeTitle "Bachelor of Science in Computer Science"^^xsd:string ;
-    :offeredBy :dept_cs ;
-    :requiredCredits 120 .
-
-:deg_ee_bs :conferredBy :dept_ee ;
-    :degreeLevel "Bachelor"^^xsd:string ;
-    :degreeTitle "Bachelor of Science in Electrical Engineering"^^xsd:string ;
-    :offeredBy :dept_ee ;
-    :requiredCredits 128 .
+:air_model_01 a :AirQualityForecaster,
+        :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://api.smartcity.org/v1/air/forecast_1"^^xsd:string .
+
+:air_model_02 a :AirQualityForecaster,
+        :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://api.smartcity.org/v1/air/forecast_2"^^xsd:string .
+
+:air_model_03 a :AirQualityForecaster,
+        :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://api.smartcity.org/v1/air/forecast_3"^^xsd:string .
+
+:air_model_04 a :AirQualityForecaster,
+        :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://api.smartcity.org/v1/air/forecast_4"^^xsd:string .
+
+:air_model_05 a :AirQualityForecaster,
+        :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://api.smartcity.org/v1/air/forecast_5"^^xsd:string .
+
+:air_sensor_05 a :AirQualitySensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 90 ;
+    :deviceName "AeroQual Environmental Sensor Unit 5"^^xsd:string ;
+    :deviceSerialIdentifier "SN-AERO-00005"^^xsd:string ;
+    :firmwareVersion "v2.4.5"^^xsd:string ;
+    :generatesTelemetryRecord :telemetry_record_05 ;
+    :installedInZone :urban_zone_02 ;
+    :sensorPrecisionScore 0.97 .
+
+:air_sensor_06 a :AirQualitySensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 92 ;
+    :deviceName "AeroQual Environmental Sensor Unit 6"^^xsd:string ;
+    :deviceSerialIdentifier "SN-AERO-00006"^^xsd:string ;
+    :firmwareVersion "v2.4.6"^^xsd:string ;
+    :generatesTelemetryRecord :telemetry_record_06,
+        :telemetry_record_07,
+        :telemetry_record_08 ;
+    :installedInZone :urban_zone_03 ;
+    :sensorPrecisionScore 0.98 .
+
+:alert_cycle_a_01 a :AlertTierAlpha,
+        :AlertTierBeta .
+
+:alert_cycle_a_02 a :AlertTierAlpha,
+        :AlertTierBeta .
+
+:alert_cycle_a_03 a :AlertTierAlpha,
+        :AlertTierBeta .
+
+:alert_cycle_a_04 a :AlertTierAlpha,
+        :AlertTierBeta .
+
+:alert_cycle_a_05 a :AlertTierAlpha,
+        :AlertTierBeta .
+
+:alert_cycle_b_01 a :AlertTierBeta,
+        :AlertTierGamma .
+
+:alert_cycle_b_02 a :AlertTierBeta,
+        :AlertTierGamma .
+
+:alert_cycle_b_03 a :AlertTierBeta,
+        :AlertTierGamma .
+
+:alert_cycle_b_04 a :AlertTierBeta,
+        :AlertTierGamma .
+
+:alert_cycle_b_05 a :AlertTierBeta,
+        :AlertTierGamma .
+
+:alert_cycle_c_01 a :AlertTierAlpha,
+        :AlertTierGamma .
+
+:alert_cycle_c_02 a :AlertTierAlpha,
+        :AlertTierGamma .
+
+:alert_cycle_c_03 a :AlertTierAlpha,
+        :AlertTierGamma .
+
+:alert_cycle_c_04 a :AlertTierAlpha,
+        :AlertTierGamma .
+
+:alert_cycle_c_05 a :AlertTierAlpha,
+        :AlertTierGamma .
+
+:ambulance_01 a :EmergencyAmbulance,
+        :HumanOperatedVehicle,
+        :MobilityAsset ;
+    :fleetNumber "AMB-EMS-001"^^xsd:string .
+
+:ambulance_02 a :EmergencyAmbulance,
+        :HumanOperatedVehicle,
+        :MobilityAsset ;
+    :fleetNumber "AMB-EMS-002"^^xsd:string .
+
+:ambulance_03 a :EmergencyAmbulance,
+        :HumanOperatedVehicle,
+        :MobilityAsset ;
+    :fleetNumber "AMB-EMS-003"^^xsd:string .
+
+:ambulance_04 a :EmergencyAmbulance,
+        :HumanOperatedVehicle,
+        :MobilityAsset ;
+    :fleetNumber "AMB-EMS-004"^^xsd:string .
+
+:ambulance_05 a :EmergencyAmbulance,
+        :HumanOperatedVehicle,
+        :MobilityAsset ;
+    :fleetNumber "AMB-EMS-005"^^xsd:string .
+
+:bess_01 a :BatteryEnergyStorage,
+        :GridInfrastructure ;
+    :storageCapacityMWh 3.0 .
+
+:bess_02 a :BatteryEnergyStorage,
+        :GridInfrastructure ;
+    :storageCapacityMWh 3.5 .
+
+:bess_03 a :BatteryEnergyStorage,
+        :GridInfrastructure ;
+    :storageCapacityMWh 4.0 .
+
+:bess_04 a :BatteryEnergyStorage,
+        :GridInfrastructure ;
+    :storageCapacityMWh 4.5 .
+
+:bess_05 a :BatteryEnergyStorage,
+        :GridInfrastructure ;
+    :storageCapacityMWh 5.0 .
+
+:dist_sub_03 a :DistributionSubstation,
+        :GridInfrastructure,
+        :GridSubstation ;
+    :hasChargingInterface :dock_spec_03 ;
+    :voltageRatingKV 14.4 .
+
+:dist_sub_04 a :DistributionSubstation,
+        :GridInfrastructure,
+        :GridSubstation ;
+    :hasChargingInterface :dock_spec_04 ;
+    :voltageRatingKV 14.6 .
+
+:dist_sub_05 a :DistributionSubstation,
+        :GridInfrastructure,
+        :GridSubstation ;
+    :hasChargingInterface :dock_spec_05,
+        :dock_spec_06,
+        :dock_spec_07,
+        :dock_spec_08 ;
+    :voltageRatingKV 14.8 .
+
+:drone_med_01 a :AutonomousAerialVehicle,
+        :AutonomousVehicle,
+        :EmergencyDeliveryDrone,
+        :MobilityAsset ;
+    :flightCeilingMeters 160 .
+
+:drone_med_02 a :AutonomousAerialVehicle,
+        :AutonomousVehicle,
+        :EmergencyDeliveryDrone,
+        :MobilityAsset ;
+    :flightCeilingMeters 170 .
+
+:drone_med_03 a :AutonomousAerialVehicle,
+        :AutonomousVehicle,
+        :EmergencyDeliveryDrone,
+        :MobilityAsset ;
+    :flightCeilingMeters 180 .
+
+:drone_med_04 a :AutonomousAerialVehicle,
+        :AutonomousVehicle,
+        :EmergencyDeliveryDrone,
+        :MobilityAsset ;
+    :flightCeilingMeters 190 .
+
+:drone_surv_01 a :AutonomousAerialVehicle,
+        :AutonomousVehicle,
+        :MobilityAsset,
+        :SurveillanceDrone ;
+    :flightCeilingMeters 135 .
+
+:drone_surv_02 a :AutonomousAerialVehicle,
+        :AutonomousVehicle,
+        :MobilityAsset,
+        :SurveillanceDrone ;
+    :flightCeilingMeters 150 .
+
+:drone_surv_03 a :AutonomousAerialVehicle,
+        :AutonomousVehicle,
+        :MobilityAsset,
+        :SurveillanceDrone ;
+    :flightCeilingMeters 165 .
+
+:drone_surv_04 a :AutonomousAerialVehicle,
+        :AutonomousVehicle,
+        :MobilityAsset,
+        :SurveillanceDrone ;
+    :flightCeilingMeters 180 .
+
+:emerg_dispatch_01 a :DigitalService,
+        :EmergencyDispatchService,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://911.smartcity.org/dispatch_1"^^xsd:string .
+
+:emerg_dispatch_02 a :DigitalService,
+        :EmergencyDispatchService,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://911.smartcity.org/dispatch_2"^^xsd:string .
+
+:emerg_dispatch_03 a :DigitalService,
+        :EmergencyDispatchService,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://911.smartcity.org/dispatch_3"^^xsd:string .
+
+:emerg_dispatch_04 a :DigitalService,
+        :EmergencyDispatchService,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://911.smartcity.org/dispatch_4"^^xsd:string .
+
+:emerg_dispatch_05 a :DigitalService,
+        :EmergencyDispatchService,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://911.smartcity.org/dispatch_5"^^xsd:string .
+
+:grid_dispatch_01 a :DigitalService,
+        :GridDispatchPlatform,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://grid.smartcity.org/dispatch_1"^^xsd:string .
+
+:grid_dispatch_02 a :DigitalService,
+        :GridDispatchPlatform,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://grid.smartcity.org/dispatch_2"^^xsd:string .
+
+:grid_dispatch_03 a :DigitalService,
+        :GridDispatchPlatform,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://grid.smartcity.org/dispatch_3"^^xsd:string .
+
+:grid_dispatch_04 a :DigitalService,
+        :GridDispatchPlatform,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://grid.smartcity.org/dispatch_4"^^xsd:string .
+
+:grid_dispatch_05 a :DigitalService,
+        :GridDispatchPlatform,
+        :ManagementPlatform,
+        :SmartCityAsset ;
+    :serviceEndpoint "https://grid.smartcity.org/dispatch_5"^^xsd:string .
+
+:grid_seg_01 a :GridSegment ;
+    :partOfGridSegment :grid_seg_02,
+        :grid_seg_03 ;
+    :relaysDataTo :grid_seg_02 .
+
+:loop_sensor_01 a :InductiveLoopSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "RoadFlow In-Pavement Inductive Loop 1"^^xsd:string ;
+    :loopSensitivity 4.7 .
+
+:loop_sensor_02 a :InductiveLoopSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "RoadFlow In-Pavement Inductive Loop 2"^^xsd:string ;
+    :loopSensitivity 4.9 .
+
+:loop_sensor_03 a :InductiveLoopSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "RoadFlow In-Pavement Inductive Loop 3"^^xsd:string ;
+    :loopSensitivity 5.1 .
+
+:loop_sensor_04 a :InductiveLoopSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "RoadFlow In-Pavement Inductive Loop 4"^^xsd:string ;
+    :loopSensitivity 5.3 .
+
+:loop_sensor_05 a :InductiveLoopSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "RoadFlow In-Pavement Inductive Loop 5"^^xsd:string ;
+    :loopSensitivity 5.5 .
+
+:loop_sensor_06 a :InductiveLoopSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "RoadFlow In-Pavement Inductive Loop 6"^^xsd:string ;
+    :loopSensitivity 5.7 .
+
+:noise_sensor_05 a :AcousticNoiseSensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 90 ;
+    :deviceName "SoundGuard Decibel Monitor 5"^^xsd:string ;
+    :firmwareVersion "v1.8.5"^^xsd:string .
+
+:noise_sensor_06 a :AcousticNoiseSensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 93 ;
+    :deviceName "SoundGuard Decibel Monitor 6"^^xsd:string ;
+    :firmwareVersion "v1.8.6"^^xsd:string .
+
+:noisy_hybrid_gateway a :AirQualitySensor,
+        :TrafficFlowPredictor ;
+    :deviceName "Hybrid Edge Sensor and Cloud AI Predictor"^^xsd:string .
+
+:radar_sensor_01 a :PhysicalDevice,
+        :RadarSpeedSensor,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "SpeedScan Doppler Radar 1"^^xsd:string ;
+    :frequencyBandsGHz 24.15 .
+
+:radar_sensor_02 a :PhysicalDevice,
+        :RadarSpeedSensor,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "SpeedScan Doppler Radar 2"^^xsd:string ;
+    :frequencyBandsGHz 24.20 .
+
+:radar_sensor_03 a :PhysicalDevice,
+        :RadarSpeedSensor,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "SpeedScan Doppler Radar 3"^^xsd:string ;
+    :frequencyBandsGHz 24.25 .
+
+:radar_sensor_04 a :PhysicalDevice,
+        :RadarSpeedSensor,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "SpeedScan Doppler Radar 4"^^xsd:string ;
+    :frequencyBandsGHz 24.30 .
+
+:radar_sensor_05 a :PhysicalDevice,
+        :RadarSpeedSensor,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "SpeedScan Doppler Radar 5"^^xsd:string ;
+    :frequencyBandsGHz 24.35 .
+
+:radar_sensor_06 a :PhysicalDevice,
+        :RadarSpeedSensor,
+        :SensorDevice,
+        :SmartCityAsset,
+        :TrafficSensor ;
+    :deviceName "SpeedScan Doppler Radar 6"^^xsd:string ;
+    :frequencyBandsGHz 24.40 .
+
+:shuttle_01 a :AutonomousGroundVehicle,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SHUTTLE-AV-001"^^xsd:string ;
+    :passengerCapacity 14 .
+
+:shuttle_02 a :AutonomousGroundVehicle,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SHUTTLE-AV-002"^^xsd:string ;
+    :passengerCapacity 16 .
+
+:shuttle_03 a :AutonomousGroundVehicle,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SHUTTLE-AV-003"^^xsd:string ;
+    :passengerCapacity 18 .
+
+:shuttle_04 a :AutonomousGroundVehicle,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SHUTTLE-AV-004"^^xsd:string ;
+    :passengerCapacity 20 .
+
+:shuttle_05 a :AutonomousGroundVehicle,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SHUTTLE-AV-005"^^xsd:string ;
+    :passengerCapacity 22 .
+
+:sig_controller_01 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :TrafficSignalController ;
+    :cycleTimeSeconds 70 ;
+    :deviceName "CitySignal Multi-Phase Actuator 1"^^xsd:string ;
+    :hasMaintenanceRecord :work_order_01 ;
+    :installedInZone :urban_zone_03 .
+
+:sig_controller_02 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :TrafficSignalController ;
+    :cycleTimeSeconds 80 ;
+    :deviceName "CitySignal Multi-Phase Actuator 2"^^xsd:string ;
+    :hasMaintenanceRecord :work_order_02 ;
+    :installedInZone :urban_zone_04 .
+
+:sig_controller_03 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :TrafficSignalController ;
+    :cycleTimeSeconds 90 ;
+    :deviceName "CitySignal Multi-Phase Actuator 3"^^xsd:string ;
+    :hasMaintenanceRecord :work_order_03 ;
+    :installedInZone :urban_zone_01 .
+
+:sig_controller_04 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :TrafficSignalController ;
+    :cycleTimeSeconds 100 ;
+    :deviceName "CitySignal Multi-Phase Actuator 4"^^xsd:string ;
+    :hasMaintenanceRecord :work_order_04 ;
+    :installedInZone :urban_zone_02 .
+
+:sig_controller_05 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :TrafficSignalController ;
+    :cycleTimeSeconds 110 ;
+    :deviceName "CitySignal Multi-Phase Actuator 5"^^xsd:string ;
+    :hasMaintenanceRecord :work_order_05 ;
+    :installedInZone :urban_zone_03 .
+
+:sig_controller_06 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :TrafficSignalController ;
+    :cycleTimeSeconds 120 ;
+    :deviceName "CitySignal Multi-Phase Actuator 6"^^xsd:string ;
+    :hasMaintenanceRecord :work_order_06,
+        :work_order_07,
+        :work_order_08 ;
+    :installedInZone :urban_zone_04 .
+
+:solar_02 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :SolarPhotovoltaicArray ;
+    :ratedPowerKW 350.0 ;
+    :sharesPowerBusWith :dist_sub_02 .
+
+:solar_03 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :SolarPhotovoltaicArray ;
+    :ratedPowerKW 400.0 .
+
+:solar_04 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :SolarPhotovoltaicArray ;
+    :ratedPowerKW 450.0 .
+
+:solar_05 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :SolarPhotovoltaicArray ;
+    :ratedPowerKW 500.0 .
+
+:street_light_01 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :SmartStreetLight ;
+    :deviceName "LumiCity Adaptive LED Pole 1"^^xsd:string ;
+    :lumensOutput 4700 .
+
+:street_light_02 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :SmartStreetLight ;
+    :deviceName "LumiCity Adaptive LED Pole 2"^^xsd:string ;
+    :lumensOutput 4900 .
+
+:street_light_03 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :SmartStreetLight ;
+    :deviceName "LumiCity Adaptive LED Pole 3"^^xsd:string ;
+    :lumensOutput 5100 .
+
+:street_light_04 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :SmartStreetLight ;
+    :deviceName "LumiCity Adaptive LED Pole 4"^^xsd:string ;
+    :lumensOutput 5300 .
+
+:street_light_05 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :SmartStreetLight ;
+    :deviceName "LumiCity Adaptive LED Pole 5"^^xsd:string ;
+    :lumensOutput 5500 .
+
+:street_light_06 a :ActuatorDevice,
+        :PhysicalDevice,
+        :SmartCityAsset,
+        :SmartStreetLight ;
+    :deviceName "LumiCity Adaptive LED Pole 6"^^xsd:string ;
+    :lumensOutput 5700 .
+
+:sub_equiv_01 a :PowerSubstation,
+        :SubstationFacility ;
+    :facilityIdentifier "FAC-SUB-001"^^xsd:string .
+
+:sub_equiv_02 a :PowerSubstation,
+        :SubstationFacility ;
+    :facilityIdentifier "FAC-SUB-002"^^xsd:string .
+
+:sub_equiv_03 a :PowerSubstation,
+        :SubstationFacility ;
+    :facilityIdentifier "FAC-SUB-003"^^xsd:string .
+
+:sub_equiv_04 a :PowerSubstation,
+        :SubstationFacility ;
+    :facilityIdentifier "FAC-SUB-004"^^xsd:string .
+
+:sub_equiv_05 a :PowerSubstation,
+        :SubstationFacility ;
+    :facilityIdentifier "FAC-SUB-005"^^xsd:string .
+
+:sub_equiv_06 a :PowerSubstation,
+        :SubstationFacility ;
+    :facilityIdentifier "FAC-SUB-006"^^xsd:string .
+
+:sub_equiv_07 a :PowerSubstation,
+        :SubstationFacility ;
+    :facilityIdentifier "FAC-SUB-007"^^xsd:string .
+
+:sub_equiv_08 a :PowerSubstation,
+        :SubstationFacility ;
+    :facilityIdentifier "FAC-SUB-008"^^xsd:string .
+
+:sweeper_01 a :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SWEEP-AV-001"^^xsd:string .
+
+:sweeper_02 a :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SWEEP-AV-002"^^xsd:string .
+
+:sweeper_03 a :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SWEEP-AV-003"^^xsd:string .
+
+:sweeper_04 a :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SWEEP-AV-004"^^xsd:string .
+
+:sweeper_05 a :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousVehicle,
+        :MobilityAsset ;
+    :fleetNumber "SWEEP-AV-005"^^xsd:string .
+
+:traffic_ai_01 a :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset,
+        :TrafficFlowPredictor ;
+    :inferenceLatencyMs 18 ;
+    :serviceEndpoint "https://api.smartcity.org/v1/traffic/model_1"^^xsd:string .
+
+:traffic_ai_02 a :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset,
+        :TrafficFlowPredictor ;
+    :inferenceLatencyMs 21 ;
+    :serviceEndpoint "https://api.smartcity.org/v1/traffic/model_2"^^xsd:string .
+
+:traffic_ai_03 a :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset,
+        :TrafficFlowPredictor ;
+    :inferenceLatencyMs 24 ;
+    :serviceEndpoint "https://api.smartcity.org/v1/traffic/model_3"^^xsd:string .
+
+:traffic_ai_04 a :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset,
+        :TrafficFlowPredictor ;
+    :inferenceLatencyMs 27 ;
+    :serviceEndpoint "https://api.smartcity.org/v1/traffic/model_4"^^xsd:string .
+
+:traffic_ai_05 a :AnalyticsService,
+        :DigitalService,
+        :SmartCityAsset,
+        :TrafficFlowPredictor ;
+    :inferenceLatencyMs 30 ;
+    :serviceEndpoint "https://api.smartcity.org/v1/traffic/model_5"^^xsd:string .
+
+:trans_sub_01 a :GridInfrastructure,
+        :GridSubstation,
+        :TransmissionSubstation ;
+    :voltageRatingKV 120.0 .
+
+:trans_sub_02 a :GridInfrastructure,
+        :GridSubstation,
+        :TransmissionSubstation ;
+    :voltageRatingKV 125.0 .
+
+:trans_sub_03 a :GridInfrastructure,
+        :GridSubstation,
+        :TransmissionSubstation ;
+    :voltageRatingKV 130.0 .
+
+:trans_sub_04 a :GridInfrastructure,
+        :GridSubstation,
+        :TransmissionSubstation ;
+    :voltageRatingKV 135.0 .
+
+:trans_sub_05 a :GridInfrastructure,
+        :GridSubstation,
+        :TransmissionSubstation ;
+    :voltageRatingKV 140.0 .
+
+:truck_01 a :HumanOperatedVehicle,
+        :MobilityAsset,
+        :MunicipalFleetTruck ;
+    :fleetNumber "TRUCK-MUN-001"^^xsd:string .
+
+:truck_02 a :HumanOperatedVehicle,
+        :MobilityAsset,
+        :MunicipalFleetTruck ;
+    :fleetNumber "TRUCK-MUN-002"^^xsd:string .
+
+:truck_03 a :HumanOperatedVehicle,
+        :MobilityAsset,
+        :MunicipalFleetTruck ;
+    :fleetNumber "TRUCK-MUN-003"^^xsd:string .
+
+:truck_04 a :HumanOperatedVehicle,
+        :MobilityAsset,
+        :MunicipalFleetTruck ;
+    :fleetNumber "TRUCK-MUN-004"^^xsd:string .
+
+:truck_05 a :HumanOperatedVehicle,
+        :MobilityAsset,
+        :MunicipalFleetTruck ;
+    :fleetNumber "TRUCK-MUN-005"^^xsd:string .
+
+:wind_01 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :UrbanWindTurbine ;
+    :ratedPowerKW 175.0 .
+
+:wind_02 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :UrbanWindTurbine ;
+    :ratedPowerKW 200.0 .
+
+:wind_03 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :UrbanWindTurbine ;
+    :ratedPowerKW 225.0 .
+
+:wind_04 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :UrbanWindTurbine ;
+    :ratedPowerKW 250.0 .
+
+:wind_05 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :UrbanWindTurbine ;
+    :ratedPowerKW 275.0 .
+
+:air_sensor_01 a :AirQualitySensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 82 ;
+    :communicatesMeshWith :noise_sensor_01 ;
+    :deviceName "AeroQual Environmental Sensor Unit 1"^^xsd:string ;
+    :deviceSerialIdentifier "SN-AERO-00001"^^xsd:string ;
+    :firmwareVersion "v2.4.1"^^xsd:string ;
+    :generatesTelemetryRecord :telemetry_record_01 ;
+    :installedInZone :urban_zone_02 ;
+    :sensorPrecisionScore 0.93 .
+
+:air_sensor_02 a :AirQualitySensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 84 ;
+    :communicatesMeshWith :noise_sensor_02 ;
+    :deviceName "AeroQual Environmental Sensor Unit 2"^^xsd:string ;
+    :deviceSerialIdentifier "SN-AERO-00002"^^xsd:string ;
+    :firmwareVersion "v2.4.2"^^xsd:string ;
+    :generatesTelemetryRecord :telemetry_record_02 ;
+    :installedInZone :urban_zone_03 ;
+    :sensorPrecisionScore 0.94 .
+
+:air_sensor_03 a :AirQualitySensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 86 ;
+    :communicatesMeshWith :noise_sensor_03 ;
+    :deviceName "AeroQual Environmental Sensor Unit 3"^^xsd:string ;
+    :deviceSerialIdentifier "SN-AERO-00003"^^xsd:string ;
+    :firmwareVersion "v2.4.3"^^xsd:string ;
+    :generatesTelemetryRecord :telemetry_record_03 ;
+    :installedInZone :urban_zone_04 ;
+    :sensorPrecisionScore 0.95 .
+
+:air_sensor_04 a :AirQualitySensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 88 ;
+    :communicatesMeshWith :noise_sensor_04 ;
+    :deviceName "AeroQual Environmental Sensor Unit 4"^^xsd:string ;
+    :deviceSerialIdentifier "SN-AERO-00004"^^xsd:string ;
+    :firmwareVersion "v2.4.4"^^xsd:string ;
+    :generatesTelemetryRecord :telemetry_record_04 ;
+    :installedInZone :urban_zone_01 ;
+    :sensorPrecisionScore 0.96 .
+
+:dist_sub_01 a :DistributionSubstation,
+        :GridInfrastructure,
+        :GridSubstation ;
+    :hasChargingInterface :dock_spec_01 ;
+    :sharesPowerBusWith :solar_01 ;
+    :voltageRatingKV 14.0 .
+
+:dist_sub_02 a :DistributionSubstation,
+        :GridInfrastructure,
+        :GridSubstation ;
+    :hasChargingInterface :dock_spec_02 ;
+    :voltageRatingKV 14.2 .
+
+:dock_spec_01 :connectorStandard "CCS-Combo-2"^^xsd:string ;
+    :coolingSystemType "LiquidCooledCable"^^xsd:string ;
+    :maximumChargeKW 175 .
+
+:dock_spec_02 :connectorStandard "CCS-Combo-2"^^xsd:string ;
+    :coolingSystemType "LiquidCooledCable"^^xsd:string ;
+    :maximumChargeKW 200 .
+
+:dock_spec_03 :connectorStandard "CCS-Combo-2"^^xsd:string ;
+    :coolingSystemType "LiquidCooledCable"^^xsd:string ;
+    :maximumChargeKW 225 .
+
+:dock_spec_04 :connectorStandard "CCS-Combo-2"^^xsd:string ;
+    :coolingSystemType "LiquidCooledCable"^^xsd:string ;
+    :maximumChargeKW 250 .
+
+:dock_spec_05 :connectorStandard "CCS-Combo-2"^^xsd:string ;
+    :coolingSystemType "LiquidCooledCable"^^xsd:string ;
+    :maximumChargeKW 275 .
+
+:dock_spec_06 :connectorStandard "CCS-Combo-2"^^xsd:string ;
+    :coolingSystemType "LiquidCooledCable"^^xsd:string ;
+    :maximumChargeKW 300 .
+
+:dock_spec_07 :connectorStandard "CCS-Combo-2"^^xsd:string ;
+    :coolingSystemType "LiquidCooledCable"^^xsd:string ;
+    :maximumChargeKW 325 .
+
+:dock_spec_08 :connectorStandard "CCS-Combo-2"^^xsd:string ;
+    :coolingSystemType "LiquidCooledCable"^^xsd:string ;
+    :maximumChargeKW 350 .
+
+:grid_seg_04 a :GridSegment ;
+    :partOfGridSegment :grid_seg_05 ;
+    :relaysDataTo :grid_seg_05 .
+
+:grid_seg_06 a :GridSegment .
+
+:noise_sensor_01 a :AcousticNoiseSensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 78 ;
+    :communicatesMeshWith :air_sensor_01 ;
+    :deviceName "SoundGuard Decibel Monitor 1"^^xsd:string ;
+    :firmwareVersion "v1.8.1"^^xsd:string .
+
+:noise_sensor_02 a :AcousticNoiseSensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 81 ;
+    :communicatesMeshWith :air_sensor_02 ;
+    :deviceName "SoundGuard Decibel Monitor 2"^^xsd:string ;
+    :firmwareVersion "v1.8.2"^^xsd:string .
+
+:noise_sensor_03 a :AcousticNoiseSensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 84 ;
+    :communicatesMeshWith :air_sensor_03 ;
+    :deviceName "SoundGuard Decibel Monitor 3"^^xsd:string ;
+    :firmwareVersion "v1.8.3"^^xsd:string .
+
+:noise_sensor_04 a :AcousticNoiseSensor,
+        :EnvironmentalSensor,
+        :PhysicalDevice,
+        :SensorDevice,
+        :SmartCityAsset ;
+    :batteryLevelPercentage 87 ;
+    :communicatesMeshWith :air_sensor_04 ;
+    :deviceName "SoundGuard Decibel Monitor 4"^^xsd:string ;
+    :firmwareVersion "v1.8.4"^^xsd:string .
+
+:solar_01 a :GridInfrastructure,
+        :RenewableEnergySource,
+        :SolarPhotovoltaicArray ;
+    :ratedPowerKW 300.0 ;
+    :sharesPowerBusWith :dist_sub_01 .
+
+:telemetry_record_01 :signalStrengthDbm -67 ;
+    :telemetryPacketId "PKT-IOT-000001"^^xsd:string ;
+    :transmissionStatus "ConfirmedAck"^^xsd:string .
+
+:telemetry_record_02 :signalStrengthDbm -69 ;
+    :telemetryPacketId "PKT-IOT-000002"^^xsd:string ;
+    :transmissionStatus "ConfirmedAck"^^xsd:string .
+
+:telemetry_record_03 :signalStrengthDbm -71 ;
+    :telemetryPacketId "PKT-IOT-000003"^^xsd:string ;
+    :transmissionStatus "ConfirmedAck"^^xsd:string .
+
+:telemetry_record_04 :signalStrengthDbm -73 ;
+    :telemetryPacketId "PKT-IOT-000004"^^xsd:string ;
+    :transmissionStatus "ConfirmedAck"^^xsd:string .
+
+:telemetry_record_05 :signalStrengthDbm -75 ;
+    :telemetryPacketId "PKT-IOT-000005"^^xsd:string ;
+    :transmissionStatus "ConfirmedAck"^^xsd:string .
+
+:telemetry_record_06 :signalStrengthDbm -77 ;
+    :telemetryPacketId "PKT-IOT-000006"^^xsd:string ;
+    :transmissionStatus "ConfirmedAck"^^xsd:string .
+
+:telemetry_record_07 :signalStrengthDbm -79 ;
+    :telemetryPacketId "PKT-IOT-000007"^^xsd:string ;
+    :transmissionStatus "ConfirmedAck"^^xsd:string .
+
+:telemetry_record_08 :signalStrengthDbm -81 ;
+    :telemetryPacketId "PKT-IOT-000008"^^xsd:string ;
+    :transmissionStatus "ConfirmedAck"^^xsd:string .
+
+:work_order_01 :technicianNotes "Routine actuator calibration ticket #1"^^xsd:string ;
+    :urgencyPriorityScore 2 ;
+    :workOrderCode "WO-SC-2026-0001"^^xsd:string .
+
+:work_order_02 :technicianNotes "Routine actuator calibration ticket #2"^^xsd:string ;
+    :urgencyPriorityScore 3 ;
+    :workOrderCode "WO-SC-2026-0002"^^xsd:string .
+
+:work_order_03 :technicianNotes "Routine actuator calibration ticket #3"^^xsd:string ;
+    :urgencyPriorityScore 1 ;
+    :workOrderCode "WO-SC-2026-0003"^^xsd:string .
+
+:work_order_04 :technicianNotes "Routine actuator calibration ticket #4"^^xsd:string ;
+    :urgencyPriorityScore 2 ;
+    :workOrderCode "WO-SC-2026-0004"^^xsd:string .
+
+:work_order_05 :technicianNotes "Routine actuator calibration ticket #5"^^xsd:string ;
+    :urgencyPriorityScore 3 ;
+    :workOrderCode "WO-SC-2026-0005"^^xsd:string .
+
+:work_order_06 :technicianNotes "Routine actuator calibration ticket #6"^^xsd:string ;
+    :urgencyPriorityScore 1 ;
+    :workOrderCode "WO-SC-2026-0006"^^xsd:string .
+
+:work_order_07 :technicianNotes "Routine actuator calibration ticket #7"^^xsd:string ;
+    :urgencyPriorityScore 2 ;
+    :workOrderCode "WO-SC-2026-0007"^^xsd:string .
+
+:work_order_08 :technicianNotes "Routine actuator calibration ticket #8"^^xsd:string ;
+    :urgencyPriorityScore 3 ;
+    :workOrderCode "WO-SC-2026-0008"^^xsd:string .
+
+:grid_seg_02 a :GridSegment ;
+    :partOfGridSegment :grid_seg_03 ;
+    :relaysDataTo :grid_seg_03 .
+
+:urban_zone_01 a :UrbanZone .
+
+:grid_seg_03 a :GridSegment ;
+    :partOfGridSegment :grid_seg_04,
+        :grid_seg_05 .
+
+:grid_seg_05 a :GridSegment ;
+    :relaysDataTo :grid_seg_06 .
+
+:urban_zone_02 a :UrbanZone .
+
+:urban_zone_04 a :UrbanZone .
+
+:urban_zone_03 a :UrbanZone .
 

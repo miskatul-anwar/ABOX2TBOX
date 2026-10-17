@@ -1,986 +1,1396 @@
-@prefix : <http://example.org/univ#> .
+@prefix : <http://example.org/smartcity#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:UnivInducedOntology a owl:Ontology ;
-    rdfs:label "Univ Domain Ontology"^^xsd:string .
+:SmartcityInducedOntology a owl:Ontology ;
+    rdfs:label "Smartcity Domain Ontology"^^xsd:string .
 
-:advises a owl:AsymmetricProperty,
+:batteryLevelPercentage a owl:DatatypeProperty ;
+    rdfs:label "batteryLevelPercentage"^^xsd:string .
+
+:communicatesMeshWith a owl:FunctionalProperty,
         owl:InverseFunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "advises"^^xsd:string ;
-    rdfs:domain :AcademicStaff ;
-    rdfs:range :GraduateStudent .
-
-:advisor a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "advisor"^^xsd:string ;
-    rdfs:domain :GraduateStudent ;
-    rdfs:range :AcademicStaff .
-
-:affiliatedDepartment a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "affiliatedDepartment"^^xsd:string ;
-    rdfs:domain :LabAffiliated ;
-    rdfs:range :AcademicUnit .
-
-:authoredBy a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "authoredBy"^^xsd:string ;
-    rdfs:domain :Publication ;
-    rdfs:range :AcademicStaff .
-
-:citesPublication a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:InverseFunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "citesPublication"^^xsd:string ;
-    rdfs:domain :Publication ;
-    rdfs:range :Publication .
-
-:collaboratesWith a owl:ObjectProperty,
+        owl:ObjectProperty,
         owl:SymmetricProperty ;
-    rdfs:label "collaboratesWith"^^xsd:string ;
-    rdfs:domain :AcademicStaff ;
-    rdfs:range :AcademicStaff .
+    rdfs:label "communicatesMeshWith"^^xsd:string ;
+    rdfs:domain :EnvironmentalSensor ;
+    rdfs:range :EnvironmentalSensor .
 
-:conductsResearchIn a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "conductsResearchIn"^^xsd:string ;
-    rdfs:domain :Person ;
-    rdfs:range :LabAffiliated .
+:connectorStandard a owl:DatatypeProperty ;
+    rdfs:label "connectorStandard"^^xsd:string .
 
-:conferredBy a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "conferredBy"^^xsd:string ;
-    rdfs:domain :DegreeConferred ;
-    rdfs:range :AcademicUnit .
+:coolingSystemType a owl:DatatypeProperty ;
+    rdfs:label "coolingSystemType"^^xsd:string .
 
-:courseCredits a owl:DatatypeProperty ;
-    rdfs:label "courseCredits"^^xsd:string .
+:cycleTimeSeconds a owl:DatatypeProperty ;
+    rdfs:label "cycleTimeSeconds"^^xsd:string .
 
-:courseTitle a owl:DatatypeProperty ;
-    rdfs:label "courseTitle"^^xsd:string .
+:deviceName a owl:DatatypeProperty ;
+    rdfs:label "deviceName"^^xsd:string .
 
-:degreeLevel a owl:DatatypeProperty ;
-    rdfs:label "degreeLevel"^^xsd:string .
+:deviceSerialIdentifier a owl:DatatypeProperty ;
+    rdfs:label "deviceSerialIdentifier"^^xsd:string .
 
-:degreeTitle a owl:DatatypeProperty ;
-    rdfs:label "degreeTitle"^^xsd:string .
+:facilityIdentifier a owl:DatatypeProperty ;
+    rdfs:label "facilityIdentifier"^^xsd:string .
 
-:email a owl:DatatypeProperty ;
-    rdfs:label "email"^^xsd:string .
+:firmwareVersion a owl:DatatypeProperty ;
+    rdfs:label "firmwareVersion"^^xsd:string .
 
-:employeeId a owl:DatatypeProperty ;
-    rdfs:label "employeeId"^^xsd:string .
+:fleetNumber a owl:DatatypeProperty ;
+    rdfs:label "fleetNumber"^^xsd:string .
 
-:endDate a owl:DatatypeProperty ;
-    rdfs:label "endDate"^^xsd:string .
+:flightCeilingMeters a owl:DatatypeProperty ;
+    rdfs:label "flightCeilingMeters"^^xsd:string .
 
-:enrolledInCourse a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "enrolledInCourse"^^xsd:string ;
-    rdfs:domain :Person ;
-    rdfs:range :Course .
+:frequencyBandsGHz a owl:DatatypeProperty ;
+    rdfs:label "frequencyBandsGHz"^^xsd:string .
 
-:enrolledInDegree a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "enrolledInDegree"^^xsd:string ;
-    rdfs:domain :Person ;
-    rdfs:range :DegreeConferred .
-
-:firstName a owl:DatatypeProperty ;
-    rdfs:label "firstName"^^xsd:string .
-
-:fundingAgency a owl:DatatypeProperty ;
-    rdfs:label "fundingAgency"^^xsd:string .
-
-:fundingAmount a owl:DatatypeProperty ;
-    rdfs:label "fundingAmount"^^xsd:string .
-
-:grantNumber a owl:DatatypeProperty ;
-    rdfs:label "grantNumber"^^xsd:string .
-
-:hasPrerequisite a owl:AsymmetricProperty,
-        owl:ObjectProperty ;
-    rdfs:label "hasPrerequisite"^^xsd:string ;
-    rdfs:domain :Course ;
-    rdfs:range :Course .
-
-:hasTenure a owl:DatatypeProperty ;
-    rdfs:label "hasTenure"^^xsd:string .
-
-:headedBy a owl:AsymmetricProperty,
+:generatesTelemetryRecord a owl:AsymmetricProperty,
         owl:FunctionalProperty,
         owl:InverseFunctionalProperty,
         owl:ObjectProperty ;
-    rdfs:label "headedBy"^^xsd:string ;
-    rdfs:domain :AcademicUnit ;
-    rdfs:range :AcademicStaff .
+    rdfs:label "generatesTelemetryRecord"^^xsd:string ;
+    rdfs:domain :AirQualitySensor ;
+    rdfs:range :TelemetrySignal .
 
-:labDirector a owl:AsymmetricProperty,
+:hasChargingInterface a owl:AsymmetricProperty,
         owl:FunctionalProperty,
         owl:InverseFunctionalProperty,
         owl:ObjectProperty ;
-    rdfs:label "labDirector"^^xsd:string ;
-    rdfs:domain :LabAffiliated ;
-    rdfs:range :AcademicStaff .
+    rdfs:label "hasChargingInterface"^^xsd:string ;
+    rdfs:domain :DistributionSubstation ;
+    rdfs:range :ConnectorStandard .
 
-:labWebsite a owl:DatatypeProperty ;
-    rdfs:label "labWebsite"^^xsd:string .
-
-:lastName a owl:DatatypeProperty ;
-    rdfs:label "lastName"^^xsd:string .
-
-:locatedInRoom a owl:DatatypeProperty ;
-    rdfs:label "locatedInRoom"^^xsd:string .
-
-:memberOfDepartment a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "memberOfDepartment"^^xsd:string ;
-    rdfs:domain :Employee ;
-    rdfs:range :AcademicUnit .
-
-:offeredBy a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "offeredBy"^^xsd:string ;
-    rdfs:domain :DegreeConferred ;
-    rdfs:range :AcademicUnit .
-
-:officeRoom a owl:DatatypeProperty ;
-    rdfs:label "officeRoom"^^xsd:string .
-
-:principalInvestigator a owl:AsymmetricProperty,
+:hasMaintenanceRecord a owl:AsymmetricProperty,
         owl:FunctionalProperty,
         owl:InverseFunctionalProperty,
         owl:ObjectProperty ;
-    rdfs:label "principalInvestigator"^^xsd:string ;
-    rdfs:domain :FundingGrant ;
-    rdfs:range :AcademicStaff .
+    rdfs:label "hasMaintenanceRecord"^^xsd:string ;
+    rdfs:domain :ActuatorDevice ;
+    rdfs:range :TechnicianNotes .
 
-:publicationTitle a owl:DatatypeProperty ;
-    rdfs:label "publicationTitle"^^xsd:string .
+:inferenceLatencyMs a owl:DatatypeProperty ;
+    rdfs:label "inferenceLatencyMs"^^xsd:string .
 
-:publicationYear a owl:DatatypeProperty ;
-    rdfs:label "publicationYear"^^xsd:string .
-
-:requiredCredits a owl:DatatypeProperty ;
-    rdfs:label "requiredCredits"^^xsd:string .
-
-:startDate a owl:DatatypeProperty ;
-    rdfs:label "startDate"^^xsd:string .
-
-:studentId a owl:DatatypeProperty ;
-    rdfs:label "studentId"^^xsd:string .
-
-:subDepartmentOf a owl:AsymmetricProperty,
+:installedInZone a owl:AsymmetricProperty,
         owl:FunctionalProperty,
         owl:ObjectProperty ;
-    rdfs:label "subDepartmentOf"^^xsd:string ;
-    rdfs:domain :AcademicUnit ;
-    rdfs:range :AcademicUnit .
+    rdfs:label "installedInZone"^^xsd:string ;
+    rdfs:domain :PhysicalDevice ;
+    rdfs:range :UrbanZone .
 
-:supportedByGrant a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
+:loopSensitivity a owl:DatatypeProperty ;
+    rdfs:label "loopSensitivity"^^xsd:string .
+
+:lumensOutput a owl:DatatypeProperty ;
+    rdfs:label "lumensOutput"^^xsd:string .
+
+:maximumChargeKW a owl:DatatypeProperty ;
+    rdfs:label "maximumChargeKW"^^xsd:string .
+
+:partOfGridSegment a owl:AsymmetricProperty,
         owl:ObjectProperty ;
-    rdfs:label "supportedByGrant"^^xsd:string ;
-    rdfs:domain :Publication ;
-    rdfs:range :FundingGrant .
+    rdfs:label "partOfGridSegment"^^xsd:string ;
+    rdfs:domain :GridSegment ;
+    rdfs:range :GridSegment .
 
-:teachesCourse a owl:AsymmetricProperty,
+:passengerCapacity a owl:DatatypeProperty ;
+    rdfs:label "passengerCapacity"^^xsd:string .
+
+:ratedPowerKW a owl:DatatypeProperty ;
+    rdfs:label "ratedPowerKW"^^xsd:string .
+
+:relaysDataTo a owl:AsymmetricProperty,
         owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
         owl:ObjectProperty ;
-    rdfs:label "teachesCourse"^^xsd:string ;
-    rdfs:domain :AcademicStaff ;
-    rdfs:range :Course .
+    rdfs:label "relaysDataTo"^^xsd:string ;
+    rdfs:domain :GridSegment ;
+    rdfs:range :GridSegment .
 
-:unitName a owl:DatatypeProperty ;
-    rdfs:label "unitName"^^xsd:string .
+:sensorPrecisionScore a owl:DatatypeProperty ;
+    rdfs:label "sensorPrecisionScore"^^xsd:string .
 
-:AdjunctProfessor a owl:Class ;
-    rdfs:label "AdjunctProfessor"^^xsd:string ;
-    rdfs:subClassOf :FacultyMember ;
-    owl:disjointWith :AdministrativeStaff,
-        :AssistantProfessor,
-        :AssociateProfessor,
-        :ClericalStaff,
-        :ConferencePaper,
-        :Course,
-        :DegreeConferred,
-        :Department,
-        :Faculty,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:serviceEndpoint a owl:DatatypeProperty ;
+    rdfs:label "serviceEndpoint"^^xsd:string .
 
-:AdministrativeStaff a owl:Class ;
-    rdfs:label "AdministrativeStaff"^^xsd:string ;
-    rdfs:subClassOf :Employee ;
-    owl:disjointWith :AssistantProfessor,
-        :AssociateProfessor,
-        :ConferencePaper,
-        :Course,
-        :DegreeConferred,
-        :Department,
-        :Faculty,
-        :FacultyMember,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor ;
-    owl:equivalentClass :ClericalStaff .
+:sharesPowerBusWith a owl:FunctionalProperty,
+        owl:InverseFunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "sharesPowerBusWith"^^xsd:string ;
+    rdfs:domain :GridInfrastructure ;
+    rdfs:range :GridInfrastructure .
 
-:AssistantProfessor a owl:Class ;
-    rdfs:label "AssistantProfessor"^^xsd:string ;
-    rdfs:subClassOf :FacultyMember ;
-    owl:disjointWith :AssociateProfessor,
-        :ClericalStaff,
-        :ConferencePaper,
-        :Course,
-        :DegreeConferred,
-        :Department,
-        :Faculty,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :TeachingAssistant,
-        :UndergraduateCourse,
-        :VisitingProfessor ;
-    owl:equivalentClass :TenureTrackFaculty .
+:signalStrengthDbm a owl:DatatypeProperty ;
+    rdfs:label "signalStrengthDbm"^^xsd:string .
 
-:AssociateProfessor a owl:Class ;
-    rdfs:label "AssociateProfessor"^^xsd:string ;
-    rdfs:subClassOf :TenuredFaculty ;
-    owl:disjointWith :ClericalStaff,
-        :ConferencePaper,
-        :Course,
-        :DegreeConferred,
-        :Department,
-        :Faculty,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:storageCapacityMWh a owl:DatatypeProperty ;
+    rdfs:label "storageCapacityMWh"^^xsd:string .
 
-:ClericalStaff a owl:Class ;
-    rdfs:label "ClericalStaff"^^xsd:string ;
-    rdfs:subClassOf :Employee ;
-    owl:disjointWith :ConferencePaper,
-        :Course,
-        :DegreeConferred,
-        :Department,
-        :Faculty,
-        :FacultyMember,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:technicianNotes a owl:DatatypeProperty ;
+    rdfs:label "technicianNotes"^^xsd:string .
 
-:ConferencePaper a owl:Class ;
-    rdfs:label "ConferencePaper"^^xsd:string ;
-    rdfs:subClassOf :Publication ;
-    owl:disjointWith :Course,
-        :DegreeConferred,
-        :Department,
-        :Employee,
-        :Faculty,
-        :FacultyMember,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:telemetryPacketId a owl:DatatypeProperty ;
+    rdfs:label "telemetryPacketId"^^xsd:string .
 
-:Department a owl:Class ;
-    rdfs:label "Department"^^xsd:string ;
-    rdfs:subClassOf :AcademicUnit,
-        :Organization ;
-    owl:disjointWith :Employee,
-        :Faculty,
-        :FacultyMember,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:transmissionStatus a owl:DatatypeProperty ;
+    rdfs:label "transmissionStatus"^^xsd:string .
 
-:FullProfessor a owl:Class ;
-    rdfs:label "FullProfessor"^^xsd:string ;
-    rdfs:subClassOf :TenuredFaculty ;
-    owl:disjointWith :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :UndergraduateCourse,
-        :VisitingProfessor .
+:urgencyPriorityScore a owl:DatatypeProperty ;
+    rdfs:label "urgencyPriorityScore"^^xsd:string .
 
-:DegreeConferred a owl:Class ;
-    rdfs:label "DegreeConferred"^^xsd:string ;
-    owl:disjointWith :Department,
-        :Employee,
-        :Faculty,
-        :FacultyMember,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:voltageRatingKV a owl:DatatypeProperty ;
+    rdfs:label "voltageRatingKV"^^xsd:string .
 
-:Faculty a owl:Class ;
-    rdfs:label "Faculty"^^xsd:string ;
-    rdfs:subClassOf :AcademicUnit,
-        :Organization ;
-    owl:disjointWith :FacultyMember,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:workOrderCode a owl:DatatypeProperty ;
+    rdfs:label "workOrderCode"^^xsd:string .
 
-:AcademicUnit a owl:Class ;
-    rdfs:label "AcademicUnit"^^xsd:string ;
-    owl:disjointWith :AdjunctProfessor,
-        :AdministrativeStaff,
-        :AssistantProfessor,
-        :AssociateProfessor,
-        :ClericalStaff,
-        :ConferencePaper,
-        :Course,
-        :DegreeConferred,
-        :Employee,
-        :FacultyMember,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor ;
-    owl:equivalentClass :Organization .
+:AcousticNoiseSensor a owl:Class ;
+    rdfs:label "AcousticNoiseSensor"^^xsd:string ;
+    rdfs:subClassOf :EnvironmentalSensor ;
+    owl:disjointWith :ActuatorDevice,
+        :AirQualityForecaster,
+        :AirQualitySensor,
+        :AlertTierAlpha,
+        :AlertTierBeta,
+        :AlertTierGamma,
+        :AnalyticsService,
+        :AutonomousAerialVehicle,
+        :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:Course a owl:Class ;
-    rdfs:label "Course"^^xsd:string ;
-    owl:disjointWith :DegreeConferred,
-        :Department,
-        :Employee,
-        :Faculty,
-        :FacultyMember,
-        :FullProfessor,
-        :FundingGrant,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:AirQualityForecaster a owl:Class ;
+    rdfs:label "AirQualityForecaster"^^xsd:string ;
+    rdfs:subClassOf :AnalyticsService ;
+    owl:disjointWith :AirQualitySensor,
+        :AlertTierAlpha,
+        :AlertTierBeta,
+        :AlertTierGamma,
+        :AutonomousAerialVehicle,
+        :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:GraduateCourse a owl:Class ;
-    rdfs:label "GraduateCourse"^^xsd:string ;
-    rdfs:subClassOf :Course ;
-    owl:disjointWith :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:AlertTierAlpha a owl:Class ;
+    rdfs:label "AlertTierAlpha"^^xsd:string ;
+    owl:disjointWith :AnalyticsService,
+        :AutonomousAerialVehicle,
+        :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:FundingGrant a owl:Class ;
-    rdfs:label "FundingGrant"^^xsd:string ;
-    owl:disjointWith :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:AlertTierBeta a owl:Class ;
+    rdfs:label "AlertTierBeta"^^xsd:string ;
+    owl:disjointWith :AnalyticsService,
+        :AutonomousAerialVehicle,
+        :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:Instructor a owl:Class ;
-    rdfs:label "Instructor"^^xsd:string ;
-    rdfs:subClassOf :AcademicStaff,
-        :Employee ;
-    owl:disjointWith :JournalArticle,
-        :LabAffiliated,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor ;
-    owl:equivalentClass :Lecturer .
+:AlertTierGamma a owl:Class ;
+    rdfs:label "AlertTierGamma"^^xsd:string ;
+    owl:disjointWith :AnalyticsService,
+        :AutonomousAerialVehicle,
+        :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:AcademicStaff a owl:Class ;
-    rdfs:label "AcademicStaff"^^xsd:string ;
-    rdfs:subClassOf :Person ;
-    owl:disjointWith :AcademicUnit,
-        :AdministrativeStaff,
-        :ClericalStaff,
-        :ConferencePaper,
-        :Course,
-        :DegreeConferred,
-        :Department,
-        :Faculty,
-        :FundingGrant,
-        :GraduateCourse,
-        :JournalArticle,
-        :LabAffiliated,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :Publication,
-        :ResearchInstitute,
-        :UndergraduateCourse ;
-    owl:equivalentClass :Employee .
+:AirQualitySensor a owl:Class ;
+    rdfs:label "AirQualitySensor"^^xsd:string ;
+    rdfs:subClassOf :EnvironmentalSensor ;
+    owl:disjointWith :AlertTierAlpha,
+        :AlertTierBeta,
+        :AlertTierGamma,
+        :AutonomousAerialVehicle,
+        :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:FacultyMember a owl:Class ;
-    rdfs:label "FacultyMember"^^xsd:string ;
-    rdfs:subClassOf :AcademicStaff,
-        :Employee ;
-    owl:disjointWith :FundingGrant,
-        :GraduateCourse,
-        :GraduateStudent,
-        :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :TeachingAssistant,
-        :UndergraduateCourse .
+:ActuatorDevice a owl:Class ;
+    rdfs:label "ActuatorDevice"^^xsd:string ;
+    rdfs:subClassOf :PhysicalDevice ;
+    owl:disjointWith :AirQualityForecaster,
+        :AirQualitySensor,
+        :AlertTierAlpha,
+        :AlertTierBeta,
+        :AlertTierGamma,
+        :AnalyticsService,
+        :AutonomousAerialVehicle,
+        :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:JournalArticle a owl:Class ;
-    rdfs:label "JournalArticle"^^xsd:string ;
-    rdfs:subClassOf :Publication ;
-    owl:disjointWith :LabAffiliated,
-        :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:AnalyticsService a owl:Class ;
+    rdfs:label "AnalyticsService"^^xsd:string ;
+    rdfs:subClassOf :DigitalService ;
+    owl:disjointWith :AutonomousAerialVehicle,
+        :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :AutonomousVehicle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:Person a owl:Class ;
-    rdfs:label "Person"^^xsd:string ;
-    owl:disjointWith :Publication,
-        :ResearchInstitute,
-        :UndergraduateCourse .
+:AutonomousStreetSweeper a owl:Class ;
+    rdfs:label "AutonomousStreetSweeper"^^xsd:string ;
+    rdfs:subClassOf :AutonomousGroundVehicle ;
+    owl:disjointWith :AutonomousTransitShuttle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:Lecturer a owl:Class ;
-    rdfs:label "Lecturer"^^xsd:string ;
-    rdfs:subClassOf :AcademicStaff,
-        :Employee ;
-    owl:disjointWith :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:AutonomousTransitShuttle a owl:Class ;
+    rdfs:label "AutonomousTransitShuttle"^^xsd:string ;
+    rdfs:subClassOf :AutonomousGroundVehicle ;
+    owl:disjointWith :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:Employee a owl:Class ;
-    rdfs:label "Employee"^^xsd:string ;
-    rdfs:subClassOf :Person ;
-    owl:disjointWith :Faculty,
-        :FundingGrant,
-        :GraduateCourse,
-        :JournalArticle,
-        :LabAffiliated,
-        :MasterStudent,
-        :Organization,
-        :PhDStudent,
-        :Publication,
-        :ResearchInstitute,
-        :UndergraduateCourse .
+:AutonomousAerialVehicle a owl:Class ;
+    rdfs:label "AutonomousAerialVehicle"^^xsd:string ;
+    rdfs:subClassOf :AutonomousVehicle ;
+    owl:disjointWith :AutonomousGroundVehicle,
+        :AutonomousStreetSweeper,
+        :AutonomousTransitShuttle,
+        :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:MasterStudent a owl:Class ;
-    rdfs:label "MasterStudent"^^xsd:string ;
-    rdfs:subClassOf :GraduateStudent ;
-    owl:disjointWith :Organization,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:AutonomousVehicle a owl:Class ;
+    rdfs:label "AutonomousVehicle"^^xsd:string ;
+    rdfs:subClassOf :MobilityAsset ;
+    owl:disjointWith :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:LabAffiliated a owl:Class ;
-    rdfs:label "LabAffiliated"^^xsd:string ;
-    owl:disjointWith :Lecturer,
-        :MasterStudent,
-        :Organization,
-        :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:AutonomousGroundVehicle a owl:Class ;
+    rdfs:label "AutonomousGroundVehicle"^^xsd:string ;
+    rdfs:subClassOf :AutonomousVehicle ;
+    owl:disjointWith :BatteryEnergyStorage,
+        :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:GraduateStudent a owl:Class ;
-    rdfs:label "GraduateStudent"^^xsd:string ;
-    rdfs:subClassOf :Student ;
-    owl:disjointWith :Instructor,
-        :JournalArticle,
-        :LabAffiliated,
-        :Lecturer,
-        :Organization,
-        :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:BatteryEnergyStorage a owl:Class ;
+    rdfs:label "BatteryEnergyStorage"^^xsd:string ;
+    rdfs:subClassOf :GridInfrastructure ;
+    owl:disjointWith :ConnectorStandard,
+        :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:PhDStudent a owl:Class ;
-    rdfs:label "PhDStudent"^^xsd:string ;
-    rdfs:subClassOf :GraduateStudent ;
-    owl:disjointWith :PostdoctoralResearcher,
-        :Publication,
-        :ResearchInstitute,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:ConnectorStandard a owl:Class ;
+    rdfs:label "ConnectorStandard"^^xsd:string ;
+    owl:disjointWith :DigitalService,
+        :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:PostdoctoralResearcher a owl:Class ;
-    rdfs:label "PostdoctoralResearcher"^^xsd:string ;
-    rdfs:subClassOf :AcademicStaff,
-        :Employee ;
-    owl:disjointWith :Publication,
-        :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:DigitalService a owl:Class ;
+    rdfs:label "DigitalService"^^xsd:string ;
+    rdfs:subClassOf :SmartCityAsset ;
+    owl:disjointWith :DistributionSubstation,
+        :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:Student a owl:Class ;
-    rdfs:label "Student"^^xsd:string ;
-    rdfs:subClassOf :Person ;
-    owl:disjointWith :TenureTrackFaculty,
-        :UndergraduateCourse,
-        :VisitingProfessor .
+:EmergencyDeliveryDrone a owl:Class ;
+    rdfs:label "EmergencyDeliveryDrone"^^xsd:string ;
+    rdfs:subClassOf :AutonomousAerialVehicle ;
+    owl:disjointWith :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:Organization a owl:Class ;
-    rdfs:label "Organization"^^xsd:string ;
-    owl:disjointWith :Person,
-        :PhDStudent,
-        :PostdoctoralResearcher,
-        :Publication,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:DistributionSubstation a owl:Class ;
+    rdfs:label "DistributionSubstation"^^xsd:string ;
+    rdfs:subClassOf :GridSubstation ;
+    owl:disjointWith :EmergencyAmbulance,
+        :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridSegment,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:UndergraduateStudent a owl:Class ;
-    rdfs:label "UndergraduateStudent"^^xsd:string ;
-    rdfs:subClassOf :Student ;
-    owl:disjointWith :VisitingProfessor .
+:EmergencyAmbulance a owl:Class ;
+    rdfs:label "EmergencyAmbulance"^^xsd:string ;
+    rdfs:subClassOf :HumanOperatedVehicle ;
+    owl:disjointWith :EmergencyDeliveryDrone,
+        :EmergencyDispatchService,
+        :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:ResearchInstitute a owl:Class ;
-    rdfs:label "ResearchInstitute"^^xsd:string ;
-    rdfs:subClassOf :AcademicUnit,
-        :Organization ;
-    owl:disjointWith :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:EmergencyDispatchService a owl:Class ;
+    rdfs:label "EmergencyDispatchService"^^xsd:string ;
+    rdfs:subClassOf :ManagementPlatform ;
+    owl:disjointWith :EnvironmentalSensor,
+        :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:TeachingAssistant a owl:Class ;
-    rdfs:label "TeachingAssistant"^^xsd:string ;
-    rdfs:subClassOf :AcademicStaff,
-        :Employee,
-        :GraduateStudent ;
-    owl:disjointWith :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:GridDispatchPlatform a owl:Class ;
+    rdfs:label "GridDispatchPlatform"^^xsd:string ;
+    rdfs:subClassOf :ManagementPlatform ;
+    owl:disjointWith :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:TenureTrackFaculty a owl:Class ;
-    rdfs:label "TenureTrackFaculty"^^xsd:string ;
-    rdfs:subClassOf :FacultyMember ;
-    owl:disjointWith :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:EnvironmentalSensor a owl:Class ;
+    rdfs:label "EnvironmentalSensor"^^xsd:string ;
+    rdfs:subClassOf :SensorDevice ;
+    owl:disjointWith :GridDispatchPlatform,
+        :GridInfrastructure,
+        :GridSegment,
+        :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:TenuredFaculty a owl:Class ;
-    rdfs:label "TenuredFaculty"^^xsd:string ;
-    rdfs:subClassOf :FacultyMember ;
-    owl:disjointWith :UndergraduateCourse,
-        :VisitingProfessor .
+:MobilityAsset a owl:Class ;
+    rdfs:label "MobilityAsset"^^xsd:string ;
+    owl:disjointWith :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:VisitingProfessor a owl:Class ;
-    rdfs:label "VisitingProfessor"^^xsd:string ;
-    rdfs:subClassOf :FacultyMember .
+:SmartCityAsset a owl:Class ;
+    rdfs:label "SmartCityAsset"^^xsd:string ;
+    owl:disjointWith :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:Publication a owl:Class ;
-    rdfs:label "Publication"^^xsd:string ;
-    owl:disjointWith :ResearchInstitute,
-        :Student,
-        :TeachingAssistant,
-        :TenureTrackFaculty,
-        :TenuredFaculty,
-        :UndergraduateCourse,
-        :UndergraduateStudent,
-        :VisitingProfessor .
+:GridSegment a owl:Class ;
+    rdfs:label "GridSegment"^^xsd:string ;
+    owl:disjointWith :GridSubstation,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
 
-:UndergraduateCourse a owl:Class ;
-    rdfs:label "UndergraduateCourse"^^xsd:string ;
-    rdfs:subClassOf :Course ;
-    owl:disjointWith :UndergraduateStudent,
-        :VisitingProfessor .
+:GridSubstation a owl:Class ;
+    rdfs:label "GridSubstation"^^xsd:string ;
+    rdfs:subClassOf :GridInfrastructure ;
+    owl:disjointWith :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:InductiveLoopSensor a owl:Class ;
+    rdfs:label "InductiveLoopSensor"^^xsd:string ;
+    rdfs:subClassOf :TrafficSensor ;
+    owl:disjointWith :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:GridInfrastructure a owl:Class ;
+    rdfs:label "GridInfrastructure"^^xsd:string ;
+    owl:disjointWith :GridSegment,
+        :HumanOperatedVehicle,
+        :InductiveLoopSensor,
+        :ManagementPlatform,
+        :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :UrbanZone .
+
+:MunicipalFleetTruck a owl:Class ;
+    rdfs:label "MunicipalFleetTruck"^^xsd:string ;
+    rdfs:subClassOf :HumanOperatedVehicle ;
+    owl:disjointWith :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:HumanOperatedVehicle a owl:Class ;
+    rdfs:label "HumanOperatedVehicle"^^xsd:string ;
+    rdfs:subClassOf :MobilityAsset ;
+    owl:disjointWith :InductiveLoopSensor,
+        :ManagementPlatform,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:ManagementPlatform a owl:Class ;
+    rdfs:label "ManagementPlatform"^^xsd:string ;
+    rdfs:subClassOf :DigitalService ;
+    owl:disjointWith :MobilityAsset,
+        :MunicipalFleetTruck,
+        :PhysicalDevice,
+        :PowerSubstation,
+        :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:PhysicalDevice a owl:Class ;
+    rdfs:label "PhysicalDevice"^^xsd:string ;
+    rdfs:subClassOf :SmartCityAsset ;
+    owl:disjointWith :PowerSubstation,
+        :RenewableEnergySource,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:PowerSubstation a owl:Class ;
+    rdfs:label "PowerSubstation"^^xsd:string ;
+    owl:disjointWith :RadarSpeedSensor,
+        :RenewableEnergySource,
+        :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone ;
+    owl:equivalentClass :SubstationFacility .
+
+:SensorDevice a owl:Class ;
+    rdfs:label "SensorDevice"^^xsd:string ;
+    rdfs:subClassOf :PhysicalDevice ;
+    owl:disjointWith :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:RadarSpeedSensor a owl:Class ;
+    rdfs:label "RadarSpeedSensor"^^xsd:string ;
+    rdfs:subClassOf :TrafficSensor ;
+    owl:disjointWith :RenewableEnergySource,
+        :SmartStreetLight,
+        :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:SmartStreetLight a owl:Class ;
+    rdfs:label "SmartStreetLight"^^xsd:string ;
+    rdfs:subClassOf :ActuatorDevice ;
+    owl:disjointWith :SolarPhotovoltaicArray,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:SolarPhotovoltaicArray a owl:Class ;
+    rdfs:label "SolarPhotovoltaicArray"^^xsd:string ;
+    rdfs:subClassOf :RenewableEnergySource ;
+    owl:disjointWith :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:TrafficFlowPredictor a owl:Class ;
+    rdfs:label "TrafficFlowPredictor"^^xsd:string ;
+    rdfs:subClassOf :AnalyticsService ;
+    owl:disjointWith :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:RenewableEnergySource a owl:Class ;
+    rdfs:label "RenewableEnergySource"^^xsd:string ;
+    rdfs:subClassOf :GridInfrastructure ;
+    owl:disjointWith :SensorDevice,
+        :SmartCityAsset,
+        :SmartStreetLight,
+        :SubstationFacility,
+        :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanZone .
+
+:SurveillanceDrone a owl:Class ;
+    rdfs:label "SurveillanceDrone"^^xsd:string ;
+    rdfs:subClassOf :AutonomousAerialVehicle ;
+    owl:disjointWith :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:SubstationFacility a owl:Class ;
+    rdfs:label "SubstationFacility"^^xsd:string ;
+    owl:disjointWith :SurveillanceDrone,
+        :TechnicianNotes,
+        :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:TechnicianNotes a owl:Class ;
+    rdfs:label "TechnicianNotes"^^xsd:string ;
+    owl:disjointWith :TelemetrySignal,
+        :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:TelemetrySignal a owl:Class ;
+    rdfs:label "TelemetrySignal"^^xsd:string ;
+    owl:disjointWith :TrafficFlowPredictor,
+        :TrafficSensor,
+        :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:TrafficSignalController a owl:Class ;
+    rdfs:label "TrafficSignalController"^^xsd:string ;
+    rdfs:subClassOf :ActuatorDevice ;
+    owl:disjointWith :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:TrafficSensor a owl:Class ;
+    rdfs:label "TrafficSensor"^^xsd:string ;
+    rdfs:subClassOf :SensorDevice ;
+    owl:disjointWith :TrafficSignalController,
+        :TransmissionSubstation,
+        :UrbanWindTurbine,
+        :UrbanZone .
+
+:TransmissionSubstation a owl:Class ;
+    rdfs:label "TransmissionSubstation"^^xsd:string ;
+    rdfs:subClassOf :GridSubstation ;
+    owl:disjointWith :UrbanWindTurbine,
+        :UrbanZone .
+
+:UrbanWindTurbine a owl:Class ;
+    rdfs:label "UrbanWindTurbine"^^xsd:string ;
+    rdfs:subClassOf :RenewableEnergySource ;
+    owl:disjointWith :UrbanZone .
+
+:UrbanZone a owl:Class ;
+    rdfs:label "UrbanZone"^^xsd:string .
 
 [] a owl:Axiom ;
     :aboxSupportCount 10 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Department ;
-    owl:annotatedTarget :AcademicUnit ;
+    owl:annotatedSource :RenewableEnergySource ;
+    owl:annotatedTarget :GridInfrastructure ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 20 ;
+    :aboxSupportCount 10 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :ConferencePaper ;
-    owl:annotatedTarget :Publication ;
+    owl:annotatedSource :GridSubstation ;
+    owl:annotatedTarget :GridInfrastructure ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 96 ;
+    :aboxSupportCount 6 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AcademicStaff ;
-    owl:annotatedTarget :Person ;
+    owl:annotatedSource :InductiveLoopSensor ;
+    owl:annotatedTarget :TrafficSensor ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 12 ;
+    :aboxSupportCount 10 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :TeachingAssistant ;
-    owl:annotatedTarget :AcademicStaff ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 14 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Instructor ;
-    owl:annotatedTarget :Employee ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 4 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :ResearchInstitute ;
-    owl:annotatedTarget :AcademicUnit ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 67 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :GraduateStudent ;
-    owl:annotatedTarget :Student ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 3 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Faculty ;
-    owl:annotatedTarget :Organization ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 140 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Student ;
-    owl:annotatedTarget :Person ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 14 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Instructor ;
-    owl:annotatedTarget :AcademicStaff ;
+    owl:annotatedSource :HumanOperatedVehicle ;
+    owl:annotatedTarget :MobilityAsset ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
@@ -988,26 +1398,53 @@
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AdjunctProfessor ;
-    owl:annotatedTarget :FacultyMember ;
+    owl:annotatedSource :AutonomousAerialVehicle ;
+    owl:annotatedTarget :AutonomousVehicle ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 15 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :GraduateCourse ;
-    owl:annotatedTarget :Course ;
+    owl:annotatedSource :EmergencyAmbulance ;
+    owl:annotatedTarget :HumanOperatedVehicle ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 57 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :FacultyMember ;
-    owl:annotatedTarget :AcademicStaff ;
+    owl:annotatedSource :EmergencyDispatchService ;
+    owl:annotatedTarget :ManagementPlatform ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :SmartStreetLight ;
+    owl:annotatedTarget :ActuatorDevice ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :TrafficSignalController ;
+    owl:annotatedTarget :ActuatorDevice ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 5 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AirQualityForecaster ;
+    owl:annotatedTarget :AnalyticsService ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
@@ -1015,26 +1452,17 @@
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :TeachingAssistant ;
-    owl:annotatedTarget :GraduateStudent ;
+    owl:annotatedSource :EnvironmentalSensor ;
+    owl:annotatedTarget :SensorDevice ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 25 ;
+    :aboxSupportCount 6 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :PhDStudent ;
-    owl:annotatedTarget :GraduateStudent ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 12 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :PostdoctoralResearcher ;
-    owl:annotatedTarget :AcademicStaff ;
+    owl:annotatedSource :AcousticNoiseSensor ;
+    owl:annotatedTarget :EnvironmentalSensor ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
@@ -1042,17 +1470,44 @@
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :PostdoctoralResearcher ;
-    owl:annotatedTarget :Employee ;
+    owl:annotatedSource :ActuatorDevice ;
+    owl:annotatedTarget :PhysicalDevice ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 29 ;
+    :aboxSupportCount 18 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :TenuredFaculty ;
-    owl:annotatedTarget :FacultyMember ;
+    owl:annotatedSource :AutonomousVehicle ;
+    owl:annotatedTarget :MobilityAsset ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 5 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :GridDispatchPlatform ;
+    owl:annotatedTarget :ManagementPlatform ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 5 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.833 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :TrafficFlowPredictor ;
+    owl:annotatedTarget :AnalyticsService ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 36 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :PhysicalDevice ;
+    owl:annotatedTarget :SmartCityAsset ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
@@ -1060,71 +1515,44 @@
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :ResearchInstitute ;
-    owl:annotatedTarget :Organization ;
+    owl:annotatedSource :SurveillanceDrone ;
+    owl:annotatedTarget :AutonomousAerialVehicle ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 25 ;
+    :aboxSupportCount 6 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :UndergraduateCourse ;
-    owl:annotatedTarget :Course ;
+    owl:annotatedSource :RadarSpeedSensor ;
+    owl:annotatedTarget :TrafficSensor ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 15 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Lecturer ;
-    owl:annotatedTarget :Employee ;
+    owl:annotatedSource :UrbanWindTurbine ;
+    owl:annotatedTarget :RenewableEnergySource ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 12 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :TenureTrackFaculty ;
-    owl:annotatedTarget :FacultyMember ;
+    owl:annotatedSource :DistributionSubstation ;
+    owl:annotatedTarget :GridSubstation ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 12 ;
+    :aboxSupportCount 24 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :TeachingAssistant ;
-    owl:annotatedTarget :Employee ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 14 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AssociateProfessor ;
-    owl:annotatedTarget :TenuredFaculty ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 73 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :UndergraduateStudent ;
-    owl:annotatedTarget :Student ;
-    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 8 ;
-    :confidenceScore 0.880 ;
-    :decisionProbability 0.980 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :VisitingProfessor ;
-    owl:annotatedTarget :FacultyMember ;
+    owl:annotatedSource :SensorDevice ;
+    owl:annotatedTarget :PhysicalDevice ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
@@ -1132,26 +1560,26 @@
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Department ;
-    owl:annotatedTarget :Organization ;
+    owl:annotatedSource :AutonomousGroundVehicle ;
+    owl:annotatedTarget :AutonomousVehicle ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 13 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AssistantProfessor ;
-    owl:annotatedTarget :FacultyMember ;
+    owl:annotatedSource :BatteryEnergyStorage ;
+    owl:annotatedTarget :GridInfrastructure ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 108 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Employee ;
-    owl:annotatedTarget :Person ;
+    owl:annotatedSource :AutonomousStreetSweeper ;
+    owl:annotatedTarget :AutonomousGroundVehicle ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
@@ -1159,35 +1587,35 @@
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :JournalArticle ;
-    owl:annotatedTarget :Publication ;
+    owl:annotatedSource :DigitalService ;
+    owl:annotatedTarget :SmartCityAsset ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 3 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Faculty ;
-    owl:annotatedTarget :AcademicUnit ;
+    owl:annotatedSource :SolarPhotovoltaicArray ;
+    owl:annotatedTarget :RenewableEnergySource ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 15 ;
+    :aboxSupportCount 4 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :Lecturer ;
-    owl:annotatedTarget :AcademicStaff ;
+    owl:annotatedSource :EmergencyDeliveryDrone ;
+    owl:annotatedTarget :AutonomousAerialVehicle ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 30 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :MasterStudent ;
-    owl:annotatedTarget :GraduateStudent ;
+    owl:annotatedSource :MunicipalFleetTruck ;
+    owl:annotatedTarget :HumanOperatedVehicle ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
@@ -1195,34 +1623,52 @@
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :ClericalStaff ;
-    owl:annotatedTarget :Employee ;
+    owl:annotatedSource :TrafficSensor ;
+    owl:annotatedTarget :SensorDevice ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 12 ;
+    :aboxSupportCount 10 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AdministrativeStaff ;
-    owl:annotatedTarget :Employee ;
+    owl:annotatedSource :ManagementPlatform ;
+    owl:annotatedTarget :DigitalService ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 57 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
     :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :FacultyMember ;
-    owl:annotatedTarget :Employee ;
+    owl:annotatedSource :AutonomousTransitShuttle ;
+    owl:annotatedTarget :AutonomousGroundVehicle ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 
 [] a owl:Axiom ;
-    :aboxSupportCount 15 ;
+    :aboxSupportCount 5 ;
     :confidenceScore 0.880 ;
-    :decisionProbability 0.882 ;
+    :decisionProbability 0.980 ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :FullProfessor ;
-    owl:annotatedTarget :TenuredFaculty ;
+    owl:annotatedSource :TransmissionSubstation ;
+    owl:annotatedTarget :GridSubstation ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 10 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.980 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AnalyticsService ;
+    owl:annotatedTarget :DigitalService ;
+    prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
+
+[] a owl:Axiom ;
+    :aboxSupportCount 6 ;
+    :confidenceScore 0.880 ;
+    :decisionProbability 0.857 ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource :AirQualitySensor ;
+    owl:annotatedTarget :EnvironmentalSensor ;
     prov:wasAttributedTo "tev1:0.8b"^^xsd:string .
 

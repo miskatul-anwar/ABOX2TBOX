@@ -29,17 +29,22 @@ import pytest
 import rdflib
 from rdflib.namespace import OWL, RDF, RDFS
 
-NOTEBOOK_PATH = "/home/miskat/ABOX2TBOX/ABox2TBox.ipynb"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+NOTEBOOK_PATH = (
+    os.path.join(BASE_DIR, "abox2tbox.ipynb")
+    if os.path.exists(os.path.join(BASE_DIR, "abox2tbox.ipynb"))
+    else os.path.join(BASE_DIR, "ABox2TBox.ipynb")
+)
 ABOX_PATH = (
-    "/home/miskat/ABOX2TBOX/input/ABox.ttl"
-    if os.path.exists("/home/miskat/ABOX2TBOX/input/ABox.ttl")
-    else "/home/miskat/ABOX2TBOX/ABox.ttl"
+    os.path.join(BASE_DIR, "input", "ABox.ttl")
+    if os.path.exists(os.path.join(BASE_DIR, "input", "ABox.ttl"))
+    else os.path.join(BASE_DIR, "ABox.ttl")
 )
 TBOX_PATH = (
-    "/home/miskat/ABOX2TBOX/output/TBox.ttl"
-    if os.path.exists("/home/miskat/ABOX2TBOX/output/TBox.ttl")
-    or not os.path.exists("/home/miskat/ABOX2TBOX/TBox.ttl")
-    else "/home/miskat/ABOX2TBOX/TBox.ttl"
+    os.path.join(BASE_DIR, "output", "TBox.ttl")
+    if os.path.exists(os.path.join(BASE_DIR, "output", "TBox.ttl"))
+    or not os.path.exists(os.path.join(BASE_DIR, "TBox.ttl"))
+    else os.path.join(BASE_DIR, "TBox.ttl")
 )
 
 _EXECUTION_CACHE: Optional[Tuple[Dict[str, Any], int]] = None

@@ -43,7 +43,11 @@ from rdflib.namespace import OWL, RDF, RDFS
 # ==============================================================================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-NOTEBOOK_PATH = os.path.join(BASE_DIR, "ABox2TBox.ipynb")
+NOTEBOOK_PATH = (
+    os.path.join(BASE_DIR, "abox2tbox.ipynb")
+    if os.path.exists(os.path.join(BASE_DIR, "abox2tbox.ipynb"))
+    else os.path.join(BASE_DIR, "ABox2TBox.ipynb")
+)
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 
 DOMAINS: Dict[str, Dict[str, Any]] = {
@@ -91,6 +95,10 @@ DOMAINS: Dict[str, Dict[str, Any]] = {
         "plot_path": os.path.join(OUTPUT_DIR, "banking_telemetry.png"),
         "namespace": "http://example.org/banking#",
     },
+}
+
+AVAILABLE_DOMAINS: Dict[str, Dict[str, Any]] = {
+    k: v for k, v in DOMAINS.items() if os.path.exists(v["abox_path"])
 }
 
 _EXECUTION_CACHE: Dict[str, Tuple[Dict[str, Any], int]] = {}
@@ -144,6 +152,10 @@ def run_pipeline_for_domain(
         )
 
     if not os.path.exists(abox_path):
+        if "pytest" in sys.modules:
+            pytest.skip(
+                f"Benchmark ABox dataset for '{domain_key}' not found at {abox_path}."
+            )
         raise FileNotFoundError(
             f"Benchmark ABox dataset for '{domain_key}' not found at {abox_path}."
         )
@@ -588,7 +600,11 @@ def render_comparative_table(metrics_list: List[Dict[str, Any]]) -> str:
 # Pytest Parameterized Test Suite
 # ==============================================================================
 
-DOMAIN_KEYS = list(DOMAINS.keys())
+DOMAIN_KEYS = (
+    list(AVAILABLE_DOMAINS.keys())
+    if AVAILABLE_DOMAINS
+    else list(DOMAINS.keys())
+)
 
 
 @pytest.mark.parametrize("domain_key", DOMAIN_KEYS)
@@ -669,7 +685,11 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    target_domains = [args.domain] if args.domain else list(DOMAINS.keys())
+    target_domains = (
+        [args.domain]
+        if args.domain
+        else (list(AVAILABLE_DOMAINS.keys()) if AVAILABLE_DOMAINS else list(DOMAINS.keys()))
+    )
 
     print("=" * 80)
     print("🚀 ABOX2TBOX MULTI-DOMAIN CROSS-VERIFICATION HARNESS (MILESTONE 3)")

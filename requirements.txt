@@ -1,0 +1,6 @@
+rdflib==7.6.0
+networkx==3.7
+matplotlib==3.11.2
+numpy==2.5.4
+ollama==0.6.3
+owlready2==0.51

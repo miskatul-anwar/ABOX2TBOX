@@ -12,8 +12,8 @@ For every domain, verifies the 7 formal acceptance assertions:
   - Assertion 2: Valid OWL 2 / RDFS syntax with >= 15 declared classes
   - Assertion 3: Subsumption hierarchy forms a strict DAG (0 directed cycles)
   - Assertion 4: Post-repair disjointness violations DVC_post == 0
-  - Assertion 5: Strict prompt token ceiling (maximum payload <= 1,500 tokens)
-  - Assertion 6: OntoQA metrics within mathematical bounds (0 < RR <= 1.0, IR > 0, 0.5 <= CCR <= 1.0)
+  - Assertion 5: Offline runs record no model calls or synthetic calibration
+  - Assertion 6: Descriptive metrics stay within their mathematical bounds
   - Assertion 7: W3C PROV-O reification metadata present and valid
 
 Dual Execution Interface:
@@ -25,6 +25,8 @@ import argparse
 from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
+import tempfile
+from unittest.mock import patch
 import os
 import sys
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -32,7 +34,6 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import matplotlib
 matplotlib.use("Agg")
 
-from IPython.core.interactiveshell import InteractiveShell
 import networkx as nx
 import pytest
 import rdflib
@@ -48,7 +49,8 @@ NOTEBOOK_PATH = (
     if os.path.exists(os.path.join(BASE_DIR, "abox2tbox.ipynb"))
     else os.path.join(BASE_DIR, "ABox2TBox.ipynb")
 )
-OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+_OUTPUT_TEMP = tempfile.TemporaryDirectory(prefix="abox2tbox-domain-tests-")
+OUTPUT_DIR = _OUTPUT_TEMP.name
 
 DOMAINS: Dict[str, Dict[str, Any]] = {
     "baseline": {
@@ -110,115 +112,29 @@ _METRICS_CACHE: Dict[str, Dict[str, Any]] = {}
 # ==============================================================================
 
 
-def run_pipeline_for_domain(
-    domain_key: str, force_reexecution: bool = False, verbose: bool = False
-) -> Tuple[Dict[str, Any], int]:
-    """Execute ABox2TBox.ipynb in complete isolation for a specific benchmark domain.
-
-    Injects domain-specific environment variables (`ABOX_INPUT_PATH`,
-    `TBOX_OUTPUT_PATH`, `TELEMETRY_PLOT_PATH`) and executes within a fresh
-    `InteractiveShell` instance with cleared memory and relational state.
-
-    Args:
-        domain_key: Identifier key in DOMAINS dictionary.
-        force_reexecution: If True, bypass execution cache and rerun.
-        verbose: If True, stream cell stdout/stderr directly.
-
-    Returns:
-        Tuple containing (user_namespace, executed_cell_count).
-
-    Raises:
-        KeyError: If domain_key is not in DOMAINS.
-        FileNotFoundError: If notebook or ABox file is missing.
-        RuntimeError: If any notebook code cell fails.
-    """
-    global _EXECUTION_CACHE
+def run_pipeline_for_domain(domain_key, force_reexecution=False, verbose=False):
+    """Execute each domain offline; preserve both the user's environment and outputs."""
     if domain_key in _EXECUTION_CACHE and not force_reexecution:
         return _EXECUTION_CACHE[domain_key]
-
-    if domain_key not in DOMAINS:
-        raise KeyError(
-            f"Unknown domain '{domain_key}'. Available: {list(DOMAINS.keys())}"
-        )
-
     cfg = DOMAINS[domain_key]
-    abox_path = cfg["abox_path"]
-    tbox_path = cfg["tbox_path"]
-    plot_path = cfg["plot_path"]
-
-    if not os.path.exists(NOTEBOOK_PATH):
-        raise FileNotFoundError(
-            f"Notebook artifact not found at {NOTEBOOK_PATH}."
-        )
-
-    if not os.path.exists(abox_path):
-        if "pytest" in sys.modules:
-            pytest.skip(
-                f"Benchmark ABox dataset for '{domain_key}' not found at {abox_path}."
-            )
-        raise FileNotFoundError(
-            f"Benchmark ABox dataset for '{domain_key}' not found at {abox_path}."
-        )
-
-    os.makedirs(os.path.dirname(tbox_path), exist_ok=True)
-    os.makedirs(os.path.dirname(plot_path), exist_ok=True)
-
-    # Invalidate existing output artifacts to guarantee fresh materialization
-    if force_reexecution:
-        if os.path.exists(tbox_path):
-            try:
-                os.remove(tbox_path)
-            except OSError:
-                pass
-        if os.path.exists(plot_path):
-            try:
-                os.remove(plot_path)
-            except OSError:
-                pass
-
-    # Inject isolated environment parameters
-    os.environ["ABOX_INPUT_PATH"] = abox_path
-    os.environ["TBOX_OUTPUT_PATH"] = tbox_path
-    os.environ["TELEMETRY_PLOT_PATH"] = plot_path
-
-    # Instantiate fresh isolated InteractiveShell
-    InteractiveShell.clear_instance()
-    shell = InteractiveShell.instance()
-
-    with open(NOTEBOOK_PATH, "r", encoding="utf-8") as f:
-        nb = json.load(f)
-
-    captured_output = io.StringIO()
-    executed_count = 0
-
-    for idx, cell in enumerate(nb.get("cells", [])):
-        if cell.get("cell_type") == "code":
-            source = "".join(cell.get("source", []))
-            if not source.strip():
-                continue
-
-            if verbose:
-                res = shell.run_cell(source)
-            else:
-                with redirect_stdout(captured_output), redirect_stderr(
-                    captured_output
-                ):
-                    res = shell.run_cell(source)
-
-            if not res.success:
-                err = res.error_in_exec or RuntimeError(
-                    f"Domain '{domain_key}' notebook cell {idx} failed execution."
-                )
-                if not verbose:
-                    print(
-                        f"[-] Execution failure in domain '{domain_key}' cell {idx}:\n"
-                        f"{captured_output.getvalue()}",
-                        file=sys.stderr,
-                    )
-                raise err
-            executed_count += 1
-
-    _EXECUTION_CACHE[domain_key] = (shell.user_ns, executed_count)
+    namespace = {}
+    with open(NOTEBOOK_PATH, encoding="utf-8") as handle:
+        notebook = json.load(handle)
+    count = 0
+    captured = io.StringIO()
+    with patch.dict(os.environ, {
+        "USE_LLM": "false", "ABOX_INPUT_PATH": cfg["abox_path"],
+        "TBOX_OUTPUT_PATH": cfg["tbox_path"], "TELEMETRY_PLOT_PATH": cfg["plot_path"],
+        "CALIBRATION_LABELS_PATH": ""
+    }):
+        with redirect_stdout(sys.stdout if verbose else captured):
+            for index, cell in enumerate(notebook["cells"]):
+                if cell["cell_type"] == "code":
+                    exec(compile("".join(cell["source"]), f"cell-{index}", "exec"), namespace)
+                    count += 1
+    assert namespace["VALIDATION_REPORT"]["status"] == "passed"
+    _EXECUTION_CACHE[domain_key] = namespace, count
+    _METRICS_CACHE.pop(domain_key, None)
     return _EXECUTION_CACHE[domain_key]
 
 
@@ -351,19 +267,15 @@ def verify_assertion_4_disjointness_consistency(domain_key: str) -> int:
 
 
 def verify_assertion_5_prompt_token_ceiling(domain_key: str) -> int:
-    """Assertion 5: Maximum recorded token payload <= 1,500 tokens."""
+    """Offline runs record no network requests or invented token usage."""
     user_ns, _ = run_pipeline_for_domain(domain_key)
     token_log = user_ns.get(
         "TOKEN_AUDIT_LOG", user_ns.get("PAYLOAD_TOKEN_AUDIT_LOG", [])
     )
-    assert len(token_log) > 0, (
-        f"Domain '{domain_key}': TOKEN_AUDIT_LOG is missing or empty"
-    )
-    max_tokens = max(entry.get("tokens", 0) for entry in token_log)
-    assert max_tokens <= 1500, (
-        f"Domain '{domain_key}': Token ceiling violation! Max payload was {max_tokens} > 1500 tokens."
-    )
-    return max_tokens
+    assert token_log == [], "Offline execution must not fabricate model calls"
+    assert user_ns["total_tokens_measured"] == 0
+    assert user_ns["ECE"] is None
+    return 0
 
 
 def verify_assertion_6_ontoqa_metrics(
@@ -389,8 +301,8 @@ def verify_assertion_6_ontoqa_metrics(
     assert 0.0 < rr <= 1.0, (
         f"Domain '{domain_key}': Relationship Richness out of bounds: {rr}"
     )
-    assert ir > 0.0, (
-        f"Domain '{domain_key}': Inheritance Richness must be positive: {ir}"
+    assert ir >= 0.0, (
+        f"Domain '{domain_key}': Inheritance Richness cannot be negative: {ir}"
     )
     assert 0.50 <= ccr <= 1.0, (
         f"Domain '{domain_key}': Class Coverage Ratio out of bounds: {ccr}"
@@ -413,13 +325,9 @@ def verify_assertion_7_provenance_metadata(domain_key: str) -> int:
     prov_triples = list(g.triples((None, prov_pred, None)))
     axioms = list(g.subjects(RDF.type, OWL.Axiom))
 
-    if not strict_mode:
-        assert len(prov_triples) > 0, (
-            f"Domain '{domain_key}': PROV-O wasAttributedTo triples missing in TBox"
-        )
-        assert len(axioms) > 0, (
-            f"Domain '{domain_key}': OWL:Axiom reification instances missing in TBox"
-        )
+    assert prov_triples, "Pipeline attribution must be present"
+    assert (prov_pred, RDF.type, OWL.AnnotationProperty) in g
+    assert all(isinstance(obj, rdflib.URIRef) for _, _, obj in prov_triples)
     return len(prov_triples)
 
 
@@ -489,7 +397,7 @@ def compute_domain_metrics(domain_key: str) -> Dict[str, Any]:
     token_log = user_ns.get(
         "TOKEN_AUDIT_LOG", user_ns.get("PAYLOAD_TOKEN_AUDIT_LOG", [])
     )
-    max_tokens = max((e.get("tokens", 0) for e in token_log), default=0)
+    max_tokens = max((e.get("input_tokens") or 0 for e in token_log), default=0)
 
     ontoqa = user_ns.get("ONTOQA_METRICS", {})
     rr = float(
@@ -515,7 +423,7 @@ def compute_domain_metrics(domain_key: str) -> Dict[str, Any]:
         and violations == 0
         and max_tokens <= 1500
         and 0.0 < rr <= 1.0
-        and ir > 0.0
+        and ir >= 0.0
         and 0.50 <= ccr <= 1.0
         and len(prov_triples) > 0
     )

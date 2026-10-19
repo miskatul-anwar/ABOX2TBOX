@@ -1,1499 +1,835 @@
-@prefix : <http://example.org/smartcity#> .
+@prefix ns1: <http://example.org/smartcity#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://example.org/smartcity> a owl:Ontology ;
-    rdfs:label "Smartcity induced ontology" .
+ns1:AirQualityForecaster a owl:Class ;
+    rdfs:label "AirQualityForecaster" .
 
-:aboxSupportCount a owl:AnnotationProperty .
+ns1:AlertTierBeta a owl:Class ;
+    rdfs:label "AlertTierBeta" ;
+    owl:disjointWith ns1:DigitalService,
+        ns1:GridInfrastructure,
+        ns1:GridSubstation .
 
-:batteryLevelPercentage a owl:DatatypeProperty,
+ns1:AlertTierGamma a owl:Class ;
+    rdfs:label "AlertTierGamma" ;
+    owl:disjointWith ns1:GridSegment .
+
+ns1:AnalyticsService a owl:Class ;
+    rdfs:label "AnalyticsService" ;
+    owl:disjointWith ns1:HumanOperatedVehicle .
+
+ns1:EmergencyDispatchService a owl:Class ;
+    rdfs:label "EmergencyDispatchService" .
+
+ns1:ManagementPlatform a owl:Class ;
+    rdfs:label "ManagementPlatform" .
+
+ns1:MaximumChargeKwEntity a owl:Class ;
+    rdfs:label "MaximumChargeKwEntity" ;
+    ns1:competencyQuestion "What is the maximum charging power in kilowatts (KW) for a given electric vehicle charging station, and what type of cooling system does it use, along with the standard of the connector used?" ;
+    rdfs:comment "A class representing the characteristics of an electric vehicle charging station, including its maximum charging power, cooling system type, and connector standard." .
+
+ns1:Ontology a owl:Ontology ;
+    rdfs:label "Core induced ontology (v3.0 Clef-Flash)" ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+ns1:Telemetrypacket a owl:Class ;
+    rdfs:label "Telemetrypacket" ;
+    ns1:competencyQuestion "What is the signal strength in dBm for a specific telemetry packet, and what is the transmission status of that packet?" ;
+    rdfs:comment "TelemetryPacket represents a data packet containing information about signal strength and transmission status." .
+
+ns1:batteryLevelPercentage a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "batteryLevelPercentage" ;
-    rdfs:domain :EnvironmentalSensor ;
-    rdfs:range xsd:integer .
+    rdfs:domain ns1:EnvironmentalSensor .
 
-:communicatesMeshWith a owl:FunctionalProperty,
-        owl:InverseFunctionalProperty,
-        owl:ObjectProperty,
-        owl:SymmetricProperty ;
-    rdfs:label "communicatesMeshWith" ;
-    rdfs:domain :EnvironmentalSensor ;
-    rdfs:range :EnvironmentalSensor .
-
-:confidenceScore a owl:AnnotationProperty .
-
-:connectorStandard a owl:DatatypeProperty,
+ns1:connectorStandard a owl:DatatypeProperty,
         owl:FunctionalProperty ;
-    rdfs:label "connectorStandard" ;
-    rdfs:domain :ConnectorStandard ;
-    rdfs:range xsd:string .
+    rdfs:label "connectorStandard" .
 
-:coolingSystemType a owl:DatatypeProperty,
+ns1:coolingSystemType a owl:DatatypeProperty,
         owl:FunctionalProperty ;
-    rdfs:label "coolingSystemType" ;
-    rdfs:domain :ConnectorStandard ;
-    rdfs:range xsd:string .
+    rdfs:label "coolingSystemType" .
 
-:cycleTimeSeconds a owl:DatatypeProperty,
+ns1:cycleTimeSeconds a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "cycleTimeSeconds" ;
-    rdfs:domain :TrafficSignalController ;
-    rdfs:range xsd:integer .
+    rdfs:domain ns1:TrafficSignalController .
 
-:decisionProbability a owl:AnnotationProperty .
-
-:deviceName a owl:DatatypeProperty,
+ns1:deviceName a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "deviceName" ;
-    rdfs:domain :PhysicalDevice ;
-    rdfs:range xsd:string .
+    rdfs:domain ns1:PhysicalDevice .
 
-:deviceSerialIdentifier a owl:DatatypeProperty,
+ns1:deviceSerialIdentifier a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "deviceSerialIdentifier" ;
-    rdfs:domain :AirQualitySensor ;
-    rdfs:range xsd:string .
+    rdfs:domain ns1:AirQualitySensor .
 
-:facilityIdentifier a owl:DatatypeProperty,
+ns1:facilityIdentifier a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "facilityIdentifier" ;
-    rdfs:domain :PowerSubstation ;
-    rdfs:range xsd:string .
+    rdfs:domain ns1:PowerSubstation .
 
-:firmwareVersion a owl:DatatypeProperty,
+ns1:firmwareVersion a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "firmwareVersion" ;
-    rdfs:domain :EnvironmentalSensor ;
-    rdfs:range xsd:string .
+    rdfs:domain ns1:EnvironmentalSensor .
 
-:fleetNumber a owl:DatatypeProperty,
+ns1:fleetNumber a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "fleetNumber" ;
-    rdfs:domain :MobilityAsset ;
-    rdfs:range xsd:string .
+    rdfs:domain ns1:MobilityAsset .
 
-:flightCeilingMeters a owl:DatatypeProperty,
+ns1:flightCeilingMeters a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "flightCeilingMeters" ;
-    rdfs:domain :AutonomousAerialVehicle ;
-    rdfs:range xsd:integer .
+    rdfs:domain ns1:AutonomousAerialVehicle .
 
-:frequencyBandsGHz a owl:DatatypeProperty,
+ns1:frequencyBandsGHz a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "frequencyBandsGHz" ;
-    rdfs:domain :RadarSpeedSensor ;
-    rdfs:range xsd:decimal .
+    rdfs:domain ns1:RadarSpeedSensor .
 
-:generatesTelemetryRecord a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:InverseFunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "generatesTelemetryRecord" ;
-    rdfs:domain :AirQualitySensor ;
-    rdfs:range :SignalStrength .
-
-:hasChargingInterface a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:InverseFunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "hasChargingInterface" ;
-    rdfs:domain :DistributionSubstation ;
-    rdfs:range :ConnectorStandard .
-
-:hasMaintenanceRecord a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:InverseFunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "hasMaintenanceRecord" ;
-    rdfs:domain :TrafficSignalController ;
-    rdfs:range :TechnicianNotes .
-
-:inferenceLatencyMs a owl:DatatypeProperty,
+ns1:inferenceLatencyMs a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "inferenceLatencyMs" ;
-    rdfs:domain :TrafficFlowPredictor ;
-    rdfs:range xsd:integer .
+    rdfs:domain ns1:TrafficFlowPredictor .
 
-:installedInZone a owl:AsymmetricProperty,
-        owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:label "installedInZone" ;
-    rdfs:domain :PhysicalDevice ;
-    rdfs:range :UrbanZone .
-
-:loopSensitivity a owl:DatatypeProperty,
+ns1:loopSensitivity a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "loopSensitivity" ;
-    rdfs:domain :InductiveLoopSensor ;
-    rdfs:range xsd:decimal .
+    rdfs:domain ns1:InductiveLoopSensor .
 
-:lumensOutput a owl:DatatypeProperty,
+ns1:lumensOutput a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "lumensOutput" ;
-    rdfs:domain :SmartStreetLight ;
-    rdfs:range xsd:integer .
+    rdfs:domain ns1:SmartStreetLight .
 
-:maximumChargeKW a owl:DatatypeProperty,
+ns1:maximumChargeKW a owl:DatatypeProperty,
         owl:FunctionalProperty ;
-    rdfs:label "maximumChargeKW" ;
-    rdfs:domain :ConnectorStandard ;
-    rdfs:range xsd:integer .
+    rdfs:label "maximumChargeKW" .
 
-:partOfGridSegment a owl:AsymmetricProperty,
-        owl:ObjectProperty ;
+ns1:partOfGridSegment a owl:ObjectProperty ;
     rdfs:label "partOfGridSegment" ;
-    rdfs:domain :GridSegment ;
-    rdfs:range :GridSegment .
+    rdfs:domain ns1:GridSegment ;
+    rdfs:range ns1:GridSegment .
 
-:passengerCapacity a owl:DatatypeProperty,
+ns1:passengerCapacity a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "passengerCapacity" ;
-    rdfs:domain :AutonomousTransitShuttle ;
-    rdfs:range xsd:integer .
+    rdfs:domain ns1:AutonomousTransitShuttle .
 
-:ratedPowerKW a owl:DatatypeProperty,
+ns1:ratedPowerKW a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "ratedPowerKW" ;
-    rdfs:domain :RenewableEnergySource ;
-    rdfs:range xsd:decimal .
+    rdfs:domain ns1:RenewableEnergySource .
 
-:relaysDataTo a owl:ObjectProperty ;
+ns1:relaysDataTo a owl:ObjectProperty ;
     rdfs:label "relaysDataTo" ;
-    rdfs:domain :GridSegment ;
-    rdfs:range :GridSegment .
+    rdfs:domain ns1:GridSegment ;
+    rdfs:range ns1:GridSegment .
 
-:sensorPrecisionScore a owl:DatatypeProperty,
+ns1:sensorPrecisionScore a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "sensorPrecisionScore" ;
-    rdfs:domain :AirQualitySensor ;
-    rdfs:range xsd:decimal .
+    rdfs:domain ns1:AirQualitySensor .
 
-:serviceEndpoint a owl:DatatypeProperty,
+ns1:serviceEndpoint a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "serviceEndpoint" ;
-    rdfs:domain :DigitalService ;
-    rdfs:range xsd:string .
+    rdfs:domain ns1:DigitalService .
 
-:sharesPowerBusWith a owl:ObjectProperty ;
-    rdfs:label "sharesPowerBusWith" ;
-    rdfs:domain :GridInfrastructure ;
-    rdfs:range :GridInfrastructure .
-
-:signalStrengthDbm a owl:DatatypeProperty,
+ns1:signalStrengthDbm a owl:DatatypeProperty,
         owl:FunctionalProperty ;
-    rdfs:label "signalStrengthDbm" ;
-    rdfs:domain :SignalStrength ;
-    rdfs:range xsd:integer .
+    rdfs:label "signalStrengthDbm" .
 
-:storageCapacityMWh a owl:DatatypeProperty,
+ns1:storageCapacityMWh a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "storageCapacityMWh" ;
-    rdfs:domain :BatteryEnergyStorage ;
-    rdfs:range xsd:decimal .
+    rdfs:domain ns1:BatteryEnergyStorage .
 
-:technicianNotes a owl:DatatypeProperty,
+ns1:technicianNotes a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "technicianNotes" ;
-    rdfs:domain :TechnicianNotes ;
-    rdfs:range xsd:string .
+    rdfs:domain ns1:Workorder .
 
-:telemetryPacketId a owl:DatatypeProperty,
+ns1:telemetryPacketId a owl:DatatypeProperty,
         owl:FunctionalProperty ;
-    rdfs:label "telemetryPacketId" ;
-    rdfs:domain :SignalStrength ;
-    rdfs:range xsd:string .
+    rdfs:label "telemetryPacketId" .
 
-:transmissionStatus a owl:DatatypeProperty,
+ns1:transmissionStatus a owl:DatatypeProperty,
         owl:FunctionalProperty ;
-    rdfs:label "transmissionStatus" ;
-    rdfs:domain :SignalStrength ;
-    rdfs:range xsd:string .
+    rdfs:label "transmissionStatus" .
 
-:urgencyPriorityScore a owl:DatatypeProperty,
+ns1:urgencyPriorityScore a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "urgencyPriorityScore" ;
-    rdfs:domain :TechnicianNotes ;
-    rdfs:range xsd:integer .
+    rdfs:domain ns1:Workorder .
 
-:voltageRatingKV a owl:DatatypeProperty,
+ns1:voltageRatingKV a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "voltageRatingKV" ;
-    rdfs:domain :GridSubstation ;
-    rdfs:range xsd:decimal .
+    rdfs:domain ns1:GridSubstation .
 
-:workOrderCode a owl:DatatypeProperty,
+ns1:workOrderCode a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:label "workOrderCode" ;
-    rdfs:domain :TechnicianNotes ;
-    rdfs:range xsd:string .
+    rdfs:domain ns1:Workorder .
 
-:AcousticNoiseSensor a owl:Class ;
+ns1:AlertTierAlpha a owl:Class ;
+    rdfs:label "AlertTierAlpha" ;
+    owl:disjointWith ns1:GridDispatchPlatform .
+
+ns1:BatteryEnergyStorage a owl:Class ;
+    rdfs:label "BatteryEnergyStorage" ;
+    owl:disjointWith ns1:TrafficFlowPredictor,
+        ns1:TrafficSignalController,
+        ns1:Workorder .
+
+ns1:GridDispatchPlatform a owl:Class ;
+    rdfs:label "GridDispatchPlatform" .
+
+ns1:PowerSubstation a owl:Class ;
+    rdfs:label "PowerSubstation" ;
+    owl:equivalentClass ns1:SubstationFacility .
+
+ns1:TransmissionSubstation a owl:Class ;
+    rdfs:label "TransmissionSubstation" .
+
+ns1:generatesTelemetryRecord a owl:ObjectProperty ;
+    rdfs:label "generatesTelemetryRecord" ;
+    rdfs:domain ns1:AirQualitySensor ;
+    rdfs:range ns1:Telemetryrecord .
+
+ns1:hasChargingInterface a owl:ObjectProperty ;
+    rdfs:label "hasChargingInterface" ;
+    rdfs:domain ns1:DistributionSubstation ;
+    rdfs:range ns1:Charginginterfacetype .
+
+ns1:hasMaintenanceRecord a owl:ObjectProperty ;
+    rdfs:label "hasMaintenanceRecord" ;
+    rdfs:domain ns1:TrafficSignalController ;
+    rdfs:range ns1:Workorder .
+
+ns1:sharesPowerBusWith a owl:ObjectProperty ;
+    rdfs:label "sharesPowerBusWith" ;
+    rdfs:domain ns1:GridInfrastructure ;
+    rdfs:range ns1:GridInfrastructure .
+
+ns1:AcousticNoiseSensor a owl:Class ;
     rdfs:label "AcousticNoiseSensor" ;
-    rdfs:subClassOf :EnvironmentalSensor ;
-    owl:disjointWith :ActuatorDevice,
-        :AirQualityForecaster,
-        :AirQualitySensor,
-        :AlertTierAlpha,
-        :AlertTierBeta,
-        :AlertTierGamma,
-        :AnalyticsService,
-        :AutonomousAerialVehicle,
-        :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :AutonomousVehicle,
-        :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of AcousticNoiseSensor linked via communicatesMeshWith has only fillers of type EnvironmentalSensor" ;
+            owl:allValuesFrom ns1:EnvironmentalSensor ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of AcousticNoiseSensor linked via communicatesMeshWith has only fillers of type SmartCityAsset" ;
+            owl:allValuesFrom ns1:SmartCityAsset ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.1e-01 ;
+            rdfs:comment "Every instance of AcousticNoiseSensor linked via communicatesMeshWith has only fillers of type AirQualitySensor" ;
+            owl:allValuesFrom ns1:AirQualitySensor ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of AcousticNoiseSensor linked via communicatesMeshWith has only fillers of type PhysicalDevice" ;
+            owl:allValuesFrom ns1:PhysicalDevice ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.1e-01 ;
+            rdfs:comment "Every instance of AcousticNoiseSensor is linked via communicatesMeshWith to at least one instance of AirQualitySensor" ;
+            owl:onProperty ns1:communicatesMeshWith ;
+            owl:someValuesFrom ns1:AirQualitySensor ] ;
+    owl:disjointWith ns1:AlertTierAlpha .
 
-:EmergencyDeliveryDrone a owl:Class ;
+ns1:ActuatorDevice a owl:Class ;
+    rdfs:label "ActuatorDevice" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of ActuatorDevice linked via installedInZone has only fillers of type UrbanZone" ;
+            owl:allValuesFrom ns1:UrbanZone ;
+            owl:onProperty ns1:installedInZone ],
+        ns1:PhysicalDevice .
+
+ns1:AutonomousGroundVehicle a owl:Class ;
+    rdfs:label "AutonomousGroundVehicle" ;
+    rdfs:subClassOf ns1:AutonomousVehicle .
+
+ns1:AutonomousStreetSweeper a owl:Class ;
+    rdfs:label "AutonomousStreetSweeper" ;
+    rdfs:subClassOf ns1:AutonomousVehicle .
+
+ns1:Charginginterfacetype a owl:Class ;
+    rdfs:label "Charginginterfacetype" ;
+    ns1:competencyQuestion "What is the type of charging interface and its associated maximum charging power and cooling system for a given electric vehicle connector standard?" ;
+    rdfs:comment "ElectricVehicleConnector is a class that defines the type of charging interface, its maximum charging power, and cooling system." .
+
+ns1:DigitalService a owl:Class ;
+    rdfs:label "DigitalService" ;
+    owl:disjointWith ns1:GridSegment,
+        ns1:HumanOperatedVehicle .
+
+ns1:EmergencyAmbulance a owl:Class ;
+    rdfs:label "EmergencyAmbulance" ;
+    rdfs:subClassOf ns1:HumanOperatedVehicle .
+
+ns1:EmergencyDeliveryDrone a owl:Class ;
     rdfs:label "EmergencyDeliveryDrone" ;
-    rdfs:subClassOf :AutonomousAerialVehicle .
+    rdfs:subClassOf ns1:MobilityAsset .
 
-:SurveillanceDrone a owl:Class ;
+ns1:SolarPhotovoltaicArray a owl:Class ;
+    rdfs:label "SolarPhotovoltaicArray" ;
+    rdfs:subClassOf ns1:RenewableEnergySource .
+
+ns1:SurveillanceDrone a owl:Class ;
     rdfs:label "SurveillanceDrone" ;
-    rdfs:subClassOf :AutonomousAerialVehicle .
+    rdfs:subClassOf ns1:MobilityAsset .
 
-:UrbanZone a owl:Class ;
+ns1:Telemetryrecord a owl:Class ;
+    rdfs:label "Telemetryrecord" ;
+    ns1:competencyQuestion "What is the signal strength in decibel-milliwatts (dBm) of a telemetry packet with a specific packet ID, and what is the transmission status of this packet?" ;
+    rdfs:comment "TelemetryRecord captures the signal strength, packet ID, and transmission status of a communication packet." .
+
+ns1:TrafficFlowPredictor a owl:Class ;
+    rdfs:label "TrafficFlowPredictor" .
+
+ns1:TrafficSensor a owl:Class ;
+    rdfs:label "TrafficSensor" ;
+    rdfs:subClassOf ns1:SmartCityAsset .
+
+ns1:UrbanWindTurbine a owl:Class ;
+    rdfs:label "UrbanWindTurbine" ;
+    rdfs:subClassOf ns1:RenewableEnergySource .
+
+ns1:AutonomousAerialVehicle a owl:Class ;
+    rdfs:label "AutonomousAerialVehicle" ;
+    rdfs:subClassOf ns1:MobilityAsset ;
+    owl:disjointWith ns1:MunicipalFleetTruck .
+
+ns1:AutonomousTransitShuttle a owl:Class ;
+    rdfs:label "AutonomousTransitShuttle" ;
+    rdfs:subClassOf ns1:AutonomousVehicle .
+
+ns1:DistributionSubstation a owl:Class ;
+    rdfs:label "DistributionSubstation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7.1e-01 ;
+            rdfs:comment "Every instance of DistributionSubstation is linked via hasChargingInterface to at least one instance of Charginginterfacetype" ;
+            owl:onProperty ns1:hasChargingInterface ;
+            owl:someValuesFrom ns1:Charginginterfacetype ],
+        ns1:GridSubstation .
+
+ns1:InductiveLoopSensor a owl:Class ;
+    rdfs:label "InductiveLoopSensor" ;
+    rdfs:subClassOf ns1:PhysicalDevice .
+
+ns1:MunicipalFleetTruck a owl:Class ;
+    rdfs:label "MunicipalFleetTruck" ;
+    rdfs:subClassOf ns1:MobilityAsset .
+
+ns1:RadarSpeedSensor a owl:Class ;
+    rdfs:label "RadarSpeedSensor" ;
+    rdfs:subClassOf ns1:SensorDevice .
+
+ns1:SmartStreetLight a owl:Class ;
+    rdfs:label "SmartStreetLight" ;
+    rdfs:subClassOf ns1:SmartCityAsset .
+
+ns1:SubstationFacility a owl:Class ;
+    rdfs:label "SubstationFacility" .
+
+ns1:GridInfrastructure a owl:Class ;
+    rdfs:label "GridInfrastructure" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of GridInfrastructure linked via sharesPowerBusWith has only fillers of type GridInfrastructure" ;
+            owl:allValuesFrom ns1:GridInfrastructure ;
+            owl:onProperty ns1:sharesPowerBusWith ] .
+
+ns1:SensorDevice a owl:Class ;
+    rdfs:label "SensorDevice" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of SensorDevice linked via installedInZone has only fillers of type UrbanZone" ;
+            owl:allValuesFrom ns1:UrbanZone ;
+            owl:onProperty ns1:installedInZone ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of SensorDevice linked via communicatesMeshWith has only fillers of type PhysicalDevice" ;
+            owl:allValuesFrom ns1:PhysicalDevice ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of SensorDevice linked via communicatesMeshWith has only fillers of type SmartCityAsset" ;
+            owl:allValuesFrom ns1:SmartCityAsset ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of SensorDevice linked via communicatesMeshWith has only fillers of type EnvironmentalSensor" ;
+            owl:allValuesFrom ns1:EnvironmentalSensor ;
+            owl:onProperty ns1:communicatesMeshWith ] .
+
+ns1:TrafficSignalController a owl:Class ;
+    rdfs:label "TrafficSignalController" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of TrafficSignalController linked via installedInZone has only fillers of type UrbanZone" ;
+            owl:allValuesFrom ns1:UrbanZone ;
+            owl:onProperty ns1:installedInZone ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 1.01e+00 ;
+            rdfs:comment "Every instance of TrafficSignalController is linked via hasMaintenanceRecord to at least one instance of Workorder" ;
+            owl:onProperty ns1:hasMaintenanceRecord ;
+            owl:someValuesFrom ns1:Workorder ] .
+
+ns1:GridSubstation a owl:Class ;
+    rdfs:label "GridSubstation" .
+
+ns1:GridSegment a owl:Class ;
+    rdfs:label "GridSegment" ;
+    owl:disjointWith ns1:HumanOperatedVehicle .
+
+ns1:HumanOperatedVehicle a owl:Class ;
+    rdfs:label "HumanOperatedVehicle" ;
+    owl:disjointWith ns1:SubstationFacility,
+        ns1:TransmissionSubstation .
+
+ns1:AirQualitySensor a owl:Class ;
+    rdfs:label "AirQualitySensor" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of AirQualitySensor linked via communicatesMeshWith has only fillers of type SmartCityAsset" ;
+            owl:allValuesFrom ns1:SmartCityAsset ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of AirQualitySensor is linked via generatesTelemetryRecord to at least one instance of Telemetryrecord" ;
+            owl:onProperty ns1:generatesTelemetryRecord ;
+            owl:someValuesFrom ns1:Telemetryrecord ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of AirQualitySensor linked via installedInZone has only fillers of type UrbanZone" ;
+            owl:allValuesFrom ns1:UrbanZone ;
+            owl:onProperty ns1:installedInZone ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of AirQualitySensor linked via communicatesMeshWith has only fillers of type PhysicalDevice" ;
+            owl:allValuesFrom ns1:PhysicalDevice ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of AirQualitySensor is linked via communicatesMeshWith to at least one instance of AcousticNoiseSensor" ;
+            owl:onProperty ns1:communicatesMeshWith ;
+            owl:someValuesFrom ns1:AcousticNoiseSensor ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of AirQualitySensor linked via communicatesMeshWith has only fillers of type EnvironmentalSensor" ;
+            owl:allValuesFrom ns1:EnvironmentalSensor ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of AirQualitySensor linked via communicatesMeshWith has only fillers of type SensorDevice" ;
+            owl:allValuesFrom ns1:SensorDevice ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of AirQualitySensor linked via communicatesMeshWith has only fillers of type AcousticNoiseSensor" ;
+            owl:allValuesFrom ns1:AcousticNoiseSensor ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        ns1:EnvironmentalSensor .
+
+ns1:RenewableEnergySource a owl:Class ;
+    rdfs:label "RenewableEnergySource" .
+
+ns1:Workorder a owl:Class ;
+    rdfs:label "Workorder" ;
+    ns1:competencyQuestion "What is the urgency priority score and maintenance record associated with a work order, and what notes does the technician have for this work order?" ;
+    rdfs:comment "WorkOrder is a record of a maintenance task characterized by its urgency priority score, associated maintenance record, and technician notes." .
+
+ns1:installedInZone a owl:ObjectProperty ;
+    rdfs:label "installedInZone" ;
+    rdfs:domain ns1:PhysicalDevice ;
+    rdfs:range ns1:UrbanZone .
+
+ns1:UrbanZone a owl:Class ;
     rdfs:label "UrbanZone" .
 
-:AirQualityForecaster a owl:Class ;
-    rdfs:label "AirQualityForecaster" ;
-    rdfs:subClassOf :AnalyticsService ;
-    owl:disjointWith :AirQualitySensor,
-        :AlertTierAlpha,
-        :AlertTierBeta,
-        :AlertTierGamma,
-        :AutonomousAerialVehicle,
-        :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :AutonomousVehicle,
-        :BatteryEnergyStorage,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AlertTierAlpha a owl:Class ;
-    rdfs:label "AlertTierAlpha" ;
-    owl:disjointWith :AnalyticsService,
-        :AutonomousAerialVehicle,
-        :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :AutonomousVehicle,
-        :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AlertTierBeta a owl:Class ;
-    rdfs:label "AlertTierBeta" ;
-    owl:disjointWith :AnalyticsService,
-        :AutonomousAerialVehicle,
-        :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :AutonomousVehicle,
-        :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AlertTierGamma a owl:Class ;
-    rdfs:label "AlertTierGamma" ;
-    owl:disjointWith :AnalyticsService,
-        :AutonomousAerialVehicle,
-        :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :AutonomousVehicle,
-        :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:ConnectorStandard a owl:Class ;
-    rdfs:label "ConnectorStandard" ;
-    rdfs:comment "Induced concept for 8 entities characterized by properties: connectorStandard, coolingSystemType, maximumChargeKW, hasChargingInterface." .
-
-:SignalStrength a owl:Class ;
-    rdfs:label "SignalStrength" ;
-    rdfs:comment "Induced concept for 8 entities characterized by properties: signalStrengthDbm, telemetryPacketId, transmissionStatus, generatesTelemetryRecord." .
-
-:TechnicianNotes a owl:Class ;
-    rdfs:label "TechnicianNotes" ;
-    rdfs:comment "Induced concept for 8 entities characterized by properties: technicianNotes, urgencyPriorityScore, workOrderCode, hasMaintenanceRecord." .
-
-:ActuatorDevice a owl:Class ;
-    rdfs:label "ActuatorDevice" ;
-    rdfs:subClassOf :PhysicalDevice ;
-    owl:disjointWith :AirQualityForecaster,
-        :AirQualitySensor,
-        :AlertTierAlpha,
-        :AlertTierBeta,
-        :AlertTierGamma,
-        :AnalyticsService,
-        :AutonomousAerialVehicle,
-        :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :AutonomousVehicle,
-        :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AirQualitySensor a owl:Class ;
-    rdfs:label "AirQualitySensor" ;
-    rdfs:subClassOf :EnvironmentalSensor ;
-    owl:disjointWith :AlertTierAlpha,
-        :AlertTierBeta,
-        :AlertTierGamma,
-        :AnalyticsService,
-        :AutonomousAerialVehicle,
-        :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :AutonomousVehicle,
-        :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AnalyticsService a owl:Class ;
-    rdfs:label "AnalyticsService" ;
-    rdfs:subClassOf :DigitalService ;
-    owl:disjointWith :AutonomousAerialVehicle,
-        :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :AutonomousVehicle,
-        :BatteryEnergyStorage,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AutonomousStreetSweeper a owl:Class ;
-    rdfs:label "AutonomousStreetSweeper" ;
-    rdfs:subClassOf :AutonomousGroundVehicle ;
-    owl:disjointWith :AutonomousTransitShuttle,
-        :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AutonomousTransitShuttle a owl:Class ;
-    rdfs:label "AutonomousTransitShuttle" ;
-    rdfs:subClassOf :AutonomousGroundVehicle ;
-    owl:disjointWith :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AutonomousVehicle a owl:Class ;
+ns1:AutonomousVehicle a owl:Class ;
     rdfs:label "AutonomousVehicle" ;
-    rdfs:subClassOf :MobilityAsset ;
-    owl:disjointWith :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
+    rdfs:subClassOf ns1:MobilityAsset .
 
-:AutonomousAerialVehicle a owl:Class ;
-    rdfs:label "AutonomousAerialVehicle" ;
-    rdfs:subClassOf :AutonomousVehicle ;
-    owl:disjointWith :AutonomousGroundVehicle,
-        :AutonomousStreetSweeper,
-        :AutonomousTransitShuttle,
-        :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:AutonomousGroundVehicle a owl:Class ;
-    rdfs:label "AutonomousGroundVehicle" ;
-    rdfs:subClassOf :AutonomousVehicle ;
-    owl:disjointWith :BatteryEnergyStorage,
-        :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:BatteryEnergyStorage a owl:Class ;
-    rdfs:label "BatteryEnergyStorage" ;
-    rdfs:subClassOf :GridInfrastructure ;
-    owl:disjointWith :DigitalService,
-        :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:DistributionSubstation a owl:Class ;
-    rdfs:label "DistributionSubstation" ;
-    rdfs:subClassOf :GridSubstation ;
-    owl:disjointWith :EmergencyAmbulance,
-        :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridSegment,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:EmergencyAmbulance a owl:Class ;
-    rdfs:label "EmergencyAmbulance" ;
-    rdfs:subClassOf :HumanOperatedVehicle ;
-    owl:disjointWith :EmergencyDispatchService,
-        :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:EmergencyDispatchService a owl:Class ;
-    rdfs:label "EmergencyDispatchService" ;
-    rdfs:subClassOf :ManagementPlatform ;
-    owl:disjointWith :EnvironmentalSensor,
-        :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:DigitalService a owl:Class ;
-    rdfs:label "DigitalService" ;
-    rdfs:subClassOf :SmartCityAsset ;
-    owl:disjointWith :DistributionSubstation,
-        :EmergencyAmbulance,
-        :EnvironmentalSensor,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:GridDispatchPlatform a owl:Class ;
-    rdfs:label "GridDispatchPlatform" ;
-    rdfs:subClassOf :ManagementPlatform ;
-    owl:disjointWith :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:SmartCityAsset a owl:Class ;
+ns1:SmartCityAsset a owl:Class ;
     rdfs:label "SmartCityAsset" ;
-    owl:disjointWith :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of SmartCityAsset linked via communicatesMeshWith has only fillers of type PhysicalDevice" ;
+            owl:allValuesFrom ns1:PhysicalDevice ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of SmartCityAsset linked via communicatesMeshWith has only fillers of type SmartCityAsset" ;
+            owl:allValuesFrom ns1:SmartCityAsset ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of SmartCityAsset linked via installedInZone has only fillers of type UrbanZone" ;
+            owl:allValuesFrom ns1:UrbanZone ;
+            owl:onProperty ns1:installedInZone ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of SmartCityAsset linked via communicatesMeshWith has only fillers of type EnvironmentalSensor" ;
+            owl:allValuesFrom ns1:EnvironmentalSensor ;
+            owl:onProperty ns1:communicatesMeshWith ] .
 
-:MobilityAsset a owl:Class ;
-    rdfs:label "MobilityAsset" ;
-    owl:disjointWith :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:EnvironmentalSensor a owl:Class ;
+ns1:EnvironmentalSensor a owl:Class ;
     rdfs:label "EnvironmentalSensor" ;
-    rdfs:subClassOf :SensorDevice ;
-    owl:disjointWith :GridDispatchPlatform,
-        :GridInfrastructure,
-        :GridSegment,
-        :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of EnvironmentalSensor linked via communicatesMeshWith has only fillers of type SmartCityAsset" ;
+            owl:allValuesFrom ns1:SmartCityAsset ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of EnvironmentalSensor linked via installedInZone has only fillers of type UrbanZone" ;
+            owl:allValuesFrom ns1:UrbanZone ;
+            owl:onProperty ns1:installedInZone ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of EnvironmentalSensor linked via communicatesMeshWith has only fillers of type EnvironmentalSensor" ;
+            owl:allValuesFrom ns1:EnvironmentalSensor ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of EnvironmentalSensor linked via communicatesMeshWith has only fillers of type PhysicalDevice" ;
+            owl:allValuesFrom ns1:PhysicalDevice ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        ns1:PhysicalDevice .
 
-:GridSegment a owl:Class ;
-    rdfs:label "GridSegment" ;
-    owl:disjointWith :GridSubstation,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
+ns1:MobilityAsset a owl:Class ;
+    rdfs:label "MobilityAsset" ;
+    owl:disjointWith ns1:SubstationFacility,
+        ns1:TrafficSignalController,
+        ns1:Workorder .
 
-:GridInfrastructure a owl:Class ;
-    rdfs:label "GridInfrastructure" ;
-    owl:disjointWith :GridSegment,
-        :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController .
-
-:GridSubstation a owl:Class ;
-    rdfs:label "GridSubstation" ;
-    rdfs:subClassOf :GridInfrastructure ;
-    owl:disjointWith :HumanOperatedVehicle,
-        :InductiveLoopSensor,
-        :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :UrbanWindTurbine .
-
-:InductiveLoopSensor a owl:Class ;
-    rdfs:label "InductiveLoopSensor" ;
-    rdfs:subClassOf :TrafficSensor ;
-    owl:disjointWith :ManagementPlatform,
-        :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:MunicipalFleetTruck a owl:Class ;
-    rdfs:label "MunicipalFleetTruck" ;
-    rdfs:subClassOf :HumanOperatedVehicle ;
-    owl:disjointWith :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:HumanOperatedVehicle a owl:Class ;
-    rdfs:label "HumanOperatedVehicle" ;
-    rdfs:subClassOf :MobilityAsset ;
-    owl:disjointWith :InductiveLoopSensor,
-        :ManagementPlatform,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:ManagementPlatform a owl:Class ;
-    rdfs:label "ManagementPlatform" ;
-    rdfs:subClassOf :DigitalService ;
-    owl:disjointWith :MobilityAsset,
-        :MunicipalFleetTruck,
-        :PhysicalDevice,
-        :PowerSubstation,
-        :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:PhysicalDevice a owl:Class ;
+ns1:PhysicalDevice a owl:Class ;
     rdfs:label "PhysicalDevice" ;
-    rdfs:subClassOf :SmartCityAsset ;
-    owl:disjointWith :PowerSubstation,
-        :RenewableEnergySource,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of PhysicalDevice linked via communicatesMeshWith has only fillers of type SmartCityAsset" ;
+            owl:allValuesFrom ns1:SmartCityAsset ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of PhysicalDevice linked via communicatesMeshWith has only fillers of type EnvironmentalSensor" ;
+            owl:allValuesFrom ns1:EnvironmentalSensor ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of PhysicalDevice linked via communicatesMeshWith has only fillers of type PhysicalDevice" ;
+            owl:allValuesFrom ns1:PhysicalDevice ;
+            owl:onProperty ns1:communicatesMeshWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of PhysicalDevice linked via installedInZone has only fillers of type UrbanZone" ;
+            owl:allValuesFrom ns1:UrbanZone ;
+            owl:onProperty ns1:installedInZone ] .
 
-:PowerSubstation a owl:Class ;
-    rdfs:label "PowerSubstation" ;
-    owl:disjointWith :RadarSpeedSensor,
-        :RenewableEnergySource,
-        :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine ;
-    owl:equivalentClass :SubstationFacility .
+ns1:communicatesMeshWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "communicatesMeshWith" ;
+    rdfs:domain ns1:EnvironmentalSensor ;
+    rdfs:range ns1:EnvironmentalSensor .
 
-:RadarSpeedSensor a owl:Class ;
-    rdfs:label "RadarSpeedSensor" ;
-    rdfs:subClassOf :TrafficSensor ;
-    owl:disjointWith :RenewableEnergySource,
-        :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:SensorDevice a owl:Class ;
-    rdfs:label "SensorDevice" ;
-    rdfs:subClassOf :PhysicalDevice ;
-    owl:disjointWith :SmartStreetLight,
-        :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:TrafficFlowPredictor a owl:Class ;
-    rdfs:label "TrafficFlowPredictor" ;
-    owl:disjointWith :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:SmartStreetLight a owl:Class ;
-    rdfs:label "SmartStreetLight" ;
-    rdfs:subClassOf :ActuatorDevice ;
-    owl:disjointWith :SolarPhotovoltaicArray,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:Agent_Statistical_inclusion_heuristic a prov:SoftwareAgent ;
-    rdfs:label "Statistical inclusion heuristic" .
-
-:SolarPhotovoltaicArray a owl:Class ;
-    rdfs:label "SolarPhotovoltaicArray" ;
-    rdfs:subClassOf :RenewableEnergySource ;
-    owl:disjointWith :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:RenewableEnergySource a owl:Class ;
-    rdfs:label "RenewableEnergySource" ;
-    rdfs:subClassOf :GridInfrastructure ;
-    owl:disjointWith :SensorDevice,
-        :SmartCityAsset,
-        :SmartStreetLight,
-        :SubstationFacility,
-        :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation .
-
-:SubstationFacility a owl:Class ;
-    rdfs:label "SubstationFacility" ;
-    owl:disjointWith :TrafficFlowPredictor,
-        :TrafficSensor,
-        :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:TrafficSensor a owl:Class ;
-    rdfs:label "TrafficSensor" ;
-    rdfs:subClassOf :SensorDevice ;
-    owl:disjointWith :TrafficSignalController,
-        :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:TrafficSignalController a owl:Class ;
-    rdfs:label "TrafficSignalController" ;
-    rdfs:subClassOf :ActuatorDevice ;
-    owl:disjointWith :TransmissionSubstation,
-        :UrbanWindTurbine .
-
-:TransmissionSubstation a owl:Class ;
-    rdfs:label "TransmissionSubstation" ;
-    rdfs:subClassOf :GridSubstation ;
-    owl:disjointWith :UrbanWindTurbine .
-
-:UrbanWindTurbine a owl:Class ;
-    rdfs:label "UrbanWindTurbine" ;
-    rdfs:subClassOf :RenewableEnergySource .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 6 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 18 ;
+    ns1:confidenceScore 9.24e-01 ;
+    ns1:decisionProbability 9.48e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.191e+00 ;
+    rdf:object ns1:MobilityAsset ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:AutonomousVehicle ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AcousticNoiseSensor ;
-    owl:annotatedTarget :EnvironmentalSensor ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:AutonomousVehicle ;
+    owl:annotatedTarget ns1:MobilityAsset ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 6 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 8.51e-01 ;
+    ns1:decisionProbability 9.62e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.992e+00 ;
+    rdf:object ns1:MobilityAsset ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:MunicipalFleetTruck ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :TrafficSignalController ;
-    owl:annotatedTarget :ActuatorDevice ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:MunicipalFleetTruck ;
+    owl:annotatedTarget ns1:MobilityAsset ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 4 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 4 ;
+    ns1:confidenceScore 7.29e-01 ;
+    ns1:decisionProbability 9.58e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.929e+00 ;
+    rdf:object ns1:HumanOperatedVehicle ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:EmergencyAmbulance ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :SurveillanceDrone ;
-    owl:annotatedTarget :AutonomousAerialVehicle ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:EmergencyAmbulance ;
+    owl:annotatedTarget ns1:HumanOperatedVehicle ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 12 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 11 ;
+    ns1:confidenceScore 8.24e-01 ;
+    ns1:decisionProbability 8.34e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.854e+00 ;
+    rdf:object ns1:SmartCityAsset ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:TrafficSensor ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :ActuatorDevice ;
-    owl:annotatedTarget :PhysicalDevice ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:TrafficSensor ;
+    owl:annotatedTarget ns1:SmartCityAsset ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 7.01e-01 ;
+    ns1:decisionProbability 7.36e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.87e+00 ;
+    rdf:object ns1:GridSubstation ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:DistributionSubstation ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :EmergencyAmbulance ;
-    owl:annotatedTarget :HumanOperatedVehicle ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:DistributionSubstation ;
+    owl:annotatedTarget ns1:GridSubstation ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 10 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 4 ;
+    ns1:confidenceScore 6.61e-01 ;
+    ns1:decisionProbability 9.35e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.013e+00 ;
+    rdf:object ns1:SensorDevice ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:RadarSpeedSensor ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :ManagementPlatform ;
-    owl:annotatedTarget :DigitalService ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:RadarSpeedSensor ;
+    owl:annotatedTarget ns1:SensorDevice ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 6 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 11 ;
+    ns1:confidenceScore 8.25e-01 ;
+    ns1:decisionProbability 9.18e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.807e+00 ;
+    rdf:object ns1:PhysicalDevice ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:EnvironmentalSensor ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :RadarSpeedSensor ;
-    owl:annotatedTarget :TrafficSensor ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:EnvironmentalSensor ;
+    owl:annotatedTarget ns1:PhysicalDevice ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 10 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 8.51e-01 ;
+    ns1:decisionProbability 9.61e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.024e+00 ;
+    rdf:object ns1:AutonomousVehicle ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:AutonomousTransitShuttle ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :RenewableEnergySource ;
-    owl:annotatedTarget :GridInfrastructure ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:AutonomousTransitShuttle ;
+    owl:annotatedTarget ns1:AutonomousVehicle ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 4 ;
+    ns1:confidenceScore 8.04e-01 ;
+    ns1:decisionProbability 9.24e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.009e+00 ;
+    rdf:object ns1:MobilityAsset ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:SurveillanceDrone ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :DistributionSubstation ;
-    owl:annotatedTarget :GridSubstation ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:SurveillanceDrone ;
+    owl:annotatedTarget ns1:MobilityAsset ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 12 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 4 ;
+    ns1:confidenceScore 8.05e-01 ;
+    ns1:decisionProbability 9.26e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.872e+00 ;
+    rdf:object ns1:MobilityAsset ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:EmergencyDeliveryDrone ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :EnvironmentalSensor ;
-    owl:annotatedTarget :SensorDevice ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:EmergencyDeliveryDrone ;
+    owl:annotatedTarget ns1:MobilityAsset ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 6 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 6 ;
+    ns1:confidenceScore 8.72e-01 ;
+    ns1:decisionProbability 9.69e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.258e+00 ;
+    rdf:object ns1:SmartCityAsset ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:SmartStreetLight ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :SmartStreetLight ;
-    owl:annotatedTarget :ActuatorDevice ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:SmartStreetLight ;
+    owl:annotatedTarget ns1:SmartCityAsset ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 6 ;
+    ns1:confidenceScore 8.7e-01 ;
+    ns1:decisionProbability 9.66e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.045e+00 ;
+    rdf:object ns1:EnvironmentalSensor ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:AirQualitySensor ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :TransmissionSubstation ;
-    owl:annotatedTarget :GridSubstation ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:AirQualitySensor ;
+    owl:annotatedTarget ns1:EnvironmentalSensor ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 10 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 8.65e-01 ;
+    ns1:decisionProbability 9.83e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.918e+00 ;
+    rdf:object ns1:RenewableEnergySource ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:UrbanWindTurbine ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :HumanOperatedVehicle ;
-    owl:annotatedTarget :MobilityAsset ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:UrbanWindTurbine ;
+    owl:annotatedTarget ns1:RenewableEnergySource ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 36 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 8.65e-01 ;
+    ns1:decisionProbability 9.82e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.893e+00 ;
+    rdf:object ns1:RenewableEnergySource ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:SolarPhotovoltaicArray ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :PhysicalDevice ;
-    owl:annotatedTarget :SmartCityAsset ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:SolarPhotovoltaicArray ;
+    owl:annotatedTarget ns1:RenewableEnergySource ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 10 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 8 ;
+    ns1:confidenceScore 8.95e-01 ;
+    ns1:decisionProbability 9.69e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.855e+00 ;
+    rdf:object ns1:MobilityAsset ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:AutonomousAerialVehicle ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AutonomousGroundVehicle ;
-    owl:annotatedTarget :AutonomousVehicle ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:AutonomousAerialVehicle ;
+    owl:annotatedTarget ns1:MobilityAsset ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 12 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 6 ;
+    ns1:confidenceScore 8.79e-01 ;
+    ns1:decisionProbability 9.79e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.429e+00 ;
+    rdf:object ns1:PhysicalDevice ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:InductiveLoopSensor ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :TrafficSensor ;
-    owl:annotatedTarget :SensorDevice ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:InductiveLoopSensor ;
+    owl:annotatedTarget ns1:PhysicalDevice ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 10 ;
+    ns1:confidenceScore 8.16e-01 ;
+    ns1:decisionProbability 9.2e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.867e+00 ;
+    rdf:object ns1:PhysicalDevice ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:ActuatorDevice ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :EmergencyDispatchService ;
-    owl:annotatedTarget :ManagementPlatform ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:ActuatorDevice ;
+    owl:annotatedTarget ns1:PhysicalDevice ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 10 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 8.51e-01 ;
+    ns1:decisionProbability 9.62e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.06e+00 ;
+    rdf:object ns1:AutonomousVehicle ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:AutonomousStreetSweeper ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AnalyticsService ;
-    owl:annotatedTarget :DigitalService ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:AutonomousStreetSweeper ;
+    owl:annotatedTarget ns1:AutonomousVehicle ;
+    prov:wasAttributedTo "clef-flash:latest" .
 
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 10 ;
+    ns1:confidenceScore 8.92e-01 ;
+    ns1:decisionProbability 9.43e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.006e+00 ;
+    rdf:object ns1:AutonomousVehicle ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:AutonomousGroundVehicle ;
     owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :UrbanWindTurbine ;
-    owl:annotatedTarget :RenewableEnergySource ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :BatteryEnergyStorage ;
-    owl:annotatedTarget :GridInfrastructure ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 6 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :InductiveLoopSensor ;
-    owl:annotatedTarget :TrafficSensor ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 24 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :SensorDevice ;
-    owl:annotatedTarget :PhysicalDevice ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :SolarPhotovoltaicArray ;
-    owl:annotatedTarget :RenewableEnergySource ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 6 ;
-    :confidenceScore 0.857 ;
-    :decisionProbability 0.857 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AirQualitySensor ;
-    owl:annotatedTarget :EnvironmentalSensor ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AirQualityForecaster ;
-    owl:annotatedTarget :AnalyticsService ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :GridDispatchPlatform ;
-    owl:annotatedTarget :ManagementPlatform ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 20 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :DigitalService ;
-    owl:annotatedTarget :SmartCityAsset ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AutonomousTransitShuttle ;
-    owl:annotatedTarget :AutonomousGroundVehicle ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :MunicipalFleetTruck ;
-    owl:annotatedTarget :HumanOperatedVehicle ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 10 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :GridSubstation ;
-    owl:annotatedTarget :GridInfrastructure ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 18 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AutonomousVehicle ;
-    owl:annotatedTarget :MobilityAsset ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 8 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AutonomousAerialVehicle ;
-    owl:annotatedTarget :AutonomousVehicle ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 5 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :AutonomousStreetSweeper ;
-    owl:annotatedTarget :AutonomousGroundVehicle ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
-
-[] a owl:Axiom ;
-    :aboxSupportCount 4 ;
-    :confidenceScore 1.000 ;
-    :decisionProbability 1.000 ;
-    owl:annotatedProperty rdfs:subClassOf ;
-    owl:annotatedSource :EmergencyDeliveryDrone ;
-    owl:annotatedTarget :AutonomousAerialVehicle ;
-    prov:wasAttributedTo :Agent_Statistical_inclusion_heuristic .
+    owl:annotatedSource ns1:AutonomousGroundVehicle ;
+    owl:annotatedTarget ns1:AutonomousVehicle ;
+    prov:wasAttributedTo "clef-flash:latest" .
 

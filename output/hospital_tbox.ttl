@@ -1,0 +1,703 @@
+@prefix ns1: <http://example.org/hospital#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:ClinicPatient a owl:Class ;
+    rdfs:label "ClinicPatient" ;
+    owl:disjointWith ns1:HealthcareStaff .
+
+ns1:LicensedPhysician a owl:Class ;
+    rdfs:label "LicensedPhysician" ;
+    owl:disjointWith ns1:Treatmentdosage .
+
+ns1:Medicationintakedetails a owl:Class ;
+    rdfs:label "Medicationintakedetails" ;
+    ns1:competencyQuestion "What is the intake frequency, route of administration, and dosage quantity for a given medication?" ;
+    rdfs:comment "PharmaceuticalRegimen captures the details of how a medication is taken, including its frequency, route of administration, and dosage quantity." .
+
+ns1:Ontology a owl:Ontology ;
+    rdfs:label "Core induced ontology (v3.0 Clef-Flash)" ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+ns1:RegisteredNurse a owl:Class ;
+    rdfs:label "RegisteredNurse" ;
+    owl:disjointWith ns1:SpecialistPhysician,
+        ns1:Treatmentdosage .
+
+ns1:SurgicalPatient a owl:Class ;
+    rdfs:label "SurgicalPatient" .
+
+ns1:TriageLevelB a owl:Class ;
+    rdfs:label "TriageLevelB" .
+
+ns1:TriageLevelC a owl:Class ;
+    rdfs:label "TriageLevelC" .
+
+ns1:acuityScore a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "acuityScore" ;
+    rdfs:domain ns1:ICUPatient .
+
+ns1:admissionDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "admissionDate" ;
+    rdfs:domain ns1:Patient .
+
+ns1:appointmentSlot a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "appointmentSlot" ;
+    rdfs:domain ns1:Patient .
+
+ns1:bedNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "bedNumber" ;
+    rdfs:domain ns1:Inpatient .
+
+ns1:bloodPressureSystolic a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "bloodPressureSystolic" ;
+    rdfs:domain ns1:ICUPatient .
+
+ns1:diagnosisLabel a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "diagnosisLabel" ;
+    rdfs:domain ns1:MedicalDiagnosis .
+
+ns1:dosageQuantity a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "dosageQuantity" .
+
+ns1:drugGenericName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "drugGenericName" ;
+    rdfs:domain ns1:PrescriptionDrug .
+
+ns1:fdaApprovalNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "fdaApprovalNumber" ;
+    rdfs:domain ns1:PrescriptionDrug .
+
+ns1:icd10Code a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "icd10Code" ;
+    rdfs:domain ns1:MedicalDiagnosis .
+
+ns1:insuranceProviderName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "insuranceProviderName" ;
+    rdfs:domain ns1:PolicyCoverageLimit .
+
+ns1:intakeFrequency a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "intakeFrequency" .
+
+ns1:labMeasurementValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "labMeasurementValue" .
+
+ns1:licenseId a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "licenseId" ;
+    rdfs:domain ns1:HealthcareStaff .
+
+ns1:patientName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "patientName" ;
+    rdfs:domain ns1:Patient .
+
+ns1:physicianName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "physicianName" ;
+    rdfs:domain ns1:Physician .
+
+ns1:physicianRegistryCode a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "physicianRegistryCode" ;
+    rdfs:domain ns1:MedicalDoctor .
+
+ns1:policyContractNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "policyContractNumber" ;
+    rdfs:domain ns1:PolicyCoverageLimit .
+
+ns1:policyCoverageLimit a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "policyCoverageLimit" ;
+    rdfs:domain ns1:PolicyCoverageLimit .
+
+ns1:referenceRangeNormal a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "referenceRangeNormal" .
+
+ns1:referredPatientTo a owl:ObjectProperty ;
+    rdfs:label "referredPatientTo" ;
+    rdfs:domain ns1:Cardiologist ;
+    rdfs:range ns1:GeneralPractitioner .
+
+ns1:routeAdministration a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "routeAdministration" .
+
+ns1:severityIndex a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "severityIndex" ;
+    rdfs:domain ns1:MedicalDiagnosis .
+
+ns1:staffName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "staffName" ;
+    rdfs:domain ns1:Person .
+
+ns1:testMetricName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "testMetricName" .
+
+ns1:treatmentType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "treatmentType" ;
+    rdfs:domain ns1:ClinicalTreatment .
+
+ns1:triageUrgency a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "triageUrgency" ;
+    rdfs:domain ns1:EmergencyPatient .
+
+ns1:yearsOfExperience a owl:DatatypeProperty ;
+    rdfs:label "yearsOfExperience" ;
+    rdfs:domain ns1:Cardiologist .
+
+ns1:EmergencyPatient a owl:Class ;
+    rdfs:label "EmergencyPatient" .
+
+ns1:Inpatient a owl:Class ;
+    rdfs:label "Inpatient" ;
+    owl:disjointWith ns1:Outpatient .
+
+ns1:MedicalDoctor a owl:Class ;
+    rdfs:label "MedicalDoctor" ;
+    owl:disjointWith ns1:Treatmentdosage .
+
+ns1:Outpatient a owl:Class ;
+    rdfs:label "Outpatient" .
+
+ns1:TriageLevelA a owl:Class ;
+    rdfs:label "TriageLevelA" .
+
+ns1:patientInsurancePolicy a owl:ObjectProperty ;
+    rdfs:label "patientInsurancePolicy" ;
+    rdfs:domain ns1:ICUPatient ;
+    rdfs:range ns1:PolicyCoverageLimit .
+
+ns1:patientLabResult a owl:ObjectProperty ;
+    rdfs:label "patientLabResult" ;
+    rdfs:domain ns1:ICUPatient ;
+    rdfs:range ns1:Patientlabresult .
+
+ns1:subDepartmentOf a owl:ObjectProperty ;
+    rdfs:label "subDepartmentOf" ;
+    rdfs:domain ns1:HospitalDepartment ;
+    rdfs:range ns1:HospitalDepartment .
+
+ns1:transferredToWard a owl:ObjectProperty ;
+    rdfs:label "transferredToWard" ;
+    rdfs:domain ns1:HospitalWard ;
+    rdfs:range ns1:HospitalWard .
+
+ns1:PrescriptionDrug a owl:Class ;
+    rdfs:label "PrescriptionDrug" .
+
+ns1:TestMetricNameEntity a owl:Class ;
+    rdfs:label "TestMetricNameEntity" ;
+    ns1:competencyQuestion "What is the normal range for the test metric 'testMetricName' and what is the corresponding lab measurement value 'labMeasurementValue'?" ;
+    rdfs:comment "TestMetric represents a measurable parameter in a laboratory test, with its normal range and the measured value." ;
+    rdfs:subClassOf ns1:Patientlabresult .
+
+ns1:treatmentPrescriptionDosage a owl:ObjectProperty ;
+    rdfs:label "treatmentPrescriptionDosage" ;
+    rdfs:domain ns1:ClinicalTreatment ;
+    rdfs:range ns1:Treatmentdosage .
+
+ns1:HospitalDepartment a owl:Class ;
+    rdfs:label "HospitalDepartment" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of HospitalDepartment is linked via subDepartmentOf to at least one instance of HospitalDepartment" ;
+            owl:onProperty ns1:subDepartmentOf ;
+            owl:someValuesFrom ns1:HospitalDepartment ] .
+
+ns1:HospitalWard a owl:Class ;
+    rdfs:label "HospitalWard" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of HospitalWard is linked via transferredToWard to at least one instance of HospitalWard" ;
+            owl:onProperty ns1:transferredToWard ;
+            owl:someValuesFrom ns1:HospitalWard ] .
+
+ns1:prescribedForDiagnosis a owl:ObjectProperty ;
+    rdfs:label "prescribedForDiagnosis" ;
+    rdfs:domain ns1:ClinicalTreatment ;
+    rdfs:range ns1:MedicalDiagnosis .
+
+ns1:ClinicalTreatment a owl:Class ;
+    rdfs:label "ClinicalTreatment" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment is linked via assignedAttendingDoctor to at least one instance of Cardiologist" ;
+            owl:onProperty ns1:assignedAttendingDoctor ;
+            owl:someValuesFrom ns1:Cardiologist ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment linked via assignedAttendingDoctor has only fillers of type Physician" ;
+            owl:allValuesFrom ns1:Physician ;
+            owl:onProperty ns1:assignedAttendingDoctor ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment is linked via assignedAttendingDoctor to at least one instance of HealthcareStaff" ;
+            owl:onProperty ns1:assignedAttendingDoctor ;
+            owl:someValuesFrom ns1:HealthcareStaff ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment is linked via assignedAttendingDoctor to at least one instance of Physician" ;
+            owl:onProperty ns1:assignedAttendingDoctor ;
+            owl:someValuesFrom ns1:Physician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment linked via assignedAttendingDoctor has only fillers of type HealthcareStaff" ;
+            owl:allValuesFrom ns1:HealthcareStaff ;
+            owl:onProperty ns1:assignedAttendingDoctor ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment linked via assignedAttendingDoctor has only fillers of type Person" ;
+            owl:allValuesFrom ns1:Person ;
+            owl:onProperty ns1:assignedAttendingDoctor ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment is linked via treatmentPrescriptionDosage to at least one instance of Treatmentdosage" ;
+            owl:onProperty ns1:treatmentPrescriptionDosage ;
+            owl:someValuesFrom ns1:Treatmentdosage ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment linked via treatmentPrescriptionDosage has only fillers of type Treatmentdosage" ;
+            owl:allValuesFrom ns1:Treatmentdosage ;
+            owl:onProperty ns1:treatmentPrescriptionDosage ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment is linked via prescribedForDiagnosis to at least one instance of MedicalDiagnosis" ;
+            owl:onProperty ns1:prescribedForDiagnosis ;
+            owl:someValuesFrom ns1:MedicalDiagnosis ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment is linked via assignedAttendingDoctor to at least one instance of Person" ;
+            owl:onProperty ns1:assignedAttendingDoctor ;
+            owl:someValuesFrom ns1:Person ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment linked via assignedAttendingDoctor has only fillers of type Cardiologist" ;
+            owl:allValuesFrom ns1:Cardiologist ;
+            owl:onProperty ns1:assignedAttendingDoctor ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.6e-01 ;
+            rdfs:comment "Every instance of ClinicalTreatment linked via prescribedForDiagnosis has only fillers of type MedicalDiagnosis" ;
+            owl:allValuesFrom ns1:MedicalDiagnosis ;
+            owl:onProperty ns1:prescribedForDiagnosis ] .
+
+ns1:SpecialistPhysician a owl:Class ;
+    rdfs:label "SpecialistPhysician" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7.33e-01 ;
+            rdfs:comment "Every instance of SpecialistPhysician is linked via consultsWith to at least one instance of SpecialistPhysician" ;
+            owl:onProperty ns1:consultsWith ;
+            owl:someValuesFrom ns1:SpecialistPhysician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.18e-01 ;
+            rdfs:comment "Every instance of SpecialistPhysician is linked via consultsWith to at least one instance of Physician" ;
+            owl:onProperty ns1:consultsWith ;
+            owl:someValuesFrom ns1:Physician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.39e-01 ;
+            rdfs:comment "Every instance of SpecialistPhysician linked via consultsWith has only fillers of type HealthcareStaff" ;
+            owl:allValuesFrom ns1:HealthcareStaff ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.39e-01 ;
+            rdfs:comment "Every instance of SpecialistPhysician is linked via consultsWith to at least one instance of Person" ;
+            owl:onProperty ns1:consultsWith ;
+            owl:someValuesFrom ns1:Person ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.39e-01 ;
+            rdfs:comment "Every instance of SpecialistPhysician linked via consultsWith has only fillers of type Person" ;
+            owl:allValuesFrom ns1:Person ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.39e-01 ;
+            rdfs:comment "Every instance of SpecialistPhysician is linked via consultsWith to at least one instance of HealthcareStaff" ;
+            owl:onProperty ns1:consultsWith ;
+            owl:someValuesFrom ns1:HealthcareStaff ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.18e-01 ;
+            rdfs:comment "Every instance of SpecialistPhysician linked via consultsWith has only fillers of type Physician" ;
+            owl:allValuesFrom ns1:Physician ;
+            owl:onProperty ns1:consultsWith ] .
+
+ns1:Patientlabresult a owl:Class ;
+    rdfs:label "Patientlabresult" ;
+    ns1:competencyQuestion "What is the lab measurement value for a specific patient, and what are the associated normal reference ranges and test metric names?" ;
+    rdfs:comment "PatientLabResult is a class that captures the relationship between a patient and their lab test results, including the measurement value, reference ranges, and test metric names." .
+
+ns1:PolicyCoverageLimit a owl:Class ;
+    rdfs:label "PolicyCoverageLimit" ;
+    ns1:competencyQuestion "What is the policy coverage limit for a given patient's insurance policy, and how is it related to the policy contract number and insurance provider name?" ;
+    rdfs:comment "InsurancePolicy is a class that describes a patient's insurance coverage, including its limits, contract number, and provider details." .
+
+ns1:ICUPatient a owl:Class ;
+    rdfs:label "ICUPatient" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of ICUPatient is linked via patientInsurancePolicy to at least one instance of PolicyCoverageLimit" ;
+            owl:onProperty ns1:patientInsurancePolicy ;
+            owl:someValuesFrom ns1:PolicyCoverageLimit ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of ICUPatient is linked via patientLabResult to at least one instance of Patientlabresult" ;
+            owl:onProperty ns1:patientLabResult ;
+            owl:someValuesFrom ns1:Patientlabresult ],
+        ns1:Patient .
+
+ns1:Neurologist a owl:Class ;
+    rdfs:label "Neurologist" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 1.01e+00 ;
+            rdfs:comment "Every instance of Neurologist linked via consultsWith has only fillers of type Cardiologist" ;
+            owl:allValuesFrom ns1:Cardiologist ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of Neurologist is linked via consultsWith to at least one instance of Physician" ;
+            owl:onProperty ns1:consultsWith ;
+            owl:someValuesFrom ns1:Physician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of Neurologist linked via consultsWith has only fillers of type Physician" ;
+            owl:allValuesFrom ns1:Physician ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Neurologist linked via consultsWith has only fillers of type Person" ;
+            owl:allValuesFrom ns1:Person ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Neurologist linked via consultsWith has only fillers of type HealthcareStaff" ;
+            owl:allValuesFrom ns1:HealthcareStaff ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 1.01e+00 ;
+            rdfs:comment "Every instance of Neurologist is linked via consultsWith to at least one instance of Cardiologist" ;
+            owl:onProperty ns1:consultsWith ;
+            owl:someValuesFrom ns1:Cardiologist ],
+        ns1:Person,
+        ns1:Physician .
+
+ns1:GeneralPractitioner a owl:Class ;
+    rdfs:label "GeneralPractitioner" ;
+    rdfs:subClassOf ns1:HealthcareStaff,
+        ns1:Person,
+        ns1:Physician .
+
+ns1:MedicalDiagnosis a owl:Class ;
+    rdfs:label "MedicalDiagnosis" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 9.39e-01 ;
+            rdfs:comment "Every instance of MedicalDiagnosis linked via diagnosedByPhysician has only fillers of type Person" ;
+            owl:allValuesFrom ns1:Person ;
+            owl:onProperty ns1:diagnosedByPhysician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.39e-01 ;
+            rdfs:comment "Every instance of MedicalDiagnosis is linked via diagnosedByPhysician to at least one instance of Physician" ;
+            owl:onProperty ns1:diagnosedByPhysician ;
+            owl:someValuesFrom ns1:Physician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.39e-01 ;
+            rdfs:comment "Every instance of MedicalDiagnosis is linked via diagnosedByPhysician to at least one instance of Person" ;
+            owl:onProperty ns1:diagnosedByPhysician ;
+            owl:someValuesFrom ns1:Person ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.39e-01 ;
+            rdfs:comment "Every instance of MedicalDiagnosis linked via diagnosedByPhysician has only fillers of type Physician" ;
+            owl:allValuesFrom ns1:Physician ;
+            owl:onProperty ns1:diagnosedByPhysician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.39e-01 ;
+            rdfs:comment "Every instance of MedicalDiagnosis linked via diagnosedByPhysician has only fillers of type HealthcareStaff" ;
+            owl:allValuesFrom ns1:HealthcareStaff ;
+            owl:onProperty ns1:diagnosedByPhysician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.39e-01 ;
+            rdfs:comment "Every instance of MedicalDiagnosis linked via diagnosedByPhysician has only fillers of type Cardiologist" ;
+            owl:allValuesFrom ns1:Cardiologist ;
+            owl:onProperty ns1:diagnosedByPhysician ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.39e-01 ;
+            rdfs:comment "Every instance of MedicalDiagnosis is linked via diagnosedByPhysician to at least one instance of HealthcareStaff" ;
+            owl:onProperty ns1:diagnosedByPhysician ;
+            owl:someValuesFrom ns1:HealthcareStaff ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.39e-01 ;
+            rdfs:comment "Every instance of MedicalDiagnosis is linked via diagnosedByPhysician to at least one instance of Cardiologist" ;
+            owl:onProperty ns1:diagnosedByPhysician ;
+            owl:someValuesFrom ns1:Cardiologist ] .
+
+ns1:Treatmentdosage a owl:Class ;
+    rdfs:label "Treatmentdosage" ;
+    ns1:competencyQuestion "What is the dosage quantity and frequency of intake for a specific treatment, given its prescription dosage route of administration?" ;
+    rdfs:comment "TreatmentDosage represents the quantity and frequency of a medication dosage as prescribed." ;
+    owl:disjointWith ns1:TriageLevelA .
+
+ns1:Patient a owl:Class ;
+    rdfs:label "Patient" ;
+    rdfs:subClassOf ns1:Person .
+
+ns1:assignedAttendingDoctor a owl:ObjectProperty ;
+    rdfs:label "assignedAttendingDoctor" ;
+    rdfs:domain ns1:ClinicalTreatment ;
+    rdfs:range ns1:Cardiologist ;
+    owl:propertyChainAxiom ( ns1:prescribedForDiagnosis ns1:diagnosedByPhysician ) .
+
+ns1:diagnosedByPhysician a owl:ObjectProperty ;
+    rdfs:label "diagnosedByPhysician" ;
+    rdfs:domain ns1:MedicalDiagnosis ;
+    rdfs:range ns1:Cardiologist .
+
+ns1:Cardiologist a owl:Class ;
+    rdfs:label "Cardiologist" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 8.39e-01 ;
+            rdfs:comment "Every instance of Cardiologist is linked via consultsWith to at least one instance of Neurologist" ;
+            owl:onProperty ns1:consultsWith ;
+            owl:someValuesFrom ns1:Neurologist ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Cardiologist linked via consultsWith has only fillers of type HealthcareStaff" ;
+            owl:allValuesFrom ns1:HealthcareStaff ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.39e-01 ;
+            rdfs:comment "Every instance of Cardiologist linked via consultsWith has only fillers of type Neurologist" ;
+            owl:allValuesFrom ns1:Neurologist ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Cardiologist linked via consultsWith has only fillers of type SpecialistPhysician" ;
+            owl:allValuesFrom ns1:SpecialistPhysician ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Cardiologist linked via consultsWith has only fillers of type Person" ;
+            owl:allValuesFrom ns1:Person ;
+            owl:onProperty ns1:consultsWith ],
+        ns1:Person,
+        ns1:Physician .
+
+ns1:HealthcareStaff a owl:Class ;
+    rdfs:label "HealthcareStaff" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of HealthcareStaff linked via consultsWith has only fillers of type Person" ;
+            owl:allValuesFrom ns1:Person ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of HealthcareStaff linked via consultsWith has only fillers of type HealthcareStaff" ;
+            owl:allValuesFrom ns1:HealthcareStaff ;
+            owl:onProperty ns1:consultsWith ] .
+
+ns1:Physician a owl:Class ;
+    rdfs:label "Physician" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Physician linked via consultsWith has only fillers of type SpecialistPhysician" ;
+            owl:allValuesFrom ns1:SpecialistPhysician ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Physician linked via consultsWith has only fillers of type HealthcareStaff" ;
+            owl:allValuesFrom ns1:HealthcareStaff ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Physician linked via consultsWith has only fillers of type Person" ;
+            owl:allValuesFrom ns1:Person ;
+            owl:onProperty ns1:consultsWith ] ;
+    owl:disjointWith ns1:Treatmentdosage .
+
+ns1:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Person linked via consultsWith has only fillers of type Person" ;
+            owl:allValuesFrom ns1:Person ;
+            owl:onProperty ns1:consultsWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of Person linked via consultsWith has only fillers of type HealthcareStaff" ;
+            owl:allValuesFrom ns1:HealthcareStaff ;
+            owl:onProperty ns1:consultsWith ] .
+
+ns1:consultsWith a owl:ObjectProperty ;
+    rdfs:label "consultsWith" ;
+    rdfs:domain ns1:HealthcareStaff ;
+    rdfs:range ns1:HealthcareStaff .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 6 ;
+    ns1:confidenceScore 8.38e-01 ;
+    ns1:decisionProbability 9.19e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.922e+00 ;
+    rdf:object ns1:Physician ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:GeneralPractitioner ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:GeneralPractitioner ;
+    owl:annotatedTarget ns1:Physician ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 7.62e-01 ;
+    ns1:decisionProbability 9.62e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.364e+00 ;
+    rdf:object ns1:HealthcareStaff ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:GeneralPractitioner ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:GeneralPractitioner ;
+    owl:annotatedTarget ns1:HealthcareStaff ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 4 ;
+    ns1:confidenceScore 8.39e-01 ;
+    ns1:decisionProbability 9.77e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.617e+00 ;
+    rdf:object ns1:Person ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:Neurologist ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:Neurologist ;
+    owl:annotatedTarget ns1:Person ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 3 ;
+    ns1:confidenceScore 6.59e-01 ;
+    ns1:decisionProbability 9.13e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.996e+00 ;
+    rdf:object ns1:Physician ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:Neurologist ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:Neurologist ;
+    owl:annotatedTarget ns1:Physician ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 4 ;
+    ns1:confidenceScore 7.99e-01 ;
+    ns1:decisionProbability 9.16e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.231e+00 ;
+    rdf:object ns1:Physician ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:Cardiologist ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:Cardiologist ;
+    owl:annotatedTarget ns1:Physician ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 0 ;
+    ns1:confidenceScore 9e-01 ;
+    ns1:decisionProbability 1e+00 ;
+    ns1:miningMode "intensional_fca" ;
+    ns1:ontologicalNecessityScore 2.5e+00 ;
+    rdf:object ns1:Patientlabresult ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:TestMetricNameEntity ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:TestMetricNameEntity ;
+    owl:annotatedTarget ns1:Patientlabresult ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 6 ;
+    ns1:confidenceScore 8.64e-01 ;
+    ns1:decisionProbability 9.58e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.877e+00 ;
+    rdf:object ns1:Person ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:GeneralPractitioner ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:GeneralPractitioner ;
+    owl:annotatedTarget ns1:Person ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 21 ;
+    ns1:confidenceScore 9.17e-01 ;
+    ns1:decisionProbability 9.29e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.831e+00 ;
+    rdf:object ns1:Person ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:Patient ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:Patient ;
+    owl:annotatedTarget ns1:Person ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 7.64e-01 ;
+    ns1:decisionProbability 9.65e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.077e+00 ;
+    rdf:object ns1:Patient ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:ICUPatient ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:ICUPatient ;
+    owl:annotatedTarget ns1:Patient ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 4 ;
+    ns1:confidenceScore 8.3e-01 ;
+    ns1:decisionProbability 9.63e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.27e+00 ;
+    rdf:object ns1:Person ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:Cardiologist ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:Cardiologist ;
+    owl:annotatedTarget ns1:Person ;
+    prov:wasAttributedTo "clef-flash:latest" .
+

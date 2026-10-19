@@ -1,0 +1,592 @@
+@prefix ns1: <http://example.org/banking#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:CollateralAssetTypeEntity a owl:Class ;
+    rdfs:label "CollateralAssetTypeEntity" ;
+    ns1:competencyQuestion "What type of collateral asset is pledged, and what are its appraised value and associated document ID?" ;
+    rdfs:comment "CollateralAssetType represents the type of asset used as collateral in a financial agreement." .
+
+ns1:LoanAccount a owl:Class ;
+    rdfs:label "LoanAccount" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of LoanAccount linked via securedByCollateral has only fillers of type Collateraltype" ;
+            owl:allValuesFrom ns1:Collateraltype ;
+            owl:onProperty ns1:securedByCollateral ] .
+
+ns1:Monthlymaintenancefee a owl:Class ;
+    rdfs:label "Monthlymaintenancefee" ;
+    ns1:competencyQuestion "What is the monthly maintenance fee and its version according to the current fee schedule, and how does the penalty charge rate apply under these conditions?" ;
+    rdfs:comment "MonthlyMaintenanceFee represents the periodic cost associated with maintaining a service or asset, while FeeScheduleVersion indicates the specific version of the fee schedule in effect, and PenaltyChargeRate denotes the rate at which additional charges are applied for breaches or violations." .
+
+ns1:MortgageLoanAccount a owl:Class ;
+    rdfs:label "MortgageLoanAccount" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7.1e-01 ;
+            rdfs:comment "Every instance of MortgageLoanAccount is linked via securedByCollateral to at least one instance of Collateraltype" ;
+            owl:onProperty ns1:securedByCollateral ;
+            owl:someValuesFrom ns1:Collateraltype ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.1e-01 ;
+            rdfs:comment "Every instance of MortgageLoanAccount linked via securedByCollateral has only fillers of type Collateraltype" ;
+            owl:allValuesFrom ns1:Collateraltype ;
+            owl:onProperty ns1:securedByCollateral ] .
+
+ns1:Ontology a owl:Ontology ;
+    rdfs:label "Core induced ontology (v3.0 Clef-Flash)" ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+ns1:RiskRatingTierC a owl:Class ;
+    rdfs:label "RiskRatingTierC" .
+
+ns1:SecurityAlgorithmTypeEntity a owl:Class ;
+    rdfs:label "SecurityAlgorithmTypeEntity" ;
+    ns1:competencyQuestion "What type of security algorithm is used, and when and with what token serial number does it expire?" ;
+    rdfs:comment "A class that categorizes security algorithms by their type, associated with tokens by their serial number and expiration timestamp." .
+
+ns1:accountBalanceCurrent a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "accountBalanceCurrent" ;
+    rdfs:domain ns1:FinancialAccount .
+
+ns1:appraisedCollateralValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "appraisedCollateralValue" .
+
+ns1:cardCreditLimit a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "cardCreditLimit" ;
+    rdfs:domain ns1:CreditCard .
+
+ns1:cardMaskedPan a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "cardMaskedPan" ;
+    rdfs:domain ns1:BankPaymentCard .
+
+ns1:clientTaxIdentifier a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "clientTaxIdentifier" ;
+    rdfs:domain ns1:AccountHolder .
+
+ns1:coSignerWith a owl:ObjectProperty ;
+    rdfs:label "coSignerWith" ;
+    rdfs:domain ns1:FinancialCustomer ;
+    rdfs:range ns1:FinancialCustomer .
+
+ns1:collateralAssetType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "collateralAssetType" .
+
+ns1:creditScoreFico a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "creditScoreFico" ;
+    rdfs:domain ns1:FinancialCustomer .
+
+ns1:customerLegalName a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "customerLegalName" ;
+    rdfs:domain ns1:FinancialCustomer .
+
+ns1:dailyAtmWithdrawalLimit a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "dailyAtmWithdrawalLimit" ;
+    rdfs:domain ns1:ContactlessDebitCard .
+
+ns1:feeScheduleVersion a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "feeScheduleVersion" .
+
+ns1:ibanIdentifierCode a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "ibanIdentifierCode" ;
+    rdfs:domain ns1:DepositoryAccount .
+
+ns1:instrumentDescription a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "instrumentDescription" ;
+    rdfs:domain ns1:PaymentInstrument .
+
+ns1:interestRateYield a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "interestRateYield" ;
+    rdfs:domain ns1:DepositoryAccount .
+
+ns1:loanInterestRate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "loanInterestRate" ;
+    rdfs:domain ns1:CreditAccount .
+
+ns1:loanMaturityTermMonths a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "loanMaturityTermMonths" ;
+    rdfs:domain ns1:CreditAccount .
+
+ns1:monthlyMaintenanceFee a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "monthlyMaintenanceFee" .
+
+ns1:overdraftLimitAmount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "overdraftLimitAmount" ;
+    rdfs:domain ns1:PremiumCheckingAccount .
+
+ns1:penaltyChargeRate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "penaltyChargeRate" .
+
+ns1:pledgeDocumentId a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "pledgeDocumentId" .
+
+ns1:principalLoanAmount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "principalLoanAmount" ;
+    rdfs:domain ns1:CreditAccount .
+
+ns1:securityAlgorithmType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "securityAlgorithmType" .
+
+ns1:settlementTimestamp a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "settlementTimestamp" ;
+    rdfs:domain ns1:FinancialTransaction .
+
+ns1:tokenExpirationTimestamp a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "tokenExpirationTimestamp" .
+
+ns1:tokenSerialNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "tokenSerialNumber" .
+
+ns1:transactionAmountValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "transactionAmountValue" ;
+    rdfs:domain ns1:FinancialTransaction .
+
+ns1:AccountHolder a owl:Class ;
+    rdfs:label "AccountHolder" .
+
+ns1:BankClient a owl:Class ;
+    rdfs:label "BankClient" .
+
+ns1:DebitCard a owl:Class ;
+    rdfs:label "DebitCard" .
+
+ns1:RiskRatingTierA a owl:Class ;
+    rdfs:label "RiskRatingTierA" .
+
+ns1:RiskRatingTierB a owl:Class ;
+    rdfs:label "RiskRatingTierB" .
+
+ns1:customerSecurityToken a owl:ObjectProperty ;
+    rdfs:label "customerSecurityToken" ;
+    rdfs:domain ns1:FinancialCustomer ;
+    rdfs:range ns1:Securitytoken .
+
+ns1:governedByFeeSchedule a owl:ObjectProperty ;
+    rdfs:label "governedByFeeSchedule" ;
+    rdfs:domain ns1:PremiumCheckingAccount ;
+    rdfs:range ns1:MonthlyMaintenanceFee .
+
+ns1:jointAccountWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "jointAccountWith" ;
+    rdfs:domain ns1:FinancialCustomer ;
+    rdfs:range ns1:FinancialCustomer .
+
+ns1:parentBranchOf a owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "parentBranchOf" ;
+    rdfs:domain ns1:BankBranch ;
+    rdfs:range ns1:BankBranch .
+
+ns1:AutoLoanAccount a owl:Class ;
+    rdfs:label "AutoLoanAccount" ;
+    rdfs:subClassOf ns1:FinancialAccount .
+
+ns1:HighYieldSavingsAccount a owl:Class ;
+    rdfs:label "HighYieldSavingsAccount" ;
+    rdfs:subClassOf ns1:SavingsAccount .
+
+ns1:MonthlyMaintenanceFee a owl:Class ;
+    rdfs:label "MonthlyMaintenanceFee" ;
+    ns1:competencyQuestion "What is the monthly maintenance fee for a given service, considering the current fee schedule version and penalty charge rate, and how does it relate to the fee schedule it is governed by?" ;
+    rdfs:comment "MonthlyMaintenanceFee is a class that defines the periodic cost associated with a service, which is governed by a FeeSchedule and influenced by a PenaltyChargeRate." ;
+    owl:disjointWith ns1:PaymentInstrument,
+        ns1:RiskRatingTierA,
+        ns1:Securitytoken .
+
+ns1:PlatinumCreditCard a owl:Class ;
+    rdfs:label "PlatinumCreditCard" ;
+    rdfs:subClassOf ns1:PaymentInstrument .
+
+ns1:StudentCheckingAccount a owl:Class ;
+    rdfs:label "StudentCheckingAccount" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of StudentCheckingAccount linked via accountPrimaryOwner has only fillers of type FinancialCustomer" ;
+            owl:allValuesFrom ns1:FinancialCustomer ;
+            owl:onProperty ns1:accountPrimaryOwner ] .
+
+ns1:wireTransferredTo a owl:ObjectProperty ;
+    rdfs:label "wireTransferredTo" ;
+    rdfs:domain ns1:BankBranch ;
+    rdfs:range ns1:BankBranch .
+
+ns1:BankPaymentCard a owl:Class ;
+    rdfs:label "BankPaymentCard" ;
+    rdfs:subClassOf ns1:PaymentInstrument .
+
+ns1:ContactlessDebitCard a owl:Class ;
+    rdfs:label "ContactlessDebitCard" ;
+    rdfs:subClassOf ns1:PaymentInstrument ;
+    owl:equivalentClass ns1:DebitCard .
+
+ns1:FinancialTransaction a owl:Class ;
+    rdfs:label "FinancialTransaction" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of FinancialTransaction linked via originatingAccount has only fillers of type FinancialAccount" ;
+            owl:allValuesFrom ns1:FinancialAccount ;
+            owl:onProperty ns1:originatingAccount ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of FinancialTransaction is linked via originatingAccount to at least one instance of CheckingAccount" ;
+            owl:onProperty ns1:originatingAccount ;
+            owl:someValuesFrom ns1:CheckingAccount ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of FinancialTransaction linked via originatingAccount has only fillers of type DepositoryAccount" ;
+            owl:allValuesFrom ns1:DepositoryAccount ;
+            owl:onProperty ns1:originatingAccount ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of FinancialTransaction is linked via originatingAccount to at least one instance of DepositoryAccount" ;
+            owl:onProperty ns1:originatingAccount ;
+            owl:someValuesFrom ns1:DepositoryAccount ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of FinancialTransaction linked via originatingAccount has only fillers of type CheckingAccount" ;
+            owl:allValuesFrom ns1:CheckingAccount ;
+            owl:onProperty ns1:originatingAccount ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of FinancialTransaction linked via originatingAccount has only fillers of type PremiumCheckingAccount" ;
+            owl:allValuesFrom ns1:PremiumCheckingAccount ;
+            owl:onProperty ns1:originatingAccount ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of FinancialTransaction is linked via originatingAccount to at least one instance of PremiumCheckingAccount" ;
+            owl:onProperty ns1:originatingAccount ;
+            owl:someValuesFrom ns1:PremiumCheckingAccount ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 9.01e-01 ;
+            rdfs:comment "Every instance of FinancialTransaction is linked via originatingAccount to at least one instance of FinancialAccount" ;
+            owl:onProperty ns1:originatingAccount ;
+            owl:someValuesFrom ns1:FinancialAccount ] .
+
+ns1:Securitytoken a owl:Class ;
+    rdfs:label "Securitytoken" ;
+    ns1:competencyQuestion "What type of security algorithm is used for a customer's security token, and when does the token expire, given its serial number?" ;
+    rdfs:comment "SecurityToken is a class that represents a customer's security token, characterized by its algorithm type, serial number, and expiration timestamp." ;
+    owl:disjointWith ns1:StudentCheckingAccount .
+
+ns1:CreditCard a owl:Class ;
+    rdfs:label "CreditCard" .
+
+ns1:GoldCreditCard a owl:Class ;
+    rdfs:label "GoldCreditCard" ;
+    rdfs:subClassOf ns1:CreditCard,
+        ns1:PaymentInstrument .
+
+ns1:CheckingAccount a owl:Class ;
+    rdfs:label "CheckingAccount" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 8.1e-01 ;
+            rdfs:comment "Every instance of CheckingAccount linked via accountPrimaryOwner has only fillers of type FinancialCustomer" ;
+            owl:allValuesFrom ns1:FinancialCustomer ;
+            owl:onProperty ns1:accountPrimaryOwner ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 8.1e-01 ;
+            rdfs:comment "Every instance of CheckingAccount is linked via accountPrimaryOwner to at least one instance of FinancialCustomer" ;
+            owl:onProperty ns1:accountPrimaryOwner ;
+            owl:someValuesFrom ns1:FinancialCustomer ],
+        ns1:DepositoryAccount ;
+    owl:disjointWith ns1:SavingsAccount .
+
+ns1:PremiumCheckingAccount a owl:Class ;
+    rdfs:label "PremiumCheckingAccount" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 8.1e-01 ;
+            rdfs:comment "Every instance of PremiumCheckingAccount is linked via governedByFeeSchedule to at least one instance of MonthlyMaintenanceFee" ;
+            owl:onProperty ns1:governedByFeeSchedule ;
+            owl:someValuesFrom ns1:MonthlyMaintenanceFee ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of PremiumCheckingAccount linked via accountPrimaryOwner has only fillers of type FinancialCustomer" ;
+            owl:allValuesFrom ns1:FinancialCustomer ;
+            owl:onProperty ns1:accountPrimaryOwner ] ;
+    owl:disjointWith ns1:RiskRatingTierB,
+        ns1:StudentCheckingAccount .
+
+ns1:securedByCollateral a owl:ObjectProperty ;
+    rdfs:label "securedByCollateral" ;
+    rdfs:domain ns1:CreditAccount ;
+    rdfs:range ns1:Collateraltype .
+
+ns1:Collateraltype a owl:Class ;
+    rdfs:label "Collateraltype" ;
+    ns1:competencyQuestion "What type of collateral is securing a loan, and what is the appraised value of this collateral, given that a specific pledge document is involved?" ;
+    rdfs:comment "A class representing the type of asset used as collateral in a loan agreement." .
+
+ns1:CreditAccount a owl:Class ;
+    rdfs:label "CreditAccount" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of CreditAccount linked via securedByCollateral has only fillers of type Collateraltype" ;
+            owl:allValuesFrom ns1:Collateraltype ;
+            owl:onProperty ns1:securedByCollateral ],
+        ns1:FinancialAccount .
+
+ns1:SavingsAccount a owl:Class ;
+    rdfs:label "SavingsAccount" ;
+    rdfs:subClassOf ns1:FinancialAccount .
+
+ns1:accountPrimaryOwner a owl:ObjectProperty ;
+    rdfs:label "accountPrimaryOwner" ;
+    rdfs:domain ns1:CheckingAccount ;
+    rdfs:range ns1:FinancialCustomer .
+
+ns1:BankBranch a owl:Class ;
+    rdfs:label "BankBranch" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of BankBranch is linked via wireTransferredTo to at least one instance of BankBranch" ;
+            owl:onProperty ns1:wireTransferredTo ;
+            owl:someValuesFrom ns1:BankBranch ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of BankBranch linked via wireTransferredTo has only fillers of type BankBranch" ;
+            owl:allValuesFrom ns1:BankBranch ;
+            owl:onProperty ns1:wireTransferredTo ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7.7e-01 ;
+            rdfs:comment "Every instance of BankBranch is linked via parentBranchOf to at least one instance of BankBranch" ;
+            owl:onProperty ns1:parentBranchOf ;
+            owl:someValuesFrom ns1:BankBranch ] ;
+    owl:disjointWith ns1:BankClient .
+
+ns1:originatingAccount a owl:ObjectProperty ;
+    rdfs:label "originatingAccount" ;
+    rdfs:domain ns1:FinancialTransaction ;
+    rdfs:range ns1:PremiumCheckingAccount .
+
+ns1:DepositoryAccount a owl:Class ;
+    rdfs:label "DepositoryAccount" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of DepositoryAccount linked via accountPrimaryOwner has only fillers of type FinancialCustomer" ;
+            owl:allValuesFrom ns1:FinancialCustomer ;
+            owl:onProperty ns1:accountPrimaryOwner ],
+        ns1:FinancialAccount .
+
+ns1:PaymentInstrument a owl:Class ;
+    rdfs:label "PaymentInstrument" .
+
+ns1:FinancialAccount a owl:Class ;
+    rdfs:label "FinancialAccount" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of FinancialAccount linked via accountPrimaryOwner has only fillers of type FinancialCustomer" ;
+            owl:allValuesFrom ns1:FinancialCustomer ;
+            owl:onProperty ns1:accountPrimaryOwner ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of FinancialAccount linked via securedByCollateral has only fillers of type Collateraltype" ;
+            owl:allValuesFrom ns1:Collateraltype ;
+            owl:onProperty ns1:securedByCollateral ] .
+
+ns1:FinancialCustomer a owl:Class ;
+    rdfs:label "FinancialCustomer" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of FinancialCustomer linked via jointAccountWith has only fillers of type FinancialCustomer" ;
+            owl:allValuesFrom ns1:FinancialCustomer ;
+            owl:onProperty ns1:jointAccountWith ],
+        [ a owl:Restriction ;
+            ns1:celoeScore 7e-01 ;
+            rdfs:comment "Every instance of FinancialCustomer linked via customerSecurityToken has only fillers of type Securitytoken" ;
+            owl:allValuesFrom ns1:Securitytoken ;
+            owl:onProperty ns1:customerSecurityToken ] .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 4 ;
+    ns1:confidenceScore 8.38e-01 ;
+    ns1:decisionProbability 9.75e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.917e+00 ;
+    rdf:object ns1:PaymentInstrument ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:PlatinumCreditCard ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:PlatinumCreditCard ;
+    owl:annotatedTarget ns1:PaymentInstrument ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 8 ;
+    ns1:confidenceScore 8.2e-01 ;
+    ns1:decisionProbability 8.58e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.847e+00 ;
+    rdf:object ns1:FinancialAccount ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:SavingsAccount ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:SavingsAccount ;
+    owl:annotatedTarget ns1:FinancialAccount ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 18 ;
+    ns1:confidenceScore 9.44e-01 ;
+    ns1:decisionProbability 9.79e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.875e+00 ;
+    rdf:object ns1:FinancialAccount ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:CreditAccount ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:CreditAccount ;
+    owl:annotatedTarget ns1:FinancialAccount ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 15 ;
+    ns1:confidenceScore 8.83e-01 ;
+    ns1:decisionProbability 8.98e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.899e+00 ;
+    rdf:object ns1:PaymentInstrument ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:BankPaymentCard ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:BankPaymentCard ;
+    owl:annotatedTarget ns1:PaymentInstrument ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 7 ;
+    ns1:confidenceScore 8.6e-01 ;
+    ns1:decisionProbability 9.32e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.81e+00 ;
+    rdf:object ns1:PaymentInstrument ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:ContactlessDebitCard ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:ContactlessDebitCard ;
+    owl:annotatedTarget ns1:PaymentInstrument ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 7 ;
+    ns1:confidenceScore 7.96e-01 ;
+    ns1:decisionProbability 9.48e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.471e+00 ;
+    rdf:object ns1:SavingsAccount ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:HighYieldSavingsAccount ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:HighYieldSavingsAccount ;
+    owl:annotatedTarget ns1:SavingsAccount ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 8 ;
+    ns1:confidenceScore 8.89e-01 ;
+    ns1:decisionProbability 9.61e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 1.807e+00 ;
+    rdf:object ns1:FinancialAccount ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:AutoLoanAccount ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:AutoLoanAccount ;
+    owl:annotatedTarget ns1:FinancialAccount ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 13 ;
+    ns1:confidenceScore 8.68e-01 ;
+    ns1:decisionProbability 9.6e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.102e+00 ;
+    rdf:object ns1:DepositoryAccount ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:CheckingAccount ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:CheckingAccount ;
+    owl:annotatedTarget ns1:DepositoryAccount ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 8.64e-01 ;
+    ns1:decisionProbability 9.8e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.139e+00 ;
+    rdf:object ns1:CreditCard ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:GoldCreditCard ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:GoldCreditCard ;
+    owl:annotatedTarget ns1:CreditCard ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 5 ;
+    ns1:confidenceScore 8.53e-01 ;
+    ns1:decisionProbability 9.65e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.031e+00 ;
+    rdf:object ns1:PaymentInstrument ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:GoldCreditCard ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:GoldCreditCard ;
+    owl:annotatedTarget ns1:PaymentInstrument ;
+    prov:wasAttributedTo "clef-flash:latest" .
+
+[] a rdf:Statement,
+        owl:Axiom ;
+    ns1:aboxSupportCount 22 ;
+    ns1:confidenceScore 9.5e-01 ;
+    ns1:decisionProbability 9.78e-01 ;
+    ns1:miningMode "extensional" ;
+    ns1:ontologicalNecessityScore 2.134e+00 ;
+    rdf:object ns1:FinancialAccount ;
+    rdf:predicate rdfs:subClassOf ;
+    rdf:subject ns1:DepositoryAccount ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedSource ns1:DepositoryAccount ;
+    owl:annotatedTarget ns1:FinancialAccount ;
+    prov:wasAttributedTo "clef-flash:latest" .
+

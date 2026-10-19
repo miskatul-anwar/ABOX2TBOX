@@ -1,0 +1,723 @@
+@prefix : <http://example.org/enterprise#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:bldg_01 a :EnterpriseAsset,
+        :FacilityAsset,
+        :OfficeFacility ;
+    :facilityLocationCode "CAMPUS-BLDG-01"^^xsd:string .
+
+:bldg_02 a :EnterpriseAsset,
+        :FacilityAsset,
+        :OfficeFacility ;
+    :facilityLocationCode "CAMPUS-BLDG-02"^^xsd:string .
+
+:bldg_03 a :EnterpriseAsset,
+        :FacilityAsset,
+        :OfficeFacility ;
+    :facilityLocationCode "CAMPUS-BLDG-03"^^xsd:string .
+
+:bldg_04 a :EnterpriseAsset,
+        :FacilityAsset,
+        :OfficeFacility ;
+    :facilityLocationCode "CAMPUS-BLDG-04"^^xsd:string .
+
+:bldg_05 a :EnterpriseAsset,
+        :FacilityAsset,
+        :OfficeFacility ;
+    :facilityLocationCode "CAMPUS-BLDG-05"^^xsd:string .
+
+:bldg_06 a :EnterpriseAsset,
+        :FacilityAsset,
+        :OfficeFacility ;
+    :facilityLocationCode "CAMPUS-BLDG-06"^^xsd:string .
+
+:budget_01 a :FiscalBudget ;
+    :allocatedCapitalAmount 300000.00 ;
+    :fiscalYearQuarter "2026-Q2"^^xsd:string .
+
+:budget_02 a :FiscalBudget ;
+    :allocatedCapitalAmount 350000.00 ;
+    :fiscalYearQuarter "2026-Q3"^^xsd:string .
+
+:budget_03 a :FiscalBudget ;
+    :allocatedCapitalAmount 400000.00 ;
+    :fiscalYearQuarter "2026-Q4"^^xsd:string .
+
+:budget_04 a :FiscalBudget ;
+    :allocatedCapitalAmount 450000.00 ;
+    :fiscalYearQuarter "2026-Q1"^^xsd:string .
+
+:budget_05 a :FiscalBudget ;
+    :allocatedCapitalAmount 500000.00 ;
+    :fiscalYearQuarter "2026-Q2"^^xsd:string .
+
+:budget_06 a :FiscalBudget ;
+    :allocatedCapitalAmount 550000.00 ;
+    :fiscalYearQuarter "2026-Q3"^^xsd:string .
+
+:budget_07 a :FiscalBudget ;
+    :allocatedCapitalAmount 600000.00 ;
+    :fiscalYearQuarter "2026-Q4"^^xsd:string .
+
+:budget_08 a :FiscalBudget ;
+    :allocatedCapitalAmount 650000.00 ;
+    :fiscalYearQuarter "2026-Q1"^^xsd:string .
+
+:budget_09 a :FiscalBudget ;
+    :allocatedCapitalAmount 700000.00 ;
+    :fiscalYearQuarter "2026-Q2"^^xsd:string .
+
+:budget_10 a :FiscalBudget ;
+    :allocatedCapitalAmount 750000.00 ;
+    :fiscalYearQuarter "2026-Q3"^^xsd:string .
+
+:cont_ext_01 a :ContractWorker,
+        :CorporateEmployee,
+        :ExternalConsultant,
+        :Person ;
+    :contractAgencyName "Global Consulting Group #1"^^xsd:string ;
+    :fullName "Strategy Consultant 1"^^xsd:string ;
+    :hourlyBillingRate 130.00 .
+
+:cont_ext_02 a :ContractWorker,
+        :CorporateEmployee,
+        :ExternalConsultant,
+        :Person ;
+    :contractAgencyName "Global Consulting Group #2"^^xsd:string ;
+    :fullName "Strategy Consultant 2"^^xsd:string ;
+    :hourlyBillingRate 140.00 .
+
+:cont_ext_03 a :ContractWorker,
+        :CorporateEmployee,
+        :ExternalConsultant,
+        :Person ;
+    :contractAgencyName "Global Consulting Group #3"^^xsd:string ;
+    :fullName "Strategy Consultant 3"^^xsd:string ;
+    :hourlyBillingRate 150.00 .
+
+:cont_ext_04 a :ContractWorker,
+        :CorporateEmployee,
+        :ExternalConsultant,
+        :Person ;
+    :contractAgencyName "Global Consulting Group #4"^^xsd:string ;
+    :fullName "Strategy Consultant 4"^^xsd:string ;
+    :hourlyBillingRate 160.00 .
+
+:cont_ext_05 a :ContractWorker,
+        :CorporateEmployee,
+        :ExternalConsultant,
+        :Person ;
+    :contractAgencyName "Global Consulting Group #5"^^xsd:string ;
+    :fullName "Strategy Consultant 5"^^xsd:string ;
+    :hourlyBillingRate 170.00 .
+
+:cont_ext_06 a :ContractWorker,
+        :CorporateEmployee,
+        :ExternalConsultant,
+        :Person ;
+    :contractAgencyName "Global Consulting Group #6"^^xsd:string ;
+    :fullName "Strategy Consultant 6"^^xsd:string ;
+    :hourlyBillingRate 180.00 .
+
+:cont_free_01 a :ContractWorker,
+        :CorporateEmployee,
+        :FreelanceContractor,
+        :Person ;
+    :fullName "Technical Contractor 1"^^xsd:string ;
+    :hourlyBillingRate 90.00 .
+
+:cont_free_02 a :ContractWorker,
+        :CorporateEmployee,
+        :FreelanceContractor,
+        :Person ;
+    :fullName "Technical Contractor 2"^^xsd:string ;
+    :hourlyBillingRate 95.00 .
+
+:cont_free_03 a :ContractWorker,
+        :CorporateEmployee,
+        :FreelanceContractor,
+        :Person ;
+    :fullName "Technical Contractor 3"^^xsd:string ;
+    :hourlyBillingRate 100.00 .
+
+:cont_free_04 a :ContractWorker,
+        :CorporateEmployee,
+        :FreelanceContractor,
+        :Person ;
+    :fullName "Technical Contractor 4"^^xsd:string ;
+    :hourlyBillingRate 105.00 .
+
+:cont_free_05 a :ContractWorker,
+        :CorporateEmployee,
+        :FreelanceContractor,
+        :Person ;
+    :fullName "Technical Contractor 5"^^xsd:string ;
+    :hourlyBillingRate 110.00 .
+
+:cont_free_06 a :ContractWorker,
+        :CorporateEmployee,
+        :FreelanceContractor,
+        :Person ;
+    :fullName "Technical Contractor 6"^^xsd:string ;
+    :hourlyBillingRate 115.00 .
+
+:dc_01 a :DatacenterFacility,
+        :EnterpriseAsset,
+        :FacilityAsset ;
+    :facilityLocationCode "DC-VAULT-01"^^xsd:string .
+
+:dc_02 a :DatacenterFacility,
+        :EnterpriseAsset,
+        :FacilityAsset ;
+    :facilityLocationCode "DC-VAULT-02"^^xsd:string .
+
+:dc_03 a :DatacenterFacility,
+        :EnterpriseAsset,
+        :FacilityAsset ;
+    :facilityLocationCode "DC-VAULT-03"^^xsd:string .
+
+:dc_04 a :DatacenterFacility,
+        :EnterpriseAsset,
+        :FacilityAsset ;
+    :facilityLocationCode "DC-VAULT-04"^^xsd:string .
+
+:dc_05 a :DatacenterFacility,
+        :EnterpriseAsset,
+        :FacilityAsset ;
+    :facilityLocationCode "DC-VAULT-05"^^xsd:string .
+
+:dc_06 a :DatacenterFacility,
+        :EnterpriseAsset,
+        :FacilityAsset ;
+    :facilityLocationCode "DC-VAULT-06"^^xsd:string .
+
+:div_ops_1 a :EnterpriseDepartment ;
+    :advises :div_ops_2,
+        :div_ops_3 ;
+    :subDivisionOf :div_ops_2,
+        :div_ops_3 .
+
+:div_tech_1 a :EnterpriseDepartment ;
+    :advises :div_tech_2 ;
+    :subDivisionOf :div_tech_2,
+        :div_tech_3 .
+
+:emp_jr_03 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :Person ;
+    :annualSalary 87000.00 ;
+    :employeeCorporateId "CORP-JR-0003"^^xsd:string ;
+    :employeePerformanceReview :perf_rev_03 ;
+    :fullName "Associate Analyst 3"^^xsd:string ;
+    :submittedExpenseReport :expense_03 .
+
+:emp_jr_04 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :Person ;
+    :annualSalary 91000.00 ;
+    :employeeCorporateId "CORP-JR-0004"^^xsd:string ;
+    :employeePerformanceReview :perf_rev_04 ;
+    :fullName "Associate Analyst 4"^^xsd:string ;
+    :submittedExpenseReport :expense_04 .
+
+:emp_jr_05 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :Person ;
+    :annualSalary 95000.00 ;
+    :employeeCorporateId "CORP-JR-0005"^^xsd:string ;
+    :employeePerformanceReview :perf_rev_05 ;
+    :fullName "Associate Analyst 5"^^xsd:string ;
+    :submittedExpenseReport :expense_05 .
+
+:emp_jr_06 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :Person ;
+    :annualSalary 99000.00 ;
+    :employeeCorporateId "CORP-JR-0006"^^xsd:string ;
+    :employeePerformanceReview :perf_rev_06 ;
+    :fullName "Associate Analyst 6"^^xsd:string ;
+    :submittedExpenseReport :expense_06 .
+
+:emp_jr_07 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :Person ;
+    :annualSalary 103000.00 ;
+    :employeeCorporateId "CORP-JR-0007"^^xsd:string ;
+    :employeePerformanceReview :perf_rev_07 ;
+    :fullName "Associate Analyst 7"^^xsd:string ;
+    :submittedExpenseReport :expense_07 .
+
+:emp_jr_08 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :Person ;
+    :annualSalary 107000.00 ;
+    :employeeCorporateId "CORP-JR-0008"^^xsd:string ;
+    :employeePerformanceReview :perf_rev_08 ;
+    :fullName "Associate Analyst 8"^^xsd:string ;
+    :submittedExpenseReport :expense_08 .
+
+:emp_sr_09 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 202000.00 ;
+    :employeeCorporateId "CORP-ENG-0009"^^xsd:string ;
+    :fullName "Senior Staff Engineer 9"^^xsd:string ;
+    :officeRoomNumber "ENG-LAB-09"^^xsd:string .
+
+:emp_sr_10 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 210000.00 ;
+    :employeeCorporateId "CORP-ENG-0010"^^xsd:string ;
+    :fullName "Senior Staff Engineer 10"^^xsd:string ;
+    :officeRoomNumber "ENG-LAB-10"^^xsd:string .
+
+:noisy_corporate_worker a :ExecutiveDirector,
+        :ExternalConsultant ;
+    :annualSalary 195000.00 ;
+    :fullName "Dual Contract-Fulltime Advisory Officer"^^xsd:string .
+
+:proj_01 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_01 ;
+    :projectName "Enterprise Transformation Phase 1"^^xsd:string ;
+    :projectStartDate "2026-001-01"^^xsd:string .
+
+:proj_02 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_02 ;
+    :projectName "Enterprise Transformation Phase 2"^^xsd:string ;
+    :projectStartDate "2026-002-01"^^xsd:string .
+
+:proj_03 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_03 ;
+    :projectName "Enterprise Transformation Phase 3"^^xsd:string ;
+    :projectStartDate "2026-003-01"^^xsd:string .
+
+:proj_04 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_04 ;
+    :projectName "Enterprise Transformation Phase 4"^^xsd:string ;
+    :projectStartDate "2026-004-01"^^xsd:string .
+
+:proj_05 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_04 ;
+    :projectName "Enterprise Transformation Phase 5"^^xsd:string ;
+    :projectStartDate "2026-005-01"^^xsd:string .
+
+:proj_06 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_04 ;
+    :projectName "Enterprise Transformation Phase 6"^^xsd:string ;
+    :projectStartDate "2026-006-01"^^xsd:string .
+
+:proj_07 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_04 ;
+    :projectName "Enterprise Transformation Phase 7"^^xsd:string ;
+    :projectStartDate "2026-007-01"^^xsd:string .
+
+:proj_08 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_04 ;
+    :projectName "Enterprise Transformation Phase 8"^^xsd:string ;
+    :projectStartDate "2026-008-01"^^xsd:string .
+
+:proj_09 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_04 ;
+    :projectName "Enterprise Transformation Phase 9"^^xsd:string ;
+    :projectStartDate "2026-009-01"^^xsd:string .
+
+:proj_10 a :BusinessProject ;
+    :assignedProjectLead :emp_exec_04 ;
+    :projectName "Enterprise Transformation Phase 10"^^xsd:string ;
+    :projectStartDate "2026-009-01"^^xsd:string .
+
+:proj_milestone_a_01 a :ProjectMilestoneA,
+        :ProjectMilestoneB .
+
+:proj_milestone_a_02 a :ProjectMilestoneA,
+        :ProjectMilestoneB .
+
+:proj_milestone_a_03 a :ProjectMilestoneA,
+        :ProjectMilestoneB .
+
+:proj_milestone_a_04 a :ProjectMilestoneA,
+        :ProjectMilestoneB .
+
+:proj_milestone_a_05 a :ProjectMilestoneA,
+        :ProjectMilestoneB .
+
+:proj_milestone_b_01 a :ProjectMilestoneB,
+        :ProjectMilestoneC .
+
+:proj_milestone_b_02 a :ProjectMilestoneB,
+        :ProjectMilestoneC .
+
+:proj_milestone_b_03 a :ProjectMilestoneB,
+        :ProjectMilestoneC .
+
+:proj_milestone_b_04 a :ProjectMilestoneB,
+        :ProjectMilestoneC .
+
+:proj_milestone_b_05 a :ProjectMilestoneB,
+        :ProjectMilestoneC .
+
+:proj_milestone_c_01 a :ProjectMilestoneA,
+        :ProjectMilestoneC .
+
+:proj_milestone_c_02 a :ProjectMilestoneA,
+        :ProjectMilestoneC .
+
+:proj_milestone_c_03 a :ProjectMilestoneA,
+        :ProjectMilestoneC .
+
+:proj_milestone_c_04 a :ProjectMilestoneA,
+        :ProjectMilestoneC .
+
+:proj_milestone_c_05 a :ProjectMilestoneA,
+        :ProjectMilestoneC .
+
+:srv_01 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :ServerAsset ;
+    :assetDepreciationValue 11000.00 ;
+    :assetHostname "srv-prod-01.corp.internal"^^xsd:string ;
+    :assignedSoftwareLicense :lic_01 .
+
+:srv_02 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :ServerAsset ;
+    :assetDepreciationValue 10000.00 ;
+    :assetHostname "srv-prod-02.corp.internal"^^xsd:string ;
+    :assignedSoftwareLicense :lic_02 .
+
+:srv_03 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :ServerAsset ;
+    :assetDepreciationValue 9000.00 ;
+    :assetHostname "srv-prod-03.corp.internal"^^xsd:string ;
+    :assignedSoftwareLicense :lic_03 .
+
+:srv_04 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :ServerAsset ;
+    :assetDepreciationValue 8000.00 ;
+    :assetHostname "srv-prod-04.corp.internal"^^xsd:string ;
+    :assignedSoftwareLicense :lic_04 .
+
+:srv_05 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :ServerAsset ;
+    :assetDepreciationValue 7000.00 ;
+    :assetHostname "srv-prod-05.corp.internal"^^xsd:string ;
+    :assignedSoftwareLicense :lic_05 .
+
+:srv_06 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :ServerAsset ;
+    :assetDepreciationValue 6000.00 ;
+    :assetHostname "srv-prod-06.corp.internal"^^xsd:string ;
+    :assignedSoftwareLicense :lic_06,
+        :lic_07,
+        :lic_08 .
+
+:staff_comp_01 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0001"^^xsd:string .
+
+:staff_comp_02 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0002"^^xsd:string .
+
+:staff_comp_03 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0003"^^xsd:string .
+
+:staff_comp_04 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0004"^^xsd:string .
+
+:staff_comp_05 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0005"^^xsd:string .
+
+:staff_comp_06 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0006"^^xsd:string .
+
+:staff_comp_07 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0007"^^xsd:string .
+
+:staff_comp_08 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0008"^^xsd:string .
+
+:staff_comp_09 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0009"^^xsd:string .
+
+:staff_comp_10 a :CompanyEmployee,
+        :StaffMember ;
+    :payrollId "PAYROLL-0010"^^xsd:string .
+
+:ws_01 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :WorkstationAsset ;
+    :assetHostname "ws-dev-01.corp.internal"^^xsd:string .
+
+:ws_02 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :WorkstationAsset ;
+    :assetHostname "ws-dev-02.corp.internal"^^xsd:string .
+
+:ws_03 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :WorkstationAsset ;
+    :assetHostname "ws-dev-03.corp.internal"^^xsd:string .
+
+:ws_04 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :WorkstationAsset ;
+    :assetHostname "ws-dev-04.corp.internal"^^xsd:string .
+
+:ws_05 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :WorkstationAsset ;
+    :assetHostname "ws-dev-05.corp.internal"^^xsd:string .
+
+:ws_06 a :ComputingDevice,
+        :EnterpriseAsset,
+        :HardwareAsset,
+        :WorkstationAsset ;
+    :assetHostname "ws-dev-06.corp.internal"^^xsd:string .
+
+:emp_jr_01 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :Person ;
+    :annualSalary 79000.00 ;
+    :employeeCorporateId "CORP-JR-0001"^^xsd:string ;
+    :employeePerformanceReview :perf_rev_01 ;
+    :fullName "Associate Analyst 1"^^xsd:string ;
+    :mentors :emp_exec_01 ;
+    :submittedExpenseReport :expense_01 .
+
+:emp_jr_02 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :JuniorFullTimeEmployee,
+        :Person ;
+    :annualSalary 83000.00 ;
+    :employeeCorporateId "CORP-JR-0002"^^xsd:string ;
+    :employeePerformanceReview :perf_rev_02 ;
+    :fullName "Associate Analyst 2"^^xsd:string ;
+    :submittedExpenseReport :expense_02 .
+
+:emp_sr_05 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 170000.00 ;
+    :collaboratesWith :emp_exec_01 ;
+    :employeeCorporateId "CORP-ENG-0005"^^xsd:string ;
+    :fullName "Senior Staff Engineer 5"^^xsd:string ;
+    :officeRoomNumber "ENG-LAB-05"^^xsd:string .
+
+:emp_sr_06 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 178000.00 ;
+    :collaboratesWith :emp_exec_02 ;
+    :employeeCorporateId "CORP-ENG-0006"^^xsd:string ;
+    :fullName "Senior Staff Engineer 6"^^xsd:string ;
+    :officeRoomNumber "ENG-LAB-06"^^xsd:string .
+
+:emp_sr_07 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 186000.00 ;
+    :collaboratesWith :emp_exec_03 ;
+    :employeeCorporateId "CORP-ENG-0007"^^xsd:string ;
+    :fullName "Senior Staff Engineer 7"^^xsd:string ;
+    :officeRoomNumber "ENG-LAB-07"^^xsd:string .
+
+:emp_sr_08 a :CorporateEmployee,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 194000.00 ;
+    :collaboratesWith :emp_exec_04 ;
+    :employeeCorporateId "CORP-ENG-0008"^^xsd:string ;
+    :fullName "Senior Staff Engineer 8"^^xsd:string ;
+    :officeRoomNumber "ENG-LAB-08"^^xsd:string .
+
+:expense_01 :approvalStatusCode "APPROVED"^^xsd:string ;
+    :expenseCategoryCode "TRAVEL_LODGING"^^xsd:string ;
+    :reimbursementAmount 395.00 .
+
+:expense_02 :approvalStatusCode "APPROVED"^^xsd:string ;
+    :expenseCategoryCode "TRAVEL_LODGING"^^xsd:string ;
+    :reimbursementAmount 440.00 .
+
+:expense_03 :approvalStatusCode "APPROVED"^^xsd:string ;
+    :expenseCategoryCode "TRAVEL_LODGING"^^xsd:string ;
+    :reimbursementAmount 485.00 .
+
+:expense_04 :approvalStatusCode "APPROVED"^^xsd:string ;
+    :expenseCategoryCode "TRAVEL_LODGING"^^xsd:string ;
+    :reimbursementAmount 530.00 .
+
+:expense_05 :approvalStatusCode "APPROVED"^^xsd:string ;
+    :expenseCategoryCode "TRAVEL_LODGING"^^xsd:string ;
+    :reimbursementAmount 575.00 .
+
+:expense_06 :approvalStatusCode "APPROVED"^^xsd:string ;
+    :expenseCategoryCode "TRAVEL_LODGING"^^xsd:string ;
+    :reimbursementAmount 620.00 .
+
+:expense_07 :approvalStatusCode "APPROVED"^^xsd:string ;
+    :expenseCategoryCode "TRAVEL_LODGING"^^xsd:string ;
+    :reimbursementAmount 665.00 .
+
+:expense_08 :approvalStatusCode "APPROVED"^^xsd:string ;
+    :expenseCategoryCode "TRAVEL_LODGING"^^xsd:string ;
+    :reimbursementAmount 710.00 .
+
+:lic_01 :expirationDatePeriod "2028-12-31"^^xsd:string ;
+    :licenseKeyIdentifier "LIC-KEY-ENTERPRISE-00001"^^xsd:string ;
+    :vendorEntityName "OracleEnterpriseCorp #1"^^xsd:string .
+
+:lic_02 :expirationDatePeriod "2028-12-31"^^xsd:string ;
+    :licenseKeyIdentifier "LIC-KEY-ENTERPRISE-00002"^^xsd:string ;
+    :vendorEntityName "OracleEnterpriseCorp #2"^^xsd:string .
+
+:lic_03 :expirationDatePeriod "2028-12-31"^^xsd:string ;
+    :licenseKeyIdentifier "LIC-KEY-ENTERPRISE-00003"^^xsd:string ;
+    :vendorEntityName "OracleEnterpriseCorp #3"^^xsd:string .
+
+:lic_04 :expirationDatePeriod "2028-12-31"^^xsd:string ;
+    :licenseKeyIdentifier "LIC-KEY-ENTERPRISE-00004"^^xsd:string ;
+    :vendorEntityName "OracleEnterpriseCorp #4"^^xsd:string .
+
+:lic_05 :expirationDatePeriod "2028-12-31"^^xsd:string ;
+    :licenseKeyIdentifier "LIC-KEY-ENTERPRISE-00005"^^xsd:string ;
+    :vendorEntityName "OracleEnterpriseCorp #5"^^xsd:string .
+
+:lic_06 :expirationDatePeriod "2028-12-31"^^xsd:string ;
+    :licenseKeyIdentifier "LIC-KEY-ENTERPRISE-00006"^^xsd:string ;
+    :vendorEntityName "OracleEnterpriseCorp #6"^^xsd:string .
+
+:lic_07 :expirationDatePeriod "2028-12-31"^^xsd:string ;
+    :licenseKeyIdentifier "LIC-KEY-ENTERPRISE-00007"^^xsd:string ;
+    :vendorEntityName "OracleEnterpriseCorp #7"^^xsd:string .
+
+:lic_08 :expirationDatePeriod "2028-12-31"^^xsd:string ;
+    :licenseKeyIdentifier "LIC-KEY-ENTERPRISE-00008"^^xsd:string ;
+    :vendorEntityName "OracleEnterpriseCorp #8"^^xsd:string .
+
+:perf_rev_01 :performanceEvaluationPeriod "FY2026-H1"^^xsd:string ;
+    :reviewRatingScore 5 ;
+    :reviewerFeedbackNotes "Consistently exceeds core project deliverables"^^xsd:string .
+
+:perf_rev_02 :performanceEvaluationPeriod "FY2026-H1"^^xsd:string ;
+    :reviewRatingScore 4 ;
+    :reviewerFeedbackNotes "Consistently exceeds core project deliverables"^^xsd:string .
+
+:perf_rev_03 :performanceEvaluationPeriod "FY2026-H1"^^xsd:string ;
+    :reviewRatingScore 5 ;
+    :reviewerFeedbackNotes "Consistently exceeds core project deliverables"^^xsd:string .
+
+:perf_rev_04 :performanceEvaluationPeriod "FY2026-H1"^^xsd:string ;
+    :reviewRatingScore 4 ;
+    :reviewerFeedbackNotes "Consistently exceeds core project deliverables"^^xsd:string .
+
+:perf_rev_05 :performanceEvaluationPeriod "FY2026-H1"^^xsd:string ;
+    :reviewRatingScore 5 ;
+    :reviewerFeedbackNotes "Consistently exceeds core project deliverables"^^xsd:string .
+
+:perf_rev_06 :performanceEvaluationPeriod "FY2026-H1"^^xsd:string ;
+    :reviewRatingScore 4 ;
+    :reviewerFeedbackNotes "Consistently exceeds core project deliverables"^^xsd:string .
+
+:perf_rev_07 :performanceEvaluationPeriod "FY2026-H1"^^xsd:string ;
+    :reviewRatingScore 5 ;
+    :reviewerFeedbackNotes "Consistently exceeds core project deliverables"^^xsd:string .
+
+:perf_rev_08 :performanceEvaluationPeriod "FY2026-H1"^^xsd:string ;
+    :reviewRatingScore 4 ;
+    :reviewerFeedbackNotes "Consistently exceeds core project deliverables"^^xsd:string .
+
+:div_ops_2 a :EnterpriseDepartment ;
+    :advises :div_ops_3 ;
+    :subDivisionOf :div_ops_3 .
+
+:div_tech_2 a :EnterpriseDepartment ;
+    :advises :div_tech_3 ;
+    :subDivisionOf :div_tech_3 .
+
+:emp_exec_02 a :CorporateEmployee,
+        :ExecutiveDirector,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 210000.00 ;
+    :collaboratesWith :emp_sr_06 ;
+    :employeeCorporateId "CORP-EXEC-0002"^^xsd:string ;
+    :fullName "Director Alexander Vance 2"^^xsd:string ;
+    :mentors :emp_jr_02 ;
+    :officeRoomNumber "EXEC-SUITE-02"^^xsd:string .
+
+:emp_exec_03 a :CorporateEmployee,
+        :ExecutiveDirector,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 225000.00 ;
+    :collaboratesWith :emp_sr_07 ;
+    :employeeCorporateId "CORP-EXEC-0003"^^xsd:string ;
+    :fullName "Director Alexander Vance 3"^^xsd:string ;
+    :officeRoomNumber "EXEC-SUITE-03"^^xsd:string .
+
+:div_tech_3 a :EnterpriseDepartment .
+
+:emp_exec_01 a :CorporateEmployee,
+        :ExecutiveDirector,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 195000.00 ;
+    :collaboratesWith :emp_sr_05 ;
+    :employeeCorporateId "CORP-EXEC-0001"^^xsd:string ;
+    :fullName "Director Alexander Vance 1"^^xsd:string ;
+    :mentors :emp_jr_01 ;
+    :officeRoomNumber "EXEC-SUITE-01"^^xsd:string .
+
+:div_ops_3 a :EnterpriseDepartment .
+
+:emp_exec_04 a :CorporateEmployee,
+        :ExecutiveDirector,
+        :FullTimeEmployee,
+        :Person,
+        :SeniorFullTimeEmployee ;
+    :annualSalary 240000.00 ;
+    :collaboratesWith :emp_sr_08 ;
+    :employeeCorporateId "CORP-EXEC-0004"^^xsd:string ;
+    :fullName "Director Alexander Vance 4"^^xsd:string ;
+    :officeRoomNumber "EXEC-SUITE-04"^^xsd:string .
+

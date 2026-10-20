@@ -1,6 +1,9 @@
 # Project documentation
 
-Read [project-guide.pdf](project-guide.pdf). Its editable source is
+For the current v4.0 notebook, read the root [README](../README.md) and
+[falsification audit](falsification.md).
+
+The historical [project-guide.pdf](project-guide.pdf) describes v3.1. Its editable source is
 [project-guide.tex](project-guide.tex).
 
 Rebuild from the repository root:
@@ -14,7 +17,7 @@ The build runs inside `docs/`. The PDF and all LaTeX auxiliary files (`.aux`,
 configuration or font caches are directed to `.texmf-config/` and `.texmf-var/`
 inside this directory. The build deliberately retains its residual files.
 
-The guide describes implementation commit `7a98c41`, explains the current
+The guide describes implementation commit `7a98c41`, explains that version's
 single-model design, and distinguishes implemented behavior, measured checks,
 engineering judgments, and proposed extensions. External references are linked
 in the PDF. Application code and datasets are not modified by this documentation

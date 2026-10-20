@@ -15,8 +15,8 @@ from rdflib.namespace import OWL, RDF, RDFS
 from pipeline_support import (DecisionTransport, calibration_metrics, class_closure,
     confirm_axiom, number, recover_assertions, repair_roles, validate_export)
 
-ROOT = Path(__file__).parent
-CELLS = json.loads((ROOT / 'abox2tbox.ipynb').read_text())['cells']
+ROOT = Path(__file__).resolve().parent.parent
+CELLS = json.loads((((ROOT / "ABOX2TBOX.ipynb") if (ROOT / "ABOX2TBOX.ipynb").exists() else (ROOT / "abox2tbox.ipynb"))).read_text())['cells']
 EX = Namespace('urn:test:')
 
 
@@ -341,7 +341,7 @@ def test_mining_never_reads_held_out_assertions(monkeypatch, tmp_path):
 def test_holdout_split_reproducible_across_hash_seeds(tmp_path):
     script = '''import json
 from pathlib import Path
-cells=json.loads(Path('abox2tbox.ipynb').read_text())['cells']
+cells=json.loads((Path("ABOX2TBOX.ipynb") if Path("ABOX2TBOX.ipynb").exists() else Path("abox2tbox.ipynb")).read_text())['cells']
 ns={}
 for i in (3,4,5,7): exec(''.join(cells[i]['source']),ns)
 print(json.dumps([ns['held_out_type_assertions'],ns['held_out_role_assertions']],sort_keys=True))
@@ -357,6 +357,6 @@ print(json.dumps([ns['held_out_type_assertions'],ns['held_out_role_assertions']]
 
 
 def test_generator_matches_notebook_without_executing_it(tmp_path):
-    subprocess.run([sys.executable, str(ROOT / 'build_notebook.py')], cwd=tmp_path, check=True)
+    subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build_notebook.py') if (ROOT / 'scripts' / 'build_notebook.py').exists() else str(ROOT / 'build_notebook.py')], cwd=tmp_path, check=True)
     generated = json.loads((tmp_path / 'abox2tbox.ipynb').read_text())
     assert generated['cells'] == CELLS

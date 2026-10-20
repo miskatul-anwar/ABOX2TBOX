@@ -43,10 +43,10 @@ from rdflib.namespace import OWL, RDF, RDFS
 # Configuration & Domain Benchmarks Specification
 # ==============================================================================
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NOTEBOOK_PATH = (
-    os.path.join(BASE_DIR, "abox2tbox.ipynb")
-    if os.path.exists(os.path.join(BASE_DIR, "abox2tbox.ipynb"))
+    ((os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) if os.path.exists(os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) else os.path.join(BASE_DIR, "abox2tbox.ipynb"))
+    if os.path.exists(((os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) if os.path.exists(os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) else os.path.join(BASE_DIR, "abox2tbox.ipynb")))
     else os.path.join(BASE_DIR, "ABox2TBox.ipynb")
 )
 _OUTPUT_TEMP = tempfile.TemporaryDirectory(prefix="abox2tbox-domain-tests-")

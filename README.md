@@ -1,96 +1,123 @@
-# ABox-to-TBox induction
+# ABox-to-TBox induction, v4.0
 
-Run `abox2tbox.ipynb` from this directory, in cell order. Install the pinned Python
-dependencies with `python -m pip install -r requirements.txt`. HermiT also requires
-a working Java runtime. The notebook no longer installs or upgrades packages on
-every execution.
-
-The default input remains `input/agriAbox.ttl`. Paths and transport settings can
-be overridden before starting the kernel:
+Run `ABOX2TBOX.ipynb` (or `abox2tbox.ipynb`) from this directory in cell order. It automatically discovers
+schema candidates, tries to falsify them, validates the surviving ontology, and
+writes a TBox plus an evidence ledger. No model or human decisions are required.
 
 ```sh
-export USE_LLM=false
+python -m pip install -r requirements.txt
+# HermiT also requires a working Java runtime.
 export ABOX_INPUT_PATH="$PWD/input/ABox.ttl"
 export TBOX_OUTPUT_PATH=/tmp/abox2tbox/TBox.ttl
 export TELEMETRY_PLOT_PATH=/tmp/abox2tbox/telemetry.png
-jupyter notebook abox2tbox.ipynb
+jupyter notebook ABOX2TBOX.ipynb
 ```
 
-For model-assisted induction, set `USE_LLM=true`, `OLLAMA_BASE_URL`, and
-`MODEL_DECISION`. The notebook preserves the existing private-server default,
-`http://100.75.221.29:11434`, but contacts only the configured endpoint. It probes
-native `/v1/systemone`, then attempts actual JSON-chat adjudication via `/api/chat`.
-It abstains if neither works. Naming uses deterministic candidate names with
-optional model selection; there is no separate generative-model dependency.
+The default input is `input/agriAbox.ttl`. Outputs default to `output/TBox.ttl`,
+`output/TBox.evidence.json`, and `output/telemetry_diagnostics.png`.
 
-## Interpretation and validation
+## Meaning and evidence
 
-- Offline mode produces provisional signature groups and conservative empirical
-  subclass hypotheses. It does not turn non-overlap into disjointness, identical
-  samples into equivalence, or missing two-hop observations into transitivity.
-  Stronger axioms require explicit model confirmation. Model confirmation is
-  evidence for a hypothesis, not proof of domain truth.
-- Role rules use PCA statistics; restrictions use one-step coverage scoring.
-  Taxonomic cycle repair is a greedy algorithm, not MaxSAT. Signature containment
-  is not a full formal-concept lattice implementation.
-- OWL annotations distinguish empirical support from model probabilities and
-  record the actual source. Graph repair includes equivalences and propagates
-  non-simple properties through subproperty/inverse relationships. Chain checking
-  is conservative and can reject legal recursive chains.
-- The complete round-tripped TBox is checked by HermiT for unsatisfiable named
-  classes, then checked with **training assertions only** for inconsistency.
-  Failed validation or an unavailable reasoner stops execution before replacing
-  the output. This is not a substitute for a comprehensive external OWL profile
-  checker or expert review of the induced semantics.
-- Type and role hold-outs are deterministic and inaccessible to induction.
-  Positive-only hold-outs report recovery recall and sample counts. Precision
-  and F1 are `None`, since absent assertions are not labeled negatives.
-- Recovery uses subclass/equivalence closure, domains/ranges, subproperties,
-  inverses, chains, symmetry, reflexivity, and transitivity. It does not implement
-  full OWL entailment, existential witnesses, restriction-based type inference,
-  or equality reasoning. Recall describes this rule fragment.
+The output is a **defeasible schema supported by observations**. A finite ABox
+cannot identify a unique intended TBox: incompatible generalizations can explain
+the same observations. Consistency and model agreement do not establish domain
+truth or human consensus. See the [falsification audit](docs/falsification.md).
 
-## Calibration and request budgets
+The pipeline:
 
-Calibration is unavailable unless directed model probabilities and independent
-binary labels overlap. Set `CALIBRATION_LABELS_PATH` to a JSON file such as:
+- Separates discovery, confirmation, and final test subjects before mining;
+  collapses explicit `sameAs` aliases before splitting.
+- Searches available training assertions for counterexamples using negative
+  property assertions, complemented types, disjoint types, and distinct fillers.
+- Updates a Beta-Bernoulli model of **observable implication coverage** on
+  confirmation subjects. Missing assertions reduce observed coverage without
+  becoming logical negatives.
+- Requires support across three subject folds and under uniform and skeptical
+  priors. Subclass/domain proposals must beat a target-prevalence explanation.
+- Withholds disjointness, uniqueness, global reflexivity, and equivalence claims
+  that positive samples cannot identify. Bidirectional subclass proposals are
+  withheld together instead of forcing an arbitrary direction.
+- Validates the complete TBox and its compatibility with training assertions and
+  supplied semantic context. Jointly invalid learned axioms are retracted and a
+  vocabulary-only fallback is validated. Inconsistent input or unavailable
+  reasoning stops execution before replacing the existing output.
 
-```json
-[
-  {"sub": "https://example.org/Student", "super": "https://example.org/Person", "label": 1},
-  {"sub": "https://example.org/Person", "super": "https://example.org/Student", "label": 0}
-]
-```
+The JSON ledger records decisions, reasons, posterior parameters, prior
+sensitivity, fold results, observed failures, and contradiction witnesses.
+Accepted evidence is also annotated in the ontology. The ledger includes the
+SHA-256 of its Turtle export; the files are individually replaced atomically.
 
-Labels must be independently established, include indirect subclass entailment,
-and represent the population whose calibration is being assessed. They are read
-only after induction and export. ECE includes probability 1.0 and omits empty
-bins; no self-generated taxonomy is used as ground truth.
+Append evidence and rerun to recompute beliefs from unique RDF facts. Old
+posteriors are never recycled as new priors. Previously admitted claims can be
+withdrawn. Empty or weak input can yield only vocabulary declarations.
 
-`MAX_DECISION_PAIRS` and `MAX_LLM_PAIRS` bound decision attempts across stages.
-Requests are sent one candidate at a time. `MAX_PAYLOAD_TOKENS` gates a conservative
-UTF-8 byte estimate plus a framing reserve; without the server's exact tokenizer
-this is not a guarantee of the server token count. Oversized requests abstain.
-Reported token counts are recorded separately from estimates; a reported overrun
-disables further model calls. Errors open a shared circuit breaker after
-`LLM_MAX_CONSECUTIVE_ERRORS` consecutive failures. Audit entries identify errors
-and skipped requests. Offline execution records zero network calls.
+## Input coverage
+
+Automatic format detection supports Turtle, N-Triples, RDF/XML, JSON-LD with
+inline contexts, TriG, N-Quads, N3 RDF triples, and TriX. Set `ABOX_FORMAT` for an
+ambiguous extension. Named graphs are unioned, not treated as independent votes.
+Unicode, language tags, datatypes, blank nodes, object-only resources, untyped
+graphs, and mixed object/literal predicates are supported.
+
+Mixed predicates are split into deterministic object and data property IRIs;
+the ledger and ontology record the mapping. Input files are never rewritten.
+The TBox applies to the **normalized** ABox; mixed source predicates require
+that mapping before the TBox can be applied to them.
+
+Supplied schema, negatives, and equality statements constrain validation rather
+than count as newly discovered truth. Resolve remote JSON-LD contexts, XML DTDs,
+and `owl:imports` locally first. Invalid literals, malformed RDF, and inconsistent
+assertions fail explicitly. CSV, arbitrary JSON, images, and natural language
+require an RDF mapping; their intended semantics cannot be guessed reliably.
+
+## Settings and limits
+
+| Environment setting | Default | Purpose |
+|---|---:|---|
+| `CONFIRMATION_FRACTION` | 0.35 | Confirmation share outside the final test subjects |
+| `MIN_OBSERVED_COVERAGE` | 0.90 | Coverage threshold tested by the posterior |
+| `MAX_EVIDENCE_CANDIDATES` | 1,000 | Maximum candidates fully assessed |
+| `MAX_INPUT_TRIPLES` | 2,000,000 | Input graph size guard after parsing |
+| `MAX_JOIN_EDGES` | 100,000 | Maximum materialized chain join |
+| `USE_LLM` | false | Optional naming and advisory adversarial critique |
+
+Admission requires at least 12 confirmation subjects, two subjects in each of
+three folds, and each fold's coverage at least the configured threshold. The
+posterior risk allowance is `0.05 / MAX_EVIDENCE_CANDIDATES`, under both Beta(1,1)
+and Beta(1,3) priors. This is conditional model uncertainty, not a distribution-free
+error guarantee. Admission usually needs substantially more than 12 subjects.
+
+Discovery searches at most 256 classes and 64 object properties, ranked by
+support, and records omissions. These limits bound search coverage, not every
+runtime or memory cost. Parsing and reasoning remain in memory. Exceeding a
+chain discovery join limit stops the run rather than silently truncating evidence.
+Rare true axioms can be missed.
+
+For optional model assistance, set `USE_LLM=true`, `OLLAMA_BASE_URL` (default
+`http://localhost:11434`), and `MODEL_DECISION`. Native `/v1/systemone` and JSON
+`/api/chat` retain bounded requests and circuit breakers. Model agreement never
+raises a posterior or overrides a counterexample. Repeated model answers are
+not independent evidence.
+
+Final hold-outs report positive recovery recall within the supported rule
+fragment. Precision, F1, universal-truth calibration, and human agreement remain
+unavailable. Legacy subclass calibration labels cannot calibrate these new
+observable-coverage probabilities: the prediction targets differ.
 
 ## Tests and regeneration
 
-Install pytest to run:
-
 ```sh
-python -m pytest test_complete_v3.py test_pipeline.py test_cross_domain.py -q
+python -m pytest tests/ -q
+python scripts/build_notebook.py
 ```
 
-Tests use temporary outputs, restore environment settings, and perform no model
-requests. They cover the actual notebook, five bundled domains, logical failures,
-hold-out isolation, deterministic splitting, and mocked native/chat transports.
-The regression suite replaces the previous copied pipeline in
-`test_complete_v3.py`, which executed obsolete code at import time.
+Tests execute the actual notebook with temporary outputs and no model calls.
+They include five bundled small domains, six RDF serializations, sparse/empty
+inputs, identity and open-world counterexamples, positive evidence admitting a
+useful hierarchy, and evidence withdrawing a proposal.
 
-`build_notebook.py` contains the synchronized, output-free notebook cells and
-regenerates `abox2tbox.ipynb`. Update both when editing cells; a regression test
-checks that their sources match. `pipeline_support.py` contains the shared
-transport, validation, closure, and calibration functions.
+- `src/induction_evidence.py` implements ingestion, canonicalization, and the evidence gate.
+- `src/pipeline_support.py` implements transport, validation, and recovery.
+- `scripts/build_notebook.py` is the synchronized, self-contained notebook generator.
+- `tests/` contains the comprehensive test suite (falsification, cross-domain, pipeline, and multi-input harnesses).
+The existing PDF guide describes the earlier implementation.

@@ -230,6 +230,39 @@ def validate_export(tbox, training_abox=None):
         graph += tbox
         if abox is not None:
             graph += abox
+            # OWLReady's RDF loader can omit assertions on undeclared individuals.
+            # Check explicit identity clashes before translating, and declare the
+            # observed vocabulary so those assertions reach HermiT.
+            equality = nx.Graph()
+            equality.add_edges_from(graph.subject_objects(OWL.sameAs))
+            components = {node: index for index, group in enumerate(nx.connected_components(equality))
+                          for node in group}
+            for left, right in graph.subject_objects(OWL.differentFrom):
+                if left == right or (left in components and components.get(right) == components[left]):
+                    raise RuntimeError(f"Complete export validation failed ({label}): sameAs/differentFrom contradiction")
+            individuals = set()
+            meta = (str(RDF), str(RDFS), str(OWL))
+            from rdflib import Literal
+            for subject, predicate, obj in list(abox):
+                if predicate == RDF.type and isinstance(obj, URIRef) and not str(obj).startswith(meta):
+                    graph.add((obj, RDF.type, OWL.Class))
+                    individuals.add(subject)
+                elif not str(predicate).startswith(meta) and (predicate, RDF.type, OWL.AnnotationProperty) not in graph:
+                    graph.add((predicate, RDF.type, OWL.DatatypeProperty if isinstance(obj, Literal) else OWL.ObjectProperty))
+                    individuals.add(subject)
+                    if not isinstance(obj, Literal):
+                        individuals.add(obj)
+                elif predicate in (OWL.sameAs, OWL.differentFrom):
+                    individuals.update((subject, obj))
+                elif predicate in (OWL.sourceIndividual, OWL.targetIndividual):
+                    individuals.add(obj)
+            for individual in individuals:
+                graph.add((individual, RDF.type, OWL.NamedIndividual))
+            for node in abox.subjects(RDF.type, OWL.NegativePropertyAssertion):
+                prop = abox.value(node, OWL.assertionProperty)
+                if prop is not None:
+                    kind = OWL.DatatypeProperty if abox.value(node, OWL.targetValue) is not None else OWL.ObjectProperty
+                    graph.add((prop, RDF.type, kind))
         with tempfile.TemporaryDirectory(prefix="abox2tbox-reasoner-") as directory:
             path = Path(directory) / "ontology.owl"
             graph.serialize(path, format="xml")

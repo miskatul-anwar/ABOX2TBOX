@@ -1,8 +1,8 @@
 """test_pipeline.py - Automated End-to-End Test Harness for ABox2TBox Induction Pipeline.
 
-Executes abox2tbox.ipynb headlessly in an isolated Python namespace
+Calls the production Python API with isolated per-run state
 and verifies all structural, logical, and formal acceptance criteria:
-  1. Notebook Execution Integrity (all cells run without unhandled error, >= 15 cells)
+  1. Pipeline Execution Integrity (all production stages complete without error)
   2. Valid OWL 2 / RDFS Syntax in TBox.ttl (>= 15 declared classes)
   3. Strict Subsumption DAG (0 directed cycles in taxonomy)
   4. Post-Repair Disjointness Consistency (DVC_post == 0)
@@ -23,19 +23,18 @@ import sys
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import matplotlib
+
 matplotlib.use("Agg")
 
 import networkx as nx
 import pytest
+from abox2tbox import run_pipeline
+from abox2tbox.pipeline import STAGES
 import rdflib
 from rdflib.namespace import OWL, RDF, RDFS
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NOTEBOOK_PATH = (
-    ((os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) if os.path.exists(os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) else os.path.join(BASE_DIR, "abox2tbox.ipynb"))
-    if os.path.exists(((os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) if os.path.exists(os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) else os.path.join(BASE_DIR, "abox2tbox.ipynb")))
-    else os.path.join(BASE_DIR, "ABox2TBox.ipynb")
-)
+
 ABOX_PATH = (
     os.path.join(BASE_DIR, "input", "ABox.ttl")
     if os.path.exists(os.path.join(BASE_DIR, "input", "ABox.ttl"))
@@ -49,23 +48,26 @@ _EXECUTION_CACHE: Optional[Tuple[Dict[str, Any], int]] = None
 
 
 def run_pipeline_once(force_reexecution=False):
-    """Execute the actual notebook offline, with isolated temporary outputs."""
+    """Execute the production pipeline offline, with isolated temporary outputs."""
     global _EXECUTION_CACHE
     if _EXECUTION_CACHE is not None and not force_reexecution:
         return _EXECUTION_CACHE
-    namespace = {}
-    with open(NOTEBOOK_PATH, encoding="utf-8") as handle:
-        notebook = json.load(handle)
-    count = 0
-    with patch.dict(os.environ, {
-        "USE_LLM": "false", "ABOX_INPUT_PATH": ABOX_PATH,
-        "TBOX_OUTPUT_PATH": TBOX_PATH, "CALIBRATION_LABELS_PATH": "",
-        "TELEMETRY_PLOT_PATH": os.path.join(_OUTPUT_TEMP.name, "telemetry.png")
-    }):
-        for index, cell in enumerate(notebook["cells"]):
-            if cell["cell_type"] == "code":
-                exec(compile("".join(cell["source"]), f"cell-{index}", "exec"), namespace)
-                count += 1
+    with patch.dict(
+        os.environ,
+        {
+            "USE_LLM": "false",
+            "ABOX_INPUT_PATH": ABOX_PATH,
+            "TBOX_OUTPUT_PATH": TBOX_PATH,
+            "CALIBRATION_LABELS_PATH": "",
+            "TELEMETRY_PLOT_PATH": os.path.join(_OUTPUT_TEMP.name, "telemetry.png"),
+        },
+    ):
+        result = run_pipeline(
+            ABOX_PATH,
+            TBOX_PATH,
+            plot_path=os.path.join(_OUTPUT_TEMP.name, "telemetry.png"),
+        )
+        namespace, count = vars(result.state), len(result.state.completed_stages)
     assert namespace["VALIDATION_REPORT"]["status"] == "passed"
     _EXECUTION_CACHE = namespace, count
     return _EXECUTION_CACHE
@@ -119,10 +121,10 @@ def verify_abox_benchmark_integrity() -> Dict[str, Any]:
 # ==============================================================================
 
 
-def test_01_notebook_execution():
-    """Assertion 1: Notebook executes end-to-end without unhandled cell errors."""
+def test_01_pipeline_execution():
+    """Assertion 1: Pipeline completes every production stage without unhandled errors."""
     user_ns, count = run_pipeline_once()
-    assert count >= 15, f"Expected >= 15 executed code cells, observed {count}"
+    assert count == len(STAGES), f"Expected >= 15 completed stages, observed {count}"
 
 
 def test_02_tbox_syntax_and_parsimony():
@@ -158,8 +160,12 @@ def test_03_subsumption_dag_acyclicity():
             dag.add_edge(str(s), str(o))
 
     cycles = list(nx.simple_cycles(dag))
-    assert len(cycles) == 0, f"Directed cycles detected in subsumption hierarchy: {cycles}"
-    assert nx.is_directed_acyclic_graph(dag), "Subsumption hierarchy is not a strict DAG"
+    assert len(cycles) == 0, (
+        f"Directed cycles detected in subsumption hierarchy: {cycles}"
+    )
+    assert nx.is_directed_acyclic_graph(dag), (
+        "Subsumption hierarchy is not a strict DAG"
+    )
 
 
 def test_04_disjointness_consistency():
@@ -218,9 +224,7 @@ def test_04_disjointness_consistency():
 def test_05_prompt_token_ceiling():
     """Offline runs do not manufacture model calls, precision, or calibration."""
     user_ns, _ = run_pipeline_once()
-    token_log = user_ns.get(
-        "TOKEN_AUDIT_LOG", user_ns.get("PAYLOAD_TOKEN_AUDIT_LOG", [])
-    )
+    token_log = user_ns["payload_token_audit_log"]
     assert token_log == [], "Offline execution must not fabricate model calls"
     assert user_ns["total_tokens_measured"] == 0
     assert user_ns["ECE"] is None
@@ -255,6 +259,7 @@ def test_07_provenance_metadata():
     agents = list(graph.objects(None, predicate))
     assert agents and all(isinstance(agent, rdflib.URIRef) for agent in agents)
 
+
 # ==============================================================================
 # CLI Entrypoint
 # ==============================================================================
@@ -269,33 +274,44 @@ if __name__ == "__main__":
         print("[*] Running ABox benchmark verification only...")
         try:
             stats = verify_abox_benchmark_integrity()
-            print(f"  [PASS] ABox Parsed: {stats['triples']} triples, {stats['subjects']} subjects")
-            print(f"  [PASS] Untyped Clusters: {stats['untyped_grants']} grants, "
-                  f"{stats['untyped_labs']} labs, {stats['untyped_degrees']} degrees")
-            print(f"  [PASS] SCC Overlap: {stats['scc_overlap']*100:.1f}%, "
-                  f"Symmetry: {stats['rho_sym']:.3f}")
+            print(
+                f"  [PASS] ABox Parsed: {stats['triples']} triples, {stats['subjects']} subjects"
+            )
+            print(
+                f"  [PASS] Untyped Clusters: {stats['untyped_grants']} grants, "
+                f"{stats['untyped_labs']} labs, {stats['untyped_degrees']} degrees"
+            )
+            print(
+                f"  [PASS] SCC Overlap: {stats['scc_overlap'] * 100:.1f}%, "
+                f"Symmetry: {stats['rho_sym']:.3f}"
+            )
             print("✔ ABox benchmark integrity verified successfully.")
             sys.exit(0)
         except Exception as e:
             print(f"❌ ABox verification failed: {e}")
             sys.exit(1)
 
-    print("[*] Initiating headless execution of ABox2TBox.ipynb...")
+    print("[*] Running the Python pipeline...")
     try:
-        ns, cell_count = run_pipeline_once()
-        print(f"✔ Notebook executed successfully ({cell_count} code cells)\n")
+        ns, stage_count = run_pipeline_once()
+        print(f"✔ Pipeline completed successfully ({stage_count} stages)\n")
     except FileNotFoundError as fnf:
         print(f"⚠️  {fnf}\n")
         print("[*] Note: In Milestone 1, ABox.ttl is verified via --verify-abox flag.")
-        print("[*] Run 'python3 test_pipeline.py --verify-abox' to verify benchmark dataset.")
+        print(
+            "[*] Run 'python3 test_pipeline.py --verify-abox' to verify benchmark dataset."
+        )
         sys.exit(1)
     except Exception as e:
         print(f"❌ Execution failed: {e}")
         sys.exit(1)
 
     suite = [
-        ("Assertion 1: Notebook Execution Integrity", test_01_notebook_execution),
-        ("Assertion 2: Valid OWL 2 / RDFS in TBox.ttl", test_02_tbox_syntax_and_parsimony),
+        ("Assertion 1: Pipeline Execution Integrity", test_01_pipeline_execution),
+        (
+            "Assertion 2: Valid OWL 2 / RDFS in TBox.ttl",
+            test_02_tbox_syntax_and_parsimony,
+        ),
         ("Assertion 3: Subsumption DAG (0 Cycles)", test_03_subsumption_dag_acyclicity),
         ("Assertion 4: Disjointness DVC_post == 0", test_04_disjointness_consistency),
         ("Assertion 5: Prompt Token Ceiling <= 1500", test_05_prompt_token_ceiling),

@@ -1,12 +1,13 @@
-"""test_multi_inputs_harness.py - Comprehensive Multi-Input Verification for abox2tbox.ipynb.
+"""test_multi_inputs_harness.py - Comprehensive Multi-Input Verification for the Python API.
 
-Tests abox2tbox.ipynb against:
+Tests the Python API against:
   1. Standard Domains: Baseline (University), E-Commerce, Hospital, Enterprise, Banking
   2. Diverse RDF Formats: Turtle, N-Triples, JSON-LD, RDF/XML, TriG, N-Quads, Notation3, TriX
   3. Semantic & Structural Variants: Empty ABox, Sparse Single-Instance, Mixed-property,
      Blank-Node Untyped Graph, Inconsistent ABox (Falsification), and Over-Limit Guard.
 """
 
+from abox2tbox import run_pipeline
 from collections import defaultdict
 import io
 import json
@@ -19,6 +20,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from unittest.mock import patch
 
 import matplotlib
+
 matplotlib.use("Agg")
 import networkx as nx
 import rdflib
@@ -26,24 +28,14 @@ from rdflib import BNode, Graph, Literal, Namespace, URIRef
 from rdflib.namespace import OWL, RDF, RDFS, XSD
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NOTEBOOK_PATH = ((os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) if os.path.exists(os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) else os.path.join(BASE_DIR, "abox2tbox.ipynb"))
-
-with open(NOTEBOOK_PATH, "r", encoding="utf-8") as f:
-    NOTEBOOK_JSON = json.load(f)
-
-CODE_CELLS = [
-    (idx, "".join(cell["source"]))
-    for idx, cell in enumerate(NOTEBOOK_JSON["cells"])
-    if cell["cell_type"] == "code"
-]
 
 
-def execute_notebook_on_input(
+def execute_pipeline_on_input(
     input_path: str,
     rdf_format: Optional[str] = None,
     extra_env: Optional[Dict[str, str]] = None,
 ) -> Dict[str, Any]:
-    """Execute all code cells of abox2tbox.ipynb against the specified input file."""
+    """Execute the production pipeline against the specified input file."""
     temp_dir = tempfile.mkdtemp(prefix="abox2tbox-test-")
     tbox_out = os.path.join(temp_dir, "TBox.ttl")
     plot_out = os.path.join(temp_dir, "telemetry.png")
@@ -64,14 +56,16 @@ def execute_notebook_on_input(
     stdout_capture = io.StringIO()
     start_time = time.time()
     exception_raised = None
-    cells_executed = 0
+    stages_completed = 0
 
     try:
         with patch.dict(os.environ, env):
             with patch("sys.stdout", stdout_capture):
-                for cell_idx, cell_src in CODE_CELLS:
-                    exec(compile(cell_src, f"cell-{cell_idx}", "exec"), ns)
-                    cells_executed += 1
+                result = run_pipeline(
+                    input_path, tbox_out, plot_path=plot_out, rdf_format=rdf_format
+                )
+                ns = vars(result.state)
+                stages_completed = len(result.state.completed_stages)
     except Exception as e:
         exception_raised = e
 
@@ -91,7 +85,9 @@ def execute_notebook_on_input(
         try:
             g = Graph().parse(tbox_out, format="turtle")
             tbox_triples = len(g)
-            classes = set(g.subjects(RDF.type, OWL.Class)) | set(g.subjects(RDF.type, RDFS.Class))
+            classes = set(g.subjects(RDF.type, OWL.Class)) | set(
+                g.subjects(RDF.type, RDFS.Class)
+            )
             classes_count = len(classes)
             subclass_triples = list(g.triples((None, RDFS.subClassOf, None)))
             subclass_count = len(subclass_triples)
@@ -117,7 +113,7 @@ def execute_notebook_on_input(
     return {
         "input_path": input_path,
         "elapsed_s": round(elapsed, 2),
-        "cells_executed": cells_executed,
+        "stages_completed": stages_completed,
         "exception": str(exception_raised) if exception_raised else None,
         "tbox_exists": tbox_exists,
         "tbox_size": tbox_size,
@@ -139,7 +135,7 @@ def execute_notebook_on_input(
 
 def main():
     print("=" * 80)
-    print("ABOX2TBOX.IPYNB MULTI-INPUT VERIFICATION SUITE")
+    print("ABOX2TBOX PYTHON API MULTI-INPUT VERIFICATION SUITE")
     print("=" * 80)
 
     results = []
@@ -159,13 +155,15 @@ def main():
     for name, rel_path, fmt in benchmark_domains:
         path = os.path.join(BASE_DIR, rel_path)
         print(f"Running domain: {name} ({rel_path})...")
-        res = execute_notebook_on_input(path, fmt)
+        res = execute_pipeline_on_input(path, fmt)
         res["test_name"] = name
         res["category"] = "Benchmark Domain"
         results.append(res)
-        print(f"  -> Done in {res['elapsed_s']}s | Classes: {res['classes_count']} | "
-              f"Subclasses: {res['subclass_count']} | DAG: {res['is_dag']} | "
-              f"Validation: {res['validation_status']}")
+        print(
+            f"  -> Done in {res['elapsed_s']}s | Classes: {res['classes_count']} | "
+            f"Subclasses: {res['subclass_count']} | DAG: {res['is_dag']} | "
+            f"Validation: {res['validation_status']}"
+        )
 
     # --------------------------------------------------------------------------
     # Group 2: Multiple Serialization Formats
@@ -196,13 +194,15 @@ def main():
                     base_g.serialize(target_file, format=rdflib_fmt)
 
                 print(f"Running format: {fmt_name} (extension: .{ext})...")
-                res = execute_notebook_on_input(target_file, rdflib_fmt)
+                res = execute_pipeline_on_input(target_file, rdflib_fmt)
                 res["test_name"] = f"Format: {fmt_name}"
                 res["category"] = "RDF Serialization"
                 results.append(res)
-                print(f"  -> Done in {res['elapsed_s']}s | Classes: {res['classes_count']} | "
-                      f"Subclasses: {res['subclass_count']} | DAG: {res['is_dag']} | "
-                      f"Validation: {res['validation_status']}")
+                print(
+                    f"  -> Done in {res['elapsed_s']}s | Classes: {res['classes_count']} | "
+                    f"Subclasses: {res['subclass_count']} | DAG: {res['is_dag']} | "
+                    f"Validation: {res['validation_status']}"
+                )
             except Exception as e:
                 print(f"  -> Format {fmt_name} serialization/execution error: {e}")
 
@@ -216,24 +216,30 @@ def main():
         with open(empty_file, "w") as f:
             f.write("")
         print("Running: Empty ABox (0 triples)...")
-        res = execute_notebook_on_input(empty_file, "turtle")
+        res = execute_pipeline_on_input(empty_file, "turtle")
         res["test_name"] = "Empty ABox"
         res["category"] = "Semantic Edge Case"
         results.append(res)
-        print(f"  -> Done in {res['elapsed_s']}s | TBox Size: {res['tbox_size']} bytes | "
-              f"Validation: {res['validation_status']} | Coherent: {res['tbox_coherent']}")
+        print(
+            f"  -> Done in {res['elapsed_s']}s | TBox Size: {res['tbox_size']} bytes | "
+            f"Validation: {res['validation_status']} | Coherent: {res['tbox_coherent']}"
+        )
 
         # 3.2 Sparse Single Instance
         sparse_file = os.path.join(edge_dir, "sparse.ttl")
         with open(sparse_file, "w") as f:
-            f.write("@prefix ex: <http://example.org/> .\n ex:john a ex:Person ; ex:age 30 .\n")
+            f.write(
+                "@prefix ex: <http://example.org/> .\n ex:john a ex:Person ; ex:age 30 .\n"
+            )
         print("Running: Sparse Single-Instance ABox...")
-        res = execute_notebook_on_input(sparse_file, "turtle")
+        res = execute_pipeline_on_input(sparse_file, "turtle")
         res["test_name"] = "Sparse Single-Instance"
         res["category"] = "Semantic Edge Case"
         results.append(res)
-        print(f"  -> Done in {res['elapsed_s']}s | Classes: {res['classes_count']} | "
-              f"Validation: {res['validation_status']}")
+        print(
+            f"  -> Done in {res['elapsed_s']}s | Classes: {res['classes_count']} | "
+            f"Validation: {res['validation_status']}"
+        )
 
         # 3.3 Blank Nodes and Untyped Instances
         bnode_file = os.path.join(edge_dir, "bnode.ttl")
@@ -247,12 +253,14 @@ def main():
             _:b3 ex:name "Child" .
             """)
         print("Running: Blank Nodes & Untyped Graph...")
-        res = execute_notebook_on_input(bnode_file, "turtle")
+        res = execute_pipeline_on_input(bnode_file, "turtle")
         res["test_name"] = "Blank Nodes Untyped"
         res["category"] = "Semantic Edge Case"
         results.append(res)
-        print(f"  -> Done in {res['elapsed_s']}s | Classes: {res['classes_count']} | "
-              f"Validation: {res['validation_status']}")
+        print(
+            f"  -> Done in {res['elapsed_s']}s | Classes: {res['classes_count']} | "
+            f"Validation: {res['validation_status']}"
+        )
 
         # 3.4 Mixed Datatype / Object Property
         mixed_file = os.path.join(edge_dir, "mixed.ttl")
@@ -264,11 +272,13 @@ def main():
             ex:CodeResource a ex:CodeDefinition .
             """)
         print("Running: Mixed Datatype/Object Predicate Normalization...")
-        res = execute_notebook_on_input(mixed_file, "turtle")
+        res = execute_pipeline_on_input(mixed_file, "turtle")
         res["test_name"] = "Mixed Predicate Normalization"
         res["category"] = "Semantic Edge Case"
         results.append(res)
-        print(f"  -> Done in {res['elapsed_s']}s | Validation: {res['validation_status']}")
+        print(
+            f"  -> Done in {res['elapsed_s']}s | Validation: {res['validation_status']}"
+        )
 
         # 3.5 Contradictory Input (Inconsistent sameAs + differentFrom)
         inconsistent_file = os.path.join(edge_dir, "inconsistent.ttl")
@@ -280,12 +290,14 @@ def main():
             ex:entityA owl:differentFrom ex:entityB .
             """)
         print("Running: Contradictory Input (sameAs + differentFrom)...")
-        res = execute_notebook_on_input(inconsistent_file, "turtle")
+        res = execute_pipeline_on_input(inconsistent_file, "turtle")
         res["test_name"] = "Contradictory Input (Fail-Closed)"
         res["category"] = "Falsification / Safety"
         results.append(res)
-        print(f"  -> Correctly raised exception: {bool(res['exception'])} | "
-              f"Error: {res['exception'][:60] if res['exception'] else 'None'}")
+        print(
+            f"  -> Correctly raised exception: {bool(res['exception'])} | "
+            f"Error: {res['exception'][:60] if res['exception'] else 'None'}"
+        )
 
         # 3.6 Over-Limit Input Guard (Exceeding MAX_INPUT_TRIPLES)
         overlimit_file = os.path.join(edge_dir, "overlimit.ttl")
@@ -295,12 +307,16 @@ def main():
                 lines.append(f"ex:s{i} a ex:C{i % 5} .\n")
             f.writelines(lines)
         print("Running: Over-Limit Input Guard (configured limit=50, input=150)...")
-        res = execute_notebook_on_input(overlimit_file, "turtle", extra_env={"MAX_INPUT_TRIPLES": "50"})
+        res = execute_pipeline_on_input(
+            overlimit_file, "turtle", extra_env={"MAX_INPUT_TRIPLES": "50"}
+        )
         res["test_name"] = "Over-Limit Triples Guard"
         res["category"] = "Falsification / Safety"
         results.append(res)
-        print(f"  -> Correctly raised exception: {bool(res['exception'])} | "
-              f"Error: {res['exception'][:60] if res['exception'] else 'None'}")
+        print(
+            f"  -> Correctly raised exception: {bool(res['exception'])} | "
+            f"Error: {res['exception'][:60] if res['exception'] else 'None'}"
+        )
 
     # Output detailed JSON report
     report_path = os.path.join(BASE_DIR, "output", "multi_input_test_report.json")
@@ -309,6 +325,7 @@ def main():
     print(f"\nSaved comprehensive test report to {report_path}")
 
     return results
+
 
 if __name__ == "__main__":
     main()
@@ -320,31 +337,38 @@ if __name__ == "__main__":
 
 import pytest
 
-@pytest.mark.parametrize("domain_name,rel_path", [
-    ("Baseline (University)", "input/ABox.ttl"),
-    ("E-Commerce / Retail", "input/ecommerce_abox.ttl"),
-    ("Hospital / Biomedical", "input/hospital_abox.ttl"),
-    ("Corporate / Enterprise", "input/enterprise_abox.ttl"),
-    ("Financial / Banking", "input/banking_abox.ttl"),
-])
+
+@pytest.mark.parametrize(
+    "domain_name,rel_path",
+    [
+        ("Baseline (University)", "input/ABox.ttl"),
+        ("E-Commerce / Retail", "input/ecommerce_abox.ttl"),
+        ("Hospital / Biomedical", "input/hospital_abox.ttl"),
+        ("Corporate / Enterprise", "input/enterprise_abox.ttl"),
+        ("Financial / Banking", "input/banking_abox.ttl"),
+    ],
+)
 def test_pytest_benchmark_domain(domain_name, rel_path):
     path = os.path.join(BASE_DIR, rel_path)
-    res = execute_notebook_on_input(path, "turtle")
+    res = execute_pipeline_on_input(path, "turtle")
     assert res["exception"] is None, f"Failed on {domain_name}: {res['exception']}"
     assert res["validation_status"] == "passed"
     assert res["is_dag"] is True
     assert res["classes_count"] >= 15
 
 
-@pytest.mark.parametrize("fmt_name,rdflib_fmt,ext", [
-    ("N-Triples", "nt", "nt"),
-    ("JSON-LD", "json-ld", "jsonld"),
-    ("RDF/XML", "xml", "xml"),
-    ("TriG", "trig", "trig"),
-    ("N-Quads", "nquads", "nq"),
-    ("Notation3", "n3", "n3"),
-    ("TriX", "trix", "trix"),
-])
+@pytest.mark.parametrize(
+    "fmt_name,rdflib_fmt,ext",
+    [
+        ("N-Triples", "nt", "nt"),
+        ("JSON-LD", "json-ld", "jsonld"),
+        ("RDF/XML", "xml", "xml"),
+        ("TriG", "trig", "trig"),
+        ("N-Quads", "nquads", "nq"),
+        ("Notation3", "n3", "n3"),
+        ("TriX", "trix", "trix"),
+    ],
+)
 def test_pytest_serialization_formats(tmp_path, fmt_name, rdflib_fmt, ext):
     base_g = Graph().parse(os.path.join(BASE_DIR, "input/ABox.ttl"), format="turtle")
     target_file = str(tmp_path / f"test.{ext}")
@@ -355,7 +379,7 @@ def test_pytest_serialization_formats(tmp_path, fmt_name, rdflib_fmt, ext):
         ds.serialize(target_file, format=rdflib_fmt)
     else:
         base_g.serialize(target_file, format=rdflib_fmt)
-    res = execute_notebook_on_input(target_file, rdflib_fmt)
+    res = execute_pipeline_on_input(target_file, rdflib_fmt)
     assert res["exception"] is None, f"Format {fmt_name} failed: {res['exception']}"
     assert res["validation_status"] == "passed"
     assert res["classes_count"] == 57
@@ -364,7 +388,7 @@ def test_pytest_serialization_formats(tmp_path, fmt_name, rdflib_fmt, ext):
 def test_pytest_empty_input(tmp_path):
     p = tmp_path / "empty.ttl"
     p.write_text("")
-    res = execute_notebook_on_input(str(p), "turtle")
+    res = execute_pipeline_on_input(str(p), "turtle")
     assert res["exception"] is None
     assert res["validation_status"] == "passed"
     assert res["tbox_exists"] is True
@@ -375,6 +399,6 @@ def test_pytest_inconsistent_fails_closed(tmp_path):
     p.write_text("""@prefix ex: <http://example.org/> .
                     @prefix owl: <http://www.w3.org/2002/07/owl#> .
                     ex:a owl:sameAs ex:b ; owl:differentFrom ex:b .""")
-    res = execute_notebook_on_input(str(p), "turtle")
+    res = execute_pipeline_on_input(str(p), "turtle")
     assert res["exception"] is not None
     assert "validation failed" in res["exception"]

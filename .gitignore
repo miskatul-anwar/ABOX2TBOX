@@ -7,3 +7,17 @@ venv/
 .pytest_cache/
 .ipynb_checkpoints/
 input/bonsai_ABox.ttl
+
+# Python packaging and developer tools
+*.egg-info/
+build/
+dist/
+.ruff_cache/
+.uv-cache/
+
+# Re-downloadable online benchmark snapshots and local plotting caches
+input/online/
+output/online_benchmarks/**/matplotlib-cache/
+
+# Keep per-input online artifacts local; version aggregate reports and provenance
+output/online_benchmarks/*/*/

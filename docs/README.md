@@ -1,6 +1,6 @@
 # Project documentation
 
-For the current v4.0 notebook, read the root [README](../README.md) and
+For the current v4.1 Python package, read the root [README](../README.md) and
 [falsification audit](falsification.md).
 
 The historical [project-guide.pdf](project-guide.pdf) describes v3.1. Its editable source is

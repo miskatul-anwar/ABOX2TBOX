@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abox2tbox"
+version = "4.1.0"
+description = "Counterexample-first, autonomous ABox-to-TBox induction"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "rdflib==7.6.0",
+    "networkx==3.7",
+    "matplotlib==3.11.2",
+    "numpy==2.5.4",
+    "owlready2==0.51",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "ruff>=0.14"]
+
+[project.scripts]
+abox2tbox = "abox2tbox.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["abox2tbox*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

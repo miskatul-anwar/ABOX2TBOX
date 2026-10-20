@@ -1,17 +1,24 @@
 """Try to falsify induction, including situations where abstention is the answer."""
+
 import json
 from pathlib import Path
 
 import pytest
+from abox2tbox import run_pipeline
 from rdflib import BNode, Graph, Literal, Namespace, URIRef
 from rdflib.namespace import OWL, RDF, RDFS, XSD
 
-from induction_evidence import (EvidenceGate, beta_tail, coverage_belief, load_abox,
-                                split_assertions, term_key)
+from abox2tbox.induction_evidence import (
+    EvidenceGate,
+    beta_tail,
+    coverage_belief,
+    load_abox,
+    split_assertions,
+    term_key,
+)
 
 EX = Namespace("urn:challenge:")
 ROOT = Path(__file__).resolve().parent.parent
-CELLS = json.loads((((ROOT / "ABOX2TBOX.ipynb") if (ROOT / "ABOX2TBOX.ipynb").exists() else (ROOT / "abox2tbox.ipynb"))).read_text())["cells"]
 
 
 def population(n=240, missing=0):
@@ -27,9 +34,12 @@ def population(n=240, missing=0):
 
 
 def gate(graph, context=None, subjects=None, **config):
-    return EvidenceGate(graph, context if context is not None else Graph(),
-                        subjects if subjects is not None else {term_key(s) for s in graph.subjects()},
-                        config)
+    return EvidenceGate(
+        graph,
+        context if context is not None else Graph(),
+        subjects if subjects is not None else {term_key(s) for s in graph.subjects()},
+        config,
+    )
 
 
 def subclass(engine):
@@ -44,16 +54,18 @@ def negative_type(subject, cls):
 
 
 def test_beta_probability_is_exact_for_uniform_prior_and_updates_both_ways():
-    assert beta_tail(1, 1, .9) == pytest.approx(.1)
-    assert beta_tail(2, 1, .9) == pytest.approx(1 - .9**2)
-    assert beta_tail(1, 2, .9) == pytest.approx(.1**2)
+    assert beta_tail(1, 1, 0.9) == pytest.approx(0.1)
+    assert beta_tail(2, 1, 0.9) == pytest.approx(1 - 0.9**2)
+    assert beta_tail(1, 2, 0.9) == pytest.approx(0.1**2)
     first = coverage_belief(20, 0)
     more = coverage_belief(40, 0)
     missing = coverage_belief(20, 20)
     assert missing["posterior_mean"] < first["posterior_mean"] < more["posterior_mean"]
-    assert (missing["probability_coverage_exceeds_threshold"]
-            < first["probability_coverage_exceeds_threshold"]
-            < more["probability_coverage_exceeds_threshold"])
+    assert (
+        missing["probability_coverage_exceeds_threshold"]
+        < first["probability_coverage_exceeds_threshold"]
+        < more["probability_coverage_exceeds_threshold"]
+    )
 
 
 def test_strong_independent_support_can_be_accepted_without_a_model():
@@ -140,10 +152,16 @@ def test_unique_names_are_not_assumed_for_functionality():
 def test_negative_property_assertion_vetoes_an_implication():
     graph, context, node = Graph(), Graph(), BNode()
     graph.add((EX.a, EX.p, EX.b))
-    for p, o in [(RDF.type, OWL.NegativePropertyAssertion), (OWL.sourceIndividual, EX.a),
-                 (OWL.assertionProperty, EX.q), (OWL.targetIndividual, EX.b)]:
+    for p, o in [
+        (RDF.type, OWL.NegativePropertyAssertion),
+        (OWL.sourceIndividual, EX.a),
+        (OWL.assertionProperty, EX.q),
+        (OWL.targetIndividual, EX.b),
+    ]:
         context.add((node, p, o))
-    result = gate(graph, context).assess("subproperty", {"sub": str(EX.p), "super": str(EX.q)})
+    result = gate(graph, context).assess(
+        "subproperty", {"sub": str(EX.p), "super": str(EX.q)}
+    )
     assert result["status"] == "rejected"
     assert result["counterexample_count"] == 1
 
@@ -155,11 +173,25 @@ def test_all_fillers_are_checked_and_missing_existential_is_not_falsity():
     graph.add((EX.good, RDF.type, EX.B))
     graph.add((EX.a, EX.p, EX.bad))
     engine = gate(graph, negative_type(EX.bad, EX.B))
-    result = engine.assess("restriction", {"class": str(EX.A), "property": str(EX.p),
-                                         "filler": str(EX.B), "type": "allValuesFrom"})
+    result = engine.assess(
+        "restriction",
+        {
+            "class": str(EX.A),
+            "property": str(EX.p),
+            "filler": str(EX.B),
+            "type": "allValuesFrom",
+        },
+    )
     assert result["status"] == "rejected"
-    result = engine.assess("restriction", {"class": str(EX.A), "property": str(EX.unknown),
-                                         "filler": str(EX.B), "type": "someValuesFrom"})
+    result = engine.assess(
+        "restriction",
+        {
+            "class": str(EX.A),
+            "property": str(EX.unknown),
+            "filler": str(EX.B),
+            "type": "someValuesFrom",
+        },
+    )
     assert result["status"] == "withheld"
     assert result["counterexample_count"] == 0
 
@@ -170,17 +202,26 @@ def test_join_budget_abstains_instead_of_truncating_evidence():
         graph.add((EX[f"s{i}"], EX.p, EX.middle))
         graph.add((EX.middle, EX.q, EX[f"o{i}"]))
     result = gate(graph, MAX_JOIN_EDGES=10).assess(
-        "chain", {"chain": [str(EX.p), str(EX.q)], "super": str(EX.r)})
+        "chain", {"chain": [str(EX.p), str(EX.q)], "super": str(EX.r)}
+    )
     assert "join_budget_exceeded" in result["reasons"]
     assert result["status"] == "withheld"
 
 
-@pytest.mark.parametrize("fmt,extension", [
-    ("turtle", "ttl"), ("nt", "nt"), ("xml", "rdf"), ("json-ld", "jsonld"),
-    ("trig", "trig"), ("nquads", "nq"),
-])
+@pytest.mark.parametrize(
+    "fmt,extension",
+    [
+        ("turtle", "ttl"),
+        ("nt", "nt"),
+        ("xml", "rdf"),
+        ("json-ld", "jsonld"),
+        ("trig", "trig"),
+        ("nquads", "nq"),
+    ],
+)
 def test_input_serializations_preserve_terms(tmp_path, fmt, extension):
     from rdflib import Dataset
+
     graph = Graph()
     graph.add((EX.a, RDF.type, EX.A))
     graph.add((EX.a, EX.label, Literal("বাংলা", lang="bn")))
@@ -208,7 +249,7 @@ def test_mixed_property_normalization_preserves_every_fact_and_mapping(tmp_path)
     assert set(first) == set(second)
     assert report == again
     assert len(first) == 2
-    mapping, = report["mixed_properties"]
+    (mapping,) = report["mixed_properties"]
     assert mapping["original"] == "urn:ex:p"
     assert (URIRef("urn:ex:a"), URIRef(mapping["object"]), URIRef("urn:ex:b")) in first
     assert (URIRef("urn:ex:a"), URIRef(mapping["data"]), Literal("b")) in first
@@ -241,24 +282,24 @@ def execute(path, tmp_path, monkeypatch):
     monkeypatch.setenv("TBOX_OUTPUT_PATH", str(tmp_path / "TBox.ttl"))
     monkeypatch.setenv("TELEMETRY_PLOT_PATH", str(tmp_path / "telemetry.png"))
     monkeypatch.setenv("CALIBRATION_LABELS_PATH", "")
-    ns = {}
-    try:
-        for index, cell in enumerate(CELLS):
-            if cell["cell_type"] == "code":
-                exec(compile("".join(cell["source"]), f"cell-{index}", "exec"), ns)
-    finally:
-        if "conn" in ns:
-            ns["conn"].close()
-    return ns
+    result = run_pipeline(
+        path, tmp_path / "TBox.ttl", plot_path=tmp_path / "telemetry.png"
+    )
+    return vars(result.state)
 
 
-@pytest.mark.parametrize("content", [
-    "",
-    '@prefix e: <urn:ex:> . e:a a e:A .',
-    '@prefix e: <urn:ex:> . e:a e:p e:b, "b" ; e:label "বাংলা"@bn .',
-    '@prefix e: <urn:ex:> . [] e:p [e:q "value"] .',
-])
-def test_notebook_handles_empty_sparse_mixed_and_blank_node_aboxes(tmp_path, monkeypatch, content):
+@pytest.mark.parametrize(
+    "content",
+    [
+        "",
+        "@prefix e: <urn:ex:> . e:a a e:A .",
+        '@prefix e: <urn:ex:> . e:a e:p e:b, "b" ; e:label "বাংলা"@bn .',
+        '@prefix e: <urn:ex:> . [] e:p [e:q "value"] .',
+    ],
+)
+def test_pipeline_handles_empty_sparse_mixed_and_blank_node_aboxes(
+    tmp_path, monkeypatch, content
+):
     path = tmp_path / "input.ttl"
     path.write_text(content)
     ns = execute(path, tmp_path, monkeypatch)
@@ -268,10 +309,12 @@ def test_notebook_handles_empty_sparse_mixed_and_blank_node_aboxes(tmp_path, mon
     assert not list(output.triples((None, OWL.disjointWith, None)))
     ledger = json.loads((tmp_path / "TBox.evidence.json").read_text())
     assert ledger["validation"]["status"] == "passed"
-    assert ns["TOKEN_AUDIT_LOG"] == []
+    assert ns["payload_token_audit_log"] == []
 
 
-def test_notebook_produces_nonvacuous_taxonomy_on_large_independent_evidence(tmp_path, monkeypatch):
+def test_pipeline_produces_nonvacuous_taxonomy_on_large_independent_evidence(
+    tmp_path, monkeypatch
+):
     path = tmp_path / "input.ttl"
     graph = population(n=1200)
     for i in range(600):
@@ -288,22 +331,26 @@ def test_notebook_produces_nonvacuous_taxonomy_on_large_independent_evidence(tmp
     assert not discovery_subjects & ns["confirmation_subjects"]
 
 
-def test_large_identical_extensions_do_not_force_an_arbitrary_taxonomy(tmp_path, monkeypatch):
+def test_large_identical_extensions_do_not_force_an_arbitrary_taxonomy(
+    tmp_path, monkeypatch
+):
     path = tmp_path / "identical.ttl"
     population(n=1200).serialize(path, format="turtle")
     ns = execute(path, tmp_path, monkeypatch)
     assert ns["G_reduced"].number_of_edges() == 0
     assert not ns["adjudicated_equivalences"]
-    assert any("bidirectional_observations_do_not_identify_taxonomy" in r["reasons"]
-               for r in ns["evidence_gate"].records)
+    assert any(
+        "bidirectional_observations_do_not_identify_taxonomy" in r["reasons"]
+        for r in ns["evidence_gate"].records
+    )
 
 
 def test_individual_equality_does_not_merge_punned_classes(tmp_path):
     path = tmp_path / "punning.ttl"
-    path.write_text('''@prefix e: <urn:ex:> .
+    path.write_text("""@prefix e: <urn:ex:> .
         @prefix owl: <http://www.w3.org/2002/07/owl#> .
         e:A a owl:Class ; owl:sameAs e:B .
-        e:B a owl:Class . e:x a e:A . e:y a e:B .''')
+        e:B a owl:Class . e:x a e:A . e:y a e:B .""")
     graph, _ = load_abox(path)
     assert (URIRef("urn:ex:x"), RDF.type, URIRef("urn:ex:A")) in graph
     assert (URIRef("urn:ex:y"), RDF.type, URIRef("urn:ex:B")) in graph
@@ -312,9 +359,9 @@ def test_individual_equality_does_not_merge_punned_classes(tmp_path):
 
 def test_inconsistent_input_preserves_previous_export(tmp_path, monkeypatch):
     path = tmp_path / "input.ttl"
-    path.write_text('''@prefix e: <urn:ex:> .
+    path.write_text("""@prefix e: <urn:ex:> .
         @prefix owl: <http://www.w3.org/2002/07/owl#> .
-        e:a owl:sameAs e:b ; owl:differentFrom e:b .''')
+        e:a owl:sameAs e:b ; owl:differentFrom e:b .""")
     target = tmp_path / "TBox.ttl"
     target.write_text("previous output")
     with pytest.raises(RuntimeError, match="validation failed"):
@@ -322,7 +369,9 @@ def test_inconsistent_input_preserves_previous_export(tmp_path, monkeypatch):
     assert target.read_text() == "previous output"
 
 
-def test_joint_domain_conflict_retracts_learned_axioms_automatically(tmp_path, monkeypatch):
+def test_joint_domain_conflict_retracts_learned_axioms_automatically(
+    tmp_path, monkeypatch
+):
     graph = Graph()
     graph.add((EX.A, OWL.disjointWith, EX.B))
     for i in range(1200):
@@ -340,8 +389,10 @@ def test_joint_domain_conflict_retracts_learned_axioms_automatically(tmp_path, m
     assert ns["VALIDATION_REPORT"]["status"] == "passed"
     assert ns["VALIDATION_REPORT"]["repaired"]
     assert not ns["property_domains"]
-    assert any("withdrawn_after_joint_reasoner_failure" in r["reasons"]
-               for r in ns["evidence_gate"].records)
+    assert any(
+        "withdrawn_after_joint_reasoner_failure" in r["reasons"]
+        for r in ns["evidence_gate"].records
+    )
     output = Graph().parse(tmp_path / "TBox.ttl")
     assert not list(output.triples((None, RDFS.domain, None)))
 
@@ -353,4 +404,7 @@ def test_datatype_functionality_uses_value_equality():
     result = gate(graph).assess("Functional", {"property": str(EX.p)})
     assert result["counterexample_count"] == 0
     graph.add((EX.a, EX.p, Literal("2", datatype=XSD.integer)))
-    assert gate(graph).assess("Functional", {"property": str(EX.p)})["status"] == "rejected"
+    assert (
+        gate(graph).assess("Functional", {"property": str(EX.p)})["status"]
+        == "rejected"
+    )

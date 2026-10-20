@@ -1,0 +1,82 @@
+[
+  {
+    "id": "w3c-optional-people",
+    "name": "W3C SPARQL optional person data",
+    "publisher": "W3C",
+    "url": "https://www.w3.org/2001/sw/DataAccess/tests/data-r2/optional/complex-data-1.ttl",
+    "source_page": "https://www.w3.org/2001/sw/DataAccess/tests/r2",
+    "format": "turtle",
+    "extension": "ttl",
+    "kind": "published synthetic standards fixture"
+  },
+  {
+    "id": "w3c-foaf-card",
+    "name": "Tim Berners-Lee public FOAF profile",
+    "publisher": "W3C",
+    "url": "https://www.w3.org/People/Berners-Lee/card",
+    "source_page": "https://www.w3.org/People/Berners-Lee/card",
+    "format": "xml",
+    "extension": "rdf",
+    "kind": "public person and organization instance graph"
+  },
+  {
+    "id": "dbpedia-leipzig",
+    "name": "DBpedia Leipzig",
+    "publisher": "DBpedia",
+    "url": "https://dbpedia.org/data/Leipzig.ttl",
+    "source_page": "https://www.dbpedia.org/resources/linked-data/",
+    "format": "turtle",
+    "extension": "ttl",
+    "kind": "geographic instance description"
+  },
+  {
+    "id": "dbpedia-ada-lovelace",
+    "name": "DBpedia Ada Lovelace",
+    "publisher": "DBpedia",
+    "url": "https://dbpedia.org/data/Ada_Lovelace.ttl",
+    "source_page": "https://www.dbpedia.org/resources/linked-data/",
+    "format": "turtle",
+    "extension": "ttl",
+    "kind": "biographical instance description"
+  },
+  {
+    "id": "dbpedia-berlin",
+    "name": "DBpedia Berlin",
+    "publisher": "DBpedia",
+    "url": "https://dbpedia.org/data/Berlin.ttl",
+    "source_page": "https://www.dbpedia.org/resources/linked-data/",
+    "format": "turtle",
+    "extension": "ttl",
+    "kind": "geographic instance description"
+  },
+  {
+    "id": "geonames-bangladesh",
+    "name": "GeoNames Bangladesh",
+    "publisher": "GeoNames",
+    "url": "https://sws.geonames.org/1210997/about.rdf",
+    "source_page": "https://www.geonames.org/ontology/documentation.html",
+    "format": "xml",
+    "extension": "rdf",
+    "kind": "geographic feature instance description"
+  },
+  {
+    "id": "wikidata-douglas-adams",
+    "name": "Wikidata Douglas Adams",
+    "publisher": "Wikimedia / Wikidata",
+    "url": "https://www.wikidata.org/wiki/Special:EntityData/Q42.ttl",
+    "source_page": "https://www.wikidata.org/wiki/Wikidata:Data_access",
+    "format": "turtle",
+    "extension": "ttl",
+    "kind": "statement-rich biographical instance graph"
+  },
+  {
+    "id": "nobel-roentgen",
+    "name": "Nobel Prize Wilhelm Conrad Roentgen",
+    "publisher": "Nobel Prize Outreach",
+    "url": "https://data.nobelprize.org/resource/laureate/1",
+    "source_page": "https://data.nobelprize.org/specification/2.0/",
+    "format": "turtle",
+    "extension": "ttl",
+    "kind": "scientific award and laureate instance description"
+  }
+]

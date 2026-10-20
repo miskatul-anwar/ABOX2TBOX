@@ -1,6 +1,6 @@
 """test_cross_domain.py - Automated Cross-Domain Verification Harness (Milestone 3).
 
-Executes ABox2TBox.ipynb across all 5 benchmark domains in complete isolation:
+Calls the production API across all five benchmark domains in isolation:
   1. University Baseline (input/ABox.ttl)
   2. E-Commerce / Retail (input/ecommerce_abox.ttl)
   3. Hospital / Biomedical (input/hospital_abox.ttl)
@@ -8,7 +8,7 @@ Executes ABox2TBox.ipynb across all 5 benchmark domains in complete isolation:
   5. Financial / Banking (input/banking_abox.ttl)
 
 For every domain, verifies the 7 formal acceptance assertions:
-  - Assertion 1: Notebook execution integrity (>= 15 code cells, no unhandled exceptions)
+  - Assertion 1: Pipeline execution integrity (all production stages, no unhandled exceptions)
   - Assertion 2: Valid OWL 2 / RDFS syntax with >= 15 declared classes
   - Assertion 3: Subsumption hierarchy forms a strict DAG (0 directed cycles)
   - Assertion 4: Post-repair disjointness violations DVC_post == 0
@@ -32,10 +32,13 @@ import sys
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import matplotlib
+
 matplotlib.use("Agg")
 
 import networkx as nx
 import pytest
+from abox2tbox import run_pipeline
+from abox2tbox.pipeline import STAGES
 import rdflib
 from rdflib.namespace import OWL, RDF, RDFS
 
@@ -44,11 +47,7 @@ from rdflib.namespace import OWL, RDF, RDFS
 # ==============================================================================
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NOTEBOOK_PATH = (
-    ((os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) if os.path.exists(os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) else os.path.join(BASE_DIR, "abox2tbox.ipynb"))
-    if os.path.exists(((os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) if os.path.exists(os.path.join(BASE_DIR, "ABOX2TBOX.ipynb")) else os.path.join(BASE_DIR, "abox2tbox.ipynb")))
-    else os.path.join(BASE_DIR, "ABox2TBox.ipynb")
-)
+
 _OUTPUT_TEMP = tempfile.TemporaryDirectory(prefix="abox2tbox-domain-tests-")
 OUTPUT_DIR = _OUTPUT_TEMP.name
 
@@ -117,21 +116,22 @@ def run_pipeline_for_domain(domain_key, force_reexecution=False, verbose=False):
     if domain_key in _EXECUTION_CACHE and not force_reexecution:
         return _EXECUTION_CACHE[domain_key]
     cfg = DOMAINS[domain_key]
-    namespace = {}
-    with open(NOTEBOOK_PATH, encoding="utf-8") as handle:
-        notebook = json.load(handle)
-    count = 0
     captured = io.StringIO()
-    with patch.dict(os.environ, {
-        "USE_LLM": "false", "ABOX_INPUT_PATH": cfg["abox_path"],
-        "TBOX_OUTPUT_PATH": cfg["tbox_path"], "TELEMETRY_PLOT_PATH": cfg["plot_path"],
-        "CALIBRATION_LABELS_PATH": ""
-    }):
+    with patch.dict(
+        os.environ,
+        {
+            "USE_LLM": "false",
+            "ABOX_INPUT_PATH": cfg["abox_path"],
+            "TBOX_OUTPUT_PATH": cfg["tbox_path"],
+            "TELEMETRY_PLOT_PATH": cfg["plot_path"],
+            "CALIBRATION_LABELS_PATH": "",
+        },
+    ):
         with redirect_stdout(sys.stdout if verbose else captured):
-            for index, cell in enumerate(notebook["cells"]):
-                if cell["cell_type"] == "code":
-                    exec(compile("".join(cell["source"]), f"cell-{index}", "exec"), namespace)
-                    count += 1
+            result = run_pipeline(
+                cfg["abox_path"], cfg["tbox_path"], plot_path=cfg["plot_path"]
+            )
+            namespace, count = vars(result.state), len(result.state.completed_stages)
     assert namespace["VALIDATION_REPORT"]["status"] == "passed"
     _EXECUTION_CACHE[domain_key] = namespace, count
     _METRICS_CACHE.pop(domain_key, None)
@@ -143,11 +143,11 @@ def run_pipeline_for_domain(domain_key, force_reexecution=False, verbose=False):
 # ==============================================================================
 
 
-def verify_assertion_1_notebook_execution(domain_key: str) -> int:
-    """Assertion 1: Notebook execution integrity (>= 15 code cells without error)."""
+def verify_assertion_1_pipeline_execution(domain_key: str) -> int:
+    """Assertion 1: Pipeline execution integrity (all production stages without error)."""
     user_ns, count = run_pipeline_for_domain(domain_key)
-    assert count >= 15, (
-        f"Domain '{domain_key}': Expected >= 15 executed code cells, observed {count}"
+    assert count == len(STAGES), (
+        f"Domain '{domain_key}': Expected >= 15 completed stages, observed {count}"
     )
     return count
 
@@ -269,9 +269,7 @@ def verify_assertion_4_disjointness_consistency(domain_key: str) -> int:
 def verify_assertion_5_prompt_token_ceiling(domain_key: str) -> int:
     """Offline runs record no network requests or invented token usage."""
     user_ns, _ = run_pipeline_for_domain(domain_key)
-    token_log = user_ns.get(
-        "TOKEN_AUDIT_LOG", user_ns.get("PAYLOAD_TOKEN_AUDIT_LOG", [])
-    )
+    token_log = user_ns["payload_token_audit_log"]
     assert token_log == [], "Offline execution must not fabricate model calls"
     assert user_ns["total_tokens_measured"] == 0
     assert user_ns["ECE"] is None
@@ -343,7 +341,7 @@ def compute_domain_metrics(domain_key: str) -> Dict[str, Any]:
         return _METRICS_CACHE[domain_key]
 
     cfg = DOMAINS[domain_key]
-    user_ns, cell_count = run_pipeline_for_domain(domain_key)
+    user_ns, stage_count = run_pipeline_for_domain(domain_key)
     abox_path = cfg["abox_path"]
     tbox_path = cfg["tbox_path"]
 
@@ -365,7 +363,9 @@ def compute_domain_metrics(domain_key: str) -> Dict[str, Any]:
 
     is_dag = nx.is_directed_acyclic_graph(dag)
     cycles = list(nx.simple_cycles(dag))
-    dag_status = "DAG (0 cyc)" if is_dag and len(cycles) == 0 else f"CYC ({len(cycles)})"
+    dag_status = (
+        "DAG (0 cyc)" if is_dag and len(cycles) == 0 else f"CYC ({len(cycles)})"
+    )
 
     # Evaluate disjointness
     def get_class_ancestors(c: str) -> Set[str]:
@@ -394,9 +394,7 @@ def compute_domain_metrics(domain_key: str) -> Dict[str, Any]:
             if c1 in inst_types and c2 in inst_types:
                 violations += 1
 
-    token_log = user_ns.get(
-        "TOKEN_AUDIT_LOG", user_ns.get("PAYLOAD_TOKEN_AUDIT_LOG", [])
-    )
+    token_log = user_ns["payload_token_audit_log"]
     max_tokens = max((e.get("input_tokens") or 0 for e in token_log), default=0)
 
     ontoqa = user_ns.get("ONTOQA_METRICS", {})
@@ -411,12 +409,14 @@ def compute_domain_metrics(domain_key: str) -> Dict[str, Any]:
     )
 
     prov_triples = list(
-        g_tbox.triples((None, rdflib.URIRef("http://www.w3.org/ns/prov#wasAttributedTo"), None))
+        g_tbox.triples(
+            (None, rdflib.URIRef("http://www.w3.org/ns/prov#wasAttributedTo"), None)
+        )
     )
 
     # Check if all 7 acceptance criteria pass
     passed = (
-        cell_count >= 15
+        stage_count == len(STAGES)
         and len(classes) >= 15
         and is_dag
         and len(cycles) == 0
@@ -509,16 +509,14 @@ def render_comparative_table(metrics_list: List[Dict[str, Any]]) -> str:
 # ==============================================================================
 
 DOMAIN_KEYS = (
-    list(AVAILABLE_DOMAINS.keys())
-    if AVAILABLE_DOMAINS
-    else list(DOMAINS.keys())
+    list(AVAILABLE_DOMAINS.keys()) if AVAILABLE_DOMAINS else list(DOMAINS.keys())
 )
 
 
 @pytest.mark.parametrize("domain_key", DOMAIN_KEYS)
-def test_01_notebook_execution(domain_key: str):
-    """Assertion 1: Notebook execution integrity (>= 15 cells, no exceptions)."""
-    verify_assertion_1_notebook_execution(domain_key)
+def test_01_pipeline_execution(domain_key: str):
+    """Assertion 1: Pipeline execution integrity (all production stages, no exceptions)."""
+    verify_assertion_1_pipeline_execution(domain_key)
 
 
 @pytest.mark.parametrize("domain_key", DOMAIN_KEYS)
@@ -589,14 +587,18 @@ def main() -> int:
     parser.add_argument(
         "--verbose",
         action="store_true",
-        help="Stream full stdout/stderr during notebook cell execution.",
+        help="Stream full stdout/stderr during pipeline execution.",
     )
     args = parser.parse_args()
 
     target_domains = (
         [args.domain]
         if args.domain
-        else (list(AVAILABLE_DOMAINS.keys()) if AVAILABLE_DOMAINS else list(DOMAINS.keys()))
+        else (
+            list(AVAILABLE_DOMAINS.keys())
+            if AVAILABLE_DOMAINS
+            else list(DOMAINS.keys())
+        )
     )
 
     print("=" * 80)
@@ -613,38 +615,63 @@ def main() -> int:
     passed_assertions = 0
 
     suite_assertions = [
-        ("Assertion 1: Notebook Execution Integrity (>= 15 cells)", verify_assertion_1_notebook_execution),
-        ("Assertion 2: Valid OWL 2 / RDFS Syntax (>= 15 classes)", verify_assertion_2_tbox_syntax_and_classes),
-        ("Assertion 3: Subsumption DAG (0 Directed Cycles)", verify_assertion_3_subsumption_dag_acyclicity),
-        ("Assertion 4: Post-Repair Disjointness (DVC_post == 0)", verify_assertion_4_disjointness_consistency),
-        ("Assertion 5: Prompt Token Ceiling (<= 1,500 tokens)", verify_assertion_5_prompt_token_ceiling),
-        ("Assertion 6: OntoQA Metrics in Valid Bounds", verify_assertion_6_ontoqa_metrics),
-        ("Assertion 7: W3C PROV-O Reification Metadata", verify_assertion_7_provenance_metadata),
+        (
+            "Assertion 1: Pipeline Execution Integrity (all production stages)",
+            verify_assertion_1_pipeline_execution,
+        ),
+        (
+            "Assertion 2: Valid OWL 2 / RDFS Syntax (>= 15 classes)",
+            verify_assertion_2_tbox_syntax_and_classes,
+        ),
+        (
+            "Assertion 3: Subsumption DAG (0 Directed Cycles)",
+            verify_assertion_3_subsumption_dag_acyclicity,
+        ),
+        (
+            "Assertion 4: Post-Repair Disjointness (DVC_post == 0)",
+            verify_assertion_4_disjointness_consistency,
+        ),
+        (
+            "Assertion 5: Prompt Token Ceiling (<= 1,500 tokens)",
+            verify_assertion_5_prompt_token_ceiling,
+        ),
+        (
+            "Assertion 6: OntoQA Metrics in Valid Bounds",
+            verify_assertion_6_ontoqa_metrics,
+        ),
+        (
+            "Assertion 7: W3C PROV-O Reification Metadata",
+            verify_assertion_7_provenance_metadata,
+        ),
     ]
 
     for idx, domain_key in enumerate(target_domains, 1):
         cfg = DOMAINS[domain_key]
-        print(f"\n[{idx}/{len(target_domains)}] Evaluating Domain: {cfg['name']} ({domain_key})")
+        print(
+            f"\n[{idx}/{len(target_domains)}] Evaluating Domain: {cfg['name']} ({domain_key})"
+        )
         try:
-            _, cell_count = run_pipeline_for_domain(domain_key, verbose=args.verbose)
-            print(f"  ✔ Notebook executed successfully ({cell_count} code cells)")
+            _, stage_count = run_pipeline_for_domain(domain_key, verbose=args.verbose)
+            print(f"  ✔ Pipeline completed successfully ({stage_count} stages)")
         except Exception as e:
             print(f"  ❌ Notebook execution failed: {e}")
-            all_domain_metrics.append({
-                "key": domain_key,
-                "domain": cfg["name"],
-                "abox_triples": 0,
-                "tbox_triples": 0,
-                "classes": 0,
-                "hasse_edges": 0,
-                "dag_status": "FAILED",
-                "dvc_post": -1,
-                "max_tokens": -1,
-                "rr": 0.0,
-                "ir": 0.0,
-                "ccr": 0.0,
-                "status": "FAIL",
-            })
+            all_domain_metrics.append(
+                {
+                    "key": domain_key,
+                    "domain": cfg["name"],
+                    "abox_triples": 0,
+                    "tbox_triples": 0,
+                    "classes": 0,
+                    "hasse_edges": 0,
+                    "dag_status": "FAILED",
+                    "dvc_post": -1,
+                    "max_tokens": -1,
+                    "rr": 0.0,
+                    "ir": 0.0,
+                    "ccr": 0.0,
+                    "status": "FAIL",
+                }
+            )
             continue
 
         domain_passed = True

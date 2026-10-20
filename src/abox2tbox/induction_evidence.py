@@ -5,6 +5,7 @@ exchangeable subject observations. It is NOT P(OWL axiom is universally true).
 Absent assertions are unknown in OWL, even when they lower observed coverage.
 No repeated model opinion is counted as an independent observation.
 """
+
 from collections import Counter, defaultdict
 import hashlib
 import json
@@ -35,11 +36,15 @@ def _local_jsonld(value):
     elif isinstance(value, dict):
         for key, item in value.items():
             if key == "@import":
-                raise ValueError("External JSON-LD @import is unsupported; supply an inline context")
+                raise ValueError(
+                    "External JSON-LD @import is unsupported; supply an inline context"
+                )
             if key == "@context":
                 contexts = item if isinstance(item, list) else [item]
                 if any(isinstance(context, str) for context in contexts):
-                    raise ValueError("External JSON-LD @context is unsupported; supply an inline context")
+                    raise ValueError(
+                        "External JSON-LD @context is unsupported; supply an inline context"
+                    )
             _local_jsonld(item)
 
 
@@ -52,10 +57,17 @@ def load_abox(path, rdf_format=None, max_triples=2000000):
     """
     path = Path(path)
     fmt = rdf_format or guess_format(path.name)
-    fmt = {"json": "json-ld", "ttl": "turtle", "rdf": "xml", "nq": "nquads",
-           "nt": "nt"}.get(fmt, fmt)
+    fmt = {
+        "json": "json-ld",
+        "ttl": "turtle",
+        "rdf": "xml",
+        "nq": "nquads",
+        "nt": "nt",
+    }.get(fmt, fmt)
     if fmt not in {"turtle", "nt", "xml", "json-ld", "trig", "nquads", "n3", "trix"}:
-        raise ValueError("Unknown RDF format. Set ABOX_FORMAT to turtle, nt, xml, json-ld, trig, nquads, n3, or trix")
+        raise ValueError(
+            "Unknown RDF format. Set ABOX_FORMAT to turtle, nt, xml, json-ld, trig, nquads, n3, or trix"
+        )
     if fmt == "json-ld":
         _local_jsonld(json.loads(path.read_text(encoding="utf-8")))
     if fmt in {"xml", "trix"} and b"<!DOCTYPE" in path.read_bytes().upper():
@@ -71,19 +83,30 @@ def load_abox(path, rdf_format=None, max_triples=2000000):
     else:
         graph.parse(path, format=fmt)
     if len(graph) > max_triples:
-        raise ValueError(f"Input has {len(graph)} triples; MAX_INPUT_TRIPLES={max_triples}")
+        raise ValueError(
+            f"Input has {len(graph)} triples; MAX_INPUT_TRIPLES={max_triples}"
+        )
     if any(graph.triples((None, OWL.imports, None))):
         raise ValueError("Resolve owl:imports into local RDF before induction")
     for s, p, o in graph:
-        if (not isinstance(s, (URIRef, BNode)) or not isinstance(p, URIRef)
-                or not isinstance(o, (URIRef, BNode, Literal))):
+        if (
+            not isinstance(s, (URIRef, BNode))
+            or not isinstance(p, URIRef)
+            or not isinstance(o, (URIRef, BNode, Literal))
+        ):
             raise ValueError(f"Unsupported generalized RDF triple: {(s, p, o)}")
         if isinstance(o, Literal) and getattr(o, "ill_typed", False):
             raise ValueError(f"Ill-typed literal: {o.n3()}")
     if any(isinstance(s, BNode) or isinstance(o, BNode) for s, _, o in graph):
         graph = to_canonical_graph(graph)
-    report = {"format": fmt, "input_triples": len(graph), "named_graph_policy": "union",
-              "nonempty_contexts": contexts, "mixed_properties": [], "equality_aliases": {}}
+    report = {
+        "format": fmt,
+        "input_triples": len(graph),
+        "named_graph_policy": "union",
+        "nonempty_contexts": contexts,
+        "mixed_properties": [],
+        "equality_aliases": {},
+    }
     parent = {}
 
     def root(x):
@@ -93,7 +116,9 @@ def load_abox(path, rdf_format=None, max_triples=2000000):
             x = parent[x]
         return x
 
-    for a, b in sorted(graph.subject_objects(OWL.sameAs), key=lambda pair: tuple(map(term_key, pair))):
+    for a, b in sorted(
+        graph.subject_objects(OWL.sameAs), key=lambda pair: tuple(map(term_key, pair))
+    ):
         if isinstance(b, Literal):
             raise ValueError("owl:sameAs requires resource terms")
         a, b = root(a), root(b)
@@ -104,8 +129,11 @@ def load_abox(path, rdf_format=None, max_triples=2000000):
     normalized = Graph()
     for s, p, o in graph:
         meta_predicate = str(p).startswith((str(RDF), str(RDFS), str(OWL), str(XSD)))
-        if p == RDF.type and isinstance(o, URIRef) and not str(o).startswith(
-                (str(RDF), str(RDFS), str(OWL), str(XSD))):
+        if (
+            p == RDF.type
+            and isinstance(o, URIRef)
+            and not str(o).startswith((str(RDF), str(RDFS), str(OWL), str(XSD)))
+        ):
             # OWL punning: equality of individuals does not equate class names.
             normalized.add((root(s), p, o))
         elif not meta_predicate or p in (OWL.sameAs, OWL.differentFrom):
@@ -116,16 +144,28 @@ def load_abox(path, rdf_format=None, max_triples=2000000):
             normalized.add((root(s), p, o))
         else:
             normalized.add((s, p, o))
-    report["equality_aliases"] = {term_key(x): term_key(root(x)) for x in parent if x != root(x)}
+    report["equality_aliases"] = {
+        term_key(x): term_key(root(x)) for x in parent if x != root(x)
+    }
     kinds = defaultdict(set)
     for s, p, o in normalized:
         if not str(p).startswith((str(RDF), str(RDFS), str(OWL), str(XSD))):
             kinds[p].add("data" if isinstance(o, Literal) else "object")
-    used = {str(term) for triple in normalized for term in triple if isinstance(term, URIRef)}
+    used = {
+        str(term)
+        for triple in normalized
+        for term in triple
+        if isinstance(term, URIRef)
+    }
     for prop in sorted((p for p, kinds_ in kinds.items() if len(kinds_) > 1), key=str):
         mapping = {}
         for kind in ("object", "data"):
-            base = "urn:abox2tbox:normalized:" + hashlib.sha256(str(prop).encode()).hexdigest() + ":" + kind
+            base = (
+                "urn:abox2tbox:normalized:"
+                + hashlib.sha256(str(prop).encode()).hexdigest()
+                + ":"
+                + kind
+            )
             name, suffix = base, 0
             while name in used:
                 suffix += 1
@@ -134,12 +174,20 @@ def load_abox(path, rdf_format=None, max_triples=2000000):
             mapping[kind] = URIRef(name)
         for s, o in list(normalized.subject_objects(prop)):
             normalized.remove((s, prop, o))
-            normalized.add((s, mapping["data" if isinstance(o, Literal) else "object"], o))
+            normalized.add(
+                (s, mapping["data" if isinstance(o, Literal) else "object"], o)
+            )
         # Preserve a negative assertion's connection to its normalized predicate.
         for node in list(normalized.subjects(OWL.assertionProperty, prop)):
-            kind = "data" if normalized.value(node, OWL.targetValue) is not None else "object"
+            kind = (
+                "data"
+                if normalized.value(node, OWL.targetValue) is not None
+                else "object"
+            )
             normalized.set((node, OWL.assertionProperty, mapping[kind]))
-        report["mixed_properties"].append({"original": str(prop), **{k: str(v) for k, v in mapping.items()}})
+        report["mixed_properties"].append(
+            {"original": str(prop), **{k: str(v) for k, v in mapping.items()}}
+        )
     report["normalized_triples"] = len(normalized)
     return normalized, report
 
@@ -153,9 +201,17 @@ def split_assertions(graph):
     structural.update(graph.subjects(OWL.complementOf, None))
     structural.update(graph.subjects(RDF.type, OWL.Restriction))
     for s, p, o in graph:
-        if s not in structural and p not in annotations and (
-            (p == RDF.type and isinstance(o, URIRef) and not str(o).startswith(meta))
-            or not str(p).startswith(meta)
+        if (
+            s not in structural
+            and p not in annotations
+            and (
+                (
+                    p == RDF.type
+                    and isinstance(o, URIRef)
+                    and not str(o).startswith(meta)
+                )
+                or not str(p).startswith(meta)
+            )
         ):
             data.add((s, p, o))
         else:
@@ -170,23 +226,37 @@ def beta_tail(alpha, beta, threshold):
     if not 0 < threshold < 1:
         raise ValueError("Coverage threshold must be in (0,1)")
     n = alpha + beta - 1
-    logs = [math.lgamma(n + 1) - math.lgamma(j + 1) - math.lgamma(n - j + 1)
-            + j * math.log(threshold) + (n - j) * math.log1p(-threshold)
-            for j in range(alpha)]
+    logs = [
+        math.lgamma(n + 1)
+        - math.lgamma(j + 1)
+        - math.lgamma(n - j + 1)
+        + j * math.log(threshold)
+        + (n - j) * math.log1p(-threshold)
+        for j in range(alpha)
+    ]
     top = max(logs)
     return min(1.0, math.exp(top) * math.fsum(math.exp(x - top) for x in logs))
 
 
-def coverage_belief(supported, unobserved, threshold=.9, prior=(1, 1)):
+def coverage_belief(supported, unobserved, threshold=0.9, prior=(1, 1)):
     """Update once per distinct subject; unknown outcomes aren't logical negatives."""
-    if any(isinstance(n, bool) or not isinstance(n, int) or n < 0 for n in (supported, unobserved)):
+    if any(
+        isinstance(n, bool) or not isinstance(n, int) or n < 0
+        for n in (supported, unobserved)
+    ):
         raise ValueError("Evidence counts must be nonnegative integers")
     a, b = prior
-    return {"prior_alpha": a, "prior_beta": b,
-            "posterior_alpha": a + supported, "posterior_beta": b + unobserved,
-            "posterior_mean": (a + supported) / (a + b + supported + unobserved),
-            "coverage_threshold": threshold,
-            "probability_coverage_exceeds_threshold": beta_tail(a + supported, b + unobserved, threshold)}
+    return {
+        "prior_alpha": a,
+        "prior_beta": b,
+        "posterior_alpha": a + supported,
+        "posterior_beta": b + unobserved,
+        "posterior_mean": (a + supported) / (a + b + supported + unobserved),
+        "coverage_threshold": threshold,
+        "probability_coverage_exceeds_threshold": beta_tail(
+            a + supported, b + unobserved, threshold
+        ),
+    }
 
 
 class EvidenceGate:
@@ -205,7 +275,9 @@ class EvidenceGate:
             else:
                 self.edges[str(p)].add((term_key(s), term_key(o)))
                 if isinstance(o, Literal):
-                    self.literal_datatypes[term_key(o)] = str(o.datatype or (RDF.langString if o.language else XSD.string))
+                    self.literal_datatypes[term_key(o)] = str(
+                        o.datatype or (RDF.langString if o.language else XSD.string)
+                    )
                     self.literal_terms[term_key(o)] = o
         self.members = defaultdict(set)
         for s, types in self.types.items():
@@ -224,7 +296,10 @@ class EvidenceGate:
                     self.not_types[s].add(b)
         self.negative_edges = defaultdict(set)
         for node in context.subjects(RDF.type, OWL.NegativePropertyAssertion):
-            s, p = context.value(node, OWL.sourceIndividual), context.value(node, OWL.assertionProperty)
+            s, p = (
+                context.value(node, OWL.sourceIndividual),
+                context.value(node, OWL.assertionProperty),
+            )
             o = context.value(node, OWL.targetIndividual)
             if o is None:
                 o = context.value(node, OWL.targetValue)
@@ -232,7 +307,9 @@ class EvidenceGate:
                 self.negative_edges[str(p)].add((term_key(s), term_key(o)))
         self.different = set()
         for a, b in context.subject_objects(OWL.differentFrom):
-            self.different.update(((term_key(a), term_key(b)), (term_key(b), term_key(a))))
+            self.different.update(
+                ((term_key(a), term_key(b)), (term_key(b), term_key(a)))
+            )
         self.records, self.cache = [], {}
 
     def _observations(self, family, spec):
@@ -243,7 +320,9 @@ class EvidenceGate:
             subject = s if subject is None else subject
             outcomes[subject].append(target in self.types[s])
             if target in self.not_types[s]:
-                contradictions.append({"subject": subject, "target": s, "negated_class": target})
+                contradictions.append(
+                    {"subject": subject, "target": s, "negated_class": target}
+                )
 
         def edge(s, o, prop, subject=None):
             subject = s if subject is None else subject
@@ -296,23 +375,42 @@ class EvidenceGate:
             for s in sorted(self.members[spec["class"]]):
                 values = fillers[s]
                 if spec["type"] == "someValuesFrom":
-                    outcomes[s].append(any(spec["filler"] in self.types[o] for o in values))
+                    outcomes[s].append(
+                        any(spec["filler"] in self.types[o] for o in values)
+                    )
                     # No observed witness is not proof that no witness exists.
                 else:
-                    outcomes[s].append(bool(values) and all(spec["filler"] in self.types[o] for o in values))
+                    outcomes[s].append(
+                        bool(values)
+                        and all(spec["filler"] in self.types[o] for o in values)
+                    )
                     for o in sorted(values):
                         if spec["filler"] in self.not_types[o]:
-                            contradictions.append({"subject": s, "filler": o, "negated_class": spec["filler"]})
+                            contradictions.append(
+                                {
+                                    "subject": s,
+                                    "filler": o,
+                                    "negated_class": spec["filler"],
+                                }
+                            )
         elif family in {"Functional", "InverseFunctional"}:
             values = defaultdict(set)
             for s, o in self.edges[spec["property"]]:
-                values[o if family == "InverseFunctional" else s].add(s if family == "InverseFunctional" else o)
+                values[o if family == "InverseFunctional" else s].add(
+                    s if family == "InverseFunctional" else o
+                )
             for s, objects in sorted(values.items()):
                 for a in objects:
                     for b in objects:
                         if (a, b) in self.different:
-                            contradictions.append({"subject": s, "distinct_values": sorted((a, b))})
-                        elif a < b and a in self.literal_terms and b in self.literal_terms:
+                            contradictions.append(
+                                {"subject": s, "distinct_values": sorted((a, b))}
+                            )
+                        elif (
+                            a < b
+                            and a in self.literal_terms
+                            and b in self.literal_terms
+                        ):
                             left, right = self.literal_terms[a], self.literal_terms[b]
                             # Value equality, not lexical inequality: "01"^^integer
                             # and "1"^^integer denote the same value.
@@ -321,21 +419,34 @@ class EvidenceGate:
                             except (TypeError, ValueError):
                                 unequal = False
                             if unequal:
-                                contradictions.append({"subject": s, "distinct_literal_values": [a, b]})
+                                contradictions.append(
+                                    {"subject": s, "distinct_literal_values": [a, b]}
+                                )
             # Single observed values cannot distinguish uniqueness from incompleteness.
-            return outcomes, contradictions, "uniqueness_not_identifiable_without_completeness"
+            return (
+                outcomes,
+                contradictions,
+                "uniqueness_not_identifiable_without_completeness",
+            )
         elif family == "disjoint":
-            contradictions = [{"subject": s, "classes": [spec["c1"], spec["c2"]]}
-                              for s in sorted(self.members[spec["c1"]] & self.members[spec["c2"]])]
+            contradictions = [
+                {"subject": s, "classes": [spec["c1"], spec["c2"]]}
+                for s in sorted(self.members[spec["c1"]] & self.members[spec["c2"]])
+            ]
             return outcomes, contradictions, "nonoverlap_is_not_negative_evidence"
         elif family in {"Asymmetric", "Irreflexive", "Reflexive"}:
             prop = spec["property"]
             for s, o in sorted(self.edges[prop]):
-                if (family == "Asymmetric" and (o, s) in self.edges[prop]) or (family == "Irreflexive" and s == o):
+                if (family == "Asymmetric" and (o, s) in self.edges[prop]) or (
+                    family == "Irreflexive" and s == o
+                ):
                     contradictions.append({"subject": s, "property": prop, "object": o})
             if family == "Reflexive":
-                contradictions.extend({"subject": s, "negative_self_edge": prop}
-                                      for s, o in sorted(self.negative_edges[prop]) if s == o)
+                contradictions.extend(
+                    {"subject": s, "negative_self_edge": prop}
+                    for s, o in sorted(self.negative_edges[prop])
+                    if s == o
+                )
             return outcomes, contradictions, "global_or_negative_claim_not_identifiable"
         else:
             return outcomes, contradictions, "unsupported_evidence_family"
@@ -346,31 +457,59 @@ class EvidenceGate:
         if key in self.cache:
             return self.cache[key]
         if len(self.records) >= int(self.config.get("MAX_EVIDENCE_CANDIDATES", 1000)):
-            record = {"id": hashlib.sha256(key.encode()).hexdigest()[:24], "family": family,
-                      "candidate": spec, "status": "withheld", "reasons": ["candidate_budget_exceeded"]}
+            record = {
+                "id": hashlib.sha256(key.encode()).hexdigest()[:24],
+                "family": family,
+                "candidate": spec,
+                "status": "withheld",
+                "reasons": ["candidate_budget_exceeded"],
+            }
             self.records.append(record)
             self.cache[key] = record
             return record
         outcomes, contradictions, limitation = self._observations(family, spec)
-        confirmation = {s: value for s, value in outcomes.items() if s in self.confirmation_subjects}
+        confirmation = {
+            s: value for s, value in outcomes.items() if s in self.confirmation_subjects
+        }
         support = sum(confirmation.values())
         missing = len(confirmation) - support
-        threshold = float(self.config.get("MIN_OBSERVED_COVERAGE", .9))
+        threshold = float(self.config.get("MIN_OBSERVED_COVERAGE", 0.9))
         belief = coverage_belief(support, missing, threshold)
         skeptical = coverage_belief(support, missing, threshold, prior=(1, 3))
         folds = []
         for i in range(3):
-            values = [v for s, v in confirmation.items() if bucket(s, 3, "stability-v4") == i]
-            folds.append({"fold": i, "subjects": len(values),
-                          "observed_coverage": sum(values) / len(values) if values else None})
-        stable = all(f["subjects"] >= 2 and f["observed_coverage"] >= threshold for f in folds)
-        population = set(self.types) | {s for values in self.edges.values() for s, _ in values}
+            values = [
+                v for s, v in confirmation.items() if bucket(s, 3, "stability-v4") == i
+            ]
+            folds.append(
+                {
+                    "fold": i,
+                    "subjects": len(values),
+                    "observed_coverage": sum(values) / len(values) if values else None,
+                }
+            )
+        stable = all(
+            f["subjects"] >= 2 and f["observed_coverage"] >= threshold for f in folds
+        )
+        population = set(self.types) | {
+            s for values in self.edges.values() for s, _ in values
+        }
         population &= self.confirmation_subjects
-        target_class = spec.get("super") if family == "subclass" else spec.get("class") if family == "domain" else None
-        baseline = len(self.members[target_class] & population) / len(population) if population and target_class else None
+        target_class = (
+            spec.get("super")
+            if family == "subclass"
+            else spec.get("class")
+            if family == "domain"
+            else None
+        )
+        baseline = (
+            len(self.members[target_class] & population) / len(population)
+            if population and target_class
+            else None
+        )
         # Observable lift is a competing explanation check, not a causal test.
         observed = support / len(confirmation) if confirmation else 0
-        discriminative = baseline is None or observed - baseline >= .05
+        discriminative = baseline is None or observed - baseline >= 0.05
         reasons = []
         if contradictions:
             reasons.append("explicit_counterexample")
@@ -382,31 +521,54 @@ class EvidenceGate:
             reasons.append("unstable_or_underpowered_subject_folds")
         if not discriminative:
             reasons.append("ubiquitous_target_explains_overlap")
-        risk = float(self.config.get("POSTERIOR_RISK_BUDGET", .05))
+        risk = float(self.config.get("POSTERIOR_RISK_BUDGET", 0.05))
         # Allocated across the configured candidate budget, not just successful candidates.
         allowed_risk = risk / int(self.config.get("MAX_EVIDENCE_CANDIDATES", 1000))
-        probability = min(belief["probability_coverage_exceeds_threshold"],
-                          skeptical["probability_coverage_exceeds_threshold"])
+        probability = min(
+            belief["probability_coverage_exceeds_threshold"],
+            skeptical["probability_coverage_exceeds_threshold"],
+        )
         if 1 - probability > allowed_risk:
             reasons.append("posterior_risk_or_prior_sensitivity")
-        record = {"id": hashlib.sha256(key.encode()).hexdigest()[:24], "family": family, "candidate": spec,
-                  "status": "rejected" if contradictions else "withheld" if reasons else "accepted",
-                  "reasons": reasons, "support_subjects": support, "unobserved_subjects": missing,
-                  "counterexample_count": len(contradictions), "counterexamples": contradictions[:10],
-                  "unobserved_examples": sorted(s for s, v in confirmation.items() if not v)[:10],
-                  "probability_target": "observable implication coverage, not universal axiom truth",
-                  "belief": belief, "skeptical_prior_belief": skeptical, "stability_folds": folds,
-                  "competing_baseline_coverage": baseline, "allocated_posterior_risk": allowed_risk,
-                  "universal_truth_probability": None, "human_agreement": None}
+        record = {
+            "id": hashlib.sha256(key.encode()).hexdigest()[:24],
+            "family": family,
+            "candidate": spec,
+            "status": "rejected"
+            if contradictions
+            else "withheld"
+            if reasons
+            else "accepted",
+            "reasons": reasons,
+            "support_subjects": support,
+            "unobserved_subjects": missing,
+            "counterexample_count": len(contradictions),
+            "counterexamples": contradictions[:10],
+            "unobserved_examples": sorted(s for s, v in confirmation.items() if not v)[
+                :10
+            ],
+            "probability_target": "observable implication coverage, not universal axiom truth",
+            "belief": belief,
+            "skeptical_prior_belief": skeptical,
+            "stability_folds": folds,
+            "competing_baseline_coverage": baseline,
+            "allocated_posterior_risk": allowed_risk,
+            "universal_truth_probability": None,
+            "human_agreement": None,
+        }
         self.records.append(record)
         self.cache[key] = record
         return record
 
     def report(self):
-        return {"version": "4.0", "probability_contract": (
-            "Beta-Bernoulli posterior for observed consequent coverage on untouched confirmation "
-            "subjects. Unknown consequents lower observation coverage, not logical truth. "
-            "Subject exchangeability is an assumption; correlated sources can violate it. "
-            "Three folds and two priors are sensitivity checks, not independent votes."),
+        return {
+            "version": "4.0",
+            "probability_contract": (
+                "Beta-Bernoulli posterior for observed consequent coverage on untouched confirmation "
+                "subjects. Unknown consequents lower observation coverage, not logical truth. "
+                "Subject exchangeability is an assumption; correlated sources can violate it. "
+                "Three folds and two priors are sensitivity checks, not independent votes."
+            ),
             "status_counts": dict(Counter(r["status"] for r in self.records)),
-            "candidates": self.records}
+            "candidates": self.records,
+        }
